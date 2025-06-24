@@ -1,33 +1,9 @@
 import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import type { DocumentHead, RequestHandler } from "@builder.io/qwik-city";
+import type { DocumentHead } from "@builder.io/qwik-city";
 import style from "./styles.css?inline";
-import { routes } from "@qwik-city-plan";
-import { createSitemap } from "./create-sitemap";
-
-export const onGet: RequestHandler = (ev) => {
-  const siteRoutes = routes
-    .map(([route]) => route as string)
-    .filter(route => route !== "/");  // Exclude the '/' route
- 
-  const sitemap = createSitemap([
-    { loc: "/", priority: 1 },  // Manually include the root route
-    ...siteRoutes.map((route) => ({
-      loc: route,
-      priority: 0.9,  // Default priority, adjust as needed
-    })),
-  ]);
- 
-  const response = new Response(sitemap, {
-    status: 200,
-    headers: { "Content-Type": "text/xml" },
-  });
- 
-  ev.send(response);
-};
-
 
 export default component$(() => {
-  useStylesScoped$(style)
+  useStylesScoped$(style);
   return (
     <section class="placeholder">
       <div class="container">
@@ -36,10 +12,12 @@ export default component$(() => {
 
         <div class="text-block">
           <p>
-            <strong>OBRIYM</strong> — from insight to execution. We plan, design, develop, and launch products that make a real impact.
+            <strong>OBRIYM</strong> — from insight to execution. We plan,
+            design, develop, and launch products that make a real impact.
           </p>
           <p>
-            We are a team of experienced professionals passionate about crafting innovative solutions to help businesses grow.
+            We are a team of experienced professionals passionate about crafting
+            innovative solutions to help businesses grow.
           </p>
         </div>
 
@@ -58,7 +36,8 @@ export const head: DocumentHead = {
   meta: [
     {
       name: "description",
-      content: "Obriym web agency - We create web products, mobile apps, and design solutions.",
+      content:
+        "Obriym web agency - We create web products, mobile apps, and design solutions.",
     },
     { property: "og:title", content: "Welcome to Obriym Web Agency." },
     { property: "og:description", content: "Obriym web agency" },
