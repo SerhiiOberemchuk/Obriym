@@ -1,8 +1,9 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
-import "./styles.css";
+import style from "./styles.css?inline";
 
 export default component$(() => {
+  useStylesScoped$(style)
   return (
     <section class="placeholder">
       <div class="container">
