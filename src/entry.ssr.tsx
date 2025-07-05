@@ -11,17 +11,29 @@
  *
  */
 import {
+  RenderOptions,
   renderToStream,
   type RenderToStreamOptions,
-} from "@builder.io/qwik/server";
+} from "@qwik.dev/core/server";
 import Root from "./root";
+import { isDev } from "@qwik.dev/core";
+import { config } from "./speak-config";
+
+export function extractBase({ serverData }: RenderOptions): string {
+  if (!isDev && serverData?.locale) {
+    return "/build/" + serverData.locale;
+  } else {
+    return "/build";
+  }
+}
 
 export default function (opts: RenderToStreamOptions) {
   return renderToStream(<Root />, {
     ...opts,
+    base: extractBase,
     // Use container attributes to set attributes on the html tag.
     containerAttributes: {
-      lang: "en-us",
+      lang: opts.serverData?.locale || config.defaultLocale.lang,
       ...opts.containerAttributes,
     },
     serverData: {

@@ -1,0 +1,14 @@
+{
+  "app": {
+    "changeLocale": "Cambia lingua",
+    "head": {
+      "home": {
+        "description": "Benvenuto in {{name}}",
+        "title": "{{name}}"
+      }
+    },
+    "title": "{{name}} italiano demo"
+  },
+  "dates": "Date",
+  "numbers": "Numeri"
+}

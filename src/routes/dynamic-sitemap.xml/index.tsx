@@ -1,5 +1,5 @@
-import { RequestHandler } from "@builder.io/qwik-city";
-import { routes } from "@qwik-city-plan";
+import { RequestHandler } from "@qwik.dev/router";
+import { routes } from "@qwik-router-config";
 import { createSitemap } from "./create-sitemap";
 
 export const onGet: RequestHandler = (ev) => {
