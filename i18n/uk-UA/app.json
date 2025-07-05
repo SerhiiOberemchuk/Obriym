@@ -1,14 +1,14 @@
 {
   "app": {
-    "changeLocale": "Cambia lingua",
+    "changeLocale": "Змінити мову",
     "head": {
       "home": {
-        "description": "Benvenuto in {{name}}",
+        "description": "Ласкаво просимо {{name}}",
         "title": "{{name}}"
       }
     },
     "logo": {
-      "link": "Logo Obriym Agency link to homepage"
+      "link": "Логотип {{name}} посилання на головну"
     },
     "nav": {
       "home": "Home",

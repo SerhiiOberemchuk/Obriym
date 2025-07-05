@@ -7,6 +7,13 @@
         "title": "{{name}}"
       }
     },
+    "logo": {
+      "link": "Logo Obriym Agency link to homepage"
+    },
+    "nav": {
+      "home": "Home",
+      "page": "Page"
+    },
     "title": "{{name}} demo"
   },
   "dates": "Dates",

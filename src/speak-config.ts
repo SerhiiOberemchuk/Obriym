@@ -3,12 +3,13 @@ import type { SpeakConfig } from "qwik-speak";
 export const config: SpeakConfig = {
   defaultLocale: {
     lang: "en-US",
-    currency: "USD",
-    timeZone: "America/Los_Angeles",
+    currency: "EUR",
+    timeZone: "Europe/Rome",
   },
   supportedLocales: [
+    { lang: "uk-UA", currency: "UAH", timeZone: "Europe/Kyiv" },
     { lang: "it-IT", currency: "EUR", timeZone: "Europe/Rome" },
-    { lang: "en-US", currency: "USD", timeZone: "America/Los_Angeles" },
+    { lang: "en-US", currency: "EUR", timeZone: "Europe/Rome" },
   ],
   // Translations available in the whole app
   assets: ["app"],
