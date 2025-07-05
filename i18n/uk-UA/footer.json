@@ -1,5 +1,8 @@
 {
   "footer": {
-    "copyright": "Copyright"
+    "text": {
+      "webuild1": "Ми створюємо цифрові продукти",
+      "webuild2": "від початку до кінця"
+    }
   }
 }

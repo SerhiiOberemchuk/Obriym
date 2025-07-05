@@ -1,5 +1,8 @@
 {
   "footer": {
-    "copyright": "Copyright"
+    "text": {
+      "webuild1": "We build end-to-end",
+      "webuild2": "digital products"
+    }
   }
 }
