@@ -1,10 +1,24 @@
-/* 4. Set body defaults */
 body {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   line-height: 1.5;
-  font-family:
-    var(--font-family),
-    /* Fallback to Plus Jakarta Sans if variable is not set */ sans-serif;
-  background-color: var(--blue-light);
+  font-family: var(--font-family), sans-serif;
+  background-color: var(--background-page);
   color: var(--black);
+}
+
+main {
+  flex: 1;
+}
+
+.container {
+  width: 100%;
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  @media (min-width: 48rem) {
+    padding: 0 2.5rem;
+  }
 }

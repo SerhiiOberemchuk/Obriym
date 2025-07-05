@@ -2,14 +2,50 @@
   font-family: var(--font-family);
   font-style: italic;
   font-weight: 200;
-  font-size: 8.5rem;
+  font-size: 2.375rem;
   line-height: 1.1;
   color: var(--grey-dark);
 }
 .H2_light {
   font-family: var(--font-family);
   font-weight: 300;
-  font-size: 7.75rem;
+  font-size: 2.25rem;
   line-height: 1.1;
   color: var(--black);
+}
+.body_big {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1.3;
+  color: var(--grey);
+}
+.btn_header {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.3;
+  color: var(--grey);
+}
+
+@media (min-width: 48rem) {
+  .H1_extra_light {
+    font-size: 4.5rem;
+  }
+  .H2_light {
+    font-size: 4.25rem;
+  }
+}
+
+@media (min-width: 90rem) {
+  .H1_extra_light {
+    font-size: 8.5rem;
+  }
+  .H2_light {
+    font-size: 7.75rem;
+  }
+  .body_big {
+    font-size: 2.75rem;
+    line-height: 1.2;
+  }
 }

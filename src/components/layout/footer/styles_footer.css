@@ -1,0 +1,35 @@
+footer {
+  border-radius: 2rem 2rem 0 0;
+  padding: 4rem 0 1.5rem 0;
+  background: var(--white);
+}
+
+.f_container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.f_copyright {
+  border-top: 1px solid var(--grey-light);
+  padding: 8px 0px;
+  text-align: end;
+}
+
+@media (min-width: 48rem) {
+  footer {
+    padding: 2.5rem 0 1.5rem 0;
+  }
+  .f_container {
+    gap: 5rem;
+  }
+}
+
+@media (min-width: 90rem) {
+  footer {
+    padding: 5rem 0 1.5rem 0;
+  }
+  .f_container {
+    gap: 3.25rem;
+  }
+}
