@@ -22,23 +22,31 @@
     "preview": "qwik build preview && vite preview --open",
     "start": "vite --open --mode ssr",
     "qwik": "qwik",
-    "qwik-speak-extract": "qwik-speak-extract --supportedLangs=en-US,it-IT --assetsPath=i18n"
+    "qwik-speak-extract": "qwik-speak-extract --supportedLangs=en-US,it-IT --assetsPath=i18n",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx,css,scss,md,json}": [
+      "prettier --write"
+    ]
   },
   "devDependencies": {
     "@eslint/js": "latest",
+    "@qwik.dev/core": "2.0.0-beta.4",
+    "@qwik.dev/router": "2.0.0-beta.4",
     "@types/node": "20.14.11",
     "eslint": "9.25.1",
     "eslint-plugin-qwik": "2.0.0-beta.4",
     "globals": "16.0.0",
-    "prettier": "3.3.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.3.3",
     "qwik-speak": "^0.23.1",
     "typescript": "5.4.5",
     "typescript-eslint": "8.26.1",
     "undici": "*",
     "vercel": "^29.1.1",
     "vite": "5.3.5",
-    "vite-tsconfig-paths": "^4.2.1",
-    "@qwik.dev/router": "2.0.0-beta.4",
-    "@qwik.dev/core": "2.0.0-beta.4"
+    "vite-tsconfig-paths": "^4.2.1"
   }
 }

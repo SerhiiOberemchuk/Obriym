@@ -1,0 +1,15 @@
+.H1_extra_light {
+  font-family: var(--font-family);
+  font-style: italic;
+  font-weight: 200;
+  font-size: 8.5rem;
+  line-height: 1.1;
+  color: var(--grey-dark);
+}
+.H2_light {
+  font-family: var(--font-family);
+  font-weight: 300;
+  font-size: 7.75rem;
+  line-height: 1.1;
+  color: var(--black);
+}

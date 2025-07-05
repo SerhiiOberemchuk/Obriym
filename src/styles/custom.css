@@ -1,0 +1,10 @@
+/* 4. Set body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  font-family:
+    var(--font-family),
+    /* Fallback to Plus Jakarta Sans if variable is not set */ sans-serif;
+  background-color: var(--blue-light);
+  color: var(--black);
+}

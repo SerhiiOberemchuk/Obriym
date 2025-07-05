@@ -1,11 +1,11 @@
-import { component$, isDev } from "@qwik.dev/core";
-import { QwikRouterProvider, RouterOutlet } from "@qwik.dev/router";
-import { RouterHead } from "./components/router-head/router-head";
+import { component$, isDev } from '@qwik.dev/core';
+import { QwikRouterProvider, RouterOutlet } from '@qwik.dev/router';
+import { RouterHead } from './components/router-head/router-head';
 
-import "./global.css";
-import { useQwikSpeak } from "qwik-speak";
-import { config } from "./speak-config";
-import { translationFn } from "./speak-functions";
+import './styles/global.css';
+import { useQwikSpeak } from 'qwik-speak';
+import { config } from './speak-config';
+import { translationFn } from './speak-functions';
 
 export default component$(() => {
   /**
@@ -19,15 +19,10 @@ export default component$(() => {
     <QwikRouterProvider>
       <head>
         <meta charset="utf-8" />
-        {!isDev && (
-          <link
-            rel="manifest"
-            href={`${import.meta.env.BASE_URL}manifest.json`}
-          />
-        )}
+        {!isDev && <link rel="manifest" href={`${import.meta.env.BASE_URL}manifest.json`} />}
         <RouterHead />
       </head>
-      <body lang="en">
+      <body>
         <RouterOutlet />
       </body>
     </QwikRouterProvider>
