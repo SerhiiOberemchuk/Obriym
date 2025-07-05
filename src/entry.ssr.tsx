@@ -10,11 +10,7 @@
  * - npm run build
  *
  */
-import {
-  RenderOptions,
-  renderToStream,
-  type RenderToStreamOptions,
-} from "@qwik.dev/core/server";
+import { RenderOptions, renderToStream, type RenderToStreamOptions } from "@qwik.dev/core/server";
 import Root from "./root";
 import { isDev } from "@qwik.dev/core";
 import { config } from "./speak-config";

@@ -1,11 +1,11 @@
-import { component$, isDev } from '@qwik.dev/core';
-import { QwikRouterProvider, RouterOutlet } from '@qwik.dev/router';
-import { RouterHead } from './components/router-head/router-head';
+import { component$, isDev } from "@qwik.dev/core";
+import { QwikRouterProvider, RouterOutlet } from "@qwik.dev/router";
+import { RouterHead } from "./components/router-head/router-head";
 
-import './styles/global.css';
-import { useQwikSpeak } from 'qwik-speak';
-import { config } from './speak-config';
-import { translationFn } from './speak-functions';
+import "./styles/global.css";
+import { useQwikSpeak } from "qwik-speak";
+import { config } from "./speak-config";
+import { translationFn } from "./speak-functions";
 
 export default component$(() => {
   /**

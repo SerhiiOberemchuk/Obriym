@@ -13,9 +13,7 @@ export const onRequest: RequestHandler = ({ params, error, locale }) => {
 
   if (params.lang && validateLocale(params.lang)) {
     // Check supported locales
-    lang = config.supportedLocales.find(
-      (value) => value.lang === params.lang
-    )?.lang;
+    lang = config.supportedLocales.find(value => value.lang === params.lang)?.lang;
   } else {
     lang = config.defaultLocale.lang;
   }

@@ -12,12 +12,12 @@ export default component$(() => {
 
         <div class="text-block">
           <p>
-            <strong>OBRIYM</strong> — from insight to execution. We plan,
-            design, develop, and launch products that make a real impact.
+            <strong>OBRIYM</strong> — from insight to execution. We plan, design, develop, and
+            launch products that make a real impact.
           </p>
           <p>
-            We are a team of experienced professionals passionate about crafting
-            innovative solutions to help businesses grow.
+            We are a team of experienced professionals passionate about crafting innovative
+            solutions to help businesses grow.
           </p>
         </div>
 
@@ -36,8 +36,7 @@ export const head: DocumentHead = {
   meta: [
     {
       name: "description",
-      content:
-        "Obriym web agency - We create web products, mobile apps, and design solutions.",
+      content: "Obriym web agency - We create web products, mobile apps, and design solutions.",
     },
     { property: "og:title", content: "Welcome to Obriym Web Agency." },
     { property: "og:description", content: "Obriym web agency" },

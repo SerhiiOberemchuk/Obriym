@@ -22,7 +22,7 @@ export const ChangeLocale = component$(() => {
   return (
     <>
       <h2>{t("app.changeLocale@@Change locale")}</h2>
-      {config.supportedLocales.map((value) => (
+      {config.supportedLocales.map(value => (
         <a
           key={value.lang}
           class={{ active: value.lang == locale.lang }}
