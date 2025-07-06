@@ -20,6 +20,14 @@
   line-height: 1.3;
   color: var(--grey);
 }
+
+.btn_body {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.3;
+  color: var(--black);
+}
 .btn_header {
   font-family: var(--font-family);
   font-weight: 400;
@@ -43,6 +51,9 @@
   }
   .H2_light {
     font-size: 7.75rem;
+  }
+  .btn_body {
+    font-size: 1.125rem;
   }
   .body_big {
     font-size: 2.75rem;

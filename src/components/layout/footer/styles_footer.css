@@ -15,7 +15,9 @@ footer {
   padding: 8px 0px;
   text-align: end;
 }
-
+.f_title {
+  max-width: 22rem;
+}
 @media (min-width: 48rem) {
   footer {
     padding: 2.5rem 0 1.5rem 0;

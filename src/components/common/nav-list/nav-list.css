@@ -1,0 +1,19 @@
+.nav_list {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav_list[data-place="header"] {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav_list[data-place="footer"] {
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav_list[data-place="mobilemenu"] {
+  justify-content: space-between;
+  align-items: center;
+}
