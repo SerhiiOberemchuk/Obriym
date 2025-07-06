@@ -1,6 +1,7 @@
 import { component$ } from "@qwik.dev/core";
 import { DocumentHead } from "@qwik.dev/router";
 import { inlineTranslate, useFormatDate, useFormatNumber } from "qwik-speak";
+import SectionTest from "~/components/sections/SectionTest";
 
 export default component$(() => {
   const t = inlineTranslate();
@@ -17,6 +18,8 @@ export default component$(() => {
 
       <h3>{t("numbers@@Numbers")}</h3>
       <p>{fn(1000000, { style: "currency" })}</p>
+
+      <SectionTest />
     </>
   );
 });

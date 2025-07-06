@@ -1,7 +1,9 @@
 {
   "footer": {
+    "followUs": "Follow us on",
     "text": {
-      "webuild": "We build end-to-end digital products"
+      "webuild1": "We build end-to-end",
+      "webuild2": "digital products"
     }
   }
 }

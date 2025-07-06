@@ -2,3 +2,14 @@
   display: flex;
   max-width: fit-content;
 }
+
+@media (48rem < width < 90rem) {
+  .logo[data-place="footer"] svg {
+    width: 25rem;
+  }
+}
+@media (width > 48rem) {
+  .logo:hover {
+    scale: 1.01;
+  }
+}

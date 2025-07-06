@@ -1,0 +1,24 @@
+.link_email {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+.link_email svg {
+  fill: var(--peach);
+  transition: all 0.3s ease-in-out;
+}
+
+@media (width > 48rem) {
+  .link_email:hover svg {
+    fill: var(--peach-light);
+    scale: 1.02;
+  }
+  .link_email:active svg {
+    fill: var(--peach-dark);
+    scale: 1.02;
+  }
+}
+
+.link_email[data-place="footer"] {
+  justify-content: center;
+}

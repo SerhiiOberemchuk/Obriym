@@ -1,0 +1,28 @@
+.f_social_list {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+.f_social_icon {
+  fill: var(--peach);
+  transition: all 0.3s ease-in-out;
+}
+.f_social_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+@media (min-width: 48rem) {
+  .f_social_icon:hover {
+    fill: var(--peach-light);
+    scale: 1.02;
+    /* stroke: var(--white); */
+  }
+  .f_social_icon:active {
+    fill: var(--peach-dark);
+    scale: 1.02;
+    /* stroke: var(--white); */
+  }
+}

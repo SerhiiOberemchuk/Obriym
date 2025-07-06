@@ -1,7 +1,9 @@
 {
   "footer": {
+    "followUs": "Seguici",
     "text": {
-      "webuild": "Costruiamo prodotti digitali end-to-end"
+      "webuild1": "Noi costruiamo end-to-end",
+      "webuild2": "prodotti digitali"
     }
   }
 }

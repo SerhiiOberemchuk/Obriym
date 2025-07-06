@@ -24,6 +24,7 @@ ol {
 a {
   text-decoration: none;
   color: inherit;
+  transition: all 0.3s ease-in-out;
 }
 
 img,
@@ -50,6 +51,7 @@ select {
 button {
   cursor: pointer;
   background-color: transparent;
+  transition: all 0.3s ease-in-out;
 }
 
 blockquote,
