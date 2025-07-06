@@ -8,11 +8,9 @@
  *
  */
 import qwikRouterConfig from "@qwik-router-config";
-import { createQwikRouter, type PlatformVercel } from "@qwik.dev/router/middleware/vercel-edge";
+import { createQwikRouter } from "@qwik.dev/router/middleware/vercel-edge";
 import render from "./entry.ssr";
 
-declare global {
-  interface QwikRouterPlatform extends PlatformVercel {}
-}
+// Removed empty interface declaration as it is redundant.
 
 export default createQwikRouter({ render, qwikRouterConfig });
