@@ -1,5 +1,5 @@
 import { component$, isDev } from "@qwik.dev/core";
-import { QwikRouterProvider, RouterOutlet } from "@qwik.dev/router";
+import { QwikRouterProvider, RouterOutlet, ServiceWorkerRegister } from "@qwik.dev/router";
 import { RouterHead } from "./components/router-head/router-head";
 
 import "./styles/global.css";
@@ -21,6 +21,7 @@ export default component$(() => {
         <meta charset="utf-8" />
         {!isDev && <link rel="manifest" href={`${import.meta.env.BASE_URL}manifest.json`} />}
         <RouterHead />
+        <ServiceWorkerRegister />
       </head>
       <body>
         <RouterOutlet />

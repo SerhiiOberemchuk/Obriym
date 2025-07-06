@@ -26,8 +26,8 @@ export default defineConfig(({ command, mode }): UserConfig => {
       qwikRouter(), 
       qwikVite(),
       qwikSpeakInline({
-        supportedLangs: ['en-US', 'it-IT', 'uk-UA'],
-        defaultLang: 'en-US',
+        supportedLangs: ['en-EU', 'it-IT', 'uk-UA'],
+        defaultLang: 'en-EU',
         assetsPath: 'i18n'
       }), 
       tsconfigPaths()

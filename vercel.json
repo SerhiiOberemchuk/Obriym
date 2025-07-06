@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/:path*service-worker.js",
+      "source": "/(.*)?service-worker.js",
       "headers": [
         {
           "key": "Cache-Control",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "source": "/:path(assets|build)/:rest*",
+      "source": "/(assets|build)/.*",
       "headers": [
         {
           "key": "Cache-Control",
