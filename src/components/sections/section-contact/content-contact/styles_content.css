@@ -41,7 +41,6 @@
   height: 36px;
   border-radius: 100%;
   background-color: var(--blue);
-  /* border: 1px solid var(--blue); */
 }
 .cc_calendly__foto_box_white {
   display: flex;
@@ -51,11 +50,11 @@
   height: 34px;
   border-radius: 100%;
   background-color: var(--white);
-  /* border: 1px solid var(--blue); */
 }
 .cc_calendly__foto {
   width: 32px;
   height: 32px;
+  border-radius: 100%;
 }
 .cc_calendly_text_box {
   display: flex;
@@ -70,7 +69,9 @@
   width: 44px;
   height: 44px;
 }
-
+.cc_email_icon {
+  fill: var(--peach);
+}
 @media (min-width: 48rem) {
   .cc_content_box {
     gap: 36px;
@@ -102,7 +103,15 @@
   .cc_calendly_text_box {
     gap: 24px;
   }
+  .cc_calendly_text_icon {
+    width: 64px;
+    height: 64px;
+    align-self: center;
+  }
 }
 
 @media (min-width: 90rem) {
+  /*  .cc_calendly_text_box {
+    align-items: center;
+  } */
 }
