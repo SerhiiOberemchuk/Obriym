@@ -1,6 +1,7 @@
 import { component$ } from "@qwik.dev/core";
 import { DocumentHead } from "@qwik.dev/router";
 import { inlineTranslate, useFormatDate, useFormatNumber } from "qwik-speak";
+import GetContact from "~/components/sections/section-contact/SectionContact";
 import SectionTest from "~/components/sections/SectionTest";
 
 export default component$(() => {
@@ -20,6 +21,7 @@ export default component$(() => {
       <p>{fn(1000000, { style: "currency" })}</p>
 
       <SectionTest />
+      <GetContact />
     </>
   );
 });
