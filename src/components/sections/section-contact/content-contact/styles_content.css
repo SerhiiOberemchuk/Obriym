@@ -1,0 +1,53 @@
+.cc_content_box {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+
+.cc_title_box {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.75rem;
+}
+.cc_text_box {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.cc_soc_media_box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.cc_soc_media_row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.cc_calendly_box {
+  border-radius: 24px;
+  padding: 20px;
+  color: var(--white);
+}
+.cc_calendly__foto_box_blue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+  background-color: var(--blue);
+  /* border: 1px solid var(--blue); */
+}
+.cc_calendly__foto_box_white {
+  width: 34px;
+  height: 34px;
+  border-radius: 100%;
+  background-color: var(--white);
+  /* border: 1px solid var(--blue); */
+}
+.cc_calendly__foto {
+  width: 32px;
+  height: 32px;
+}

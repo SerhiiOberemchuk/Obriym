@@ -4,8 +4,8 @@ import styles from "./styles_inputs.css?inline";
 export default component$(() => {
   useStylesScoped$(styles);
   return (
-    <section class="">
+    <div class="">
       <p>Inputs Contact</p>
-    </section>
+    </div>
   );
 });
