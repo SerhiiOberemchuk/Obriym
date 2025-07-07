@@ -38,6 +38,16 @@
   line-height: 1.2;
   color: var(--black);
 }
+.H6 {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 120%;
+
+  color: var(--black);
+}
+
+/* Ganna needs black  */
 .body_big {
   font-family: var(--font-family);
   font-weight: 400;
@@ -46,6 +56,7 @@
   color: var(--grey);
 }
 
+/* Ganna needs grey  */
 .btn_body {
   font-family: var(--font-family);
   font-weight: 400;

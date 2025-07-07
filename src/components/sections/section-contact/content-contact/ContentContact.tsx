@@ -18,7 +18,7 @@ export default component$(() => {
           <p class="btn_header">
             Let&apos;s start the conversation and explore how we can bring your vision to life.
           </p>
-          <div class="cc_soc_media_box">
+          <div class="cc_text_soc_media_box">
             <div class="cc_soc_media_row">
               <p>icon</p>
               <p class="btn_header">info@obriym.com</p>
@@ -36,6 +36,14 @@ export default component$(() => {
           <div class="cc_calendly__foto_box_white">
             <div class="cc_calendly__foto">foto</div>
           </div>
+        </div>
+        <div class="cc_calendly_text_box">
+          <div class="cc_calendly_text_wrap">
+            <p class="H6">Schedule a call with Serhii</p>
+            {/* Change to grey color .btn_body*/}
+            <p class="btn_body">Founder & CEO</p>
+          </div>
+          <div class="cc_calendly_text_icon">icon</div>
         </div>
       </div>
     </div>
