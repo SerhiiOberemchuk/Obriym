@@ -4,17 +4,7 @@ import InputsContact from "./inputs-contact/InputsContact";
 import styles from "./styles_contact.css?inline";
 import IconGreen from "/public/icons/icon-green.svg?w=100&h100&jsx";
 
-interface ContactForm {
-  services: string[];
-  budget: string;
-  name: string;
-  email: string;
-  message: string;
-}
-interface SectionContactProps {
-  initialValues: ContactForm;
-}
-export default component$(({ initialValues }: SectionContactProps) => {
+export default component$(() => {
   useStylesScoped$(styles);
   return (
     <section class="c_section">
@@ -26,7 +16,7 @@ export default component$(({ initialValues }: SectionContactProps) => {
 
         <div class="с_container">
           <ContentContact />
-          <InputsContact initialValues={initialValues} />
+          <InputsContact />
         </div>
       </div>
     </section>

@@ -18,7 +18,7 @@ export default component$(() => {
 
   const fd = useFormatDate();
   const fn = useFormatNumber();
-  const formLoader = useContactFormLoader();
+
   return (
     <>
       <h1>{t("app.title@@{{name}} demo", { name: "Qwik Speak" })}</h1>
@@ -30,7 +30,7 @@ export default component$(() => {
       <p>{fn(1000000, { style: "currency" })}</p>
 
       <SectionTest />
-      <SectionContact initialValues={formLoader.value} />
+      <SectionContact />
     </>
   );
 });

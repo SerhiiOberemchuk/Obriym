@@ -6,10 +6,11 @@ import {
   useForm,
   valiForm$,
   type SubmitHandler,
-  type InitialValues,
+  // type InitialValues,
 } from "@modular-forms/qwik";
-import { routeLoader$ } from "@qwik.dev/router";
+
 import * as v from "valibot";
+import { useContactFormLoader } from "~/routes/[...lang]";
 
 // interface ContactForm {
 //   services: string[];
@@ -39,17 +40,94 @@ type ContactForm = v.InferInput<typeof ContactSchema>;
 
 // === Server action ===
 export const useFormAction = formAction$<ContactForm>(values => {
+  // Runs on server
   console.log("Submitted on server:", values);
 }, valiForm$(ContactSchema));
 
-interface InputsContactProps {
-  initialValues: InitialValues<ContactForm>;
-}
-export default component$(({ initialValues }: InputsContactProps) => {
+export default component$(() => {
   useStylesScoped$(styles);
+  const [contactForm, { Form, Field }] = useForm<ContactForm>({
+    loader: useContactFormLoader(),
+    action: useFormAction(),
+    validate: valiForm$(ContactSchema),
+  });
+
+  const handleSubmit: QRL<SubmitHandler<ContactForm>> = $(values => {
+    // Runs on client
+    console.log("Submitted on client:", values);
+  });
   return (
     <div class="ic_content_box">
-      <p>Inputs Contact</p>
+      <Form onSubmit$={handleSubmit}>
+        <fieldset>
+          <legend>How can we help you?</legend>
+          {["Branding", "Website", "Mobile App"].map(service => (
+            <Field key={service} name="services" type="string[]">
+              {(field, props) => (
+                <label>
+                  <input {...props} type="checkbox" value={service} />
+                  {service}
+                </label>
+              )}
+            </Field>
+          ))}
+          {contactForm.internal?.fields?.services?.error && (
+            <div class="error">{contactForm.internal.fields.services.error}</div>
+          )}
+        </fieldset>
+
+        <fieldset>
+          <legend>Your budget?</legend>
+          {["<1000", "1000–2000", "2000–5000", ">5000"].map(budget => (
+            <Field key={budget} name="budget">
+              {(field, props) => (
+                <label>
+                  <input value={budget} type="radio" {...props} />
+                  {budget}
+                  {field.error && <div class="error">{field.error}</div>}
+                </label>
+              )}
+            </Field>
+          ))}
+        </fieldset>
+
+        <Field name="name">
+          {(field, props) => (
+            <div>
+              <label>
+                Name:
+                <input {...props} value={field.value} />
+              </label>
+              {field.error && <div class="error">{field.error}</div>}
+            </div>
+          )}
+        </Field>
+
+        <Field name="email">
+          {(field, props) => (
+            <div>
+              <label>
+                Email:
+                <input {...props} type="email" value={field.value} />
+              </label>
+              {field.error && <div class="error">{field.error}</div>}
+            </div>
+          )}
+        </Field>
+
+        <Field name="message">
+          {(field, props) => (
+            <div>
+              <label>
+                Message:
+                <textarea {...props}>{field.value}</textarea>
+              </label>
+            </div>
+          )}
+        </Field>
+
+        <button type="submit">Send</button>
+      </Form>
     </div>
   );
 });
