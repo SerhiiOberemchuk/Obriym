@@ -1,0 +1,62 @@
+:root {
+  --side: 0.75rem;
+}
+
+.menu_btn {
+  border-radius: 40px;
+  background: var(--pink);
+  position: relative;
+  gap: 0.625rem;
+  width: 108px;
+  height: 48px;
+  z-index: 100;
+}
+.menu_btn .title {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: var(--side);
+  transition: all 0.3s ease-in-out;
+}
+.menu_btn[aria-expanded="true"] {
+  position: fixed;
+  z-index: 500;
+  top: 1rem;
+  right: 1rem;
+  width: 48px;
+}
+.menu_btn[aria-expanded="true"] .title {
+  opacity: 0;
+}
+
+.mb_burger {
+  height: 18px;
+  width: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+  position: absolute;
+  right: var(--side);
+  top: 50%;
+  transform: translateY(-50%);
+}
+.mb_burger span {
+  width: 18px;
+  height: 1px;
+  background-color: var(--black);
+  transition: all 0.3s ease-in-out;
+}
+
+.menu_btn[aria-expanded="true"] .mb_burger :nth-child(1) {
+  transform: rotate(0.125turn) translate(4px, 8px) scaleX(1.1);
+}
+.mb_burger :nth-child(2) {
+  width: 10px;
+}
+.menu_btn[aria-expanded="true"] .mb_burger :nth-child(2) {
+  width: 0;
+}
+.menu_btn[aria-expanded="true"] .mb_burger :nth-child(3) {
+  transform: rotate(-0.125turn) translate(4px, -8px) scaleX(1.1);
+}

@@ -1,0 +1,48 @@
+.mob_wraper {
+  position: fixed;
+  top: -100%;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.mob_wraper[data-open="true"] {
+  top: 0;
+}
+
+.mob_container {
+  width: 100%;
+  min-height: 100svh;
+  position: relative;
+}
+
+.opacity {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+.mob_wraper[data-open="true"] .opacity {
+  opacity: 0.8;
+}
+.mob_title {
+  background-color: blueviolet;
+  opacity: 1;
+}
+.mob_menu {
+  position: absolute;
+  top: 0;
+  background-color: azure;
+  width: 100px;
+  height: 200px;
+  right: -100%;
+  transition: all 0.3s ease-in-out;
+}
+
+.mob_wraper[data-open="true"] .mob_menu {
+  right: 0;
+}
