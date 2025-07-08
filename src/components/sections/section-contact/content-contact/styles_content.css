@@ -1,0 +1,117 @@
+.cc_content_box {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+
+.cc_title_box {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.75rem;
+}
+.cc_text_box {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.cc_text_soc_media_box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.cc_soc_media_row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.cc_calendly_box {
+  border-radius: 24px;
+  padding: 20px;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cc_calendly__foto_box_blue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+  background-color: var(--blue);
+}
+.cc_calendly__foto_box_white {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 100%;
+  background-color: var(--white);
+}
+.cc_calendly__foto {
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+}
+.cc_calendly_text_box {
+  display: flex;
+  gap: 18px;
+}
+.cc_calendly_text_wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cc_calendly_text_icon {
+  width: 44px;
+  height: 44px;
+}
+.cc_email_icon {
+  fill: var(--peach);
+}
+@media (min-width: 48rem) {
+  .cc_content_box {
+    gap: 36px;
+  }
+  .cc_text_box {
+    width: 325px;
+  }
+  .cc_text_soc_media_box {
+    gap: 12px;
+  }
+  .cc_calendly_box {
+    flex-direction: row;
+    gap: 24px;
+    padding: 24px;
+    width: fit-content;
+  }
+  .cc_calendly__foto_box_blue {
+    width: 92px;
+    height: 92px;
+  }
+  .cc_calendly__foto {
+    width: 80px;
+    height: 80px;
+  }
+  .cc_calendly__foto_box_white {
+    width: 86px;
+    height: 86px;
+  }
+  .cc_calendly_text_box {
+    gap: 24px;
+  }
+  .cc_calendly_text_icon {
+    width: 64px;
+    height: 64px;
+    align-self: center;
+  }
+}
+
+@media (min-width: 90rem) {
+  /*  .cc_calendly_text_box {
+    align-items: center;
+  } */
+}

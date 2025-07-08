@@ -6,6 +6,7 @@
   line-height: 1.1;
   color: var(--grey-dark);
 }
+
 .H2_light {
   font-family: var(--font-family);
   font-weight: 300;
@@ -13,6 +14,15 @@
   line-height: 1.1;
   color: var(--black);
 }
+.H3_uppercase {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 1.5rem; /* 24px */
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--grey-dark);
+}
+
 .H4 {
   font-family: var(--font-family);
   font-weight: 400;
@@ -28,6 +38,16 @@
   line-height: 1.2;
   color: var(--black);
 }
+.H6 {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 120%;
+
+  color: var(--black);
+}
+
+/* Ganna needs black  */
 .body_big {
   font-family: var(--font-family);
   font-weight: 400;
@@ -36,6 +56,7 @@
   color: var(--grey);
 }
 
+/* Ganna needs grey  */
 .btn_body {
   font-family: var(--font-family);
   font-weight: 400;
@@ -58,6 +79,9 @@
   .H2_light {
     font-size: 4.25rem;
   }
+  .H3_uppercase {
+    font-size: 2.5rem; /* 40px */
+  }
   .H4 {
     font-size: 2rem;
   }
@@ -72,6 +96,12 @@
   }
   .H2_light {
     font-size: 7.75rem;
+  }
+  .H3_uppercase {
+    font-size: 2.75rem; /* 44px */
+  }
+  .H6 {
+    font-size: 24px;
   }
   .btn_body {
     font-size: 1.125rem;
