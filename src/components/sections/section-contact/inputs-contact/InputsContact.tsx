@@ -25,7 +25,10 @@ import { useContactFormLoader } from "~/routes/[...lang]";
 // }
 // === Schema ===
 const ContactSchema = v.object({
-  services: v.array(v.string(), "Select at least one service."),
+  services: v.pipe(
+    v.array(v.string(), "Each service must be a string."),
+    v.minLength(1, "Select at least one service."),
+  ),
   budget: v.pipe(v.string(), v.nonEmpty("Please choose your budget.")),
   // name: v.pipe(v.string(), v.nonEmpty("Please enter your name.")),
   name: v.string(),
@@ -59,24 +62,39 @@ export default component$(() => {
   return (
     <div class="ic_content_box">
       <Form onSubmit$={handleSubmit}>
-        <fieldset>
-          <legend>How can we help you?</legend>
-          {["Branding", "Website", "Mobile App"].map(service => (
-            <Field key={service} name="services" type="string[]">
-              {(field, props) => (
-                <label>
-                  <input {...props} type="checkbox" value={service} />
-                  {service}
-                </label>
-              )}
-            </Field>
-          ))}
-          {contactForm.internal?.fields?.services?.error && (
-            <div class="error">{contactForm.internal.fields.services.error}</div>
-          )}
-        </fieldset>
+        <Field name="services" type="string[]">
+          {(field, props) => (
+            <>
+              <fieldset class="services-fieldset">
+                <legend>How can we help you?</legend>
 
-        <fieldset>
+                {[
+                  { label: "Bananas", value: "bananas" },
+                  { label: "Apples", value: "apples" },
+                  { label: "Grapes", value: "grapes" },
+                ].map(({ label, value }) => {
+                  const isChecked = field.value?.includes(value);
+
+                  return (
+                    <label key={value} class={`service-option ${isChecked ? "selected" : ""}`}>
+                      <input
+                        {...props}
+                        type="checkbox"
+                        value={value}
+                        checked={isChecked}
+                        class="visually-hidden"
+                      />
+                      <span class="service-label">{label}</span>
+                    </label>
+                  );
+                })}
+              </fieldset>
+
+              {field.error && <div class="error">{field.error}</div>}
+            </>
+          )}
+        </Field>
+        {/* <fieldset>
           <legend>Your budget?</legend>
           {["<1000", "1000–2000", "2000–5000", ">5000"].map(budget => (
             <Field key={budget} name="budget">
@@ -89,8 +107,35 @@ export default component$(() => {
               )}
             </Field>
           ))}
-        </fieldset>
+        </fieldset> */}
+        <Field name="budget">
+          {(field, props) => (
+            <>
+              <fieldset class="budget-fieldset">
+                <legend>Your budget?</legend>
 
+                {["<1000", "1000–2000", "2000–5000", ">5000"].map(budget => {
+                  const isSelected = field.value === budget;
+
+                  return (
+                    <label key={budget} class={`budget-option ${isSelected ? "selected" : ""}`}>
+                      <input
+                        {...props}
+                        type="radio"
+                        value={budget}
+                        checked={isSelected}
+                        class="visually-hidden"
+                      />
+                      <span class="budget-label">{budget}</span>
+                    </label>
+                  );
+                })}
+              </fieldset>
+
+              {field.error && <div class="error">{field.error}</div>}
+            </>
+          )}
+        </Field>
         <Field name="name">
           {(field, props) => (
             <div>
