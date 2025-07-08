@@ -21,7 +21,7 @@ export default component$(() => {
         </div>
         {/* text */}
         <div class="cc_text_box">
-          <p class="btn_header">
+          <p class="btn_header grey">
             Let&apos;s start the conversation and explore how we can bring your vision to life.
           </p>
           <div class="cc_text_soc_media_box">
@@ -32,7 +32,7 @@ export default component$(() => {
             <LinkEmail place="main" />
             <div class="cc_soc_media_row">
               <IconTelegram />
-              <p class="btn_header">@obriym</p>
+              <p class="btn_header grey">@obriym</p>
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@ export default component$(() => {
           <div class="cc_calendly_text_wrap">
             <p class="H6">Schedule a call with Serhii</p>
             {/* Change to grey color .btn_body*/}
-            <p class="btn_body">Founder & CEO</p>
+            <p class="btn_body grey">Founder & CEO</p>
           </div>
 
           <IconSchedule class="cc_calendly_text_icon" />

@@ -9,7 +9,7 @@ export default component$<Props>(({ place }) => {
   return (
     <a
       data-place={place}
-      class={clsx(place === "footer" && "H5", place === "main" && "btn_header", " link_email")}
+      class={clsx(place === "footer" && "H5", place === "main" && "btn_header grey", " link_email")}
       href="mailto:info@obriym.com"
     >
       {place === "main" && <IconEmail class="link_email_icon" />}

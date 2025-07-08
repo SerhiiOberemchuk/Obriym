@@ -16,12 +16,13 @@ export default component$(() => {
         <NavList place="footer" />
         <FollowUs />
         <div class="f_box_title">
-          <h2 class="body_big">{t("footer.text.webuild1@@We build end-to-end")}</h2>
-          <h2 class="body_big"> {t("footer.text.webuild2@@digital products")}</h2>
+          {/* Ganna added grey */}
+          <h2 class="body_big grey">{t("footer.text.webuild1@@We build end-to-end")}</h2>
+          <h2 class="body_big grey"> {t("footer.text.webuild2@@digital products")}</h2>
           <Ball />
         </div>
-
-        <p class="btn_header f_copyright">Copyright ©Obriym{currentYear}</p>
+        {/* Ganna added grey */}
+        <p class="btn_header grey f_copyright">Copyright ©Obriym{currentYear}</p>
       </div>
     </footer>
   );
