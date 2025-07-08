@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@eslint/js": "latest",
+    "@modular-forms/qwik": "^0.29.1",
     "@qwik.dev/core": "2.0.0-beta.4",
     "@qwik.dev/router": "2.0.0-beta.4",
     "@types/node": "20.14.11",
