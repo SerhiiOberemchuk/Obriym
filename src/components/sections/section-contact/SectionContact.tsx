@@ -11,7 +11,7 @@ export default component$(() => {
       <div class="container ">
         <div class="c_box_title">
           <IconGreen class="c_title_icon" />
-          <h2 class="H3_uppercase">get a contact</h2>
+          <h2 class="H3_uppercase grey_dark">get a contact</h2>
         </div>
 
         <div class="с_container">
