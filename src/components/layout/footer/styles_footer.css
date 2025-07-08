@@ -27,6 +27,7 @@ footer {
 }
 .f_box_title img {
   margin-inline-start: 0.25rem;
+  margin-block: auto;
 }
 @media (min-width: 48rem) {
   footer {
@@ -64,7 +65,7 @@ footer {
     gap: 3.25rem;
   }
   .f_container {
-    grid-template-columns: 1fr 200px 240px;
+    grid-template-columns: 1fr 12.5rem 15rem;
   }
   .f_container :nth-child(1) {
     grid-column: 1 / 2;
