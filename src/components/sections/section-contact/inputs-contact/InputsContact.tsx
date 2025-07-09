@@ -62,114 +62,153 @@ export default component$(() => {
   return (
     <div class="ic_content_box">
       <Form onSubmit$={handleSubmit}>
+        {/* <Field name="services" type="string[]">
+          {(field, props) => (
+            <>
+              <fieldset class="ic_form_fieldset">
+                <legend class="H5 grey_dark ">How can we help you?</legend>
+
+                <div class="ic_form_options">
+                  {[
+                    { label: "Branding", value: "Branding" },
+                    { label: "Website", value: "Website" },
+                    { label: "Mobile application", value: "Mobile application" },
+                    { label: "Product design", value: "Product design" },
+                    { label: "SEO optimization", value: "SEO optimization" },
+                    { label: "other", value: "other" },
+                  ].map(({ label, value }) => {
+                    const isChecked = field.value?.includes(value);
+
+                    return (
+                      <label key={value} class={`service-option ${isChecked ? "selected" : ""}`}>
+                        <input
+                          {...props}
+                          type="checkbox"
+                          value={value}
+                          checked={isChecked}
+                          class="visually-hidden"
+                        />
+                        <span class="service-label">{label}</span>
+                      </label>
+                    );
+                  })}
+                </div>
+              </fieldset>
+
+              {field.error && <div class="error">{field.error}</div>}
+            </>
+          )}
+        </Field> */}
         <Field name="services" type="string[]">
           {(field, props) => (
             <>
-              <fieldset class="services-fieldset">
-                <legend>How can we help you?</legend>
+              <fieldset class="ic_form_fieldset">
+                <legend class="H5 grey_dark">How can we help you?</legend>
 
-                {[
-                  { label: "Bananas", value: "bananas" },
-                  { label: "Apples", value: "apples" },
-                  { label: "Grapes", value: "grapes" },
-                ].map(({ label, value }) => {
-                  const isChecked = field.value?.includes(value);
+                <div class="ic_form_options">
+                  {[
+                    "Branding",
+                    "Website",
+                    "Mobile application",
+                    "Product design",
+                    "SEO optimization",
+                    "other",
+                  ].map(option => {
+                    const isChecked = field.value?.includes(option);
 
-                  return (
-                    <label key={value} class={`service-option ${isChecked ? "selected" : ""}`}>
-                      <input
-                        {...props}
-                        type="checkbox"
-                        value={value}
-                        checked={isChecked}
-                        class="visually-hidden"
-                      />
-                      <span class="service-label">{label}</span>
-                    </label>
-                  );
-                })}
+                    return (
+                      <label key={option} class={`ic_form_option ${isChecked ? "selected" : ""}`}>
+                        <input
+                          {...props}
+                          type="checkbox"
+                          value={option}
+                          checked={isChecked}
+                          class="visually-hidden"
+                        />
+                        <span class="grey_dark btn_body ic_form_label">{option}</span>
+                      </label>
+                    );
+                  })}
+                </div>
               </fieldset>
 
-              {field.error && <div class="error">{field.error}</div>}
+              {field.error && <div class="btn_body ic_form_error ">{field.error}</div>}
             </>
           )}
         </Field>
-        {/* <fieldset>
-          <legend>Your budget?</legend>
-          {["<1000", "1000–2000", "2000–5000", ">5000"].map(budget => (
-            <Field key={budget} name="budget">
-              {(field, props) => (
-                <label>
-                  <input value={budget} type="radio" {...props} />
-                  {budget}
-                  {field.error && <div class="error">{field.error}</div>}
-                </label>
-              )}
-            </Field>
-          ))}
-        </fieldset> */}
         <Field name="budget">
           {(field, props) => (
             <>
-              <fieldset class="budget-fieldset">
-                <legend>Your budget?</legend>
+              <fieldset class="ic_form_fieldset">
+                <legend class="H5 grey_dark">Your budget range?</legend>
+                <div class="ic_form_options">
+                  {["under 1000€", "1000€ - 2000€", "2000€ - 5000€", "5000€+", "other"].map(
+                    budget => {
+                      const isSelected = field.value === budget;
 
-                {["<1000", "1000–2000", "2000–5000", ">5000"].map(budget => {
-                  const isSelected = field.value === budget;
-
-                  return (
-                    <label key={budget} class={`budget-option ${isSelected ? "selected" : ""}`}>
-                      <input
-                        {...props}
-                        type="radio"
-                        value={budget}
-                        checked={isSelected}
-                        class="visually-hidden"
-                      />
-                      <span class="budget-label">{budget}</span>
-                    </label>
-                  );
-                })}
+                      return (
+                        <label
+                          key={budget}
+                          class={`ic_form_option ${isSelected ? "selected" : ""}`}
+                        >
+                          <input
+                            {...props}
+                            type="radio"
+                            value={budget}
+                            checked={isSelected}
+                            class="visually-hidden"
+                          />
+                          <span class="grey_dark btn_body ic_form_label">{budget}</span>
+                        </label>
+                      );
+                    },
+                  )}
+                </div>
               </fieldset>
 
-              {field.error && <div class="error">{field.error}</div>}
+              {field.error && <div class="btn_body ic_form_error ">{field.error}</div>}
             </>
           )}
         </Field>
-        <Field name="name">
-          {(field, props) => (
-            <div>
-              <label>
-                Name:
-                <input {...props} value={field.value} />
-              </label>
-              {field.error && <div class="error">{field.error}</div>}
-            </div>
-          )}
-        </Field>
 
-        <Field name="email">
-          {(field, props) => (
-            <div>
-              <label>
-                Email:
-                <input {...props} type="email" value={field.value} />
-              </label>
-              {field.error && <div class="error">{field.error}</div>}
-            </div>
-          )}
-        </Field>
-
-        <Field name="message">
-          {(field, props) => (
-            <div>
-              <label>
-                Message:
-                <textarea {...props}>{field.value}</textarea>
-              </label>
-            </div>
-          )}
-        </Field>
+        <fieldset class="ic_form_fieldset">
+          <legend class="H5 grey_dark">Additional details</legend>
+          <div class="ic_form_block">
+            <Field name="name">
+              {(field, props) => (
+                <div>
+                  <label>
+                    Name:
+                    <input {...props} value={field.value} />
+                  </label>
+                  {field.error && <div class="error">{field.error}</div>}
+                </div>
+              )}
+            </Field>
+            <Field name="email">
+              {(field, props) => (
+                <div>
+                  <label>
+                    Email:
+                    <input {...props} type="email" value={field.value} />
+                  </label>
+                  {field.error && <div class="btn_body ic_form_error ">{field.error}</div>}
+                </div>
+              )}
+            </Field>
+            <Field name="message">
+              {(field, props) => (
+                <div>
+                  <label>
+                    Message:
+                    <textarea {...props}>{field.value}</textarea>
+                  </label>
+                  {field.error && <div class="btn_body ic_form_error ">{field.error}</div>}
+                </div>
+              )}
+            </Field>
+          </div>
+        </fieldset>
 
         <button type="submit">Send</button>
       </Form>
