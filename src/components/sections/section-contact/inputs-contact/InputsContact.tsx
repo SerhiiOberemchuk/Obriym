@@ -61,44 +61,7 @@ export default component$(() => {
   });
   return (
     <div class="ic_content_box">
-      <Form onSubmit$={handleSubmit}>
-        {/* <Field name="services" type="string[]">
-          {(field, props) => (
-            <>
-              <fieldset class="ic_form_fieldset">
-                <legend class="H5 grey_dark ">How can we help you?</legend>
-
-                <div class="ic_form_options">
-                  {[
-                    { label: "Branding", value: "Branding" },
-                    { label: "Website", value: "Website" },
-                    { label: "Mobile application", value: "Mobile application" },
-                    { label: "Product design", value: "Product design" },
-                    { label: "SEO optimization", value: "SEO optimization" },
-                    { label: "other", value: "other" },
-                  ].map(({ label, value }) => {
-                    const isChecked = field.value?.includes(value);
-
-                    return (
-                      <label key={value} class={`service-option ${isChecked ? "selected" : ""}`}>
-                        <input
-                          {...props}
-                          type="checkbox"
-                          value={value}
-                          checked={isChecked}
-                          class="visually-hidden"
-                        />
-                        <span class="service-label">{label}</span>
-                      </label>
-                    );
-                  })}
-                </div>
-              </fieldset>
-
-              {field.error && <div class="error">{field.error}</div>}
-            </>
-          )}
-        </Field> */}
+      <Form onSubmit$={handleSubmit} class="ic_form" form={contactForm}>
         <Field name="services" type="string[]">
           {(field, props) => (
             <>
@@ -174,35 +137,38 @@ export default component$(() => {
         <fieldset class="ic_form_fieldset">
           <legend class="H5 grey_dark">Additional details</legend>
           <div class="ic_form_block">
-            <Field name="name">
-              {(field, props) => (
-                <div>
-                  <input
-                    {...props}
-                    value={field.value}
-                    class="btn_body grey_dark ic_form_imput"
-                    placeholder="Enter your name"
-                  />
+            <div class="ic_form_imput_block">
+              <Field name="name">
+                {(field, props) => (
+                  <div>
+                    <input
+                      {...props}
+                      value={field.value}
+                      class="btn_body grey_dark ic_form_imput"
+                      placeholder="Enter your name"
+                    />
 
-                  {field.error && <div class="error">{field.error}</div>}
-                </div>
-              )}
-            </Field>
-            <Field name="email">
-              {(field, props) => (
-                <div>
-                  <input
-                    {...props}
-                    type="email"
-                    value={field.value}
-                    class="btn_body grey_dark ic_form_imput"
-                    placeholder="Enter your email"
-                  />
+                    {field.error && <div class="error">{field.error}</div>}
+                  </div>
+                )}
+              </Field>
+              <Field name="email">
+                {(field, props) => (
+                  <div>
+                    <input
+                      {...props}
+                      type="email"
+                      value={field.value}
+                      class="btn_body grey_dark ic_form_imput"
+                      placeholder="Enter your email"
+                    />
 
-                  {field.error && <div class="btn_body ic_form_error ">{field.error}</div>}
-                </div>
-              )}
-            </Field>
+                    {field.error && <div class="btn_body ic_form_error ">{field.error}</div>}
+                  </div>
+                )}
+              </Field>
+            </div>
+
             <Field name="message">
               {(field, props) => (
                 <div>
