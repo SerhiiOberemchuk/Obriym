@@ -221,7 +221,9 @@ export default component$(() => {
           </div>
         </fieldset>
 
-        <button type="submit">Send</button>
+        <button type="submit" class="btn_body black ic_form_btn">
+          Send information
+        </button>
       </Form>
     </div>
   );
