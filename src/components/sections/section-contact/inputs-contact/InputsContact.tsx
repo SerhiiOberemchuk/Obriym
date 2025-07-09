@@ -61,7 +61,7 @@ export default component$(() => {
   });
   return (
     <div class="ic_content_box">
-      <Form onSubmit$={handleSubmit} class="ic_form" form={contactForm}>
+      <Form onSubmit$={handleSubmit} class="ic_form">
         <Field name="services" type="string[]">
           {(field, props) => (
             <>

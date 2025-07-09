@@ -15,8 +15,13 @@ export default component$(() => {
         </div>
 
         <div class="с_container">
-          <ContentContact />
-          <InputsContact />
+          <div class="cc_wrapper">
+            <ContentContact />
+          </div>
+
+          <div class="cc_wrapper">
+            <InputsContact />
+          </div>
         </div>
       </div>
     </section>

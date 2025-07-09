@@ -32,8 +32,8 @@
 @media (min-width: 90rem) {
   .с_container {
     flex-direction: row;
-    gap: 0;
-    justify-content: space-between;
+    gap: 24px;
+
     align-items: flex-start;
   }
   .c_box_title {
@@ -42,5 +42,8 @@
   .c_title_icon {
     width: 100px;
     height: 100px;
+  }
+  .cc_wrapper {
+    flex: 1;
   }
 }
