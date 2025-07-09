@@ -22,6 +22,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  width: 100%;
 }
 .ic_form_fieldset legend {
   margin-bottom: 1.5rem;
@@ -49,7 +50,37 @@
 .ic_form_label {
   display: inline-block;
 }
-
+.ic_form_imput {
+  border: 1px solid var(--grey-light);
+  border-radius: 40px;
+  padding: 12px 16px;
+  width: 100%;
+}
+.ic_form_imput::placeholder {
+  opacity: 1;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 130%;
+  color: var(--grey-dark);
+}
+.ic_form_textarea {
+  border: 1px solid var(--grey-light);
+  border-radius: 12px;
+  padding: 12px 16px;
+  width: 100%;
+  height: 200px;
+  resize: none;
+  /* resize: vertical; */
+}
+.ic_form_textarea::placeholder {
+  opacity: 1;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 130%;
+  color: var(--grey-dark);
+}
 /* .budget-fieldset {
   border: none;
   padding: 0;

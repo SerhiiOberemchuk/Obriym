@@ -177,10 +177,13 @@ export default component$(() => {
             <Field name="name">
               {(field, props) => (
                 <div>
-                  <label>
-                    Name:
-                    <input {...props} value={field.value} />
-                  </label>
+                  <input
+                    {...props}
+                    value={field.value}
+                    class="btn_body grey_dark ic_form_imput"
+                    placeholder="Enter your name"
+                  />
+
                   {field.error && <div class="error">{field.error}</div>}
                 </div>
               )}
@@ -188,10 +191,14 @@ export default component$(() => {
             <Field name="email">
               {(field, props) => (
                 <div>
-                  <label>
-                    Email:
-                    <input {...props} type="email" value={field.value} />
-                  </label>
+                  <input
+                    {...props}
+                    type="email"
+                    value={field.value}
+                    class="btn_body grey_dark ic_form_imput"
+                    placeholder="Enter your email"
+                  />
+
                   {field.error && <div class="btn_body ic_form_error ">{field.error}</div>}
                 </div>
               )}
@@ -199,10 +206,14 @@ export default component$(() => {
             <Field name="message">
               {(field, props) => (
                 <div>
-                  <label>
-                    Message:
-                    <textarea {...props}>{field.value}</textarea>
-                  </label>
+                  <textarea
+                    {...props}
+                    placeholder="Add description"
+                    class="btn_body grey_dark ic_form_textarea"
+                  >
+                    {field.value}
+                  </textarea>
+
                   {field.error && <div class="btn_body ic_form_error ">{field.error}</div>}
                 </div>
               )}
