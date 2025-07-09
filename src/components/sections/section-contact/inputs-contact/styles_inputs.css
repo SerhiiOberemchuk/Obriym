@@ -128,7 +128,14 @@
   }
   .ic_form_btn {
     margin-left: auto;
-    width: fit-content;
+    width: max-content;
+    transition: background-color 0.2s ease-in-out;
+  }
+  .ic_form_btn:hover {
+    background-color: var(--pink-light);
+  }
+  .ic_form_btn:active {
+    background-color: var(--pink-dark);
   }
 }
 
