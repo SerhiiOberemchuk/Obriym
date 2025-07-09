@@ -29,13 +29,7 @@
 
   width: 100%;
 }
-.ic_form_imput_block {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  width: 100%;
-  margin-bottom: 0.75rem;
-}
+
 .ic_form_fieldset legend {
   margin-bottom: 1.5rem;
 }
@@ -61,6 +55,13 @@
 }
 .ic_form_label {
   display: inline-block;
+}
+.ic_form_imput_block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  margin-bottom: 0.75rem;
 }
 .ic_form_imput {
   border: 1px solid var(--grey-light);
@@ -135,6 +136,29 @@
   .ic_content_box {
     border-radius: 48px;
     padding: 36px;
+  }
+  .ic_form_fieldset {
+    margin-bottom: 0.75rem;
+
+    border: none;
+  }
+  .ic_form_options {
+    gap: 12px;
+  }
+  .ic_form_fieldset:not(:last-of-type) {
+    margin-bottom: 1.5rem;
+  }
+  .ic_form_fieldset legend {
+    margin-bottom: 2rem;
+  }
+  .ic_form_imput_block {
+    margin-bottom: 12px;
+  }
+  .ic_form_imput::placeholder {
+    font-size: 18px;
+  }
+  .ic_form_textarea::placeholder {
+    font-size: 18px;
   }
 }
 
