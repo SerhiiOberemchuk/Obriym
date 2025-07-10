@@ -13,18 +13,6 @@ import * as v from "valibot";
 import { useContactFormLoader } from "~/routes/[...lang]";
 import IconError from "/public/icons/icon_error.svg?w=20&h20&jsx";
 
-// interface ContactForm {
-//   services: string[];
-//   budget: string;
-//   name: string;
-//   email: string;
-//   message: string;
-// }
-
-// interface InputsContactProps {
-//   initialValues: ContactForm;
-// }
-// === Schema ===
 const ContactSchema = v.object({
   services: v.pipe(
     v.array(v.string(), "Each service must be a string."),
