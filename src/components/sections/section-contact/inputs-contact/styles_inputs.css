@@ -53,7 +53,9 @@
   transition: all 0.2s ease-in-out;
   user-select: none;
 }
-
+.ic_form_option.selected {
+  background-color: var(--blue);
+}
 .ic_form_error {
   margin-top: 0.5rem;
   display: flex;
@@ -139,6 +141,10 @@
     padding: 12px 16px;
     border-radius: 40px;
   }
+  .ic_form_option:hover {
+    background-color: var(--blue-light);
+  }
+
   .ic_form_imput_block {
     flex-direction: row;
 

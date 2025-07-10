@@ -12,6 +12,7 @@ import {
 import * as v from "valibot";
 import { useContactFormLoader } from "~/routes/[...lang]";
 import IconError from "/public/icons/icon_error.svg?w=20&h20&jsx";
+import { Resend } from "resend";
 
 const ContactSchema = v.object({
   services: v.pipe(
@@ -31,11 +32,43 @@ const ContactSchema = v.object({
 type ContactForm = v.InferInput<typeof ContactSchema>;
 
 // === Server action ===
-export const useFormAction = formAction$<ContactForm>(values => {
+export const useFormAction = formAction$<ContactForm>(async (values, requestEvent) => {
   // Runs on server
   console.log("Submitted on server:", values);
-}, valiForm$(ContactSchema));
+  const { services, budget, name, email, message } = values;
+  const resendApiKey = requestEvent.env.get("RESEND_API_KEY");
+  const emailReceiver = requestEvent.env.get("EMAIL_RECEIVER");
+  console.log(("email", emailReceiver));
+  if (!emailReceiver) {
+    throw new Error("EMAIL_RECEIVER is not defined in environment variables.");
+  }
+  const resend = new Resend(resendApiKey);
+  const emailHtml = `
+  <h2>New Contact Request</h2>
+  <p><strong>Name:</strong> ${name}</p>
+  <p><strong>Email:</strong> ${email}</p>
+  <p><strong>Services:</strong> ${services.join(", ")}</p>
+  <p><strong>Budget:</strong> ${budget}</p>
+  <p><strong>Message:</strong></p>
+  <p>${message}</p>
+`;
+  try {
+    const result = await resend.emails.send({
+      from: "Acme <onboarding@resend.dev>",
+      to: emailReceiver, // Replace with your email
+      subject: "New contact form submission",
+      html: emailHtml,
+    });
 
+    console.log("Email sent:", result);
+  } catch (err) {
+    console.error("Email error:", err);
+  }
+}, valiForm$(ContactSchema));
+// export const useFormAction = formAction$<ContactForm>(values => {
+//   // Runs on server
+//   console.log("Submitted on server:", values);
+// }, valiForm$(ContactSchema));
 export default component$(() => {
   useStylesScoped$(styles);
   const [contactForm, { Form, Field }] = useForm<ContactForm>({
