@@ -14,6 +14,10 @@
   height: 0;
   pointer-events: none;
 }
+.ic_form_fieldset_wrp {
+}
+.ic_form_fieldset_wrp:not(:last-of-type) {
+}
 .ic_form_fieldset {
   margin-bottom: 0.75rem;
 
@@ -49,8 +53,6 @@
 }
 
 .ic_form_error {
-  color: var(--red);
-
   margin-top: 0.5rem;
 }
 .ic_form_label {
@@ -68,6 +70,8 @@
   border-radius: 40px;
   padding: 12px 16px;
   width: 100%;
+  cursor: pointer;
+  transition: border-color 0.2s ease-in-out;
 }
 .ic_form_imput::placeholder {
   opacity: 1;
@@ -84,6 +88,9 @@
   width: 100%;
   height: 200px;
   resize: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease-in-out;
+
   /* resize: vertical; */
 }
 .ic_form_textarea::placeholder {
@@ -137,8 +144,23 @@
   .ic_form_btn:active {
     background-color: var(--pink-dark);
   }
+  .ic_form_imput:hover,
+  .ic_form_textarea:hover {
+    border-color: var(--grey-dark); /* active */
+  }
+  .ic_form_imput:active,
+  .ic_form_textarea:active {
+    border-color: var(--grey); /* pressed */
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+  }
+  .ic_form_imput.filled,
+  .ic_form_textarea.filled {
+    border-color: var(--grey); /* filled  */
+  }
 }
-
+.border-red {
+  border: 1px solid var(--red);
+}
 @media (min-width: 90rem) {
   .ic_content_box {
     border-radius: 48px;

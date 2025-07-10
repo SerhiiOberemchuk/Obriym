@@ -64,7 +64,7 @@ export default component$(() => {
       <Form onSubmit$={handleSubmit} class="ic_form">
         <Field name="services" type="string[]">
           {(field, props) => (
-            <>
+            <div class="ic_form_fieldset_wrp">
               <fieldset class="ic_form_fieldset">
                 <legend class="H5 grey_dark">How can we help you?</legend>
 
@@ -95,8 +95,8 @@ export default component$(() => {
                 </div>
               </fieldset>
 
-              {field.error && <div class="btn_body ic_form_error ">{field.error}</div>}
-            </>
+              {field.error && <div class="ic_form_error helper_text red ">{field.error}</div>}
+            </div>
           )}
         </Field>
         <Field name="budget">
@@ -129,7 +129,7 @@ export default component$(() => {
                 </div>
               </fieldset>
 
-              {field.error && <div class="btn_body ic_form_error ">{field.error}</div>}
+              {field.error && <div class="ic_form_error helper_text red ">{field.error}</div>}
             </>
           )}
         </Field>
@@ -144,11 +144,11 @@ export default component$(() => {
                     <input
                       {...props}
                       value={field.value}
-                      class="btn_body grey_dark ic_form_imput"
+                      class={`btn_body grey_dark ic_form_imput ${field.error ? "border-red" : ""}`}
                       placeholder="Enter your name"
                     />
 
-                    {field.error && <div class="error">{field.error}</div>}
+                    {field.error && <div class="ic_form_error helper_text red">{field.error}</div>}
                   </div>
                 )}
               </Field>
@@ -159,11 +159,11 @@ export default component$(() => {
                       {...props}
                       type="email"
                       value={field.value}
-                      class="btn_body grey_dark ic_form_imput"
+                      class={`btn_body grey_dark ic_form_imput ${field.error ? "border-red" : ""}`}
                       placeholder="Enter your email"
                     />
 
-                    {field.error && <div class="btn_body ic_form_error ">{field.error}</div>}
+                    {field.error && <div class="ic_form_error helper_text red">{field.error}</div>}
                   </div>
                 )}
               </Field>
@@ -175,12 +175,12 @@ export default component$(() => {
                   <textarea
                     {...props}
                     placeholder="Add description"
-                    class="btn_body grey_dark ic_form_textarea"
+                    class={`btn_body grey_dark ic_form_textarea ${field.error ? "border-red" : ""}`}
                   >
                     {field.value}
                   </textarea>
 
-                  {field.error && <div class="btn_body ic_form_error ">{field.error}</div>}
+                  {field.error && <div class="ic_form_error helper_text red ">{field.error}</div>}
                 </div>
               )}
             </Field>
