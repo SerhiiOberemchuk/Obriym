@@ -15,17 +15,19 @@
   pointer-events: none;
 }
 .ic_form_fieldset_wrp {
+  margin-bottom: 0.75rem;
 }
 .ic_form_fieldset_wrp:not(:last-of-type) {
+  margin-bottom: 1.5rem;
 }
 .ic_form_fieldset {
-  margin-bottom: 0.75rem;
+  /* margin-bottom: 0.75rem; */
 
   border: none;
 }
-.ic_form_fieldset:not(:last-of-type) {
+/* .ic_form_fieldset:not(:last-of-type) {
   margin-bottom: 1.5rem;
-}
+} */
 .ic_form_block {
   /* display: flex;
   flex-direction: column;
@@ -54,6 +56,9 @@
 
 .ic_form_error {
   margin-top: 0.5rem;
+  display: flex;
+  gap: 4px;
+  align-items: center;
 }
 .ic_form_label {
   display: inline-block;
@@ -107,15 +112,24 @@
   background: var(--pink);
   width: 100%;
 }
+.border-red {
+  border: 1px solid var(--red);
+}
 @media (min-width: 48rem) {
   .ic_content_box {
     border-radius: 40px;
     padding: 28px;
   }
-  .ic_form_fieldset {
+  /* .ic_form_fieldset {
     margin-bottom: 8px;
   }
   .ic_form_fieldset:not(:last-of-type) {
+    margin-bottom: 40px;
+  } */
+  .ic_form_fieldset_wrp {
+    margin-bottom: 8px;
+  }
+  .ic_form_fieldset_wrp:not(:last-of-type) {
     margin-bottom: 40px;
   }
   .ic_form_fieldset legend {
@@ -158,27 +172,33 @@
     border-color: var(--grey); /* filled  */
   }
 }
-.border-red {
-  border: 1px solid var(--red);
-}
+
 @media (min-width: 90rem) {
   .ic_content_box {
     border-radius: 48px;
     padding: 36px;
   }
-  .ic_form_fieldset {
-    margin-bottom: 0.75rem;
 
-    border: none;
-  }
   .ic_form_options {
     gap: 12px;
   }
-  .ic_form_fieldset:not(:last-of-type) {
+  /* .ic_form_fieldset {
+    margin-bottom: 0.75rem;
+
+    border: none;
+  } */
+  /* .ic_form_fieldset:not(:last-of-type) {
     margin-bottom: 1.5rem;
-  }
+  }*/
+
   .ic_form_fieldset legend {
     margin-bottom: 2rem;
+  }
+  .ic_form_fieldset_wrp {
+    margin-bottom: 0.75rem;
+  }
+  .ic_form_fieldset_wrp:not(:last-of-type) {
+    margin-bottom: 1.5rem;
   }
   .ic_form_imput_block {
     margin-bottom: 12px;

@@ -11,6 +11,7 @@ import {
 
 import * as v from "valibot";
 import { useContactFormLoader } from "~/routes/[...lang]";
+import IconError from "/public/icons/icon_error.svg?w=20&h20&jsx";
 
 // interface ContactForm {
 //   services: string[];
@@ -95,7 +96,12 @@ export default component$(() => {
                 </div>
               </fieldset>
 
-              {field.error && <div class="ic_form_error helper_text red ">{field.error}</div>}
+              {field.error && (
+                <div class="ic_form_error helper_text red ">
+                  <IconError />
+                  <span>{field.error}</span>
+                </div>
+              )}
             </div>
           )}
         </Field>
@@ -129,7 +135,12 @@ export default component$(() => {
                 </div>
               </fieldset>
 
-              {field.error && <div class="ic_form_error helper_text red ">{field.error}</div>}
+              {field.error && (
+                <div class="ic_form_error helper_text red ">
+                  <IconError />
+                  <span>{field.error}</span>
+                </div>
+              )}
             </>
           )}
         </Field>
@@ -148,7 +159,12 @@ export default component$(() => {
                       placeholder="Enter your name"
                     />
 
-                    {field.error && <div class="ic_form_error helper_text red">{field.error}</div>}
+                    {field.error && (
+                      <div class="ic_form_error helper_text red">
+                        <IconError />
+                        <span>{field.error}</span>
+                      </div>
+                    )}
                   </div>
                 )}
               </Field>
@@ -163,7 +179,12 @@ export default component$(() => {
                       placeholder="Enter your email"
                     />
 
-                    {field.error && <div class="ic_form_error helper_text red">{field.error}</div>}
+                    {field.error && (
+                      <div class="ic_form_error helper_text red">
+                        <IconError />
+                        <span>{field.error}</span>
+                      </div>
+                    )}
                   </div>
                 )}
               </Field>
@@ -180,7 +201,12 @@ export default component$(() => {
                     {field.value}
                   </textarea>
 
-                  {field.error && <div class="ic_form_error helper_text red ">{field.error}</div>}
+                  {field.error && (
+                    <div class="ic_form_error helper_text red ">
+                      <IconError />
+                      <span>{field.error}</span>
+                    </div>
+                  )}
                 </div>
               )}
             </Field>
