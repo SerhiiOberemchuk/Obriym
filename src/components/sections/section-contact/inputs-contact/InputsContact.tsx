@@ -18,61 +18,6 @@ import { AlertType } from "~/types/alert.type";
 import PopoverComponent from "~/components/common/popover/Popover";
 import { useFormAction } from "~/utils/useFormAction";
 
-// type ContactForm = v.InferInput<typeof ContactSchema>;
-
-// type ContactFormResponse = {
-//   id?: string;
-// };
-// === Server action ===
-//formAction$<ContactForm, ContactFormResponse>
-// export const useFormAction = formAction$<ContactForm, ContactFormResponse>(
-//   async (values, requestEvent) => {
-//     // Runs on server
-
-//     const { services, budget, name, email, message } = values;
-//     const resendApiKey = requestEvent.env.get("RESEND_API_KEY");
-//     const emailReceiver = requestEvent.env.get("EMAIL_RECEIVER");
-
-//     if (!emailReceiver) {
-//       throw new Error("EMAIL_RECEIVER is not defined in environment variables.");
-//     }
-//     const resend = new Resend(resendApiKey);
-//     const emailHtml = `
-//   <h2>New Contact Request</h2>
-//   <p><strong>Name:</strong> ${name}</p>
-//   <p><strong>Email:</strong> ${email}</p>
-//   <p><strong>Services:</strong> ${services.join(", ")}</p>
-//   <p><strong>Budget:</strong> ${budget}</p>
-//   <p><strong>Message:</strong></p>
-//   <p>${message}</p>
-// `;
-//     try {
-//       const result = await resend.emails.send({
-//         from: "Acme <onboarding@resend.dev>",
-//         to: emailReceiver, // Replace with our email
-//         subject: "New contact form submission",
-//         html: emailHtml,
-//       });
-
-//       console.log("Email sent:", result);
-//       return {
-//         status: "success",
-//         message: "Your message was sent successfully!",
-//         data: {
-//           id: result?.data?.id,
-//         },
-//       };
-//     } catch (err) {
-//       console.error("Email error:", err);
-//       return {
-//         status: "error",
-//         message: "There was an error sending your message.",
-//       };
-//     }
-//   },
-//   valiForm$(ContactSchema),
-// );
-
 export default component$(() => {
   useStylesScoped$(styles);
   const anchorRef = useSignal<HTMLElement>();
@@ -103,9 +48,9 @@ export default component$(() => {
   });
 
   return (
-    <div class="ic_content_box " ref={anchorRef}>
+    // ref={anchorRef}
+    <div class="ic_content_box ">
       <Form class="ic_form">
-        {/* //onSubmit$={handleSubmit} */}
         <Field name="services" type="string[]">
           {(field, props) => (
             <div class="ic_form_fieldset_wrp">
@@ -179,14 +124,14 @@ export default component$(() => {
           <fieldset class="ic_form_fieldset">
             <legend class="H5 grey_dark">Additional details</legend>
             <div class="ic_form_add_block">
-              <div class="ic_form_imputs_block">
+              <div class="ic_form_inputs_block">
                 <Field name="name">
                   {(field, props) => (
                     <div class="ic_form_fieldset_wrp">
                       <input
                         {...props}
                         value={field.value}
-                        class={`btn_body grey_dark ic_form_imput ${field.error ? "border-red" : ""}`}
+                        class={`btn_body grey_dark ic_form_input ${field.error ? "border-red" : ""}`}
                         placeholder="Enter your name"
                       />
 
@@ -206,7 +151,7 @@ export default component$(() => {
                         {...props}
                         type="email"
                         value={field.value}
-                        class={`btn_body grey_dark ic_form_imput ${field.error ? "border-red" : ""}`}
+                        class={`btn_body grey_dark ic_form_input ${field.error ? "border-red" : ""}`}
                         placeholder="Enter your email"
                       />
 
@@ -223,7 +168,7 @@ export default component$(() => {
 
               <Field name="message">
                 {(field, props) => (
-                  <div class="ic_form_fieldset_wrp">
+                  <div class="ic_form_fieldset_wrp" ref={anchorRef}>
                     <textarea
                       {...props}
                       placeholder="Add description"
@@ -248,8 +193,8 @@ export default component$(() => {
           </button>
         </div>
       </Form>
-
-      <PopoverComponent anchor={anchorRef} popoverId={popoverId} type={message.value} />
+      {/* anchor={anchorRef} */}
+      <PopoverComponent popoverId={popoverId} type={message.value} anchor={anchorRef} />
     </div>
   );
 });

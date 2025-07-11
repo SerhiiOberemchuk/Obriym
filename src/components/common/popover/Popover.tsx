@@ -7,14 +7,15 @@ import styles from "./popover_styles.css?inline";
 type PopoverProps = {
   popoverId: string;
   type: keyof typeof ALERT_MESSAGE;
-  anchor: Signal<HTMLElement | undefined>;
+  anchor?: Signal<HTMLElement | undefined>;
 };
 export default component$(({ popoverId, type, anchor }: PopoverProps) => {
   useStylesScoped$(styles);
   const Icon = ALERT_MESSAGE[type].icon;
   return (
-    <Popover.Root id={popoverId} bind:anchor={anchor}>
-      <Popover.Panel class="popover-transition">
+    // bind:anchor={anchor} gutter={40} floating="top"
+    <Popover.Root id={popoverId} bind:anchor={anchor} floating="top" gutter={-40}>
+      <Popover.Panel class="popover-transition  " data-type={type}>
         <div class="popover-content popover_text " data-type={type}>
           <Icon />
           <p class=" ">{ALERT_MESSAGE[type].title}</p>

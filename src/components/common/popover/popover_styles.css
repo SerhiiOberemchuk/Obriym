@@ -10,7 +10,7 @@
   background: var(--white);
 }
 .popover-content[data-type="success"] {
-  width: 20.9375rem;
+  width: 20rem;
 }
 
 .popover-content[data-type="failed"] {
@@ -19,7 +19,23 @@
 .popover_text {
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 130%;
   text-align: center;
+}
+@media (min-width: 48rem) {
+  .popover-content[data-type="success"] {
+    width: 20.9375rem;
+  }
+
+  .popover-content[data-type="failed"] {
+    width: 14.1875rem;
+  }
+  .popover_text {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 130%;
+    text-align: center;
+  }
 }
