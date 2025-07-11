@@ -2,7 +2,9 @@
   display: flex;
   max-width: fit-content;
 }
-
+.logo[data-place="header"] {
+  width: 6.25rem;
+}
 @media (48rem < width < 90rem) {
   .logo[data-place="footer"] svg {
     width: 25rem;
@@ -11,5 +13,10 @@
 @media (width > 48rem) {
   .logo:hover {
     scale: 1.01;
+  }
+}
+@media (width > 90rem) {
+  .logo[data-place="header"] {
+    width: 9rem;
   }
 }

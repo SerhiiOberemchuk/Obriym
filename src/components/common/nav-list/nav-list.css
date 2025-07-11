@@ -15,5 +15,6 @@
 
 .nav_list[data-place="mobilemenu"] {
   justify-content: space-between;
-  align-items: center;
+  gap: 2rem;
+  align-items: start;
 }

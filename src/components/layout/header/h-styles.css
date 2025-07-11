@@ -1,0 +1,15 @@
+.header {
+  position: sticky;
+  top: 0;
+  padding-block: 1rem;
+}
+.header > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+@media (width > 90rem) {
+  .header {
+    padding-block: 1.5rem;
+  }
+}
