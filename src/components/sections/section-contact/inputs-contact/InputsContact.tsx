@@ -1,5 +1,5 @@
-import { component$, useStylesScoped$, type QRL, $, useSignal, useTask$ } from "@qwik.dev/core";
-// import { Popover, usePopover } from "@qwik-ui/headless";
+import { component$, useStylesScoped$, useSignal, useTask$ } from "@qwik.dev/core";
+import { Popover, usePopover } from "@qwik-ui/headless";
 import styles from "./styles_inputs.css?inline";
 import {
   formAction$,
@@ -87,8 +87,9 @@ export const useFormAction = formAction$<ContactForm, ContactFormResponse>(
 
 export default component$(() => {
   useStylesScoped$(styles);
+  const anchorRef = useSignal<HTMLElement>();
   const popoverId = "contact-popover";
-  // const { showPopover, hidePopover } = usePopover(popoverId);
+  const { showPopover, hidePopover } = usePopover(popoverId);
   const message = useSignal<string>("");
 
   const [contactForm, { Form, Field }] = useForm<ContactForm, ContactFormResponse>({
@@ -100,15 +101,16 @@ export default component$(() => {
   useTask$(({ track }) => {
     track(() => contactForm.response);
     console.log("response", contactForm.response);
-    console.log("form", contactForm);
-    const result = contactForm.action.value;
-    if (result) {
-      message.value = result.message ?? "Message sent!";
-      showPopover();
 
-      setTimeout(() => {
-        hidePopover();
-      }, 3000);
+    const result = contactForm.response;
+    if (result.status === "success") {
+      message.value = `Your message was sent successfully!`;
+      console.log("🎉 Попытка показать поповер");
+      showPopover();
+      // contactForm.reset();
+    } else if (result.status === "error") {
+      message.value = `There was an error sending your message`;
+      showPopover();
     }
   });
   // const handleSubmit: QRL<SubmitHandler<ContactForm>> = $(values => {
@@ -116,7 +118,7 @@ export default component$(() => {
   //   console.log("Submitted on client:", values);
   // });
   return (
-    <div class="ic_content_box">
+    <div class="ic_content_box " ref={anchorRef}>
       <Form class="ic_form">
         {/* //onSubmit$={handleSubmit} */}
         <Field name="services" type="string[]">
@@ -262,9 +264,9 @@ export default component$(() => {
         </div>
       </Form>
       {/* === Popover  === */}
-      {/* <Popover.Root id={popoverId}>
-        <Popover.Panel class="toast-panel">{message.value}</Popover.Panel>
-      </Popover.Root> */}
+      <Popover.Root id={popoverId} bind:anchor={anchorRef}>
+        <Popover.Panel class="popover-panel popover-programmatic">{message.value}</Popover.Panel>
+      </Popover.Root>
     </div>
   );
 });
