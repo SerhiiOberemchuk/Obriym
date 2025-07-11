@@ -1,5 +1,5 @@
 import { component$, useStylesScoped$, useSignal, useTask$ } from "@qwik.dev/core";
-import { Popover, usePopover } from "@qwik-ui/headless";
+import { usePopover } from "@qwik-ui/headless";
 import styles from "./styles_inputs.css?inline";
 import {
   formAction$,
@@ -13,8 +13,9 @@ import * as v from "valibot";
 import { useContactFormLoader } from "~/routes/[...lang]";
 import IconError from "/public/icons/icon_error.svg?w=20&h20&jsx";
 import { Resend } from "resend";
-import { SERVICES_OPTIONS, BUDGET_OPTIONS, ALERT_MESSAGE } from "~/const/form-const";
+import { SERVICES_OPTIONS, BUDGET_OPTIONS } from "~/const/form-const";
 import { AlertType } from "~/types/alert.type";
+import PopoverComponent from "~/components/common/popover/Popover";
 
 const ContactSchema = v.object({
   services: v.pipe(
@@ -62,7 +63,7 @@ export const useFormAction = formAction$<ContactForm, ContactFormResponse>(
     try {
       const result = await resend.emails.send({
         from: "Acme <onboarding@resend.dev>",
-        to: emailReceiver, // Replace with your email
+        to: emailReceiver, // Replace with our email
         subject: "New contact form submission",
         html: emailHtml,
       });
@@ -90,7 +91,7 @@ export default component$(() => {
   useStylesScoped$(styles);
   const anchorRef = useSignal<HTMLElement>();
   const popoverId = "contact-popover";
-  const { showPopover, hidePopover } = usePopover(popoverId);
+  const { showPopover } = usePopover(popoverId);
   const message = useSignal<AlertType>("success");
 
   const [contactForm, { Form, Field }] = useForm<ContactForm, ContactFormResponse>({
@@ -114,11 +115,7 @@ export default component$(() => {
       showPopover();
     }
   });
-  // const handleSubmit: QRL<SubmitHandler<ContactForm>> = $(values => {
-  //   // Runs on client
-  //   console.log("Submitted on client:", values);
-  // });
-  const Icon = ALERT_MESSAGE[message.value].icon;
+
   return (
     <div class="ic_content_box " ref={anchorRef}>
       <Form class="ic_form">
@@ -265,17 +262,8 @@ export default component$(() => {
           </button>
         </div>
       </Form>
-      {/* === Popover  === bind:anchor={anchorRef}class="popover_panel*/}
-      <Popover.Root id={popoverId} bind:anchor={anchorRef}>
-        <Popover.Panel>
-          <div class="popover-content">
-            <Icon />
-            <p class="btn_body ">{ALERT_MESSAGE[message.value].title}</p>
 
-            <p class="btn_body ">{ALERT_MESSAGE[message.value].message}</p>
-          </div>
-        </Popover.Panel>
-      </Popover.Root>
+      <PopoverComponent anchor={anchorRef} popoverId={popoverId} type={message.value} />
     </div>
   );
 });
