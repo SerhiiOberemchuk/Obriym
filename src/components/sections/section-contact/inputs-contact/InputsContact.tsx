@@ -38,7 +38,7 @@ export const useFormAction = formAction$<ContactForm>(async (values, requestEven
   const { services, budget, name, email, message } = values;
   const resendApiKey = requestEvent.env.get("RESEND_API_KEY");
   const emailReceiver = requestEvent.env.get("EMAIL_RECEIVER");
-  console.log(("email", emailReceiver));
+  console.log("email", emailReceiver);
   if (!emailReceiver) {
     throw new Error("EMAIL_RECEIVER is not defined in environment variables.");
   }
@@ -128,7 +128,7 @@ export default component$(() => {
         </Field>
         <Field name="budget">
           {(field, props) => (
-            <>
+            <div class="ic_form_fieldset_wrp">
               <fieldset class="ic_form_fieldset">
                 <legend class="H5 grey_dark">Your budget range?</legend>
                 <div class="ic_form_options">
@@ -162,46 +162,68 @@ export default component$(() => {
                   <span>{field.error}</span>
                 </div>
               )}
-            </>
+            </div>
           )}
         </Field>
+        <div class="ic_form_add_wrp">
+          <fieldset class="ic_form_fieldset">
+            <legend class="H5 grey_dark">Additional details</legend>
+            <div class="ic_form_add_block">
+              <div class="ic_form_imputs_block">
+                <Field name="name">
+                  {(field, props) => (
+                    <div class="ic_form_fieldset_wrp">
+                      <input
+                        {...props}
+                        value={field.value}
+                        class={`btn_body grey_dark ic_form_imput ${field.error ? "border-red" : ""}`}
+                        placeholder="Enter your name"
+                      />
 
-        <fieldset class="ic_form_fieldset">
-          <legend class="H5 grey_dark">Additional details</legend>
-          <div class="ic_form_block">
-            <div class="ic_form_imput_block">
-              <Field name="name">
+                      {field.error && (
+                        <div class="ic_form_error helper_text red">
+                          <IconError />
+                          <span>{field.error}</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </Field>
+                <Field name="email">
+                  {(field, props) => (
+                    <div class="ic_form_fieldset_wrp">
+                      <input
+                        {...props}
+                        type="email"
+                        value={field.value}
+                        class={`btn_body grey_dark ic_form_imput ${field.error ? "border-red" : ""}`}
+                        placeholder="Enter your email"
+                      />
+
+                      {field.error && (
+                        <div class="ic_form_error helper_text red">
+                          <IconError />
+                          <span>{field.error}</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </Field>
+              </div>
+
+              <Field name="message">
                 {(field, props) => (
-                  <div>
-                    <input
+                  <div class="ic_form_fieldset_wrp">
+                    <textarea
                       {...props}
-                      value={field.value}
-                      class={`btn_body grey_dark ic_form_imput ${field.error ? "border-red" : ""}`}
-                      placeholder="Enter your name"
-                    />
+                      placeholder="Add description"
+                      class={`btn_body grey_dark ic_form_textarea ${field.error ? "border-red" : ""}`}
+                    >
+                      {field.value}
+                    </textarea>
 
                     {field.error && (
-                      <div class="ic_form_error helper_text red">
-                        <IconError />
-                        <span>{field.error}</span>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </Field>
-              <Field name="email">
-                {(field, props) => (
-                  <div>
-                    <input
-                      {...props}
-                      type="email"
-                      value={field.value}
-                      class={`btn_body grey_dark ic_form_imput ${field.error ? "border-red" : ""}`}
-                      placeholder="Enter your email"
-                    />
-
-                    {field.error && (
-                      <div class="ic_form_error helper_text red">
+                      <div class="ic_form_error helper_text red ">
                         <IconError />
                         <span>{field.error}</span>
                       </div>
@@ -210,33 +232,11 @@ export default component$(() => {
                 )}
               </Field>
             </div>
-
-            <Field name="message">
-              {(field, props) => (
-                <div>
-                  <textarea
-                    {...props}
-                    placeholder="Add description"
-                    class={`btn_body grey_dark ic_form_textarea ${field.error ? "border-red" : ""}`}
-                  >
-                    {field.value}
-                  </textarea>
-
-                  {field.error && (
-                    <div class="ic_form_error helper_text red ">
-                      <IconError />
-                      <span>{field.error}</span>
-                    </div>
-                  )}
-                </div>
-              )}
-            </Field>
-          </div>
-        </fieldset>
-
-        <button type="submit" class="btn_body black ic_form_btn">
-          Send information
-        </button>
+          </fieldset>
+          <button type="submit" class="btn_body black ic_form_btn">
+            Send information
+          </button>
+        </div>
       </Form>
     </div>
   );
