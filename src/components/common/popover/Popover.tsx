@@ -15,11 +15,11 @@ export default component$(({ popoverId, type, anchor }: PopoverProps) => {
   return (
     <Popover.Root id={popoverId} bind:anchor={anchor}>
       <Popover.Panel class="popover-transition">
-        <div class="popover-content" data-type={type}>
+        <div class="popover-content popover_text " data-type={type}>
           <Icon />
-          <p class="btn_body ">{ALERT_MESSAGE[type].title}</p>
+          <p class=" ">{ALERT_MESSAGE[type].title}</p>
 
-          <p class="btn_body ">{ALERT_MESSAGE[type].message}</p>
+          <p class="">{ALERT_MESSAGE[type].message}</p>
         </div>
       </Popover.Panel>
     </Popover.Root>

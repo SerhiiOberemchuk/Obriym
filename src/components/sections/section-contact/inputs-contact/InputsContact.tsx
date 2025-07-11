@@ -2,90 +2,76 @@ import { component$, useStylesScoped$, useSignal, useTask$ } from "@qwik.dev/cor
 import { usePopover } from "@qwik-ui/headless";
 import styles from "./styles_inputs.css?inline";
 import {
-  formAction$,
   useForm,
   valiForm$,
   // type SubmitHandler,
   // type InitialValues,
 } from "@modular-forms/qwik";
+import { ContactSchema } from "~/schemas/contactSchema";
+import { ContactForm, ContactFormResponse } from "~/types/contact-form.type";
 
-import * as v from "valibot";
 import { useContactFormLoader } from "~/routes/[...lang]";
 import IconError from "/public/icons/icon_error.svg?w=20&h20&jsx";
-import { Resend } from "resend";
+
 import { SERVICES_OPTIONS, BUDGET_OPTIONS } from "~/const/form-const";
 import { AlertType } from "~/types/alert.type";
 import PopoverComponent from "~/components/common/popover/Popover";
+import { useFormAction } from "~/utils/useFormAction";
 
-const ContactSchema = v.object({
-  services: v.pipe(
-    v.array(v.string(), "Each service must be a string."),
-    v.minLength(1, "Select at least one service."),
-  ),
-  budget: v.pipe(v.string(), v.nonEmpty("Please choose your budget.")),
-  // name: v.pipe(v.string(), v.nonEmpty("Please enter your name.")),
-  name: v.string(),
-  email: v.pipe(
-    v.string(),
-    v.nonEmpty("Please enter your email."),
-    v.email("Invalid email address."),
-  ),
-  message: v.pipe(v.string(), v.nonEmpty("Please enter your description.")),
-});
-type ContactForm = v.InferInput<typeof ContactSchema>;
+// type ContactForm = v.InferInput<typeof ContactSchema>;
 
-type ContactFormResponse = {
-  id?: string;
-};
+// type ContactFormResponse = {
+//   id?: string;
+// };
 // === Server action ===
 //formAction$<ContactForm, ContactFormResponse>
-export const useFormAction = formAction$<ContactForm, ContactFormResponse>(
-  async (values, requestEvent) => {
-    // Runs on server
+// export const useFormAction = formAction$<ContactForm, ContactFormResponse>(
+//   async (values, requestEvent) => {
+//     // Runs on server
 
-    const { services, budget, name, email, message } = values;
-    const resendApiKey = requestEvent.env.get("RESEND_API_KEY");
-    const emailReceiver = requestEvent.env.get("EMAIL_RECEIVER");
+//     const { services, budget, name, email, message } = values;
+//     const resendApiKey = requestEvent.env.get("RESEND_API_KEY");
+//     const emailReceiver = requestEvent.env.get("EMAIL_RECEIVER");
 
-    if (!emailReceiver) {
-      throw new Error("EMAIL_RECEIVER is not defined in environment variables.");
-    }
-    const resend = new Resend(resendApiKey);
-    const emailHtml = `
-  <h2>New Contact Request</h2>
-  <p><strong>Name:</strong> ${name}</p>
-  <p><strong>Email:</strong> ${email}</p>
-  <p><strong>Services:</strong> ${services.join(", ")}</p>
-  <p><strong>Budget:</strong> ${budget}</p>
-  <p><strong>Message:</strong></p>
-  <p>${message}</p>
-`;
-    try {
-      const result = await resend.emails.send({
-        from: "Acme <onboarding@resend.dev>",
-        to: emailReceiver, // Replace with our email
-        subject: "New contact form submission",
-        html: emailHtml,
-      });
+//     if (!emailReceiver) {
+//       throw new Error("EMAIL_RECEIVER is not defined in environment variables.");
+//     }
+//     const resend = new Resend(resendApiKey);
+//     const emailHtml = `
+//   <h2>New Contact Request</h2>
+//   <p><strong>Name:</strong> ${name}</p>
+//   <p><strong>Email:</strong> ${email}</p>
+//   <p><strong>Services:</strong> ${services.join(", ")}</p>
+//   <p><strong>Budget:</strong> ${budget}</p>
+//   <p><strong>Message:</strong></p>
+//   <p>${message}</p>
+// `;
+//     try {
+//       const result = await resend.emails.send({
+//         from: "Acme <onboarding@resend.dev>",
+//         to: emailReceiver, // Replace with our email
+//         subject: "New contact form submission",
+//         html: emailHtml,
+//       });
 
-      console.log("Email sent:", result);
-      return {
-        status: "success",
-        message: "Your message was sent successfully!",
-        data: {
-          id: result?.data?.id,
-        },
-      };
-    } catch (err) {
-      console.error("Email error:", err);
-      return {
-        status: "error",
-        message: "There was an error sending your message.",
-      };
-    }
-  },
-  valiForm$(ContactSchema),
-);
+//       console.log("Email sent:", result);
+//       return {
+//         status: "success",
+//         message: "Your message was sent successfully!",
+//         data: {
+//           id: result?.data?.id,
+//         },
+//       };
+//     } catch (err) {
+//       console.error("Email error:", err);
+//       return {
+//         status: "error",
+//         message: "There was an error sending your message.",
+//       };
+//     }
+//   },
+//   valiForm$(ContactSchema),
+// );
 
 export default component$(() => {
   useStylesScoped$(styles);
@@ -107,7 +93,7 @@ export default component$(() => {
     const result = contactForm.response;
     if (result.status === "success") {
       message.value = "success";
-      console.log("🎉 Попытка показать поповер");
+
       showPopover();
       // contactForm.reset();
     } else if (result.status === "error") {

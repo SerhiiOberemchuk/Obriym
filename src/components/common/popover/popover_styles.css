@@ -16,3 +16,10 @@
 .popover-content[data-type="failed"] {
   width: 14.1875rem;
 }
+.popover_text {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 130%;
+  text-align: center;
+}
