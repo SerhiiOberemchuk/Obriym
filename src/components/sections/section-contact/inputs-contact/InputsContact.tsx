@@ -33,7 +33,6 @@ export default component$(() => {
 
   useTask$(({ track }) => {
     track(() => contactForm.response);
-    console.log("response", contactForm.response);
 
     const result = contactForm.response;
     if (result.status === "success") {
