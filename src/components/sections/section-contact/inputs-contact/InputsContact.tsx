@@ -13,7 +13,8 @@ import * as v from "valibot";
 import { useContactFormLoader } from "~/routes/[...lang]";
 import IconError from "/public/icons/icon_error.svg?w=20&h20&jsx";
 import { Resend } from "resend";
-import { SERVICES_OPTIONS, BUDGET_OPTIONS } from "~/const/form-const";
+import { SERVICES_OPTIONS, BUDGET_OPTIONS, ALERT_MESSAGE } from "~/const/form-const";
+import { AlertType } from "~/types/alert.type";
 
 const ContactSchema = v.object({
   services: v.pipe(
@@ -90,7 +91,7 @@ export default component$(() => {
   const anchorRef = useSignal<HTMLElement>();
   const popoverId = "contact-popover";
   const { showPopover, hidePopover } = usePopover(popoverId);
-  const message = useSignal<string>("");
+  const message = useSignal<AlertType>("success");
 
   const [contactForm, { Form, Field }] = useForm<ContactForm, ContactFormResponse>({
     loader: useContactFormLoader(),
@@ -104,12 +105,12 @@ export default component$(() => {
 
     const result = contactForm.response;
     if (result.status === "success") {
-      message.value = `Your message was sent successfully!`;
+      message.value = "success";
       console.log("🎉 Попытка показать поповер");
       showPopover();
       // contactForm.reset();
     } else if (result.status === "error") {
-      message.value = `There was an error sending your message`;
+      message.value = "failed";
       showPopover();
     }
   });
@@ -117,6 +118,7 @@ export default component$(() => {
   //   // Runs on client
   //   console.log("Submitted on client:", values);
   // });
+  const Icon = ALERT_MESSAGE[message.value].icon;
   return (
     <div class="ic_content_box " ref={anchorRef}>
       <Form class="ic_form">
@@ -263,9 +265,16 @@ export default component$(() => {
           </button>
         </div>
       </Form>
-      {/* === Popover  === */}
+      {/* === Popover  === bind:anchor={anchorRef}class="popover_panel*/}
       <Popover.Root id={popoverId} bind:anchor={anchorRef}>
-        <Popover.Panel class="popover-panel popover-programmatic">{message.value}</Popover.Panel>
+        <Popover.Panel>
+          <div class="popover-content">
+            <Icon />
+            <p class="btn_body ">{ALERT_MESSAGE[message.value].title}</p>
+
+            <p class="btn_body ">{ALERT_MESSAGE[message.value].message}</p>
+          </div>
+        </Popover.Panel>
       </Popover.Root>
     </div>
   );
