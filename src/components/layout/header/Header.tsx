@@ -1,31 +1,26 @@
 import { component$ } from "@qwik.dev/core";
-import { Link, useLocation } from "@qwik.dev/router";
-import { inlineTranslate, localizePath } from "qwik-speak";
-import { ChangeLocale } from "../../change-locale/change-locale";
+// import { Link, useLocation } from "@qwik.dev/router";
+// import { inlineTranslate, localizePath } from "qwik-speak";
+// import { ChangeLocale } from "../../change-locale/change-locale";
+import Logo from "~/components/common/logo/logo";
+import "./h-styles.css";
+import MenuBtn from "~/components/mobile-menu/menu-btn/MenuBtn";
 
 export default component$(() => {
-  const t = inlineTranslate();
+  // const t = inlineTranslate();
 
-  const pathname = useLocation().url.pathname;
-
-  const getPath = localizePath();
-  const [homePath, pagePath] = getPath(["/", "/page/"]);
+  // const pathname = useLocation().url.pathname;
+  //
+  // const getPath = localizePath();
+  // const [homePath, pagePath] = getPath(["/", "/page/"]);
 
   return (
-    <header>
-      <ul>
-        <li>
-          <Link href={homePath} class={{ active: pathname === homePath }}>
-            {t("app.nav.home@@Home")}
-          </Link>
-        </li>
-        <li>
-          <Link href={pagePath} class={{ active: pathname === pagePath }}>
-            {t("app.nav.page@@Page")}
-          </Link>
-        </li>
-      </ul>
-      <ChangeLocale />
+    <header class="header">
+      <div class="container">
+        <Logo place="header" />
+        {/* <ChangeLocale /> */}
+        <MenuBtn />
+      </div>
     </header>
   );
 });
