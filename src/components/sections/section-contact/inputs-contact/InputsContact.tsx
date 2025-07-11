@@ -1,11 +1,11 @@
-// eslint-disable-next-line qwik/loader-location
-import { component$, useStylesScoped$, type QRL, $ } from "@qwik.dev/core";
+import { component$, useStylesScoped$, type QRL, $, useSignal, useTask$ } from "@qwik.dev/core";
+// import { Popover, usePopover } from "@qwik-ui/headless";
 import styles from "./styles_inputs.css?inline";
 import {
   formAction$,
   useForm,
   valiForm$,
-  type SubmitHandler,
+  // type SubmitHandler,
   // type InitialValues,
 } from "@modular-forms/qwik";
 
@@ -13,6 +13,7 @@ import * as v from "valibot";
 import { useContactFormLoader } from "~/routes/[...lang]";
 import IconError from "/public/icons/icon_error.svg?w=20&h20&jsx";
 import { Resend } from "resend";
+import { SERVICES_OPTIONS, BUDGET_OPTIONS } from "~/const/form-const";
 
 const ContactSchema = v.object({
   services: v.pipe(
@@ -31,19 +32,24 @@ const ContactSchema = v.object({
 });
 type ContactForm = v.InferInput<typeof ContactSchema>;
 
+type ContactFormResponse = {
+  id?: string;
+};
 // === Server action ===
-export const useFormAction = formAction$<ContactForm>(async (values, requestEvent) => {
-  // Runs on server
-  console.log("Submitted on server:", values);
-  const { services, budget, name, email, message } = values;
-  const resendApiKey = requestEvent.env.get("RESEND_API_KEY");
-  const emailReceiver = requestEvent.env.get("EMAIL_RECEIVER");
-  console.log("email", emailReceiver);
-  if (!emailReceiver) {
-    throw new Error("EMAIL_RECEIVER is not defined in environment variables.");
-  }
-  const resend = new Resend(resendApiKey);
-  const emailHtml = `
+//formAction$<ContactForm, ContactFormResponse>
+export const useFormAction = formAction$<ContactForm, ContactFormResponse>(
+  async (values, requestEvent) => {
+    // Runs on server
+
+    const { services, budget, name, email, message } = values;
+    const resendApiKey = requestEvent.env.get("RESEND_API_KEY");
+    const emailReceiver = requestEvent.env.get("EMAIL_RECEIVER");
+
+    if (!emailReceiver) {
+      throw new Error("EMAIL_RECEIVER is not defined in environment variables.");
+    }
+    const resend = new Resend(resendApiKey);
+    const emailHtml = `
   <h2>New Contact Request</h2>
   <p><strong>Name:</strong> ${name}</p>
   <p><strong>Email:</strong> ${email}</p>
@@ -52,38 +58,67 @@ export const useFormAction = formAction$<ContactForm>(async (values, requestEven
   <p><strong>Message:</strong></p>
   <p>${message}</p>
 `;
-  try {
-    const result = await resend.emails.send({
-      from: "Acme <onboarding@resend.dev>",
-      to: emailReceiver, // Replace with your email
-      subject: "New contact form submission",
-      html: emailHtml,
-    });
+    try {
+      const result = await resend.emails.send({
+        from: "Acme <onboarding@resend.dev>",
+        to: emailReceiver, // Replace with your email
+        subject: "New contact form submission",
+        html: emailHtml,
+      });
 
-    console.log("Email sent:", result);
-  } catch (err) {
-    console.error("Email error:", err);
-  }
-}, valiForm$(ContactSchema));
-// export const useFormAction = formAction$<ContactForm>(values => {
-//   // Runs on server
-//   console.log("Submitted on server:", values);
-// }, valiForm$(ContactSchema));
+      console.log("Email sent:", result);
+      return {
+        status: "success",
+        message: "Your message was sent successfully!",
+        data: {
+          id: result?.data?.id,
+        },
+      };
+    } catch (err) {
+      console.error("Email error:", err);
+      return {
+        status: "error",
+        message: "There was an error sending your message.",
+      };
+    }
+  },
+  valiForm$(ContactSchema),
+);
+
 export default component$(() => {
   useStylesScoped$(styles);
-  const [contactForm, { Form, Field }] = useForm<ContactForm>({
+  const popoverId = "contact-popover";
+  // const { showPopover, hidePopover } = usePopover(popoverId);
+  const message = useSignal<string>("");
+
+  const [contactForm, { Form, Field }] = useForm<ContactForm, ContactFormResponse>({
     loader: useContactFormLoader(),
     action: useFormAction(),
     validate: valiForm$(ContactSchema),
   });
 
-  const handleSubmit: QRL<SubmitHandler<ContactForm>> = $(values => {
-    // Runs on client
-    console.log("Submitted on client:", values);
+  useTask$(({ track }) => {
+    track(() => contactForm.response);
+    console.log("response", contactForm.response);
+    console.log("form", contactForm);
+    const result = contactForm.action.value;
+    if (result) {
+      message.value = result.message ?? "Message sent!";
+      showPopover();
+
+      setTimeout(() => {
+        hidePopover();
+      }, 3000);
+    }
   });
+  // const handleSubmit: QRL<SubmitHandler<ContactForm>> = $(values => {
+  //   // Runs on client
+  //   console.log("Submitted on client:", values);
+  // });
   return (
     <div class="ic_content_box">
-      <Form onSubmit$={handleSubmit} class="ic_form">
+      <Form class="ic_form">
+        {/* //onSubmit$={handleSubmit} */}
         <Field name="services" type="string[]">
           {(field, props) => (
             <div class="ic_form_fieldset_wrp">
@@ -91,14 +126,7 @@ export default component$(() => {
                 <legend class="H5 grey_dark">How can we help you?</legend>
 
                 <div class="ic_form_options">
-                  {[
-                    "Branding",
-                    "Website",
-                    "Mobile application",
-                    "Product design",
-                    "SEO optimization",
-                    "other",
-                  ].map(option => {
+                  {SERVICES_OPTIONS.map(option => {
                     const isChecked = field.value?.includes(option);
 
                     return (
@@ -132,27 +160,22 @@ export default component$(() => {
               <fieldset class="ic_form_fieldset">
                 <legend class="H5 grey_dark">Your budget range?</legend>
                 <div class="ic_form_options">
-                  {["under 1000€", "1000€ - 2000€", "2000€ - 5000€", "5000€+", "other"].map(
-                    budget => {
-                      const isSelected = field.value === budget;
+                  {BUDGET_OPTIONS.map(budget => {
+                    const isSelected = field.value === budget;
 
-                      return (
-                        <label
-                          key={budget}
-                          class={`ic_form_option ${isSelected ? "selected" : ""}`}
-                        >
-                          <input
-                            {...props}
-                            type="radio"
-                            value={budget}
-                            checked={isSelected}
-                            class="visually-hidden"
-                          />
-                          <span class="grey_dark btn_body ic_form_label">{budget}</span>
-                        </label>
-                      );
-                    },
-                  )}
+                    return (
+                      <label key={budget} class={`ic_form_option ${isSelected ? "selected" : ""}`}>
+                        <input
+                          {...props}
+                          type="radio"
+                          value={budget}
+                          checked={isSelected}
+                          class="visually-hidden"
+                        />
+                        <span class="grey_dark btn_body ic_form_label">{budget}</span>
+                      </label>
+                    );
+                  })}
                 </div>
               </fieldset>
 
@@ -238,6 +261,10 @@ export default component$(() => {
           </button>
         </div>
       </Form>
+      {/* === Popover  === */}
+      {/* <Popover.Root id={popoverId}>
+        <Popover.Panel class="toast-panel">{message.value}</Popover.Panel>
+      </Popover.Root> */}
     </div>
   );
 });
