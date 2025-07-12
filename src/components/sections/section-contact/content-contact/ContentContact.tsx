@@ -2,9 +2,9 @@ import { component$, useStylesScoped$ } from "@qwik.dev/core";
 import styles from "./styles_content.css?inline";
 // import IconEmail1 from "/public/icons/icon_email1?w=24&h24&jsx";
 // import IconEmail from "/public/icons/icon_email.svg?w=24&h24&jsx";
-import IconTelegram from "/public/icons/icon_telegram.svg?w=24&h24&jsx";
+import IconTelegram from "~/assets/icons/icon_telegram.svg?w=24&h24&jsx";
 import OberemImg from "../../../../assets/images/oberem-image.png?jsx";
-import IconSchedule from "/public/icons/icon_schedule.svg?w=64&h64&jsx";
+import IconSchedule from "~/assets/icons/icon_schedule.svg?w=64&h64&jsx";
 import LinkEmail from "~/components/common/link-email/LinkEmail";
 
 export default component$(() => {

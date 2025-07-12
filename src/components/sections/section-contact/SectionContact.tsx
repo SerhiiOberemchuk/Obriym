@@ -2,7 +2,7 @@ import { component$, useStylesScoped$ } from "@qwik.dev/core";
 import ContentContact from "./content-contact/ContentContact";
 import InputsContact from "./inputs-contact/InputsContact";
 import styles from "./styles_contact.css?inline";
-import IconGreen from "/public/icons/green.png?w=100&h100&jsx";
+import IconGreen from "~/assets/images/green.png?w=100&h100&jsx";
 
 export default component$(() => {
   useStylesScoped$(styles);

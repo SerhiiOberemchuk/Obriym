@@ -1,7 +1,7 @@
 import { component$ } from "@qwik.dev/core";
 import clsx from "clsx";
 import "./link_styles.css";
-import IconEmail from "/public/icons/icon_email.svg?w=24&h24&jsx";
+import IconEmail from "~/assets/icons/icon_email.svg?w=24&h24&jsx";
 
 type Props = { place: "footer" | "main" };
 
