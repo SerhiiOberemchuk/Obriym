@@ -45,7 +45,12 @@
   line-height: 120%;
   /* color: var(--black); */
 }
-
+.helper_text {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 120%;
+}
 /* Ganna needs black  */
 .body_big {
   font-family: var(--font-family);

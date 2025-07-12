@@ -5,7 +5,8 @@
 import { defineConfig, type UserConfig } from "vite";
 import { qwikVite } from "@qwik.dev/core/optimizer";
 import { qwikRouter } from "@qwik.dev/router/vite";
-import { qwikSpeakInline } from 'qwik-speak/inline';
+import { qwikSpeakInline } from 'qwik-speak/inline';import { visualizer } from 'rollup-plugin-visualizer';
+
 import tsconfigPaths from "vite-tsconfig-paths";
 import pkg from "./package.json";
 
@@ -25,6 +26,12 @@ export default defineConfig(({ command, mode }): UserConfig => {
     plugins: [
       qwikRouter(), 
       qwikVite(),
+      visualizer({
+      filename: 'dist/stats.html',
+      open: true,
+      gzipSize: true,
+      brotliSize: true,
+    }),
       qwikSpeakInline({
         supportedLangs: ['en-EU', 'it-IT', 'uk-UA'],
         defaultLang: 'en-EU',

@@ -1,12 +1,20 @@
 import { component$ } from "@qwik.dev/core";
-import { DocumentHead } from "@qwik.dev/router";
+import { DocumentHead, routeLoader$ } from "@qwik.dev/router";
 import { inlineTranslate } from "qwik-speak";
-import GetContact from "~/components/sections/section-contact/SectionContact";
+import SectionContact from "~/components/sections/section-contact/SectionContact";
+
+export const useContactFormLoader = routeLoader$(() => ({
+  services: [],
+  budget: "",
+  name: "",
+  email: "",
+  message: "",
+}));
 
 export default component$(() => {
   return (
     <>
-      <GetContact />
+      <SectionContact />
     </>
   );
 });
