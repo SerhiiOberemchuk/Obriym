@@ -155,12 +155,22 @@ export default component$(() => {
                         placeholder="Enter your email"
                       />
 
-                      {field.error && (
-                        <div class="ic_form_error helper_text red">
+                      {/* {field.error && (
+                        <div class="ic_form_error helper_text red ">
                           <IconError />
                           <span>{field.error}</span>
                         </div>
-                      )}
+                      )} */}
+                      <div class={`ic_form_error helper_text red ${field.error ? "visible" : ""}`}>
+                        {field.error ? (
+                          <>
+                            <IconError />
+                            <span>{field.error}</span>
+                          </>
+                        ) : (
+                          "\u00A0"
+                        )}
+                      </div>
                     </div>
                   )}
                 </Field>
