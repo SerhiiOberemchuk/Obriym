@@ -85,6 +85,7 @@ export default component$(() => {
             </div>
           )}
         </Field>
+
         <Field name="budget">
           {(field, props) => (
             <div class="ic_form_fieldset_wrp">
