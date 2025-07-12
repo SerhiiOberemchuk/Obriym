@@ -11,7 +11,7 @@ import { ContactSchema } from "~/schemas/contactSchema";
 import { ContactForm, ContactFormResponse } from "~/types/contact-form.type";
 
 import { useContactFormLoader } from "~/routes/[...lang]";
-import IconError from "/public/icons/icon_error.svg?w=20&h20&jsx";
+import IconError from "~/assets/icons/icon_error.svg?w=20&h20&jsx";
 
 import { SERVICES_OPTIONS, BUDGET_OPTIONS } from "~/const/form-const";
 import { AlertType } from "~/types/alert.type";

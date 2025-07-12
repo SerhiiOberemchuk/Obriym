@@ -2,9 +2,9 @@ import { component$ } from "@qwik.dev/core";
 import { inlineTranslate } from "qwik-speak";
 import "./follow-styles.css";
 import { socialLinks } from "~/types/social-links.type";
-import IconFacebook from "/public/icons/icon-facebook.svg?w=64&h64&jsx";
-import IconLinkedIn from "/public/icons/icon-linkedIn.svg?w=64&h64&jsx";
-import IconInstagram from "/public/icons/icon-instagram.svg?w=64&h64&jsx";
+import IconFacebook from "~/assets/icons/icon-facebook.svg?w=64&h64&jsx";
+import IconLinkedIn from "~/assets/icons/icon-linkedIn.svg?w=64&h64&jsx";
+import IconInstagram from "~/assets/icons/icon-instagram.svg?w=64&h64&jsx";
 import LinkEmail from "~/components/common/link-email/LinkEmail";
 
 export default component$(() => {
