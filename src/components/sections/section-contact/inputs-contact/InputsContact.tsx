@@ -1,22 +1,19 @@
 import { component$, useStylesScoped$, useSignal, useTask$ } from "@qwik.dev/core";
 import { usePopover } from "@qwik-ui/headless";
+import { useForm, valiForm$ } from "@modular-forms/qwik";
 import styles from "./styles_inputs.css?inline";
-import {
-  useForm,
-  valiForm$,
-  // type SubmitHandler,
-  // type InitialValues,
-} from "@modular-forms/qwik";
+
 import { ContactSchema } from "~/schemas/contactSchema";
 import { ContactForm, ContactFormResponse } from "~/types/contact-form.type";
+import { AlertType } from "~/types/alert.type";
 
 import { useContactFormLoader } from "~/routes/[...lang]";
-import IconError from "~/assets/icons/icon_error.svg?w=20&h20&jsx";
+import { useFormAction } from "~/utils/useFormAction";
 
 import { SERVICES_OPTIONS, BUDGET_OPTIONS } from "~/const/form-const";
-import { AlertType } from "~/types/alert.type";
+
 import PopoverComponent from "~/components/common/popover/Popover";
-import { useFormAction } from "~/utils/useFormAction";
+import FormError from "~/components/common/form-error/form_error";
 
 export default component$(() => {
   useStylesScoped$(styles);
@@ -76,15 +73,11 @@ export default component$(() => {
                 </div>
               </fieldset>
 
-              {field.error && (
-                <div class="ic_form_error helper_text red ">
-                  <IconError />
-                  <span>{field.error}</span>
-                </div>
-              )}
+              <FormError error={field.error} />
             </div>
           )}
         </Field>
+
         <Field name="budget">
           {(field, props) => (
             <div class="ic_form_fieldset_wrp">
@@ -110,12 +103,7 @@ export default component$(() => {
                 </div>
               </fieldset>
 
-              {field.error && (
-                <div class="ic_form_error helper_text red ">
-                  <IconError />
-                  <span>{field.error}</span>
-                </div>
-              )}
+              <FormError error={field.error} />
             </div>
           )}
         </Field>
@@ -134,12 +122,7 @@ export default component$(() => {
                         placeholder="Enter your name"
                       />
 
-                      {field.error && (
-                        <div class="ic_form_error helper_text red">
-                          <IconError />
-                          <span>{field.error}</span>
-                        </div>
-                      )}
+                      <FormError error={field.error} />
                     </div>
                   )}
                 </Field>
@@ -154,12 +137,7 @@ export default component$(() => {
                         placeholder="Enter your email"
                       />
 
-                      {field.error && (
-                        <div class="ic_form_error helper_text red">
-                          <IconError />
-                          <span>{field.error}</span>
-                        </div>
-                      )}
+                      <FormError error={field.error} />
                     </div>
                   )}
                 </Field>
@@ -176,12 +154,7 @@ export default component$(() => {
                       {field.value}
                     </textarea>
 
-                    {field.error && (
-                      <div class="ic_form_error helper_text red ">
-                        <IconError />
-                        <span>{field.error}</span>
-                      </div>
-                    )}
+                    <FormError error={field.error} />
                   </div>
                 )}
               </Field>

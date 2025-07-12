@@ -16,7 +16,7 @@
   pointer-events: none;
 }
 .ic_form_fieldset_wrp {
-  position: relative;
+  /* position: relative; */
 }
 
 .ic_form_fieldset {
@@ -51,15 +51,24 @@
 .ic_form_option.selected {
   background-color: var(--blue);
 }
-.ic_form_error {
-  position: absolute;
-  bottom: -15px;
-  left: 0;
+/* .ic_form_error {
+  overflow: hidden;
+  height: 0;
+  opacity: 0;
+  transition:
+    opacity 0.7s ease,
+    height 0.7s ease;
 
   display: flex;
   gap: 4px;
   align-items: center;
 }
+
+.ic_form_error.visible {
+  opacity: 1;
+  margin-top: 0.25rem;
+  height: 20px;
+} */
 .ic_form_label {
   display: inline-block;
 }
