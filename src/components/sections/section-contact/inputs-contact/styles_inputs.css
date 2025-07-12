@@ -51,7 +51,7 @@
 .ic_form_option.selected {
   background-color: var(--blue);
 }
-.ic_form_error {
+/* .ic_form_error {
   overflow: hidden;
   height: 0;
   opacity: 0;
@@ -68,7 +68,7 @@
   opacity: 1;
   margin-top: 0.25rem;
   height: 20px;
-}
+} */
 .ic_form_label {
   display: inline-block;
 }
