@@ -1,18 +1,7 @@
 import { component$, useStylesScoped$ } from "@qwik.dev/core";
-import FormError from "~/components/common/form-error/form_error";
 import styles from "./text-input_styles.css?inline";
-
-type TextInputProps = {
-  name: string;
-  type: "text" | "email" | "tel" | "password" | "url" | "date";
-  label?: string;
-  placeholder?: string;
-  value: string | undefined;
-  error?: string;
-  onInput$?: (event: Event, element: HTMLInputElement) => void;
-  onChange$?: (event: Event, element: HTMLInputElement) => void;
-  onBlur$?: (event: Event, element: HTMLInputElement) => void;
-};
+import { TextInputProps } from "~/types/contact-form.type";
+import FormError from "~/components/common/form-error/form_error";
 
 export const TextInput = component$(
   ({ label, type, name, value, placeholder, error, ...props }: TextInputProps) => {

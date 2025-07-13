@@ -1,18 +1,6 @@
 import { component$, useStylesScoped$ } from "@qwik.dev/core";
-
 import styles from "./options-group_styles.css?inline";
-
-type OptionsGroupProps = {
-  name: string;
-  type: "checkbox" | "radio";
-  options: string[];
-  label: string;
-  value: string[] | string | undefined;
-  error?: string;
-  onInput$?: (event: Event, element: HTMLInputElement) => void;
-  onChange$?: (event: Event, element: HTMLInputElement) => void;
-  onBlur$?: (event: Event, element: HTMLInputElement) => void;
-};
+import { OptionsGroupProps } from "~/types/contact-form.type";
 
 export const OptionsGroup = component$(
   ({ name, type, options, label, value, ...props }: OptionsGroupProps) => {
