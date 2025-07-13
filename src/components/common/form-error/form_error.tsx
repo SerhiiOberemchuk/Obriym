@@ -4,14 +4,16 @@ import IconError from "~/assets/icons/icon_error.svg?w=20&h20&jsx";
 
 interface FormErrorProps {
   error?: string;
+  id?: string;
 }
-export default component$(({ error }: FormErrorProps) => {
+export default component$(({ error, id }: FormErrorProps) => {
   useStylesScoped$(styles);
   return (
     <div
-      class={`ic_form_error helper_text red ${error ? "visible" : ""}`}
+      id={id}
       role="alert"
       aria-live="assertive"
+      class={`ic_form_error helper_text red ${error ? "visible" : ""}`}
     >
       {error && (
         <>

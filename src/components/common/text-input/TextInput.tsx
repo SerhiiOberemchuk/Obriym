@@ -36,8 +36,10 @@ export const TextInput = component$(
           value={value}
           class={`btn_body grey_dark ic_form_input ${error ? "border-red" : ""}`}
           placeholder={placeholder}
+          aria-invalid={!!error}
+          aria-errormessage={`${name}-error`}
         />
-        <FormError error={error} />
+        <FormError error={error} id={`${name}-error`} />
       </div>
     );
   },
