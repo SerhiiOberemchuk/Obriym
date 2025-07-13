@@ -15,9 +15,6 @@
   height: 0;
   pointer-events: none;
 }
-.ic_form_fieldset_wrp {
-  /* position: relative; */
-}
 
 .ic_form_fieldset {
   border: none;

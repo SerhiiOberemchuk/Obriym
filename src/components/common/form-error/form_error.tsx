@@ -8,7 +8,11 @@ interface FormErrorProps {
 export default component$(({ error }: FormErrorProps) => {
   useStylesScoped$(styles);
   return (
-    <div class={`ic_form_error helper_text red ${error ? "visible" : ""}`}>
+    <div
+      class={`ic_form_error helper_text red ${error ? "visible" : ""}`}
+      role="alert"
+      aria-live="assertive"
+    >
       {error && (
         <>
           <IconError />
