@@ -14,6 +14,7 @@ import { SERVICES_OPTIONS, BUDGET_OPTIONS } from "~/const/form-const";
 
 import PopoverComponent from "~/components/common/popover/Popover";
 import FormError from "~/components/common/form-error/form_error";
+import { TextInput } from "~/components/common/text-input/TextInput";
 
 export default component$(() => {
   useStylesScoped$(styles);
@@ -36,14 +37,7 @@ export default component$(() => {
       message.value = "success";
 
       showPopover();
-      // reset(contactForm, {
-      //   services: [],
-      //   budget: "",
-      //   name: "",
-      //   email: "",
-      //   message: "",
-      // });
-      // contactForm.reset();
+
       reset(contactForm);
     } else if (result.status === "error") {
       message.value = "failed";
@@ -140,40 +134,31 @@ export default component$(() => {
                 {/* Name */}
                 <Field name="name">
                   {(field, props) => (
-                    <div class="ic_form_fieldset_wrp">
-                      <label class="sr-only" for="name-input">
-                        Your name
-                      </label>
-                      <input
-                        {...props}
-                        id="name-input"
-                        value={field.value}
-                        class={`btn_body grey_dark ic_form_input ${field.error ? "border-red" : ""}`}
-                        placeholder="Enter your name"
-                      />
-
-                      <FormError error={field.error} />
-                    </div>
+                    <TextInput
+                      {...props}
+                      name="name"
+                      type="text"
+                      value={field.value}
+                      error={field.error}
+                      placeholder="Enter your name"
+                      label="Your name"
+                    />
                   )}
                 </Field>
+                {/* ................ */}
+
                 {/* Email */}
                 <Field name="email">
                   {(field, props) => (
-                    <div class="ic_form_fieldset_wrp">
-                      <label class="sr-only" for="email-input">
-                        Your email
-                      </label>
-                      <input
-                        {...props}
-                        id="email-input"
-                        type="email"
-                        value={field.value}
-                        class={`btn_body grey_dark ic_form_input ${field.error ? "border-red" : ""}`}
-                        placeholder="Enter your email"
-                      />
-
-                      <FormError error={field.error} />
-                    </div>
+                    <TextInput
+                      {...props}
+                      name="email"
+                      type="email"
+                      value={field.value}
+                      error={field.error}
+                      placeholder="Enter your email"
+                      label="Your email"
+                    />
                   )}
                 </Field>
               </div>
