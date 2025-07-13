@@ -20,5 +20,5 @@
       "~/*": ["./src/*"]
     }
   },
-  "include": ["src", "./*.d.ts", "./*.config.ts", "vite.config.mts"]
+  "include": ["src", "./*.d.ts", "./*.config.ts", "vite.config.mts", "public/service-worker.ts"]
 }
