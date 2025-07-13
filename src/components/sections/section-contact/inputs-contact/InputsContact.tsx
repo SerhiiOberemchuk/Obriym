@@ -1,6 +1,6 @@
 import { component$, useStylesScoped$, useSignal, useTask$ } from "@qwik.dev/core";
 import { usePopover } from "@qwik-ui/headless";
-import { useForm, valiForm$ } from "@modular-forms/qwik";
+import { reset, useForm, valiForm$ } from "@modular-forms/qwik";
 import styles from "./styles_inputs.css?inline";
 
 import { ContactSchema } from "~/schemas/contactSchema";
@@ -14,6 +14,8 @@ import { SERVICES_OPTIONS, BUDGET_OPTIONS } from "~/const/form-const";
 
 import PopoverComponent from "~/components/common/popover/Popover";
 import FormError from "~/components/common/form-error/form_error";
+import { TextInput } from "~/components/common/text-input/TextInput";
+import { OptionsGroup } from "~/components/common/options-group/OptionsGroup";
 
 export default component$(() => {
   useStylesScoped$(styles);
@@ -36,7 +38,8 @@ export default component$(() => {
       message.value = "success";
 
       showPopover();
-      // contactForm.reset();
+
+      reset(contactForm);
     } else if (result.status === "error") {
       message.value = "failed";
       showPopover();
@@ -45,109 +48,102 @@ export default component$(() => {
 
   return (
     // ref={anchorRef}
-    <div class="ic_content_box ">
-      <Form class="ic_form">
+    <section class="ic_content_box " aria-labelledby="contact-form-title">
+      <h2 id="contact-form-title" class="sr-only">
+        Contact Form
+      </h2>
+      <Form class="ic_form" aria-describedby="contact-form-description">
+        <p id="contact-form-description" class="sr-only">
+          Please fill out the following form to send us your request.
+        </p>
+        {/* SERVICES (checkboxes)  */}
         <Field name="services" type="string[]">
           {(field, props) => (
             <div class="ic_form_fieldset_wrp">
               <fieldset class="ic_form_fieldset">
                 <legend class="H5 grey_dark">How can we help you?</legend>
-
-                <div class="ic_form_options">
-                  {SERVICES_OPTIONS.map(option => {
-                    const isChecked = field.value?.includes(option);
-
-                    return (
-                      <label key={option} class={`ic_form_option ${isChecked ? "selected" : ""}`}>
-                        <input
-                          {...props}
-                          type="checkbox"
-                          value={option}
-                          checked={isChecked}
-                          class="visually-hidden"
-                        />
-                        <span class="grey_dark btn_body ic_form_label">{option}</span>
-                      </label>
-                    );
-                  })}
-                </div>
+                <OptionsGroup
+                  {...props}
+                  name="services"
+                  type="checkbox"
+                  options={SERVICES_OPTIONS}
+                  label="Services offered"
+                  value={field.value}
+                />
               </fieldset>
 
               <FormError error={field.error} />
             </div>
           )}
         </Field>
-
+        {/* Budget */}
         <Field name="budget">
           {(field, props) => (
             <div class="ic_form_fieldset_wrp">
               <fieldset class="ic_form_fieldset">
                 <legend class="H5 grey_dark">Your budget range?</legend>
-                <div class="ic_form_options">
-                  {BUDGET_OPTIONS.map(budget => {
-                    const isSelected = field.value === budget;
-
-                    return (
-                      <label key={budget} class={`ic_form_option ${isSelected ? "selected" : ""}`}>
-                        <input
-                          {...props}
-                          type="radio"
-                          value={budget}
-                          checked={isSelected}
-                          class="visually-hidden"
-                        />
-                        <span class="grey_dark btn_body ic_form_label">{budget}</span>
-                      </label>
-                    );
-                  })}
-                </div>
+                <OptionsGroup
+                  {...props}
+                  name="budget"
+                  type="radio"
+                  options={BUDGET_OPTIONS}
+                  label="Budget options"
+                  value={field.value}
+                />
               </fieldset>
 
               <FormError error={field.error} />
             </div>
           )}
         </Field>
+        {/* NAME , EMAIL, DESCRIPTION */}
         <div class="ic_form_add_wrp">
           <fieldset class="ic_form_fieldset">
             <legend class="H5 grey_dark">Additional details</legend>
             <div class="ic_form_add_block">
               <div class="ic_form_inputs_block">
+                {/* Name */}
                 <Field name="name">
                   {(field, props) => (
-                    <div class="ic_form_fieldset_wrp">
-                      <input
-                        {...props}
-                        value={field.value}
-                        class={`btn_body grey_dark ic_form_input ${field.error ? "border-red" : ""}`}
-                        placeholder="Enter your name"
-                      />
-
-                      <FormError error={field.error} />
-                    </div>
+                    <TextInput
+                      {...props}
+                      name="name"
+                      type="text"
+                      value={field.value}
+                      error={field.error}
+                      placeholder="Enter your name"
+                      label="Your name"
+                    />
                   )}
                 </Field>
+                {/* ................ */}
+
+                {/* Email */}
                 <Field name="email">
                   {(field, props) => (
-                    <div class="ic_form_fieldset_wrp">
-                      <input
-                        {...props}
-                        type="email"
-                        value={field.value}
-                        class={`btn_body grey_dark ic_form_input ${field.error ? "border-red" : ""}`}
-                        placeholder="Enter your email"
-                      />
-
-                      <FormError error={field.error} />
-                    </div>
+                    <TextInput
+                      {...props}
+                      name="email"
+                      type="email"
+                      value={field.value}
+                      error={field.error}
+                      placeholder="Enter your email"
+                      label="Your email"
+                    />
                   )}
                 </Field>
               </div>
-
+              {/* MESSAGE */}
               <Field name="message">
                 {(field, props) => (
                   <div class="ic_form_fieldset_wrp" ref={anchorRef}>
+                    <label class="sr-only" for="message-textarea">
+                      Your message
+                    </label>
                     <textarea
                       {...props}
+                      value={field.value}
+                      id="message-textarea"
                       placeholder="Add description"
                       class={`btn_body grey_dark ic_form_textarea ${field.error ? "border-red" : ""}`}
                     >
@@ -167,6 +163,6 @@ export default component$(() => {
       </Form>
       {/* anchor={anchorRef} */}
       <PopoverComponent popoverId={popoverId} type={message.value} anchor={anchorRef} />
-    </div>
+    </section>
   );
 });
