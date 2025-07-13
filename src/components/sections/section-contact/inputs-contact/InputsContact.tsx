@@ -15,6 +15,7 @@ import { SERVICES_OPTIONS, BUDGET_OPTIONS } from "~/const/form-const";
 import PopoverComponent from "~/components/common/popover/Popover";
 import FormError from "~/components/common/form-error/form_error";
 import { TextInput } from "~/components/common/text-input/TextInput";
+import { OptionsGroup } from "~/components/common/options-group/OptionsGroup";
 
 export default component$(() => {
   useStylesScoped$(styles);
@@ -61,29 +62,14 @@ export default component$(() => {
             <div class="ic_form_fieldset_wrp">
               <fieldset class="ic_form_fieldset">
                 <legend class="H5 grey_dark">How can we help you?</legend>
-
-                <div class="ic_form_options" role="group" aria-labelledby="services-group-label">
-                  <span id="services-group-label" class="sr-only">
-                    Services offered
-                  </span>
-                  {SERVICES_OPTIONS.map(option => {
-                    const isChecked = field.value?.includes(option);
-
-                    return (
-                      <label key={option} class={`ic_form_option ${isChecked ? "selected" : ""}`}>
-                        <input
-                          {...props}
-                          type="checkbox"
-                          value={option}
-                          checked={isChecked}
-                          class="visually-hidden"
-                          aria-checked={isChecked}
-                        />
-                        <span class="grey_dark btn_body ic_form_label">{option}</span>
-                      </label>
-                    );
-                  })}
-                </div>
+                <OptionsGroup
+                  {...props}
+                  name="services"
+                  type="checkbox"
+                  options={SERVICES_OPTIONS}
+                  label="Services offered"
+                  value={field.value}
+                />
               </fieldset>
 
               <FormError error={field.error} />
@@ -96,29 +82,14 @@ export default component$(() => {
             <div class="ic_form_fieldset_wrp">
               <fieldset class="ic_form_fieldset">
                 <legend class="H5 grey_dark">Your budget range?</legend>
-                <div class="ic_form_options" role="radiogroup" aria-labelledby="budget-group-label">
-                  <span id="budget-group-label" class="sr-only">
-                    Budget options
-                  </span>
-
-                  {BUDGET_OPTIONS.map(budget => {
-                    const isSelected = field.value === budget;
-
-                    return (
-                      <label key={budget} class={`ic_form_option ${isSelected ? "selected" : ""}`}>
-                        <input
-                          {...props}
-                          type="radio"
-                          value={budget}
-                          checked={isSelected}
-                          class="visually-hidden"
-                          aria-checked={isSelected}
-                        />
-                        <span class="grey_dark btn_body ic_form_label">{budget}</span>
-                      </label>
-                    );
-                  })}
-                </div>
+                <OptionsGroup
+                  {...props}
+                  name="budget"
+                  type="radio"
+                  options={BUDGET_OPTIONS}
+                  label="Budget options"
+                  value={field.value}
+                />
               </fieldset>
 
               <FormError error={field.error} />
