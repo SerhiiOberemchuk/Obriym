@@ -129,6 +129,10 @@
   .ic_form_btn:active {
     background-color: var(--pink-dark);
   }
+  .ic_form_btn[disabled] {
+    background-color: var(--grey-light);
+    cursor: not-allowed;
+  }
   /* .ic_form_input:hover, */
   .ic_form_textarea:hover {
     border-color: var(--grey-dark); /* active */

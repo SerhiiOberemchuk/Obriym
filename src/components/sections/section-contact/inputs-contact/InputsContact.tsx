@@ -156,8 +156,12 @@ export default component$(() => {
               </Field>
             </div>
           </fieldset>
-          <button type="submit" class="btn_body black ic_form_btn">
-            Send information
+          <button
+            type="submit"
+            class={`btn_body black ic_form_btn`}
+            disabled={contactForm.submitting}
+          >
+            {contactForm.submitting ? "Sending..." : "Send information"}
           </button>
         </div>
       </Form>
