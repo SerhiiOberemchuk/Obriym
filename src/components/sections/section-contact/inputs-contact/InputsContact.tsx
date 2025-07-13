@@ -1,6 +1,6 @@
 import { component$, useStylesScoped$, useSignal, useTask$ } from "@qwik.dev/core";
 import { usePopover } from "@qwik-ui/headless";
-import { useForm, valiForm$ } from "@modular-forms/qwik";
+import { reset, useForm, valiForm$ } from "@modular-forms/qwik";
 import styles from "./styles_inputs.css?inline";
 
 import { ContactSchema } from "~/schemas/contactSchema";
@@ -36,7 +36,15 @@ export default component$(() => {
       message.value = "success";
 
       showPopover();
+      // reset(contactForm, {
+      //   services: [],
+      //   budget: "",
+      //   name: "",
+      //   email: "",
+      //   message: "",
+      // });
       // contactForm.reset();
+      reset(contactForm);
     } else if (result.status === "error") {
       message.value = "failed";
       showPopover();
@@ -178,6 +186,7 @@ export default component$(() => {
                     </label>
                     <textarea
                       {...props}
+                      value={field.value}
                       id="message-textarea"
                       placeholder="Add description"
                       class={`btn_body grey_dark ic_form_textarea ${field.error ? "border-red" : ""}`}
