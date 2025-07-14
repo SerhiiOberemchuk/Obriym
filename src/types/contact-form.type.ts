@@ -23,6 +23,7 @@ export type OptionsGroupProps = {
   name: string;
   type: "checkbox" | "radio";
   options: string[];
+  // options: Record<string, string>;
   label: string;
   value: string[] | string | undefined;
   error?: string;
