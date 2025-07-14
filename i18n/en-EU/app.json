@@ -1,6 +1,52 @@
 {
   "app": {
+    "btnLetsWork": "Let’s work",
     "changeLocale": "Change locale",
+    "form": {
+      "additional": {
+        "legend": "Additional details"
+      },
+      "btn": {
+        "submitting": "Sending...",
+        "text": "Send a request"
+      },
+      "btn-close": {
+        "modal": "Close"
+      },
+      "budget": {
+        "legend": "Your budget range?",
+        "sr-label": "Budget options"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your email"
+      },
+      "message": {
+        "placeholder": {
+          "modal": "Add information",
+          "not-modal": "Add description"
+        },
+        "sr-label": "Your message"
+      },
+      "name": {
+        "label": "Name",
+        "placeholder": "Enter your name"
+      },
+      "services": {
+        "legend": {
+          "modal": "What can we create for you?",
+          "not-modal": "How can we help you?"
+        },
+        "sr-label": "Services offered"
+      },
+      "sr-only": {
+        "title": " Please fill out the following form to send us your request."
+      },
+      "title": {
+        "modal": "Let's start you project",
+        "not-modal": "Contact Form"
+      }
+    },
     "head": {
       "home": {
         "description": "Localized routing",

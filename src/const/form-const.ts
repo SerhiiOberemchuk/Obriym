@@ -9,6 +9,16 @@ export const SERVICES_OPTIONS = [
   "SEO optimization",
   "other",
 ];
+// export const SERVICES_OPTIONS = {
+//   branding: "Branding",
+//   website: "Website",
+//   mobile: "Mobile application",
+//   product: "Product design",
+//   seo: "SEO optimization",
+//   other: "Other",
+// };
+
+// export const SERVICES_OPTIONS = ["branding", "website", "mobile", "product", "seo", "other"];
 
 export const BUDGET_OPTIONS = ["under 1000€", "1000€ - 2000€", "2000€ - 5000€", "5000€+", "other"];
 export const ALERT_MESSAGE = {
