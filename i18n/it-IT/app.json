@@ -2,6 +2,51 @@
   "app": {
     "btnLetsWork": "Let’s work",
     "changeLocale": "Cambia lingua",
+    "form": {
+      "additional": {
+        "legend": "Dettagli aggiuntivi"
+      },
+      "btn": {
+        "submitting": "Invio in corso...",
+        "text": "Invia richiesta"
+      },
+      "btn-close": {
+        "modal": "Chiudi"
+      },
+      "budget": {
+        "legend": "Qual è il tuo budget?",
+        "sr-label": "Opzioni di budget"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Inserisci la tua email"
+      },
+      "message": {
+        "placeholder": {
+          "modal": "Aggiungi informazioni",
+          "not-modal": "Aggiungi una descrizione"
+        },
+        "sr-label": "Il tuo messaggio"
+      },
+      "name": {
+        "label": "Nome",
+        "placeholder": "Inserisci il tuo nome"
+      },
+      "services": {
+        "legend": {
+          "modal": "Cosa possiamo creare per te?",
+          "not-modal": "Come possiamo aiutarti?"
+        },
+        "sr-label": "Servizi offerti"
+      },
+      "sr-only": {
+        "title": "Compila il modulo seguente per inviarci la tua richiesta."
+      },
+      "title": {
+        "modal": "Iniziamo il tuo progetto",
+        "not-modal": "Modulo di contatto"
+      }
+    },
     "head": {
       "home": {
         "description": "Benvenuto in {{name}}",

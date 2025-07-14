@@ -55,16 +55,16 @@ export default component$(({ modal }: ContactFormComponentProps) => {
     <div aria-labelledby="contact-form-title">
       {modal ? (
         <h2 id="contact-form-title" class="H3_uppercase contact-form-title">
-          Let&apos;s start you project
+          {t("app.form.title.modal@@Let's start you project")}
         </h2>
       ) : (
         <h2 id="contact-form-title" class="sr-only">
-          Contact Form
+          {t("app.form.title.not-modal@@Contact Form")}
         </h2>
       )}
       <Form class="ic_form" aria-describedby="contact-form-description">
         <p id="contact-form-description" class="sr-only">
-          Please fill out the following form to send us your request.
+          {t("app.form.sr-only.title@@Please fill out the following form to send us your request.")}
         </p>
 
         {/* SERVICES (checkboxes)  */}
@@ -73,16 +73,20 @@ export default component$(({ modal }: ContactFormComponentProps) => {
             <div class="ic_form_fieldset_wrp">
               <fieldset class="ic_form_fieldset">
                 {modal ? (
-                  <legend class="H5 grey_dark">What we can create for you?</legend>
+                  <legend class="H5 grey_dark">
+                    {t("app.form.services.legend.modal@@What can we create for you?")}
+                  </legend>
                 ) : (
-                  <legend class="H5 grey_dark">How can we help you?</legend>
+                  <legend class="H5 grey_dark">
+                    {t("app.form.services.legend.not-modal@@How can we help you?")}
+                  </legend>
                 )}
                 <OptionsGroup
                   {...props}
                   name="services"
                   type="checkbox"
                   options={SERVICES_OPTIONS}
-                  label="Services offered"
+                  label={t("app.form.services.sr-label@@Services offered")}
                   value={field.value}
                 />
               </fieldset>
@@ -96,13 +100,15 @@ export default component$(({ modal }: ContactFormComponentProps) => {
           {(field, props) => (
             <div class="ic_form_fieldset_wrp">
               <fieldset class="ic_form_fieldset">
-                <legend class="H5 grey_dark">Your budget range?</legend>
+                <legend class="H5 grey_dark">
+                  {t("app.form.budget.legend@@Your budget range?")}
+                </legend>
                 <OptionsGroup
                   {...props}
                   name="budget"
                   type="radio"
                   options={BUDGET_OPTIONS}
-                  label="Budget options"
+                  label={t("app.form.budget.sr-label@@Budget options")}
                   value={field.value}
                 />
               </fieldset>
@@ -114,7 +120,9 @@ export default component$(({ modal }: ContactFormComponentProps) => {
         {/* NAME , EMAIL, DESCRIPTION */}
         <div class="ic_form_add_wrp">
           <fieldset class="ic_form_fieldset">
-            <legend class="H5 grey_dark">Additional details</legend>
+            <legend class="H5 grey_dark">
+              {t("app.form.additional.legend@@Additional details")}
+            </legend>
             <div class="ic_form_add_block">
               <div class="ic_form_inputs_block">
                 {/* Name */}
@@ -126,8 +134,8 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                       type="text"
                       value={field.value}
                       error={field.error}
-                      placeholder="Enter your name"
-                      label="Your name"
+                      placeholder={t("app.form.name.placeholder@@Enter your name")}
+                      label={t("app.form.name.label@@Name")}
                     />
                   )}
                 </Field>
@@ -142,8 +150,8 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                       type="email"
                       value={field.value}
                       error={field.error}
-                      placeholder="Enter your email"
-                      label="Your email"
+                      placeholder={t("app.form.email.placeholder@@Enter your email")}
+                      label={t("app.form.email.label@@Email")}
                     />
                   )}
                 </Field>
@@ -153,13 +161,18 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                 {(field, props) => (
                   <div class="ic_form_fieldset_wrp" ref={anchorRef}>
                     <label class="sr-only" for="message-textarea">
-                      Your message
+                      label={t("app.form.message.sr-label@@Your message")}
                     </label>
                     <textarea
                       {...props}
                       value={field.value}
                       id="message-textarea"
-                      placeholder={modal ? "Add information" : "Add description"}
+                      // placeholder={
+                      //   modal
+                      //     ? t("app.form.message.placeholder.modal@@Add information")
+                      //     : t("app.form.message.placeholder.not-modal@@Add description")
+                      // }
+                      placeholder={t("app.form.message.placeholder.not-modal@@Add information")}
                       class={`btn_body grey_dark ic_form_textarea ${field.error ? "border-red" : ""}`}
                     >
                       {field.value}
@@ -174,7 +187,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
           <div class="ic_form_btn_wrp">
             {modal && (
               <button class={`btn_body black ic_form_modal_btn `} disabled={contactForm.submitting}>
-                Close
+                {t("app.form.btn-close.modal@@Close")}
               </button>
             )}
             <button
@@ -182,7 +195,9 @@ export default component$(({ modal }: ContactFormComponentProps) => {
               class={`btn_body black ic_form_btn `}
               disabled={contactForm.submitting}
             >
-              {contactForm.submitting ? "Sending..." : "Send a request"}
+              {contactForm.submitting
+                ? t("app.form.btn.submitting@@Sending...")
+                : t("app.form.btn.text@@Send a request")}
             </button>
           </div>
         </div>
