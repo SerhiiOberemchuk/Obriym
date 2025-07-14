@@ -1,5 +1,6 @@
 {
   "app": {
+    "btnLetsWork": "Let’s work",
     "changeLocale": "Змінити мову",
     "head": {
       "home": {
