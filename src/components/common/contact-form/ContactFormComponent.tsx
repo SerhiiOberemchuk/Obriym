@@ -171,14 +171,20 @@ export default component$(({ modal }: ContactFormComponentProps) => {
               </Field>
             </div>
           </fieldset>
-
-          <button
-            type="submit"
-            class={`btn_body black ic_form_btn`}
-            disabled={contactForm.submitting}
-          >
-            {contactForm.submitting ? "Sending..." : "Send a request"}
-          </button>
+          <div class="ic_form_btn_wrp">
+            {modal && (
+              <button class={`btn_body black ic_form_modal_btn `} disabled={contactForm.submitting}>
+                Close
+              </button>
+            )}
+            <button
+              type="submit"
+              class={`btn_body black ic_form_btn `}
+              disabled={contactForm.submitting}
+            >
+              {contactForm.submitting ? "Sending..." : "Send a request"}
+            </button>
+          </div>
         </div>
       </Form>
       {/* anchor={anchorRef} */}
