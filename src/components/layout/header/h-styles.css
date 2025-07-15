@@ -9,6 +9,11 @@
   justify-content: space-between;
   align-items: start;
 }
+@media (width >= 48rem) {
+  .header > div {
+    align-items: center;
+  }
+}
 @media (width > 90rem) {
   .header {
     padding-block: 1.5rem;

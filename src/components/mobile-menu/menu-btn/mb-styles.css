@@ -60,3 +60,8 @@
 .menu_btn[aria-expanded="true"] .mb_burger :nth-child(3) {
   transform: rotate(-0.125turn) translate(4px, -8px) scaleX(1.1);
 }
+@media (width >= 48rem) {
+  .menu_btn {
+    display: none;
+  }
+}

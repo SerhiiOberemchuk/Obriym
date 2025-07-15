@@ -1,6 +1,6 @@
 .lw_button {
   width: 100%;
-  padding-block: 0.75rem;
+  padding: 0.75rem;
   border-radius: 2.5rem;
   background-color: var(--pink);
   margin-top: 0.75rem;

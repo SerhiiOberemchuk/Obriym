@@ -37,3 +37,11 @@ body:has(.mob_wraper[data-open="true"]) {
 .mob_wraper[data-open="true"] + .mob_menu {
   right: 0;
 }
+@media (width >= 48rem) {
+  .mob_wraper {
+    display: none;
+  }
+  .mob_menu {
+    display: none;
+  }
+}
