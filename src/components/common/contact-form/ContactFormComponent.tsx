@@ -33,7 +33,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
   useStylesScoped$(styles);
   const t = inlineTranslate();
   const locale = useSpeakLocale();
-  console.log("locale", locale.lang); //uk-UA it-IT en-EU
+  //console.log("locale", locale.lang); //uk-UA it-IT en-EU
   const SERVICES_OPTIONS =
     locale.lang === "uk-UA"
       ? SERVICES_OPTIONS_UA
