@@ -5,6 +5,7 @@ import { component$ } from "@qwik.dev/core";
 import Logo from "~/components/common/logo/logo";
 import "./h-styles.css";
 import MenuBtn from "~/components/mobile-menu/menu-btn/MenuBtn";
+import TopMenu from "~/components/common/top-menu/TopMenu";
 
 export default component$(() => {
   // const t = inlineTranslate();
@@ -20,6 +21,7 @@ export default component$(() => {
         <Logo place="header" />
         {/* <ChangeLocale /> */}
         <MenuBtn />
+        <TopMenu place="header" />
       </div>
     </header>
   );

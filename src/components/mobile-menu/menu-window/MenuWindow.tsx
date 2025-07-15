@@ -11,7 +11,7 @@ export default component$<Props>(({ isOpen, onClick }) => {
       <div class="mob_wraper" data-open={isOpen ? "true" : "false"} onClick$={onClick} />
       <div class="mob_menu">
         <NavList place="mobilemenu" onClick={onClick} />
-        <TopMenu />
+        <TopMenu place="mob-menu" />
       </div>
     </>
   );

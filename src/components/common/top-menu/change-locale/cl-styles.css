@@ -2,7 +2,15 @@
   width: 100%;
   border: solid 1px var(--blue-light);
   border-radius: 2.5rem;
-  padding-block: 0.75rem;
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  gap: 0.5rem;
+  text-transform: capitalize;
+}
+.cl_btn_t {
+  display: none;
 }
 .cl_list {
   padding: 0.25rem;
@@ -14,20 +22,11 @@
   align-items: center;
   gap: 0.25rem;
 }
-.cl_popover_transition {
-  width: 100%;
-  max-width: 14.875rem;
-}
+
 .cl_item {
   width: 100%;
 }
-.cl_btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  text-transform: capitalize;
-}
+
 .cl_link {
   display: flex;
   min-width: 100%;
@@ -43,13 +42,18 @@
 .cl_btn svg {
   transition: all 0.3s ease-in-out;
 }
-.change_locale_popover:has(.cl_popover_transition[data-open]) .cl_btn svg {
+.cl_btn[data-open="true"] svg {
   transform: rotateX(0.5turn);
 }
-.cl_popover_transition {
+.cl_panel {
+  width: 100%;
+  max-width: 14.875rem;
+  border-radius: 1.5rem;
+}
+.cl_panel {
   animation: popover-shrink 0.3s ease-in-out forwards;
 }
-.cl_popover_transition:popover-open {
+.cl_panel:popover-open {
   animation: popover-grow 0.3s ease-in-out forwards;
 }
 @keyframes popover-shrink {
@@ -71,5 +75,24 @@
 
   to {
     transform: scale(1);
+  }
+}
+@media (width >= 48rem) {
+  .cl_btn {
+    justify-content: space-between;
+    width: 6.25rem;
+    text-transform: uppercase;
+  }
+  .cl_btn_m {
+    display: none;
+  }
+  .cl_btn_t {
+    display: block;
+  }
+  .cl_link:hover {
+    background-color: var(--blue);
+  }
+  .cl_panel {
+    max-width: 11.375rem;
   }
 }
