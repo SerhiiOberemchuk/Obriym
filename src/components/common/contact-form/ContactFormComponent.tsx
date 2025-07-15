@@ -158,7 +158,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                       value={field.value}
                       error={field.error}
                       placeholder={t("app.form.name.placeholder@@Enter your name")}
-                      label={t("app.form.name.label@@Name")}
+                      label={t("app.form.name.label@@Your name")}
                     />
                   )}
                 </Field>
@@ -174,7 +174,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                       value={field.value}
                       error={field.error}
                       placeholder={t("app.form.email.placeholder@@Enter your email")}
-                      label={t("app.form.email.label@@Email")}
+                      label={t("app.form.email.label@@Your email")}
                     />
                   )}
                 </Field>

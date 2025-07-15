@@ -18,7 +18,7 @@
         "sr-label": "Opzioni di budget"
       },
       "email": {
-        "label": "Email",
+        "label": "La tua email",
         "placeholder": "Inserisci la tua email"
       },
       "message": {
@@ -29,7 +29,7 @@
         "sr-label": "Il tuo messaggio"
       },
       "name": {
-        "label": "Nome",
+        "label": "Il tuo nome",
         "placeholder": "Inserisci il tuo nome"
       },
       "services": {
