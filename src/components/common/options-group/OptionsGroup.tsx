@@ -12,26 +12,56 @@ export const OptionsGroup = component$(
     const groupRole = isCheckbox ? "group" : "radiogroup";
     const groupLabelId = `${name}-group-label`;
     return (
+      // <div class="ic_form_options" role={groupRole} aria-labelledby={groupLabelId}>
+      //   <span id={groupLabelId} class="sr-only">
+      //     {label}
+      //   </span>
+      //   {options.map(option => {
+      //     const isSelected = isCheckbox
+      //       ? Array.isArray(value) && value.includes(option)
+      //       : value === option;
+
+      //     return (
+      //       <label key={option} class={`ic_form_option ${isSelected ? "selected" : ""}`}>
+      //         <input
+      //           {...props}
+      //           type={type}
+      //           value={option}
+      //           checked={isSelected}
+      //           class="visually-hidden"
+      //           aria-checked={isSelected}
+      //         />
+      //         <span class="grey_dark btn_body ic_form_label">{option}</span>
+      //       </label>
+      //     );
+      //   })}
+      // </div>
       <div class="ic_form_options" role={groupRole} aria-labelledby={groupLabelId}>
         <span id={groupLabelId} class="sr-only">
           {label}
         </span>
-        {options.map(option => {
-          const isSelected = isCheckbox
-            ? Array.isArray(value) && value.includes(option)
-            : value === option;
 
+        {Object.entries(options).map(([key, label]) => {
+          const isSelected = isCheckbox
+            ? Array.isArray(value) && value.includes(key)
+            : value === key;
           return (
-            <label key={option} class={`ic_form_option ${isSelected ? "selected" : ""}`}>
+            <label key={key} class={`ic_form_option ${isSelected ? "selected" : ""}`}>
               <input
                 {...props}
                 type={type}
-                value={option}
+                value={key}
                 checked={isSelected}
                 class="visually-hidden"
                 aria-checked={isSelected}
               />
-              <span class="grey_dark btn_body ic_form_label">{option}</span>
+              <span class="grey_dark btn_body ic_form_label">
+                {/* {t(query, { defaultValue: label })} */}
+                {/* {t("services.mobile@@Mobile application")} */}
+                {/* {t(`services.mobile`)} */}
+                {/* {t(`${name}.mobile@@${label}`)} */}
+                {label}
+              </span>
             </label>
           );
         })}
