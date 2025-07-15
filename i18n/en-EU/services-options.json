@@ -1,10 +1,5 @@
 {
-  "services": {
-    "branding": "Branding",
-    "website": "Website",
-    "mobile": "Mobile application",
-    "product": "Product design",
-    "seo": "SEO optimization",
-    "other": "Other"
+  "services-options": {
+    "mobile": "Mobile application"
   }
 }

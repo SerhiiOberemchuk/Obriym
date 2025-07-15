@@ -1,0 +1,18 @@
+{
+  "errorsForm": {
+    "budget": {
+      "required": "IIIIIIIIIIIIIII"
+    },
+    "email": {
+      "invalid": "Invalid email address.",
+      "required": "IIIIIIIIIIIIIIII"
+    },
+    "message": {
+      "required": "IIIIIIIIIIIIIII"
+    },
+    "services": {
+      "required": "IIIIIIIIIIIIIII",
+      "type": "Each service must be a string."
+    }
+  }
+}

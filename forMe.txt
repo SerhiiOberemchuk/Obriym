@@ -1,0 +1,9 @@
+ {t("errorsForm.services.type@@Each service must be a string.")}
+          {t("errorsForm.services.required@@Select at least one service.")}
+
+          {t("errorsForm.budget.required@@Please choose your budget.")}
+
+          {t("errorsForm.email.required@@Please enter your email.")}
+          {t("errorsForm.email.invalid@@Invalid email address.")}
+
+          {t("errorsForm.message.required@@Please enter your description.")}

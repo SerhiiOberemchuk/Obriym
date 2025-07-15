@@ -1,0 +1,18 @@
+{
+  "errors": {
+    "budget": {
+      "required": "Ukr Ukr"
+    },
+    "email": {
+      "invalid": "Ukr Ukr",
+      "required": "Ukr Ukr"
+    },
+    "message": {
+      "required": "Ukr Ukr"
+    },
+    "services": {
+      "required": "UKR UKR",
+      "type": "Each service must be a string."
+    }
+  }
+}

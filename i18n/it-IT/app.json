@@ -53,6 +53,9 @@
         "title": "{{name}}"
       }
     },
+    "header": {
+      "buttonChLang": "Button to change locale"
+    },
     "logo": {
       "link": "Logo Obriym Agency link to homepage"
     },

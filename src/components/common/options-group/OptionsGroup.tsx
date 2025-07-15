@@ -56,10 +56,8 @@ export const OptionsGroup = component$(
                 aria-checked={isSelected}
               />
               <span class="grey_dark btn_body ic_form_label">
-                {/* {t(query, { defaultValue: label })} */}
-                {/* {t("services.mobile@@Mobile application")} */}
                 {/* {t(`services.mobile`)} */}
-                {/* {t(`${name}.mobile@@${label}`)} */}
+
                 {label}
               </span>
             </label>

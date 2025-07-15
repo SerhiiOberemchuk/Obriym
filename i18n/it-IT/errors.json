@@ -1,0 +1,18 @@
+{
+  "errors": {
+    "budget": {
+      "required": "ITITIT"
+    },
+    "email": {
+      "invalid": "Invalid email address.",
+      "required": "Please enter your email."
+    },
+    "message": {
+      "required": "ITITIT"
+    },
+    "services": {
+      "required": "ITITIT",
+      "type": "Each service must be a string."
+    }
+  }
+}

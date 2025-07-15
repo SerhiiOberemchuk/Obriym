@@ -1,10 +1,5 @@
 {
-  "services": {
-    "branding": "Брендинг",
-    "website": "Вебсайт",
-    "mobile": "Мобільний застосунок",
-    "product": "Дизайн продукту",
-    "seo": "SEO оптимізація",
-    "other": "Інше"
+  "services-options": {
+    "mobile": "Mobile application"
   }
 }
