@@ -1,6 +1,6 @@
 import { component$, useStylesScoped$, useSignal, useTask$ } from "@qwik.dev/core";
 import { usePopover } from "@qwik-ui/headless";
-import { inlineTranslate } from "qwik-speak";
+import { inlineTranslate, useSpeakLocale } from "qwik-speak";
 import { reset, useForm, valiForm$ } from "@modular-forms/qwik";
 import styles from "./contact-form_styles.css?inline";
 
@@ -11,7 +11,14 @@ import { AlertType } from "~/types/alert.type";
 import { useContactFormLoader } from "~/routes/[...lang]";
 import { useFormAction } from "~/utils/useFormAction";
 
-import { SERVICES_OPTIONS, BUDGET_OPTIONS } from "~/const/form-const";
+import {
+  SERVICES_OPTIONS_EN,
+  SERVICES_OPTIONS_IT,
+  SERVICES_OPTIONS_UA,
+  BUDGET_OPTIONS_EN,
+  BUDGET_OPTIONS_IT,
+  BUDGET_OPTIONS_UA,
+} from "~/const/form-const";
 
 import PopoverComponent from "~/components/common/popover/Popover";
 import FormError from "~/components/common/form-error/form_error";
@@ -23,8 +30,24 @@ type ContactFormComponentProps = {
 };
 
 export default component$(({ modal }: ContactFormComponentProps) => {
-  const t = inlineTranslate();
   useStylesScoped$(styles);
+  const t = inlineTranslate();
+  const locale = useSpeakLocale();
+  console.log("locale", locale.lang); //uk-UA it-IT en-EU
+  const SERVICES_OPTIONS =
+    locale.lang === "uk-UA"
+      ? SERVICES_OPTIONS_UA
+      : locale.lang === "it-IT"
+        ? SERVICES_OPTIONS_IT
+        : SERVICES_OPTIONS_EN;
+
+  const BUDGET_OPTIONS =
+    locale.lang === "uk-UA"
+      ? BUDGET_OPTIONS_UA
+      : locale.lang === "it-IT"
+        ? BUDGET_OPTIONS_IT
+        : BUDGET_OPTIONS_EN;
+
   const anchorRef = useSignal<HTMLElement>();
   const popoverId = "contact-popover";
   const { showPopover } = usePopover(popoverId);
