@@ -1,11 +1,11 @@
 import { component$, useStylesScoped$ } from "@qwik.dev/core";
-// import { inlineTranslate } from "qwik-speak";
+ import { inlineTranslate } from "qwik-speak";
 import styles from "./options-group_styles.css?inline";
 import { OptionsGroupProps } from "~/types/contact-form.type";
 
 export const OptionsGroup = component$(
   ({ name, type, options, label, value, ...props }: OptionsGroupProps) => {
-    // const t = inlineTranslate();
+  const t = inlineTranslate();
     useStylesScoped$(styles);
 
     const isCheckbox = type === "checkbox";
@@ -56,9 +56,9 @@ export const OptionsGroup = component$(
                 aria-checked={isSelected}
               />
               <span class="grey_dark btn_body ic_form_label">
-                {/* {t(`services.mobile`)} */}
+                {t(`${name}.${key}@@${label}`)}
 
-                {label}
+                {/* {label} */}
               </span>
             </label>
           );
