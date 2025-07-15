@@ -91,7 +91,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                 />
               </fieldset>
 
-              <FormError error={field.error} />
+              <FormError error={field.error} id={`services-error`} />
             </div>
           )}
         </Field>
@@ -113,7 +113,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                 />
               </fieldset>
 
-              <FormError error={field.error} />
+              <FormError error={field.error} id={`budget-error`} />
             </div>
           )}
         </Field>
@@ -178,7 +178,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                       {field.value}
                     </textarea>
 
-                    <FormError error={field.error} />
+                    <FormError error={field.error} id={`message-error`} />
                   </div>
                 )}
               </Field>
