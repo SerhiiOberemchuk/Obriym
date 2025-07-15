@@ -123,9 +123,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
           {(field, props) => (
             <div class="ic_form_fieldset_wrp">
               <fieldset class="ic_form_fieldset">
-                <legend class="H5 grey_dark">
-                  {t("app.form.budget.legend@@Your budget range?")}
-                </legend>
+                <legend class="H5 grey_dark">{t("app.form.budget.legend")}</legend>
                 <OptionsGroup
                   {...props}
                   name="budget"

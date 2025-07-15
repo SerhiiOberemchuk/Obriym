@@ -1,18 +1,18 @@
 {
   "errors": {
     "budget": {
-      "required": "Ukr Ukr"
+      "required": "Будь ласка, оберіть свій бюджет."
     },
     "email": {
-      "invalid": "Ukr Ukr",
-      "required": "Ukr Ukr"
+      "invalid": "Невірна електронна адреса.",
+      "required": "Будь ласка, введіть електронну адресу."
     },
     "message": {
-      "required": "Ukr Ukr"
+      "required": "Будь ласка, введіть опис."
     },
     "services": {
-      "required": "UKR UKR",
-      "type": "Each service must be a string."
+      "required": "Оберіть принаймні одну послугу.",
+      "type": "Кожна послуга повинна бути рядком."
     }
   }
 }
