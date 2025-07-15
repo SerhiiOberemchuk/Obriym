@@ -1,6 +1,47 @@
 .ic_form_fieldset_wrp {
   /* width: 100%; */
+
   flex: 1;
+}
+/* like for sr only  */
+.ic_form_fieldset_wrp label {
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all 0.2s ease;
+  font-size: 14px;
+  line-height: 1.2;
+  color: var(--grey);
+  margin-left: 16px;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* if the label should be visible */
+/* .form-label.visible {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0 0 4px 12px;
+  clip: auto;
+  clip-path: none;
+  white-space: normal;
+
+  font-size: 14px;
+}
+.form-label-error {
+  color: var(--red);
+} */
+
+.ic_form_fieldset_wrp:has(input:focus) label,
+.ic_form_fieldset_wrp:has(input:active) label {
+  opacity: 1;
+  transform: translateY(4px);
+  color: var(--grey-dark);
+}
+.ic_form_fieldset_wrp.has-error label {
+  opacity: 1;
+  transform: translateY(0);
+  color: var(--red);
 }
 .ic_form_input {
   outline: none;
@@ -10,6 +51,13 @@
   width: 100%;
   cursor: pointer;
   transition: border-color 0.2s ease-in-out;
+}
+.ic_form_input:active {
+  border-color: var(--grey); /* pressed */
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.ic_form_input.filled {
+  border-color: var(--grey); /* filled  */
 }
 .ic_form_input::placeholder {
   opacity: 1;
@@ -25,13 +73,6 @@
 @media (min-width: 48rem) {
   .ic_form_input:hover {
     border-color: var(--grey-dark); /* active */
-  }
-  .ic_form_input:active {
-    border-color: var(--grey); /* pressed */
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
-  }
-  .ic_form_input.filled {
-    border-color: var(--grey); /* filled  */
   }
 }
 @media (min-width: 90rem) {

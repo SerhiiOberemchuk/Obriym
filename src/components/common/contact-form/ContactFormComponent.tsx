@@ -1,6 +1,6 @@
 import { component$, useStylesScoped$, useSignal, useTask$ } from "@qwik.dev/core";
 import { usePopover } from "@qwik-ui/headless";
-import { inlineTranslate, useSpeakLocale } from "qwik-speak";
+import { inlineTranslate } from "qwik-speak"; //, useSpeakLocale
 import { reset, useForm, valiForm$ } from "@modular-forms/qwik";
 import styles from "./contact-form_styles.css?inline";
 
@@ -13,11 +13,11 @@ import { useFormAction } from "~/utils/useFormAction";
 
 import {
   SERVICES_OPTIONS_EN,
-  SERVICES_OPTIONS_IT,
-  SERVICES_OPTIONS_UA,
+  // SERVICES_OPTIONS_IT,
+  // SERVICES_OPTIONS_UA,
   BUDGET_OPTIONS_EN,
-  BUDGET_OPTIONS_IT,
-  BUDGET_OPTIONS_UA,
+  // BUDGET_OPTIONS_IT,
+  // BUDGET_OPTIONS_UA,
 } from "~/const/form-const";
 
 import PopoverComponent from "~/components/common/popover/Popover";
@@ -32,21 +32,21 @@ type ContactFormComponentProps = {
 export default component$(({ modal }: ContactFormComponentProps) => {
   useStylesScoped$(styles);
   const t = inlineTranslate();
-  const locale = useSpeakLocale();
+  //const locale = useSpeakLocale();
   //console.log("locale", locale.lang); //uk-UA it-IT en-EU
-  const SERVICES_OPTIONS =
-    locale.lang === "uk-UA"
-      ? SERVICES_OPTIONS_UA
-      : locale.lang === "it-IT"
-        ? SERVICES_OPTIONS_IT
-        : SERVICES_OPTIONS_EN;
+  // const SERVICES_OPTIONS =
+  //   locale.lang === "uk-UA"
+  //     ? SERVICES_OPTIONS_UA
+  //     : locale.lang === "it-IT"
+  //       ? SERVICES_OPTIONS_IT
+  //       : SERVICES_OPTIONS_EN;
 
-  const BUDGET_OPTIONS =
-    locale.lang === "uk-UA"
-      ? BUDGET_OPTIONS_UA
-      : locale.lang === "it-IT"
-        ? BUDGET_OPTIONS_IT
-        : BUDGET_OPTIONS_EN;
+  // const BUDGET_OPTIONS =
+  //   locale.lang === "uk-UA"
+  //     ? BUDGET_OPTIONS_UA
+  //     : locale.lang === "it-IT"
+  //       ? BUDGET_OPTIONS_IT
+  //       : BUDGET_OPTIONS_EN;
 
   const anchorRef = useSignal<HTMLElement>();
   const popoverId = "contact-popover";
@@ -108,7 +108,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                   {...props}
                   name="services"
                   type="checkbox"
-                  options={SERVICES_OPTIONS}
+                  options={SERVICES_OPTIONS_EN}
                   label={t("app.form.services.sr-label@@Services offered")}
                   value={field.value}
                 />
@@ -130,7 +130,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                   {...props}
                   name="budget"
                   type="radio"
-                  options={BUDGET_OPTIONS}
+                  options={BUDGET_OPTIONS_EN}
                   label={t("app.form.budget.sr-label@@Budget options")}
                   value={field.value}
                 />
@@ -158,7 +158,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                       value={field.value}
                       error={field.error}
                       placeholder={t("app.form.name.placeholder@@Enter your name")}
-                      label={t("app.form.name.label@@Name")}
+                      label={t("app.form.name.label@@Your name")}
                     />
                   )}
                 </Field>
@@ -174,7 +174,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                       value={field.value}
                       error={field.error}
                       placeholder={t("app.form.email.placeholder@@Enter your email")}
-                      label={t("app.form.email.label@@Email")}
+                      label={t("app.form.email.label@@Your email")}
                     />
                   )}
                 </Field>
