@@ -20,6 +20,7 @@ export const ChangeLocale = component$(() => {
   const config = useSpeakConfig();
   const dn = useDisplayName();
   const getPath = localizePath();
+  console.log(locale.lang);
 
   return (
     <Popover.Root class="cl_popover" gutter={8}>
