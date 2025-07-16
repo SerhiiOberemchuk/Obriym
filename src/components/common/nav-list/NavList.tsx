@@ -1,6 +1,6 @@
 import { component$, QRL } from "@qwik.dev/core";
 import { Link } from "@qwik.dev/router";
-import { inlineTranslate } from "qwik-speak";
+import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
 import "./nav-list.css";
 import { NavListItem } from "~/types/nav-list.type";
 
@@ -12,6 +12,7 @@ type Props = {
 
 export default component$<Props>(({ place, onClick }) => {
   const t = inlineTranslate();
+  const locale = useSpeakLocale();
 
   const baseListItems: NavListItem[] = [
     { link: "services", label: t("navigation.services@@Services") },
@@ -20,6 +21,8 @@ export default component$<Props>(({ place, onClick }) => {
     { link: "about", label: t("navigation.about@@About") },
     { link: "contact", label: t("navigation.contact@@Contact") },
   ];
+  const getPath = localizePath();
+  const [teamPath] = getPath(["/team/"]);
 
   const navListItems = baseListItems.filter(({ link }) => {
     if (place === "mobilemenu") {
@@ -38,7 +41,7 @@ export default component$<Props>(({ place, onClick }) => {
           return (
             <li key={item.link}>
               <Link
-                href={item.link === "team" ? `/${item.link}` : `#${item.link}`}
+                href={item.link === "team" ? `${teamPath}` : `/${locale.lang}/#${item.link}`}
                 class="btn_body"
                 onClick$={onClick}
               >
