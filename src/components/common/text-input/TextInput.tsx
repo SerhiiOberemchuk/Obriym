@@ -10,9 +10,10 @@ export const TextInput = component$(
 
     const id = `${name}-input`;
     return (
-      <div class="ic_form_fieldset_wrp">
+      <div class={`ic_form_fieldset_wrp ${error ? "has-error" : ""}`}>
         {
-          <label class="sr-only" for={id}>
+          // class="sr-only"
+          <label class="form-label" for={id}>
             {label}
           </label>
         }

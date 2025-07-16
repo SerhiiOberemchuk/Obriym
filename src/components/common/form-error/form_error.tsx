@@ -1,4 +1,5 @@
 import { component$, useStylesScoped$ } from "@qwik.dev/core";
+import { inlineTranslate } from "qwik-speak";
 import styles from "./form_error.css?inline";
 import IconError from "~/assets/icons/icon_error.svg?w=20&h20&jsx";
 
@@ -7,7 +8,9 @@ interface FormErrorProps {
   id?: string;
 }
 export default component$(({ error, id }: FormErrorProps) => {
+  const t = inlineTranslate();
   useStylesScoped$(styles);
+
   return (
     <div
       id={id}
@@ -18,7 +21,8 @@ export default component$(({ error, id }: FormErrorProps) => {
       {error && (
         <>
           <IconError />
-          <span>{error}</span>
+
+          <span>{t(error)}</span>
         </>
       )}
     </div>

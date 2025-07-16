@@ -18,7 +18,7 @@
         "sr-label": "Budget options"
       },
       "email": {
-        "label": "Email",
+        "label": "Your email",
         "placeholder": "Enter your email"
       },
       "message": {
@@ -29,7 +29,7 @@
         "sr-label": "Your message"
       },
       "name": {
-        "label": "Name",
+        "label": "Your name",
         "placeholder": "Enter your name"
       },
       "services": {
@@ -52,6 +52,9 @@
         "description": "Localized routing",
         "title": "{{name}}"
       }
+    },
+    "header": {
+      "buttonChLang": "Button to change locale"
     },
     "nav": {
       "home": "Home",

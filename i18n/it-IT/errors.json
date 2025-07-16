@@ -1,0 +1,18 @@
+{
+  "errors": {
+    "budget": {
+      "required": "Per favore, scegli il tuo budget."
+    },
+    "email": {
+      "invalid": "Indirizzo email non valido.",
+      "required": "Per favore, inserisci la tua email."
+    },
+    "message": {
+      "required": "Per favore, inserisci una descrizione."
+    },
+    "services": {
+      "required": "Seleziona almeno un servizio.",
+      "type": "Ogni servizio deve essere una stringa."
+    }
+  }
+}
