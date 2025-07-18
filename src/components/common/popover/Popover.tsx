@@ -27,6 +27,7 @@ export default component$(({ popoverId, type, anchor }: PopoverProps) => {
           data-type={type}
           role={role}
           aria-live={ariaLive}
+          aria-atomic="true"
         >
           <Icon />
           {/* <p>{ALERT_MESSAGE[type].title}</p>

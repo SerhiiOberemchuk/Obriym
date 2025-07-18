@@ -16,9 +16,9 @@ export default component$(() => {
       <div class="cc_title_box">
         {/* title title*/}
         <div>
-          <p class="body_big">{t("home.contact-section.content.text1@@Have a project?")}</p>
+          <h2 class="body_big">{t("home.contact-section.content.text1@@Have a project?")}</h2>
 
-          <p class="body_big">{t("home.contact-section.content.text2@@Let's talk!")}</p>
+          <h3 class="body_big">{t("home.contact-section.content.text2@@Let's talk!")}</h3>
         </div>
         {/* text */}
         <div class="cc_text_box">
@@ -30,7 +30,7 @@ export default component$(() => {
           <div class="cc_text_soc_media_box">
             <LinkEmail place="main" />
             <div class="cc_soc_media_row">
-              <IconTelegram />
+              <IconTelegram aria-hidden="true" />
               <p class="btn_header grey">@obriym</p>
             </div>
           </div>
@@ -41,7 +41,9 @@ export default component$(() => {
         <div class="cc_calendly__foto_box_blue">
           <div class="cc_calendly__foto_box_white">
             <div class="cc_calendly__foto">
-              <OberemImg />
+              <OberemImg
+                alt={t("home.contact-section.oberem_img_alt@@Portrait of Serhii, founder and CEO")}
+              />
             </div>
           </div>
         </div>
@@ -52,7 +54,7 @@ export default component$(() => {
             <p class="btn_body grey">Founder & CEO</p>
           </div>
 
-          <IconSchedule class="cc_calendly_text_icon" />
+          <IconSchedule class="cc_calendly_text_icon" aria-hidden="true" />
         </div>
       </div>
     </div>

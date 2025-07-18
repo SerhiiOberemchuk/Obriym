@@ -29,7 +29,8 @@ export const OptionsGroup = component$(
                 value={key}
                 checked={isSelected}
                 class="visually-hidden"
-                aria-checked={isSelected}
+                // aria-checked={isSelected}
+                aria-label={t(`${name}.${key}@@${label}`)}
               />
               <span class="grey_dark btn_body ic_form_label">
                 {t(`${name}.${key}@@${label}`)}
