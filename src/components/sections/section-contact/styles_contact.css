@@ -17,22 +17,22 @@
   gap: 0.5rem;
 }
 .c_title_icon {
-  width: 32px;
-  height: 32px;
+  width: 2rem;
+  height: 2rem;
 }
 @media (min-width: 48rem) {
   .c_box_title {
     gap: 0.625rem;
   }
   .c_title_icon {
-    width: 64px;
-    height: 64px;
+    width: 4rem;
+    height: 4rem;
   }
 }
 @media (min-width: 90rem) {
   .c_container {
     flex-direction: row;
-    gap: 24px;
+    gap: 1.5rem;
 
     align-items: flex-start;
   }
@@ -40,8 +40,8 @@
     margin-bottom: 1.5rem;
   }
   .c_title_icon {
-    width: 100px;
-    height: 100px;
+    width: 6.25rem;
+    height: 6.25rem;
   }
   .cc_wrapper {
     flex: 1;
