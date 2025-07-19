@@ -75,7 +75,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
     }
   });
   return (
-    <div aria-labelledby="contact-form-title">
+    <div>
       {modal ? (
         <h2 id="contact-form-title" class="H3_uppercase contact-form-title">
           {t("app.form.title.modal@@Let's start you project")}
@@ -85,7 +85,11 @@ export default component$(({ modal }: ContactFormComponentProps) => {
           {t("app.form.title.not-modal@@Contact Form")}
         </h2>
       )}
-      <Form class="ic_form" aria-describedby="contact-form-description">
+      <Form
+        class="ic_form"
+        aria-describedby="contact-form-description"
+        aria-labelledby="contact-form-title"
+      >
         <p id="contact-form-description" class="sr-only">
           {t("app.form.sr-only.title@@Please fill out the following form to send us your request.")}
         </p>

@@ -26,19 +26,19 @@
 }
 
 .cc_calendly_box {
-  border-radius: 24px;
-  padding: 20px;
+  border-radius: 1.5rem;
+  padding: 1.25rem;
   background-color: var(--white);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.75rem;
 }
 .cc_calendly__foto_box_blue {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 2.25rem;
+  height: 2.25rem;
   border-radius: 100%;
   background-color: var(--blue);
 }
@@ -46,19 +46,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 2.125rem;
+  height: 2.125rem;
   border-radius: 100%;
   background-color: var(--white);
 }
 .cc_calendly__foto {
-  width: 32px;
-  height: 32px;
+  width: 2rem;
+  height: 2rem;
   border-radius: 100%;
 }
 .cc_calendly_text_box {
   display: flex;
-  gap: 18px;
+  gap: 1.125rem;
 }
 .cc_calendly_text_wrap {
   display: flex;
@@ -66,49 +66,46 @@
   justify-content: space-between;
 }
 .cc_calendly_text_icon {
-  width: 44px;
-  height: 44px;
+  width: 2.75rem;
+  height: 2.75rem;
 }
 .cc_email_icon {
   fill: var(--peach);
 }
 @media (min-width: 48rem) {
   .cc_content_box {
-    gap: 36px;
+    gap: 2.25rem;
   }
   .cc_text_box {
-    width: 325px;
+    width: 20.3125rem;
   }
   .cc_text_soc_media_box {
-    gap: 12px;
+    gap: 0.75rem;
   }
   .cc_calendly_box {
     flex-direction: row;
-    gap: 24px;
-    padding: 24px;
+    gap: 1.5rem;
+    padding: 1.5rem;
     width: fit-content;
   }
   .cc_calendly__foto_box_blue {
-    width: 92px;
-    height: 92px;
+    width: 5.75rem;
+    height: 5.75rem;
   }
   .cc_calendly__foto {
-    width: 80px;
-    height: 80px;
+    width: 5rem;
+    height: 5rem;
   }
   .cc_calendly__foto_box_white {
-    width: 86px;
-    height: 86px;
+    width: 5.375rem;
+    height: 5.375rem;
   }
   .cc_calendly_text_box {
-    gap: 68px;
+    gap: 4.25rem;
   }
   .cc_calendly_text_icon {
-    width: 64px;
-    height: 64px;
+    width: 4rem;
+    height: 4rem;
     align-self: center;
   }
-}
-
-@media (min-width: 90rem) {
 }
