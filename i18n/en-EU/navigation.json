@@ -2,6 +2,9 @@
   "navigation": {
     "about": "About",
     "contact": "Contact",
+    "linkHome": "Link to home page",
+    "linkLabel": "Link to section",
+    "navTitle": "Main navigation",
     "portfolio": "Portfolio",
     "services": "Services",
     "team": "Team"

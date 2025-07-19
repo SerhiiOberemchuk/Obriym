@@ -41,11 +41,16 @@ export default component$<Props>(({ place, onClick }) => {
   });
 
   return (
-    <nav data-place={place} class="navigation" aria-label="Main navigation">
+    <nav
+      id="main-navigation"
+      data-place={place}
+      class="navigation"
+      aria-label={t("navigation.navTitle@@Main navigation")}
+    >
       <ul data-place={place} class="nav_list">
         {place === "header" && (
           <li id="home-link">
-            <Link href={homePath}>
+            <Link href={homePath} aria-label={t("navigation.linkHome@@Link to home page")}>
               <IconHome class="icon_home" />
             </Link>
           </li>
@@ -61,7 +66,7 @@ export default component$<Props>(({ place, onClick }) => {
                       ? `${currentPath}#${item.link}`
                       : `${homePath}#${item.link}`
                 }
-                aria-label={`Link to section ${item.link}`}
+                aria-label={`${t("navigation.linkLabel@@Link to section")} ${item.label}`}
                 class="btn_body link"
                 onClick$={onClick}
               >
