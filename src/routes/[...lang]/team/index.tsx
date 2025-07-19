@@ -2,16 +2,18 @@ import { component$ } from "@qwik.dev/core";
 import { DocumentHead } from "@qwik.dev/router";
 import { inlineTranslate } from "qwik-speak";
 
-export default component$(() => {
-  const t = inlineTranslate();
+import HeroSection from "~/components/sections/team-page/hero-section/HeroSection";
 
-  const key = "dynamic";
+export default component$(() => {
+  // const t = inlineTranslate();
+
+  // const key = "dynamic";
 
   return (
     <>
-      <h1>{t("app.title", { name: "Qwik Speak" })}</h1>
+      <HeroSection />
 
-      <p>{t(`runtime.${key}`)}</p>
+      {/* <p>{t(`runtime.${key}`)}</p> */}
     </>
   );
 });
