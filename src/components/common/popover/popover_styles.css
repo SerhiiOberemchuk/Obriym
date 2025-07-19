@@ -19,7 +19,7 @@
 .popover_text {
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 130%;
   text-align: center;
 }
@@ -34,7 +34,7 @@
   .popover_text {
     font-family: var(--font-family);
     font-weight: 400;
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 130%;
     text-align: center;
   }

@@ -13,7 +13,7 @@ export default component$(() => {
     <section class="c_section">
       <div class="container ">
         <div class="c_box_title">
-          <IconGreen class="c_title_icon" />
+          <IconGreen class="c_title_icon" aria-hidden="true" />
 
           <h2 class="H3_uppercase grey_dark">{t("home.contact-section.title@@get a contact")}</h2>
         </div>
