@@ -53,6 +53,9 @@ button {
   background-color: transparent;
   transition: all 0.3s ease-in-out;
 }
+svg {
+  transition: all 0.3s ease-in-out;
+}
 
 blockquote,
 q {

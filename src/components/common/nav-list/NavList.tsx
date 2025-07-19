@@ -1,18 +1,26 @@
 import { component$, QRL } from "@qwik.dev/core";
-import { Link } from "@qwik.dev/router";
-import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
+import { Link, useLocation } from "@qwik.dev/router";
+import { inlineTranslate, localizePath } from "qwik-speak";
 import "./nav-list.css";
+import IconHome from "~/assets/icons/icon-home.svg?h38&w39&jsx";
+
 import { NavListItem } from "~/types/nav-list.type";
 
 type Props = {
-  class?: string;
   place: "footer" | "header" | "mobilemenu";
   onClick?: QRL<() => void>;
 };
 
 export default component$<Props>(({ place, onClick }) => {
   const t = inlineTranslate();
-  const locale = useSpeakLocale();
+  const location = useLocation();
+
+  const currentPath = location.url.pathname;
+
+  const getPath = localizePath();
+
+  const [teamPath] = getPath(["/team/"]);
+  const [homePath] = getPath(["/"]);
 
   const baseListItems: NavListItem[] = [
     { link: "services", label: t("navigation.services@@Services") },
@@ -21,11 +29,9 @@ export default component$<Props>(({ place, onClick }) => {
     { link: "about", label: t("navigation.about@@About") },
     { link: "contact", label: t("navigation.contact@@Contact") },
   ];
-  const getPath = localizePath();
-  const [teamPath] = getPath(["/team/"]);
 
   const navListItems = baseListItems.filter(({ link }) => {
-    if (place === "mobilemenu") {
+    if (place === "mobilemenu" || place === "header") {
       return link !== "team";
     }
     if (place === "footer") {
@@ -35,14 +41,28 @@ export default component$<Props>(({ place, onClick }) => {
   });
 
   return (
-    <nav>
+    <nav data-place={place} class="navigation" aria-label="Main navigation">
       <ul data-place={place} class="nav_list">
+        {place === "header" && (
+          <li id="home-link">
+            <Link href={homePath}>
+              <IconHome class="icon_home" />
+            </Link>
+          </li>
+        )}
         {navListItems.map(item => {
           return (
             <li key={item.link}>
               <Link
-                href={item.link === "team" ? `${teamPath}` : `/${locale.lang}/#${item.link}`}
-                class="btn_body"
+                href={
+                  item.link === "team"
+                    ? `${teamPath}`
+                    : item.link === "contact"
+                      ? `${currentPath}#${item.link}`
+                      : `${homePath}#${item.link}`
+                }
+                aria-label={`Link to section ${item.link}`}
+                class="btn_body link"
                 onClick$={onClick}
               >
                 {item.label}

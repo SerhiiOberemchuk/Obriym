@@ -1,6 +1,6 @@
 import { $, component$, useSignal } from "@qwik.dev/core";
 import "./mb-styles.css";
-import MenuWindow from "../menu-window/MenuWindow";
+import MenuWindow from "./menu-window/MenuWindow";
 
 export default component$(() => {
   const isMenuOpen = useSignal<boolean>(false);
