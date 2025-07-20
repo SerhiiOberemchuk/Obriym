@@ -4,6 +4,14 @@
   padding-inline: 4px;
 }
 .navigation[data-place="header"] {
+  display: none;
+}
+@media (width >= 48rem) {
+  .navigation[data-place="header"] {
+    display: flex;
+  }
+}
+.navigation[data-place="header"] {
   position: fixed;
   bottom: 1.25rem;
   left: 50%;
@@ -17,14 +25,17 @@
   justify-content: space-between;
   align-items: center;
   gap: 0.75rem;
+  min-width: 25.75rem;
 }
 
 .nav_list[data-place="header"] li .link {
-  display: block;
+  display: flex;
   padding-block: 6px;
   padding-inline: 10px;
   border: 1px solid transparent;
   border-radius: 48px;
+  min-width: fit-content;
+  text-wrap: nowrap;
 }
 .nav_list[data-place="footer"] {
   gap: 1.5rem;
@@ -41,6 +52,7 @@
   border-radius: 48px;
   border: 1px solid;
   border-color: transparent;
+  min-width: 38px;
 }
 
 .icon_home:hover {

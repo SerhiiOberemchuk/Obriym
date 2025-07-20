@@ -2,6 +2,7 @@ import { component$ } from "@qwik.dev/core";
 import { DocumentHead, routeLoader$ } from "@qwik.dev/router";
 import { inlineTranslate } from "qwik-speak";
 import SectionContact from "~/components/sections/section-contact/SectionContact";
+import SectionTitle from "~/components/sections/section-title/SectionTitle";
 
 export const useContactFormLoader = routeLoader$(() => ({
   services: [],
@@ -14,6 +15,7 @@ export const useContactFormLoader = routeLoader$(() => ({
 export default component$(() => {
   return (
     <>
+      <SectionTitle />
       <SectionContact />
     </>
   );

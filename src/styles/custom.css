@@ -17,8 +17,9 @@ main {
   max-width: 120rem;
   margin: 0 auto;
   padding: 0 1rem;
-
-  @media (min-width: 48rem) {
+}
+@media (width >= 48rem) {
+  .container {
     padding: 0 2.5rem;
   }
 }

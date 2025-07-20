@@ -1,0 +1,34 @@
+.st_section {
+  padding-block: 8.25rem 0 10.875rem 0;
+}
+
+.title {
+  position: relative;
+  display: flex;
+  margin-inline: auto;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 0.25rem;
+  max-width: 78.125rem;
+}
+.tablet {
+  display: none;
+}
+@media (width >= 48rem) {
+  .title {
+    column-gap: 0.5rem;
+  }
+  .mobile {
+    display: none;
+  }
+  .tablet {
+    display: block;
+  }
+}
+
+@media (width >= 90rem) {
+  .title {
+    column-gap: 2.25rem;
+  }
+}
