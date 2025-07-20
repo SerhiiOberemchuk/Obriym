@@ -48,13 +48,14 @@
   background-color: var(--blue-light);
 }
 .cl_btn svg {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s;
 }
 .cl_btn[data-open="true"] svg {
   transform: rotateX(0.5turn);
 }
 .cl_panel {
   position: absolute;
+  z-index: 100;
   top: -340%;
   left: 0;
   width: 100%;
@@ -106,7 +107,6 @@
   .cl_panel {
     top: 120%;
     left: -45%;
-    /* transform: translateX(50%); */
     width: 11.375rem;
   }
   .cl_btn svg {

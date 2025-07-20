@@ -12,6 +12,7 @@
   .lw_button[data-place="header"] {
     display: block;
     position: fixed;
+    z-index: 99;
     margin-top: 0;
     top: 1.5rem;
     right: 2.5rem;

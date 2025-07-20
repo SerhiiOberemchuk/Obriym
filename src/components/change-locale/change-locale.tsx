@@ -1,4 +1,4 @@
-import { $, component$, useOnDocument, useSignal } from "@qwik.dev/core";
+import { $, component$, useOnDocument, useSignal, useStylesScoped$ } from "@qwik.dev/core";
 import { useLocation } from "@qwik.dev/router";
 import {
   useSpeakLocale,
@@ -7,7 +7,7 @@ import {
   localizePath,
   inlineTranslate,
 } from "qwik-speak";
-import "./cl-styles.css";
+import styles from "./cl-styles.css?inline";
 import IconSelected from "~/assets/icons/icon_selected.svg?h=24&w=24&jsx";
 import IconArrow from "~/assets/icons/icon_arrow_down.svg?h=24&w=24&jsx";
 
@@ -19,7 +19,7 @@ export const ChangeLocale = component$(({ place }: { place: "mob-menu" | "header
   const config = useSpeakConfig();
   const dn = useDisplayName();
   const getPath = localizePath();
-
+  useStylesScoped$(styles);
   useOnDocument(
     "keydown",
     $((e: KeyboardEvent) => {
