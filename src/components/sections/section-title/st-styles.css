@@ -1,5 +1,5 @@
 .st_section {
-  padding-block: 8.25rem 0 10.875rem 0;
+  padding-block: 8.75rem 0 10.25rem 0;
 }
 
 .title {
@@ -29,6 +29,9 @@
   display: none;
 }
 @media (width >= 48rem) {
+  .st_section {
+    padding-block: 13.75rem 0 16.375rem 0;
+  }
   .title {
     column-gap: 0.5rem;
     row-gap: 0.75rem;
@@ -51,6 +54,9 @@
 }
 
 @media (width >= 90rem) {
+  .st_section {
+    padding-block: 8.25rem 0 10.875rem 0;
+  }
   .title {
     column-gap: 2rem;
   }
