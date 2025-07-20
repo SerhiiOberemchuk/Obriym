@@ -71,3 +71,6 @@ main {
   white-space: nowrap;
   border: 0;
 }
+.text_center {
+  text-align: center;
+}

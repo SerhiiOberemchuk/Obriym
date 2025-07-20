@@ -12,12 +12,26 @@
   column-gap: 0.25rem;
   max-width: 78.125rem;
 }
+.spring_img {
+  width: 2.75rem;
+}
+
+.mobile {
+  width: 11.25rem;
+  margin-top: 1rem;
+  margin-inline: auto;
+}
 .tablet {
+  display: none;
+  width: 10.375rem;
+}
+.from_sp1 {
   display: none;
 }
 @media (width >= 48rem) {
   .title {
     column-gap: 0.5rem;
+    row-gap: 0.75rem;
   }
   .mobile {
     display: none;
@@ -25,10 +39,25 @@
   .tablet {
     display: block;
   }
+  .from_sp1 {
+    display: inline;
+  }
+  .from_sp2 {
+    display: none;
+  }
+  .spring_img {
+    width: 4.5rem;
+  }
 }
 
 @media (width >= 90rem) {
   .title {
-    column-gap: 2.25rem;
+    column-gap: 2rem;
+  }
+  .spring_img {
+    width: 7.75rem;
+  }
+  .tablet {
+    width: 15rem;
   }
 }
