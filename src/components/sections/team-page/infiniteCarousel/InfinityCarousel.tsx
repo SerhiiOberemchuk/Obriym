@@ -1,111 +1,87 @@
-import {
-  component$,
-  useSignal,
-  $,
-  useStylesScoped$,
-  useVisibleTask$,
-  useTask$,
-} from "@builder.io/qwik";
+import { component$, $, useStylesScoped$, useVisibleTask$, useStore } from "@qwik.dev/core";
 
 import styles from "./infiniteCarousel.css?inline";
 
 export default component$(() => {
-  const containerRef = useSignal<HTMLElement>();
+  useStylesScoped$(styles);
   const cards = ["A", "B", "C"];
 
-  const visibleCount = useSignal(1);
-
-  const extendedCards = [cards[2], ...cards, cards[0]];
-
-  useVisibleTask$(() => {
-    const updateVisibleCount = () => {
-      if (window.innerWidth >= 768) {
-        visibleCount.value = 2;
-      } else {
-        visibleCount.value = 1;
-      }
-
-      if (containerRef.value) {
-        const cardWidth = containerRef.value.offsetWidth / visibleCount.value;
-        containerRef.value.scrollLeft = cardWidth;
-      }
-    };
-    updateVisibleCount();
-    window.addEventListener("resize", updateVisibleCount);
+  const state = useStore({
+    currentIndex: 0,
+    offsetX: 0,
+    isDragging: false,
+    startX: 0,
+    width: 0,
   });
 
-  const onScroll$ = () => {
-    const el = containerRef.value;
-    if (!el) return;
+  const onPointerDown = $((event: PointerEvent) => {
+    state.isDragging = true;
+    state.startX = event.clientX;
+  });
 
-    const cardWidth = el.offsetWidth / visibleCount.value;
-    const scrollLeft = el.scrollLeft;
+  const onPointerMove = $((event: PointerEvent) => {
+    if (!state.isDragging) return;
+    state.offsetX = event.clientX - state.startX;
+  });
 
-    const maxScroll = cardWidth * (extendedCards.length - visibleCount.value);
+  const onPointerUp = $(() => {
+    if (!state.isDragging) return;
+    state.isDragging = false;
 
-    if (scrollLeft <= 0) {
-      el.scrollLeft = cardWidth * cards.length;
-    } else if (scrollLeft >= maxScroll) {
-      el.scrollLeft = cardWidth;
+    if (state.offsetX < -30) {
+      state.currentIndex = (state.currentIndex + 1) % cards.length;
+    } else if (state.offsetX > 30) {
+      state.currentIndex = (state.currentIndex - 1 + cards.length) % cards.length;
     }
+
+    state.offsetX = 0;
+  });
+
+  useVisibleTask$(() => {
+    const updateWidth = () => {
+      state.width = window.innerWidth < 768 ? window.innerWidth : 400;
+    };
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  });
+
+  useVisibleTask$(({ cleanup }) => {
+    const tick = () => {
+      if (!state.isDragging) {
+        state.currentIndex = (state.currentIndex + 1) % cards.length;
+      }
+      timer = setTimeout(tick, 3000);
+    };
+
+    let timer = setTimeout(tick, 3000);
+    cleanup(() => clearTimeout(timer));
+  });
+
+  const getTranslateX = () => {
+    return -state.currentIndex * state.width + state.offsetX;
   };
 
   return (
-    <>
-      <style>{`
-        .carousel-container {
-          overflow-x: auto;
-          scroll-snap-type: x mandatory;
-          -webkit-overflow-scrolling: touch;
-          display: flex;
-          scrollbar-width: none; /* Firefox */
-        }
-        .carousel-container::-webkit-scrollbar {
-          display: none; /* Chrome */
-        }
-        .card {
-          flex: 0 0 auto;
-          scroll-snap-align: start;
-          border: 2px solid #0070f3;
-          border-radius: 12px;
-          background: #e0f0ff;
-          font-size: 2rem;
-          font-weight: bold;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          user-select: none;
-          height: 150px;
-          margin-right: 10px;
-          width: 100%; /* будет пересчитано inline */
-          box-sizing: border-box;
-          touch-action: pan-x;
-        }
-
-        @media(min-width: 768px) {
-          .card {
-            width: calc((100% / 2) - 10px);
-          }
-        }
-        @media(max-width: 767px) {
-          .card {
-            width: 100%;
-          }
-        }
-      `}</style>
+    <div
+      class="carousel "
+      style={{ width: `${state.width}px` }}
+      onPointerDown$={onPointerDown}
+      onPointerMove$={onPointerMove}
+      onPointerUp$={onPointerUp}
+    >
       <div
-        class="carousel-container"
-        ref={containerRef}
-        onScroll$={onScroll$}
-        role="list"
-        aria-label="Infinite Carousel"
+        class="carousel-track"
+        style={{
+          transform: `translateX(${getTranslateX()}px)`,
+        }}
       >
-        {extendedCards.map((card, idx) => (
-          <div key={idx} class="card" role="listitem" aria-label={`Card ${card}`}>
+        {cards.map(card => (
+          <div key={card} class="carousel-item" style={{ width: `${state.width}px` }}>
             {card}
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 });

@@ -1,5 +1,5 @@
 // eslint-disable-next-line qwik/no-use-visible-task
-import { component$, useStylesScoped$, useSignal, useVisibleTask$, useTask$ } from "@qwik.dev/core";
+import { component$, useStylesScoped$, useSignal, useTask$ } from "@qwik.dev/core";
 import { Carousel } from "@qwik-ui/headless";
 import styles from "./styles_steps.css?inline";
 import PinkImg from "~/assets/images/pink.png?w=100&h=100&jsx";
@@ -7,7 +7,7 @@ import PinkImg from "~/assets/images/pink.png?w=100&h=100&jsx";
 export default component$(() => {
   //   const t = inlineTranslate();
   useStylesScoped$(styles);
-  const currentIndex = useSignal(1);
+
   const isPlaying = useSignal<boolean>(false);
   const slides = Array.from({ length: 3 });
 
@@ -21,17 +21,6 @@ export default component$(() => {
   //   useVisibleTask$(() => {
   //     isAutoplaySig.value = true;
   //   });
-  useTask$(({ track }) => {
-    track(() => currentIndex.value);
-
-    if (currentIndex.value === 0) {
-      // моментально прыгнуть на последний настоящий слайд
-      setTimeout(() => (currentIndex.value = slides.length), 300);
-    } else if (currentIndex.value === slides.length + 1) {
-      // моментально прыгнуть на первый настоящий слайд
-      setTimeout(() => (currentIndex.value = 1), 300);
-    }
-  });
 
   return (
     <section class="team_steps_section">
