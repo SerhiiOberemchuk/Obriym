@@ -3,7 +3,7 @@ import { inlineTranslate } from "qwik-speak";
 import styles from "./styles_content.css?inline";
 
 import IconTelegram from "~/assets/icons/icon_telegram.svg?w=24&h24&jsx";
-import OberemImg from "../../../../assets/images/oberem-image.png?jsx";
+import OberemImg from "~/assets/images/oberem-image.png?jsx";
 import IconSchedule from "~/assets/icons/icon_schedule.svg?w=64&h64&jsx";
 import LinkEmail from "~/components/common/link-email/LinkEmail";
 

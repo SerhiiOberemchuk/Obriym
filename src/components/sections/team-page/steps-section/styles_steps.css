@@ -1,0 +1,30 @@
+.team_steps_section {
+  padding: 5rem 0;
+}
+.team_steps_title {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  gap: 8px;
+  margin-bottom: 2rem;
+}
+.team_steps_image {
+  width: 32px;
+  height: 32px;
+}
+
+/* carousel */
+.carousel-container {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.carousel-buttons {
+  display: flex;
+  justify-content: space-between;
+  border: 2px dotted hsl(var(--accent));
+  margin-bottom: 0.5rem;
+}

@@ -70,3 +70,61 @@ main {
   white-space: nowrap;
   border: 0;
 }
+/* Carousel */
+/* [data-qui-carousel-viewport] {
+  overflow: hidden;
+} */
+.carousel-root {
+  width: 100%;
+  position: relative;
+}
+.carousel-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.carousel-slide {
+  border: 2px dotted blue;
+  min-height: 10rem;
+  max-height: 10rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  width: 300px;
+}
+/* [data-qui-carousel-viewport] {
+  overflow: hidden;
+} */
+
+/* [data-qui-carousel-scroller] {
+  transform: var(--transform);
+  will-change: transform;
+  transition: 0.3s transform ease-out;
+
+  display: flex;
+  gap: var(--gap);
+  flex-direction: var(--orientation);
+
+   for initial slide position 
+  scroll-snap-type: both mandatory;
+  max-height: calc(var(--max-slide-height));
+} */
+
+/* [data-qui-carousel-slide] {
+   default, feel free to override 
+  --total-gap-width: calc(var(--gap) * (var(--slides-per-view) - 1));
+  --available-slide-width: calc(100% - var(--total-gap-width));
+  --slide-width: calc(var(--available-slide-width) / var(--slides-per-view));
+
+  flex-basis: var(--slide-width);
+  flex-shrink: 0;
+  position: relative;
+} */
+
+/* @media (prefers-reduced-motion: reduce) {
+  [data-qui-carousel-player] {
+    display: none;
+  }
+} */

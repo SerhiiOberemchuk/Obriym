@@ -3,6 +3,7 @@ import { DocumentHead } from "@qwik.dev/router";
 import { inlineTranslate } from "qwik-speak";
 
 import HeroSection from "~/components/sections/team-page/hero-section/HeroSection";
+import StepsSection from "~/components/sections/team-page/steps-section/StepsSection";
 
 export default component$(() => {
   // const t = inlineTranslate();
@@ -12,6 +13,7 @@ export default component$(() => {
   return (
     <>
       <HeroSection />
+      <StepsSection />
 
       {/* <p>{t(`runtime.${key}`)}</p> */}
     </>
