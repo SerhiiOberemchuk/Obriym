@@ -1,5 +1,5 @@
 // eslint-disable-next-line qwik/no-use-visible-task
-import { component$, useStylesScoped$, useSignal, useVisibleTask$ } from "@qwik.dev/core";
+import { component$, useStylesScoped$, useSignal, useVisibleTask$, useTask$ } from "@qwik.dev/core";
 import { Carousel } from "@qwik-ui/headless";
 import styles from "./styles_steps.css?inline";
 import PinkImg from "~/assets/images/pink.png?w=100&h=100&jsx";
@@ -7,19 +7,32 @@ import PinkImg from "~/assets/images/pink.png?w=100&h=100&jsx";
 export default component$(() => {
   //   const t = inlineTranslate();
   useStylesScoped$(styles);
+  const currentIndex = useSignal(1);
   const isPlaying = useSignal<boolean>(false);
+  const slides = Array.from({ length: 3 });
+
+  const extendedSlides = [
+    slides[slides.length - 1], //we duplicate the last slide at the beginning
+    ...slides,
+    slides[0], //we duplicate the first slide at the end
+  ];
   //   const isAutoplaySig = useSignal<boolean>(false);
 
   //   useVisibleTask$(() => {
   //     isAutoplaySig.value = true;
   //   });
-  const slides = Array.from({ length: 3 });
+  useTask$(({ track }) => {
+    track(() => currentIndex.value);
 
-  //   const extendedSlides = [
-  //     slides[slides.length - 1], //we duplicate the last slide at the beginning
-  //     ...slides,
-  //     slides[0], //we duplicate the first slide at the end
-  //   ];
+    if (currentIndex.value === 0) {
+      // моментально прыгнуть на последний настоящий слайд
+      setTimeout(() => (currentIndex.value = slides.length), 300);
+    } else if (currentIndex.value === slides.length + 1) {
+      // моментально прыгнуть на первый настоящий слайд
+      setTimeout(() => (currentIndex.value = 1), 300);
+    }
+  });
+
   return (
     <section class="team_steps_section">
       <div class="container ">
@@ -44,6 +57,7 @@ export default component$(() => {
             autoPlayIntervalMs={3500}
             bind:autoplay={isPlaying}
             align="start"
+            rewind={false}
           >
             <div class="carousel-buttons">
               <Carousel.Previous>Prev</Carousel.Previous>
@@ -51,7 +65,7 @@ export default component$(() => {
               <Carousel.Next>Next</Carousel.Next>
             </div>
             <Carousel.Scroller class="carousel-scroller carousel-animation">
-              {slides.map((_, index) => (
+              {extendedSlides.map((_, index) => (
                 // change key!!!! style={{ flexBasis: "100%" }}
                 <Carousel.Slide class="carousel-slide" key={index}>
                   Slide {index}

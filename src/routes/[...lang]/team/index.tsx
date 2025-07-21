@@ -3,6 +3,7 @@ import { DocumentHead } from "@qwik.dev/router";
 import { inlineTranslate } from "qwik-speak";
 
 import HeroSection from "~/components/sections/team-page/hero-section/HeroSection";
+import InfinityCarousel from "~/components/sections/team-page/infiniteCarousel/InfinityCarousel";
 import StepsSection from "~/components/sections/team-page/steps-section/StepsSection";
 
 export default component$(() => {
@@ -14,6 +15,7 @@ export default component$(() => {
     <>
       <HeroSection />
       <StepsSection />
+      <InfinityCarousel />
 
       {/* <p>{t(`runtime.${key}`)}</p> */}
     </>

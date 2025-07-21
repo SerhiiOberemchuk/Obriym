@@ -1,0 +1,63 @@
+.carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  user-select: none;
+}
+
+.carousel {
+  display: flex;
+  will-change: transform;
+  cursor: grab;
+}
+
+.carousel:active {
+  cursor: grabbing;
+}
+
+.slide {
+  flex-shrink: 0;
+  user-select: none;
+  pointer-events: none;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  pointer-events: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* Кнопки навигации */
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.3);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+}
+
+.prev {
+  left: 12px;
+}
+
+.next {
+  right: 12px;
+}
+
+/* Индикаторы */
+.dots {
+  display: flex;
+  justify-content: center;
+}
