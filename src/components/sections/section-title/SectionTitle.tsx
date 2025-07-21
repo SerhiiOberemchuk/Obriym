@@ -3,7 +3,7 @@ import styles from "./st-styles.css?inline";
 import { inlineTranslate } from "qwik-speak";
 import ImgGreen from "~/assets/images/green.png?w124&h124&jsx";
 import ImgHeroSl from "~/assets/images/hero_slides.png?w233&h124&jsx";
-// import { QModel } from "~/integrations/react/model/ModelGLB";
+import { QModel } from "~/integrations/react/model/ModelGLB";
 
 export default component$(() => {
   useStylesScoped$(styles);
@@ -40,7 +40,7 @@ export default component$(() => {
           class="notebook mobile"
         /> */}
       </div>
-      {/* <QModel /> */}
+      <QModel />
     </section>
   );
 });
