@@ -6,9 +6,9 @@ import { useRef, useEffect, Suspense } from "react";
 import { Group } from "three";
 import { Canvas } from "@react-three/fiber";
 
-export default function ModelCopy() {
+function ModelCopy() {
   const group = useRef<Group>(null);
-  const { scene, animations } = useGLTF("/src/models/model.glb");
+  const { scene, animations } = useGLTF("/src/models/gordian.glb");
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
@@ -27,10 +27,10 @@ export default function ModelCopy() {
 function SceneCopy() {
   return (
     <div className="">
-      <Canvas gl={{ antialias: true }} dpr={[1, 1.5]} key="robot-copy">
-        <directionalLight position={[-5, -5, 5]} intensity={5} />
+      <Canvas gl={{ antialias: true }} dpr={[1, 2]} key="robot-copy">
+        <directionalLight position={[-5, 0, 5]} intensity={10} />
         <Suspense fallback={null}>
-          <Center position={[-0.5, -0.5, 0]}>
+          <Center position={[0, 0, 0]}>
             <ModelCopy />
           </Center>
         </Suspense>
