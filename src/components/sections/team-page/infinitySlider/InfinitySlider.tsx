@@ -1,4 +1,12 @@
-import { component$, useSignal, useVisibleTask$, useStylesScoped$, $ } from "@builder.io/qwik";
+import {
+  component$,
+  useSignal,
+  useVisibleTask$,
+  useStylesScoped$,
+  $,
+  useOnWindow,
+} from "@qwik.dev/core";
+
 import styles from "./styles_slider.css?inline";
 
 export default component$(() => {
@@ -38,28 +46,39 @@ export default component$(() => {
     const root = document.documentElement;
     root.style.setProperty("--slides-inf-per-view", slidesPerView.value.toString());
   });
+  //   useVisibleTask$(() => {
+  //     const updateViewport = () => {
+  //     //   const width = window.innerWidth;
+
+  //     //   if (width >= 1440) {
+  //     //     viewportCategory.value = "desktop";
+  //     //     slidesPerView.value = 3;
+  //     //   } else if (width >= 768) {
+  //     //     viewportCategory.value = "tablet";
+  //     //     slidesPerView.value = 2.3;
+  //     //   } else {
+  //     //     viewportCategory.value = "mobile";
+  //     //     slidesPerView.value = 1;
+  //     //   }
+  //     //   const root = document.documentElement;
+  //     //   root.style.setProperty("--slides-inf-per-view", slidesPerView.value.toString());
+  //     // };
+
+  //     updateViewport();
+  //     window.addEventListener("resize", updateViewport);
+  //     return () => window.removeEventListener("resize", updateViewport);
+  //   });
+
   useVisibleTask$(() => {
-    const updateViewport = () => {
-      const width = window.innerWidth;
-
-      if (width >= 1440) {
-        viewportCategory.value = "desktop";
-        slidesPerView.value = 3;
-      } else if (width >= 768) {
-        viewportCategory.value = "tablet";
-        slidesPerView.value = 2.3;
-      } else {
-        viewportCategory.value = "mobile";
-        slidesPerView.value = 1;
-      }
-      const root = document.documentElement;
-      root.style.setProperty("--slides-inf-per-view", slidesPerView.value.toString());
-    };
-
     updateViewport();
-    window.addEventListener("resize", updateViewport);
-    return () => window.removeEventListener("resize", updateViewport);
   });
+
+  useOnWindow(
+    "resize",
+    $(() => {
+      updateViewport();
+    }),
+  );
 
   // paused slider
   useVisibleTask$(({ cleanup }) => {
