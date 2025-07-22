@@ -21,6 +21,23 @@ export default component$(() => {
     return [last, ...items, first];
   };
   // quantity of cards in the carousel
+  const updateViewport = $(() => {
+    const width = window.innerWidth;
+
+    if (width >= 1440) {
+      viewportCategory.value = "desktop";
+      slidesPerView.value = 3;
+    } else if (width >= 768) {
+      viewportCategory.value = "tablet";
+      slidesPerView.value = 2.3;
+    } else {
+      viewportCategory.value = "mobile";
+      slidesPerView.value = 1;
+    }
+
+    const root = document.documentElement;
+    root.style.setProperty("--slides-inf-per-view", slidesPerView.value.toString());
+  });
   useVisibleTask$(() => {
     const updateViewport = () => {
       const width = window.innerWidth;
@@ -30,11 +47,13 @@ export default component$(() => {
         slidesPerView.value = 3;
       } else if (width >= 768) {
         viewportCategory.value = "tablet";
-        slidesPerView.value = 2;
+        slidesPerView.value = 2.3;
       } else {
         viewportCategory.value = "mobile";
         slidesPerView.value = 1;
       }
+      const root = document.documentElement;
+      root.style.setProperty("--slides-inf-per-view", slidesPerView.value.toString());
     };
 
     updateViewport();
@@ -77,27 +96,38 @@ export default component$(() => {
   });
 
   //Next
+
+  // В nextSlide:
   const nextSlide = $(() => {
+    if (isAnimating.value) return;
+    isAnimating.value = true;
+
     const track = trackRef.value;
     if (!track) return;
 
+    // const slideWidth = track.offsetWidth / slidesPerView.value - 30;
     const slideWidth = track.offsetWidth / slidesPerView.value;
+
+    //animation shift to the left from 0 to -slideWidth
     track.style.transition = "transform 0.4s ease";
     track.style.transform = `translateX(-${slideWidth}px)`;
 
     setTimeout(() => {
+      // after the animation, we change the order of items- first item to the end
       const items = [...baseItems.value];
       const first = items.shift()!;
       items.push(first);
       baseItems.value = items;
-      activeIndex.value = (activeIndex.value + 1) % baseItems.value.length;
 
-      requestAnimationFrame(() => {
-        if (track) {
-          track.style.transition = "none";
-          track.style.transform = "translateX(0)";
-        }
-      });
+      //reset the track position
+      track.style.transition = "none";
+      track.style.transform = "translateX(0)";
+
+      // Разрешаем новые анимации
+      isAnimating.value = false;
+
+      // Обновляем активный индекс
+      activeIndex.value = (activeIndex.value + 1) % baseItems.value.length;
     }, 400);
   });
 

@@ -72,8 +72,8 @@
     /* gap: 10px; */
   }
   .carousel-slide {
-    flex: 0 0 47%;
-    max-width: 47%;
+    flex: 0 0 calc(100% / var(--slides-inf-per-view));
+    max-width: calc(100% / var(--slides-inf-per-view));
   }
   .carousel-dots {
     display: none;
