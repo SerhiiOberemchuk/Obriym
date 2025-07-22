@@ -12,9 +12,10 @@ export default component$(() => {
   const slides = Array.from({ length: 3 });
 
   const extendedSlides = [
-    slides[slides.length - 1], //we duplicate the last slide at the beginning
+    ...slides, //we duplicate the last slide at the beginning
     ...slides,
-    slides[0], //we duplicate the first slide at the end
+    ...slides,
+    ...slides,
   ];
   //   const isAutoplaySig = useSignal<boolean>(false);
 
@@ -53,7 +54,10 @@ export default component$(() => {
               <Carousel.Player>{isPlaying.value ? "<LuPause />" : "<LuPlay />"}</Carousel.Player>
               <Carousel.Next>Next</Carousel.Next>
             </div>
-            <Carousel.Scroller class="carousel-scroller carousel-animation">
+            <Carousel.Scroller
+              class="carousel-scroller carousel-animation"
+              style="--transform: none"
+            >
               {extendedSlides.map((_, index) => (
                 // change key!!!! style={{ flexBasis: "100%" }}
                 <Carousel.Slide class="carousel-slide" key={index}>

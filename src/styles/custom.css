@@ -98,8 +98,8 @@ main {
   overflow: hidden;
 } */
 
-/* [data-qui-carousel-scroller] {
-  transform: var(--transform);
+[data-qui-carousel-scroller] {
+  /* transform: var(--transform); */
   will-change: transform;
   transition: 0.3s transform ease-out;
 
@@ -107,10 +107,10 @@ main {
   gap: var(--gap);
   flex-direction: var(--orientation);
 
-   for initial slide position 
+  /* for initial slide position  */
   scroll-snap-type: both mandatory;
   max-height: calc(var(--max-slide-height));
-} */
+}
 
 /* [data-qui-carousel-slide] {
    default, feel free to override 
@@ -128,3 +128,22 @@ main {
     display: none;
   }
 } */
+.carousel-animation {
+  animation: slide-infinite 15s linear infinite;
+}
+
+@keyframes slide-infinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+:root {
+  --inf-count: 3;
+  --inf-card-width: 300px;
+  --inf-card-height: 150px;
+  --inf-card-gap: 20px;
+  --inf-time: 15s;
+}

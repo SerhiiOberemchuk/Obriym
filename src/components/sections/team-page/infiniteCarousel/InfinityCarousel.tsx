@@ -1,10 +1,12 @@
 import { component$, $, useStylesScoped$, useVisibleTask$, useStore } from "@qwik.dev/core";
 
 import styles from "./infiniteCarousel.css?inline";
+import { createReadStream } from "node:fs";
 
 export default component$(() => {
   useStylesScoped$(styles);
   const cards = ["A", "B", "C"];
+  const extCards = [...cards, ...cards];
 
   const state = useStore({
     currentIndex: 0,
@@ -46,41 +48,44 @@ export default component$(() => {
     return () => window.removeEventListener("resize", updateWidth);
   });
 
-  useVisibleTask$(({ cleanup }) => {
-    const tick = () => {
-      if (!state.isDragging) {
-        state.currentIndex = (state.currentIndex + 1) % cards.length;
-      }
-      timer = setTimeout(tick, 3000);
-    };
+  //   useVisibleTask$(({ cleanup }) => {
+  //     const tick = () => {
+  //       if (!state.isDragging) {
+  //         state.currentIndex = (state.currentIndex + 1) % cards.length;
+  //       }
+  //       timer = setTimeout(tick, 3000);
+  //     };
 
-    let timer = setTimeout(tick, 3000);
-    cleanup(() => clearTimeout(timer));
-  });
+  //     let timer = setTimeout(tick, 3000);
+  //     cleanup(() => clearTimeout(timer));
+  //   });
 
-  const getTranslateX = () => {
-    return -state.currentIndex * state.width + state.offsetX;
-  };
+  // const getTranslateX = () => {
+  //   return -state.currentIndex * state.width + state.offsetX;
+  // };
 
   return (
-    <div
-      class="carousel "
-      style={{ width: `${state.width}px` }}
-      onPointerDown$={onPointerDown}
-      onPointerMove$={onPointerMove}
-      onPointerUp$={onPointerUp}
-    >
+    <div class="c_carousel_wrapper">
       <div
-        class="carousel-track"
-        style={{
-          transform: `translateX(${getTranslateX()}px)`,
-        }}
+        class="c_carousel-container"
+        //   style={{ width: `${state.width}px` }}
+        onPointerDown$={onPointerDown}
+        onPointerMove$={onPointerMove}
+        onPointerUp$={onPointerUp}
       >
-        {cards.map(card => (
-          <div key={card} class="carousel-item" style={{ width: `${state.width}px` }}>
-            {card}
-          </div>
-        ))}
+        <div
+          class="c_carousel-track scrollLeft"
+          // style={{
+          //   transform: `translateX(${getTranslateX()}px)`,
+          // }}
+        >
+          {/* //style={{ width: `${state.width}px` }} */}
+          {extCards.map(card => (
+            <div key={card} class="c_carousel-item">
+              {card}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

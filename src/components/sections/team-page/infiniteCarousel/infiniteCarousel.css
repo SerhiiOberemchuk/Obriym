@@ -1,23 +1,63 @@
-.carousel {
+.c_carousel_wrapper {
+  overflow: hidden;
+  position: relative;
+}
+.c_carousel-container {
+  width: 1100px;
   overflow: hidden;
   touch-action: pan-y;
   user-select: none;
-  position: relative;
-}
 
-.carousel-track {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  will-change: transform;
+  white-space: nowrap;
+  height: 16rem;
+  /* width: 100%; */
 }
-.carousel-item {
+@keyframes scrollLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-1 * var(--inf-count) * var(--inf-card-width) * 2));
+  }
+}
+@keyframes scrollRight {
+  from {
+    transform: translateX(calc(-1 * var(--inf-count) * var(--inf-card-width) * 2));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.scrollLeft {
+  animation: scrollLeft var(--inf-time) linear infinite;
+}
+.scrollRight {
+  animation: scrollRight var(--inf-time) linear infinite;
+}
+.c_carousel-container:hover .c_carousel-track {
+  animation-play-state: paused;
+}
+.c_carousel-track {
+  position: absolute;
+
+  top: 0;
+  display: flex;
+  /* transition: transform 0.5s ease-in-out; */
+  /* animation: 15s slide infinite linear;
+  will-change: transform; */
+  /* min-width: min-content; */
+}
+.c_carousel-item {
+  width: var(--inf-card-width); /* 64 * 4.6875 = 300px */
   flex-shrink: 0;
+  flex-grow: 0;
   height: 16rem; /* 64 * 0.25rem = 16rem = 256px */
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #e5e7eb; /* gray-200 */
   font-size: 1.875rem; /* text-3xl ≈ 30px */
+  margin: 0 var(--inf-card-gap);
 }
 /* .carousel-container {
   overflow-x: auto;
