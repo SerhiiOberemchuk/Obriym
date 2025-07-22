@@ -147,3 +147,17 @@ main {
   --inf-card-gap: 20px;
   --inf-time: 25s;
 }
+
+:root {
+  --slides-inf-per-view: 1;
+}
+@media (min-width: 48rem) {
+  :root {
+    --slides-inf-per-view: 2.3;
+  }
+}
+@media (min-width: 90rem) {
+  :root {
+    --slides-inf-per-view: 3;
+  }
+}
