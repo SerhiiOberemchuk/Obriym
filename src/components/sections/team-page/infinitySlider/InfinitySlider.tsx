@@ -20,6 +20,22 @@ export default component$(() => {
   const viewportCategory = useSignal<"mobile" | "tablet" | "desktop">("mobile");
   const isAnimating = useSignal(false);
 
+  // Update slidesPerView from CSS variable
+  const updateSlidesPerViewFromCSS = $(() => {
+    const rootStyles = getComputedStyle(document.documentElement);
+    const cssSlidesPerView = rootStyles.getPropertyValue("--slides-inf-per-view");
+    const parsed = parseFloat(cssSlidesPerView.trim());
+
+    slidesPerView.value = parsed;
+
+    // Update viewportCategory based on parsed value
+    if (parsed >= 3) viewportCategory.value = "desktop";
+    else if (parsed > 1.5) viewportCategory.value = "tablet";
+    else viewportCategory.value = "mobile";
+  });
+
+  useOnWindow("load", updateSlidesPerViewFromCSS);
+  useOnWindow("resize", updateSlidesPerViewFromCSS);
   //cloned Arr
   const getClonedItems = () => {
     const items = baseItems.value;
@@ -29,47 +45,40 @@ export default component$(() => {
     return [last, ...items, first];
   };
   // quantity of cards in the carousel
-  const updateViewport = $(() => {
-    const width = window.innerWidth;
+  //   const updateViewport = $(() => {
+  //     const width = window.innerWidth;
 
-    if (width >= 1440) {
-      viewportCategory.value = "desktop";
-      slidesPerView.value = 3;
-    } else if (width >= 768) {
-      viewportCategory.value = "tablet";
-      slidesPerView.value = 2.3;
-    } else {
-      viewportCategory.value = "mobile";
-      slidesPerView.value = 1;
-    }
+  //     if (width >= 1440) {
+  //       viewportCategory.value = "desktop";
+  //       slidesPerView.value = 3;
+  //     } else if (width >= 768) {
+  //       viewportCategory.value = "tablet";
+  //       slidesPerView.value = 2.3;
+  //     } else {
+  //       viewportCategory.value = "mobile";
+  //       slidesPerView.value = 1;
+  //     }
 
-    const root = document.documentElement;
-    root.style.setProperty("--slides-inf-per-view", slidesPerView.value.toString());
-  });
-
-  //   useVisibleTask$(() => {
-  //     updateViewport();
+  //     const root = document.documentElement;
+  //     root.style.setProperty("--slides-inf-per-view", slidesPerView.value.toString());
   //   });
 
-  //   useTask$(({ track }) => {
-  //     track(() => slidesPerView.value);
-  //     updateViewport();
-  //   });
-  useOnWindow(
-    "load",
-    $(() => {
-      updateViewport();
-    }),
-  );
+  //   useOnWindow(
+  //     "load",
+  //     $(() => {
+  //       updateViewport();
+  //     }),
+  //   );
 
-  useOnWindow(
-    "resize",
-    $(() => {
-      updateViewport();
-    }),
-  );
+  //   useOnWindow(
+  //     "resize",
+  //     $(() => {
+  //       updateViewport();
+  //     }),
+  //   );
 
   // paused slider
+  // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(({ cleanup }) => {
     const interval = setInterval(() => {
       if (isPaused.value || viewportCategory.value !== "mobile" || isAnimating.value) return;
@@ -131,10 +140,10 @@ export default component$(() => {
       track.style.transition = "none";
       track.style.transform = "translateX(0)";
 
-      // Разрешаем новые анимации
+      // allow new animation
       isAnimating.value = false;
 
-      // Обновляем активный индекс
+      // update active index for dots
       activeIndex.value = (activeIndex.value + 1) % baseItems.value.length;
     }, 400);
   });
