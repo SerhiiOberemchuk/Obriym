@@ -12,6 +12,14 @@ export default component$(() => {
   const viewportCategory = useSignal<"mobile" | "tablet" | "desktop">("mobile");
   const isAnimating = useSignal(false);
 
+  //cloned Arr
+  const getClonedItems = () => {
+    const items = baseItems.value;
+    if (items.length === 0) return [];
+    const last = items[items.length - 1];
+    const first = items[0];
+    return [last, ...items, first];
+  };
   // quantity of cards in the carousel
   useVisibleTask$(() => {
     const updateViewport = () => {
@@ -37,7 +45,7 @@ export default component$(() => {
   // paused slider
   useVisibleTask$(({ cleanup }) => {
     const interval = setInterval(() => {
-      if (isPaused.value || viewportCategory.value !== "mobile") return;
+      if (isPaused.value || viewportCategory.value !== "mobile" || isAnimating.value) return;
 
       const track = trackRef.value;
       if (!track) return;
@@ -128,33 +136,35 @@ export default component$(() => {
     }, 400); // same as transition duration
   });
   return (
-    <div
-      class="carousel-container"
-      onMouseEnter$={() => (isPaused.value = true)}
-      onMouseLeave$={() => (isPaused.value = false)}
-      onTouchStart$={() => (isPaused.value = true)}
-      onTouchEnd$={() => (isPaused.value = false)}
-      onTouchCancel$={() => (isPaused.value = false)}
-    >
-      {/* BUTTONS viewportCategory.value === "tablet"*/}
+    <div class="carousel-wrapper">
+      <div
+        class="carousel-container"
+        onMouseEnter$={() => (isPaused.value = true)}
+        onMouseLeave$={() => (isPaused.value = false)}
+        onTouchStart$={() => (isPaused.value = true)}
+        onTouchEnd$={() => (isPaused.value = false)}
+        onTouchCancel$={() => (isPaused.value = false)}
+      >
+        {/* BUTTONS viewportCategory.value === "tablet"*/}
 
-      <div class="controls">
-        <button onClick$={prevSlide}>← Назад</button>
-        <button onClick$={nextSlide}>Вперёд →</button>
-      </div>
+        <div class="controls">
+          <button onClick$={prevSlide}>← Назад</button>
+          <button onClick$={nextSlide}>Вперёд →</button>
+        </div>
 
-      {/* SLIDER */}
-      <div class="carousel-track" ref={trackRef}>
-        {baseItems.value.map((item, i) => (
-          <div class="carousel-slide" key={`${item}-${i}`}>
-            {item}
-          </div>
-        ))}
-      </div>
-      <div class="carousel-dots">
-        {baseItems.value.map((_, i) => (
-          <button class={`dot ${i === activeIndex.value ? "active" : ""}`} key={`dot-${i}`} />
-        ))}
+        {/* SLIDER */}
+        <div class="carousel-track" ref={trackRef}>
+          {getClonedItems().map((item, i) => (
+            <div class="carousel-slide" key={`${item}-${i}`}>
+              {item}
+            </div>
+          ))}
+        </div>
+        <div class="carousel-dots">
+          {baseItems.value.map((_, i) => (
+            <button class={`dot ${i === activeIndex.value ? "active" : ""}`} key={`dot-${i}`} />
+          ))}
+        </div>
       </div>
     </div>
   );

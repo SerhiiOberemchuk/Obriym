@@ -6,7 +6,7 @@ import HeroSection from "~/components/sections/team-page/hero-section/HeroSectio
 import InfinityCarousel from "~/components/sections/team-page/infiniteCarousel/InfinityCarousel";
 import StepsSection from "~/components/sections/team-page/steps-section/StepsSection";
 import InfinityScroll2 from "~/components/sections/team-page/infinityScroll2/InfinityScroll2";
-import InfinitySlider from "~/components/sections/team-page/infinitySlider/InfinitySlider";
+
 export default component$(() => {
   // const t = inlineTranslate();
 
@@ -18,7 +18,6 @@ export default component$(() => {
       <StepsSection />
       <InfinityCarousel />
       <InfinityScroll2 />
-      <InfinitySlider />
 
       {/* <p>{t(`runtime.${key}`)}</p> */}
     </>

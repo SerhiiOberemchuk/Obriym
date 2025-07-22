@@ -3,6 +3,7 @@ import { component$, useStylesScoped$, useSignal, useTask$ } from "@qwik.dev/cor
 import { Carousel } from "@qwik-ui/headless";
 import styles from "./styles_steps.css?inline";
 import PinkImg from "~/assets/images/pink.png?w=100&h=100&jsx";
+import InfinitySlider from "../infinitySlider/InfinitySlider";
 
 export default component$(() => {
   //   const t = inlineTranslate();
@@ -75,6 +76,9 @@ export default component$(() => {
               ))}
             </Carousel.Stepper>
           </Carousel.Root>
+        </div>
+        <div class="carousel_wrp">
+          <InfinitySlider />
         </div>
       </div>
     </section>
