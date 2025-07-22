@@ -10,6 +10,7 @@ export default component$(() => {
   const slidesPerView = useSignal(1);
   const activeIndex = useSignal(0);
   const viewportCategory = useSignal<"mobile" | "tablet" | "desktop">("mobile");
+  const isAnimating = useSignal(false);
 
   // quantity of cards in the carousel
   useVisibleTask$(() => {
@@ -95,26 +96,36 @@ export default component$(() => {
   // Previous slide
 
   const prevSlide = $(() => {
+    if (isAnimating.value) return;
+    isAnimating.value = true;
+
     const track = trackRef.value;
     if (!track) return;
 
     const slideWidth = track.offsetWidth / slidesPerView.value;
 
-    // 1. Change the order of items in baseItems
+    // change the order of items in baseItems
     const items = [...baseItems.value];
     const last = items.pop()!;
-    baseItems.value = [last, ...items];
-    activeIndex.value = (activeIndex.value - 1 + baseItems.value.length) % baseItems.value.length;
+    items.unshift(last);
+    baseItems.value = items;
 
-    // 2. Move the track to the left by slideWidth (without animation)
+    // without animation, move the track to the left by slideWidth
     track.style.transition = "none";
     track.style.transform = `translateX(-${slideWidth}px)`;
 
-    // 3. On the next frame — animate to 0 (to the right)
+    // Double rAF: ensures the browser applies the initial transform
     requestAnimationFrame(() => {
-      track.style.transition = "transform 0.4s ease";
-      track.style.transform = "translateX(0)";
+      requestAnimationFrame(() => {
+        track.style.transition = "transform 0.4s ease";
+        track.style.transform = "translateX(0)";
+      });
     });
+
+    // Reset the flag after the animation is complete
+    setTimeout(() => {
+      isAnimating.value = false;
+    }, 400); // same as transition duration
   });
   return (
     <div
@@ -125,13 +136,13 @@ export default component$(() => {
       onTouchEnd$={() => (isPaused.value = false)}
       onTouchCancel$={() => (isPaused.value = false)}
     >
-      {/* BUTTONS */}
-      {viewportCategory.value === "tablet" && (
-        <div class="controls">
-          <button onClick$={prevSlide}>← Назад</button>
-          <button onClick$={nextSlide}>Вперёд →</button>
-        </div>
-      )}
+      {/* BUTTONS viewportCategory.value === "tablet"*/}
+
+      <div class="controls">
+        <button onClick$={prevSlide}>← Назад</button>
+        <button onClick$={nextSlide}>Вперёд →</button>
+      </div>
+
       {/* SLIDER */}
       <div class="carousel-track" ref={trackRef}>
         {baseItems.value.map((item, i) => (
