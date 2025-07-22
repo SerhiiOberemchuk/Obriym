@@ -6,7 +6,7 @@ import { createReadStream } from "node:fs";
 export default component$(() => {
   useStylesScoped$(styles);
   const cards = ["A", "B", "C"];
-  const extCards = [...cards, ...cards];
+  const extCards = [...cards, ...cards]; // Duplicate cards for infinite effect
 
   const state = useStore({
     currentIndex: 0,

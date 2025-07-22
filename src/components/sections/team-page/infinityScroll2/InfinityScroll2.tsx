@@ -1,4 +1,4 @@
-import { component$, $, useStylesScoped$, useVisibleTask$, useSignal } from "@qwik.dev/core";
+import { component$, useStylesScoped$ } from "@qwik.dev/core";
 import styles from "./infinityScroll2.css?inline";
 
 export default component$(() => {

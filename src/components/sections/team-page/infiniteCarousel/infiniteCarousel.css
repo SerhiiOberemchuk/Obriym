@@ -3,7 +3,7 @@
   position: relative;
 }
 .c_carousel-container {
-  width: 1100px;
+  width: 350px;
   overflow: hidden;
   touch-action: pan-y;
   user-select: none;
@@ -30,6 +30,7 @@
 }
 .scrollLeft {
   animation: scrollLeft var(--inf-time) linear infinite;
+  will-change: transform;
 }
 .scrollRight {
   animation: scrollRight var(--inf-time) linear infinite;
@@ -57,7 +58,8 @@
   justify-content: center;
   background-color: #e5e7eb; /* gray-200 */
   font-size: 1.875rem; /* text-3xl ≈ 30px */
-  margin: 0 var(--inf-card-gap);
+  border: 1px dotted #a13de0;
+  margin-right: var(--inf-card-gap);
 }
 /* .carousel-container {
   overflow-x: auto;
