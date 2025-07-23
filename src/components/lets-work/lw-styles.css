@@ -27,7 +27,7 @@
 }
 @media (width >= 90rem) {
   .lw_button[data-place="header"] {
-    top: 2.625rem;
+    top: 1.375rem;
     max-width: 7.5rem;
   }
 }

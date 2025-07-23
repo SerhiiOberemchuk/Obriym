@@ -10,6 +10,13 @@
       },
       "oberem_img_alt": "Portrait of Serhii, founder and CEO",
       "title": "Зв’яжіться з нами"
+    },
+    "stitle": {
+      "1span": "Повні",
+      "2span": "цифрові",
+      "3span": "продукти",
+      "4span": "Від",
+      "5span": "ідеї до запуску"
     }
   }
 }
