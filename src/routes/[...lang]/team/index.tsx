@@ -6,7 +6,6 @@ import HeroSection from "~/components/sections/team-page/hero-section/HeroSectio
 //import InfinityCarousel from "~/components/sections/team-page/infiniteCarousel/InfinityCarousel";
 import StepsSection from "~/components/sections/team-page/steps-section/StepsSection";
 //import InfinityScroll2 from "~/components/sections/team-page/infinityScroll2/InfinityScroll2";
-import QwikSlider from "~/components/sections/team-page/qwik-slider/QwikSlider";
 
 export default component$(() => {
   // const t = inlineTranslate();
@@ -17,7 +16,7 @@ export default component$(() => {
     <>
       <HeroSection />
       <StepsSection />
-      <QwikSlider />
+
       {/* Uncomment to use the InfinitySlider component */}
       {/* <InfinitySlider /> */}
 

@@ -28,6 +28,25 @@ export default component$(() => {
     window.addEventListener("resize", updateCategory);
     cleanup(() => window.removeEventListener("resize", updateCategory));
   });
+
+  //first scroll to the first real slide
+  useVisibleTask$(() => {
+    const scroller = scrollerRef.value;
+    if (!scroller) return;
+
+    const slide = scroller.querySelector(".carousel-slide") as HTMLElement;
+    if (!slide) return;
+
+    const rootStyles = getComputedStyle(document.documentElement);
+    const gap = parseFloat(rootStyles.getPropertyValue("--slides-gap").trim()) || 0;
+    const slideWidth = slide.offsetWidth + gap;
+
+    currentIndex.value = 1;
+    scroller.scrollTo({
+      left: slideWidth * currentIndex.value,
+      behavior: "auto",
+    });
+  });
   // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(({ cleanup }) => {
     if (viewportCategory.value !== "mobile") return;
@@ -39,10 +58,10 @@ export default component$(() => {
     const intervalDuration = 3000;
 
     // first scroll to the first real slide
-    scroller.scrollTo({
-      left: slideWidth * currentIndex.value,
-      behavior: "auto",
-    });
+    // scroller.scrollTo({
+    //   left: slideWidth * currentIndex.value,
+    //   behavior: "auto",
+    // });
 
     const interval = setInterval(() => {
       currentIndex.value++;
@@ -73,24 +92,69 @@ export default component$(() => {
     cleanup(() => clearInterval(interval));
   });
 
-  //   const scrollOne = $((dir: "next" | "prev") => {
-  //     const scroller = scrollerRef.value;
-  //     if (!scroller) return;
+  const scrollOne = $((dir: "next" | "prev") => {
+    const scroller = scrollerRef.value;
+    if (!scroller) return;
 
-  //     const slide = scroller.querySelector(".carousel-slide") as HTMLElement;
-  //     if (!slide) return;
+    const slide = scroller.querySelector(".carousel-slide") as HTMLElement;
+    if (!slide) return;
 
-  //     const offset = slide.offsetWidth + parseFloat(getComputedStyle(scroller).gap || "0");
-  //     scroller.scrollBy({ left: dir === "next" ? offset : -offset, behavior: "smooth" });
-  //   });
+    const rootStyles = getComputedStyle(document.documentElement);
+    const gap = parseFloat(rootStyles.getPropertyValue("--slides-gap").trim());
+    // const slideWidth = slide.offsetWidth + gap;
+    // const gap = parseFloat(getComputedStyle(scroller).gap || "0");
+    const slideWidth = slide.offsetWidth;
+    const fullSlideWidth = slideWidth + gap;
+
+    console.log("slideWidth", slideWidth);
+    console.log("gap", gap);
+    console.log("index", currentIndex.value);
+
+    // move index
+    if (dir === "next") {
+      currentIndex.value++;
+    } else {
+      currentIndex.value--;
+    }
+
+    // scroll to next index
+    scroller.scrollTo({
+      left: fullSlideWidth * currentIndex.value,
+
+      behavior: "smooth",
+    });
+
+    // after animation check
+    setTimeout(() => {
+      scroller.style.scrollBehavior = "auto";
+
+      if (currentIndex.value === slideCount - 1) {
+        // end, change to first real slide
+        currentIndex.value = 1;
+        scroller.scrollTo({
+          left: slideWidth * currentIndex.value,
+        });
+      }
+
+      if (currentIndex.value === 0) {
+        // start, change to last real slide
+        currentIndex.value = slideCount - 2;
+        scroller.scrollTo({
+          left: slideWidth * currentIndex.value,
+        });
+      }
+
+      scroller.style.scrollBehavior = "smooth";
+    }, 500);
+  });
   return (
     <div class="carousel-root">
       {/* BUTTONS viewportCategory.value === "tablet"*/}
 
-      {/* <div class="inf_btn_controls">
+      <div class="inf_btn_controls">
         <button onClick$={() => scrollOne("prev")}>←</button>
         <button onClick$={() => scrollOne("next")}>→</button>
-      </div> */}
+      </div>
 
       <div class="carousel-scroller" ref={scrollerRef}>
         {colors.map((color, i) => (
@@ -101,6 +165,7 @@ export default component$(() => {
           </div>
         ))}
       </div>
+
       <div class="inf_carousel-dots">
         {baseColors.map((_, i) => (
           <button

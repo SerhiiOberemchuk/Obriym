@@ -86,12 +86,15 @@ main {
 :root {
   --slides-per-view: 1;
   --slides-gap: 8px;
+  --container-padding: 0px;
 }
 
 @media (min-width: 48rem) {
   :root {
-    --slides-per-view: 2.3;
+    --slides-per-view: 2;
     --slides-gap: 16px;
+    --slide-width: 400px;
+    --container-padding: 40px;
   }
 }
 
@@ -100,14 +103,6 @@ main {
     --slides-per-view: 3;
     --slides-gap: 24px;
   }
-}
-/* for  slider from inet */
-:root {
-  --inf-count: 3;
-  --inf-card-width: 300px;
-  --inf-card-height: 150px;
-  --inf-card-gap: 20px;
-  --inf-time: 25s;
 }
 
 /* for my slider  */
@@ -145,15 +140,22 @@ main {
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  gap: var(--slides-gap);
 }
-
+.carousel-scroller {
+  display: flex;
+  /* gap: var(--slides-gap); */
+  /* padding-left: var(--container-padding); */
+  /* padding-right: var(--container-padding); */
+  /* scroll-padding-left: var(--container-padding);
+  scroll-padding-right: var(--container-padding);
+  overflow-x: auto;
+} */
+}
 .carousel-scroller::-webkit-scrollbar {
   display: none;
 }
 
 .carousel-slide {
-  flex: 0 0 100%;
   scroll-snap-align: start;
   transition: transform 0.5s ease-in-out;
   flex: 0 0
@@ -161,6 +163,8 @@ main {
       (100% / var(--slides-per-view)) -
         (var(--slides-gap) * ((var(--slides-per-view) - 1) / var(--slides-per-view)))
     );
+  /* flex: 0 0 calc(100% / var(--slides-per-view)); */
+  margin-right: var(--slides-gap);
 }
 
 .slide-inner {
@@ -176,4 +180,28 @@ main {
   align-items: center;
   justify-content: center;
   gap: 8px;
+}
+
+.carousel-helper {
+  /* padding-right: 1rem;
+  padding-left: 1rem; */
+}
+@media (min-width: 48rem) {
+  .carousel-helper {
+    padding-right: var(--container-padding);
+    padding-left: var(--container-padding);
+  }
+  .carousel-slide {
+    scroll-snap-align: start;
+    transition: transform 0.5s ease-in-out;
+    flex: 0 0
+      calc(
+        ((100% - (2 * var(--container-padding))) / var(--slides-per-view)) -
+          (var(--slides-gap) * ((var(--slides-per-view) - 1) / var(--slides-per-view)))
+      );
+    /* flex: 0 0 calc(100% / var(--slides-per-view)); */
+    margin-right: var(--slides-gap);
+  }
+}
+@media (min-width: 90rem) {
 }
