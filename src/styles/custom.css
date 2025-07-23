@@ -129,7 +129,7 @@ main {
 }
 
 .carousel-root {
-  width: 300px;
+  width: 100%;
   margin: auto;
 }
 
@@ -145,6 +145,7 @@ main {
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  gap: var(--slides-gap);
 }
 
 .carousel-scroller::-webkit-scrollbar {
@@ -155,6 +156,11 @@ main {
   flex: 0 0 100%;
   scroll-snap-align: start;
   transition: transform 0.5s ease-in-out;
+  flex: 0 0
+    calc(
+      (100% / var(--slides-per-view)) -
+        (var(--slides-gap) * ((var(--slides-per-view) - 1) / var(--slides-per-view)))
+    );
 }
 
 .slide-inner {

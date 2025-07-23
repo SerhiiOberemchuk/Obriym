@@ -18,6 +18,7 @@ export default component$(() => {
   useVisibleTask$(({ cleanup }) => {
     const updateCategory = () => {
       const width = window.innerWidth;
+
       if (width >= 1440) viewportCategory.value = "desktop";
       else if (width >= 768) viewportCategory.value = "tablet";
       else viewportCategory.value = "mobile";
@@ -83,7 +84,7 @@ export default component$(() => {
   //     scroller.scrollBy({ left: dir === "next" ? offset : -offset, behavior: "smooth" });
   //   });
   return (
-    <Carousel.Root gap={0} class="carousel-root">
+    <div class="carousel-root">
       {/* BUTTONS viewportCategory.value === "tablet"*/}
 
       {/* <div class="inf_btn_controls">
@@ -91,15 +92,15 @@ export default component$(() => {
         <button onClick$={() => scrollOne("next")}>→</button>
       </div> */}
 
-      <Carousel.Scroller class="carousel-scroller" ref={scrollerRef}>
+      <div class="carousel-scroller" ref={scrollerRef}>
         {colors.map((color, i) => (
-          <Carousel.Slide key={i} class="carousel-slide">
+          <div key={i} class="carousel-slide">
             <div class="slide-inner" style={{ backgroundColor: color }}>
               {color}
             </div>
-          </Carousel.Slide>
+          </div>
         ))}
-      </Carousel.Scroller>
+      </div>
       <div class="inf_carousel-dots">
         {baseColors.map((_, i) => (
           <button
@@ -108,6 +109,6 @@ export default component$(() => {
           />
         ))}
       </div>
-    </Carousel.Root>
+    </div>
   );
 });
