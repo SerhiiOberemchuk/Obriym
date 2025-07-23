@@ -169,35 +169,33 @@ export default component$(() => {
     }, 400); // same as transition duration
   });
   return (
-    <div class="carousel-wrapper">
-      <div
-        class="carousel-container"
-        onMouseEnter$={() => (isPaused.value = true)}
-        onMouseLeave$={() => (isPaused.value = false)}
-        onTouchStart$={() => (isPaused.value = true)}
-        onTouchEnd$={() => (isPaused.value = false)}
-        onTouchCancel$={() => (isPaused.value = false)}
-      >
-        {/* BUTTONS viewportCategory.value === "tablet"*/}
+    <div
+      class="inf_carousel-container"
+      onMouseEnter$={() => (isPaused.value = true)}
+      onMouseLeave$={() => (isPaused.value = false)}
+      onTouchStart$={() => (isPaused.value = true)}
+      onTouchEnd$={() => (isPaused.value = false)}
+      onTouchCancel$={() => (isPaused.value = false)}
+    >
+      {/* BUTTONS viewportCategory.value === "tablet"*/}
 
-        <div class="controls">
-          <button onClick$={prevSlide}>← Назад</button>
-          <button onClick$={nextSlide}>Вперёд →</button>
-        </div>
+      <div class="inf_btn_controls">
+        <button onClick$={prevSlide}>← Назад</button>
+        <button onClick$={nextSlide}>Вперёд →</button>
+      </div>
 
-        {/* SLIDER */}
-        <div class="carousel-track" ref={trackRef}>
-          {getClonedItems().map((item, i) => (
-            <div class="carousel-slide" key={`${item}-${i}`}>
-              {item}
-            </div>
-          ))}
-        </div>
-        <div class="carousel-dots">
-          {baseItems.value.map((_, i) => (
-            <button class={`dot ${i === activeIndex.value ? "active" : ""}`} key={`dot-${i}`} />
-          ))}
-        </div>
+      {/* SLIDER */}
+      <div class="inf_carousel-track" ref={trackRef}>
+        {getClonedItems().map((item, i) => (
+          <div class="inf_carousel-slide" key={`${item}-${i}`}>
+            {item}
+          </div>
+        ))}
+      </div>
+      <div class="inf_carousel-dots">
+        {baseItems.value.map((_, i) => (
+          <button class={`inf_dot ${i === activeIndex.value ? "active" : ""}`} key={`dot-${i}`} />
+        ))}
       </div>
     </div>
   );

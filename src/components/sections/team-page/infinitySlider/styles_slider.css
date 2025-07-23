@@ -1,23 +1,18 @@
-.carousel-wrapper {
-  width: 100%;
-
-  /* padding: 0 10px; */
-}
-.carousel-container {
+.inf_carousel-container {
   overflow: hidden;
   width: 100%;
 
   box-sizing: border-box;
 }
 
-.carousel-track {
+.inf_carousel-track {
   display: flex;
   will-change: transform;
   gap: var(--inf-gap);
   /* gap: 10px; */
 }
 
-.carousel-slide {
+.inf_carousel-slide {
   flex: 0 0 calc(100% / var(--slides-inf-per-view));
   max-width: 100%;
   height: 180px;
@@ -32,14 +27,14 @@
 }
 
 /* dots */
-.carousel-dots {
+.inf_carousel-dots {
   display: flex;
   justify-content: center;
   margin-top: 10px;
   gap: 10px;
 }
 
-.dot {
+.inf_dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -49,42 +44,37 @@
   transition: background-color 0.3s;
 }
 
-.dot.active {
+.inf_dot.active {
   background: #0070f3;
 }
 
 /* Buttons */
-.controls {
+.inf_btn_controls {
   display: none;
 }
 
 @media (min-width: 768px) {
-  /* .carousel-wrapper {
-  }
-  .carousel-container {
-    padding-left: 10px;
-    padding-right: 0;
-  } */
-  .carousel-track {
+  .inf_carousel-track {
     display: flex;
     will-change: transform;
 
     /* gap: 10px; */
   }
-  .carousel-slide {
+  .inf_carousel-slide {
     flex: 0 0 calc(100% / var(--slides-inf-per-view));
     max-width: calc(100% / var(--slides-inf-per-view));
   }
-  .carousel-dots {
+  .inf_carousel-dots {
     display: none;
   }
-  .controls {
+  .inf_btn_controls {
     display: flex;
     justify-content: center;
     gap: 1rem;
     margin-top: 1rem;
+    margin-bottom: 1rem;
   }
-  .controls button {
+  .inf_btn_controls button {
     padding: 0.5rem 1rem;
     background-color: #0070f3;
     color: white;
@@ -94,7 +84,13 @@
     transition: background-color 0.3s;
   }
 
-  .controls button:hover {
+  .inf_btn_controls button:hover {
     background-color: #005bb5;
+  }
+}
+
+@media (min-width: 1440px) {
+  .inf_btn_controls {
+    display: none;
   }
 }
