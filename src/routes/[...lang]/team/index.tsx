@@ -3,9 +3,10 @@ import { DocumentHead } from "@qwik.dev/router";
 import { inlineTranslate } from "qwik-speak";
 
 import HeroSection from "~/components/sections/team-page/hero-section/HeroSection";
-import InfinityCarousel from "~/components/sections/team-page/infiniteCarousel/InfinityCarousel";
+//import InfinityCarousel from "~/components/sections/team-page/infiniteCarousel/InfinityCarousel";
 import StepsSection from "~/components/sections/team-page/steps-section/StepsSection";
-import InfinityScroll2 from "~/components/sections/team-page/infinityScroll2/InfinityScroll2";
+//import InfinityScroll2 from "~/components/sections/team-page/infinityScroll2/InfinityScroll2";
+import QwikSlider from "~/components/sections/team-page/qwik-slider/QwikSlider";
 
 export default component$(() => {
   // const t = inlineTranslate();
@@ -16,8 +17,13 @@ export default component$(() => {
     <>
       <HeroSection />
       <StepsSection />
-      <InfinityCarousel />
-      <InfinityScroll2 />
+      <QwikSlider />
+      {/* Uncomment to use the InfinitySlider component */}
+      {/* <InfinitySlider /> */}
+
+      {/* Uncomment to use the following components */}
+      {/* <InfinityCarousel />
+      <InfinityScroll2 /> */}
 
       {/* <p>{t(`runtime.${key}`)}</p> */}
     </>

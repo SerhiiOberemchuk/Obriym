@@ -1,7 +1,6 @@
 import { component$, $, useStylesScoped$, useVisibleTask$, useStore } from "@qwik.dev/core";
 
 import styles from "./infiniteCarousel.css?inline";
-import { createReadStream } from "node:fs";
 
 export default component$(() => {
   useStylesScoped$(styles);
@@ -68,18 +67,11 @@ export default component$(() => {
     <div class="c_carousel_wrapper">
       <div
         class="c_carousel-container"
-        //   style={{ width: `${state.width}px` }}
         onPointerDown$={onPointerDown}
         onPointerMove$={onPointerMove}
         onPointerUp$={onPointerUp}
       >
-        <div
-          class="c_carousel-track scrollLeft"
-          // style={{
-          //   transform: `translateX(${getTranslateX()}px)`,
-          // }}
-        >
-          {/* //style={{ width: `${state.width}px` }} */}
+        <div class="c_carousel-track scrollLeft">
           {extCards.map(card => (
             <div key={card} class="c_carousel-item">
               {card}

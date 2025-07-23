@@ -105,6 +105,21 @@ main {
     transform: translateX(-100%);
   }
 }
+
+/* for  slider from QWIK */
+:root {
+  --slides-per-view: 1;
+}
+@media (min-width: 48rem) {
+  :root {
+    --slides-per-view: 2.3;
+  }
+}
+@media (min-width: 90rem) {
+  :root {
+    --slides-per-view: 3;
+  }
+}
 /* for  slider from inet */
 :root {
   --inf-count: 3;
@@ -128,4 +143,42 @@ main {
   :root {
     --slides-inf-per-view: 3;
   }
+}
+
+.carousel-root {
+  width: 300px;
+  margin: auto;
+}
+
+.carousel-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.carousel-scroller {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.carousel-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide-inner {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: white;
 }
