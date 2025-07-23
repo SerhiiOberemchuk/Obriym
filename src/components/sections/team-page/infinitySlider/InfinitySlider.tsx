@@ -9,6 +9,19 @@ import {
 
 import styles from "./styles_slider.css?inline";
 
+export function getSlideWidthWithGap(track: HTMLElement | null): number {
+  if (!track) return 0;
+
+  const rootStyles = getComputedStyle(document.documentElement);
+  const slides = parseFloat(rootStyles.getPropertyValue("--slides-inf-per-view")) || 1;
+  const gap = parseFloat(rootStyles.getPropertyValue("--inf-gap")) || 0;
+
+  const totalGap = gap * (slides - 1);
+  const slideWidth = (track.offsetWidth - totalGap) / slides;
+
+  return slideWidth + gap;
+}
+
 export default component$(() => {
   useStylesScoped$(styles);
 
@@ -44,52 +57,24 @@ export default component$(() => {
     const first = items[0];
     return [last, ...items, first];
   };
-  // quantity of cards in the carousel
-  //   const updateViewport = $(() => {
-  //     const width = window.innerWidth;
-
-  //     if (width >= 1440) {
-  //       viewportCategory.value = "desktop";
-  //       slidesPerView.value = 3;
-  //     } else if (width >= 768) {
-  //       viewportCategory.value = "tablet";
-  //       slidesPerView.value = 2.3;
-  //     } else {
-  //       viewportCategory.value = "mobile";
-  //       slidesPerView.value = 1;
-  //     }
-
-  //     const root = document.documentElement;
-  //     root.style.setProperty("--slides-inf-per-view", slidesPerView.value.toString());
-  //   });
-
-  //   useOnWindow(
-  //     "load",
-  //     $(() => {
-  //       updateViewport();
-  //     }),
-  //   );
-
-  //   useOnWindow(
-  //     "resize",
-  //     $(() => {
-  //       updateViewport();
-  //     }),
-  //   );
 
   // paused slider
+
+  //autoscroll for mobile
   // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(({ cleanup }) => {
     const interval = setInterval(() => {
       if (isPaused.value || viewportCategory.value !== "mobile" || isAnimating.value) return;
 
       const track = trackRef.value;
+
       if (!track) return;
 
-      const slideWidth = track.offsetWidth / slidesPerView.value;
+      // const slideWidth = track.offsetWidth / slidesPerView.value;
+      const slideWidthWithGap = getSlideWidthWithGap(track);
 
       track.style.transition = "transform 0.4s ease";
-      track.style.transform = `translateX(-${slideWidth}px)`;
+      track.style.transform = `translateX(-${slideWidthWithGap}px)`;
 
       setTimeout(() => {
         const items = [...baseItems.value];
@@ -122,12 +107,12 @@ export default component$(() => {
     const track = trackRef.value;
     if (!track) return;
 
-    // const slideWidth = track.offsetWidth / slidesPerView.value - 30;
-    const slideWidth = track.offsetWidth / slidesPerView.value;
+    // const slideWidth = track.offsetWidth / slidesPerView.value;
+    const slideWidthWithGap = getSlideWidthWithGap(track);
 
     //animation shift to the left from 0 to -slideWidth
     track.style.transition = "transform 0.4s ease";
-    track.style.transform = `translateX(-${slideWidth}px)`;
+    track.style.transform = `translateX(-${slideWidthWithGap}px)`;
 
     setTimeout(() => {
       // after the animation, we change the order of items- first item to the end
@@ -157,7 +142,8 @@ export default component$(() => {
     const track = trackRef.value;
     if (!track) return;
 
-    const slideWidth = track.offsetWidth / slidesPerView.value;
+    //const slideWidth = track.offsetWidth / slidesPerView.value;
+    const slideWidthWithGap = getSlideWidthWithGap(track);
 
     // change the order of items in baseItems
     const items = [...baseItems.value];
@@ -167,7 +153,7 @@ export default component$(() => {
 
     // without animation, move the track to the left by slideWidth
     track.style.transition = "none";
-    track.style.transform = `translateX(-${slideWidth}px)`;
+    track.style.transform = `translateX(-${slideWidthWithGap}px)`;
 
     // Double rAF: ensures the browser applies the initial transform
     requestAnimationFrame(() => {
@@ -216,3 +202,36 @@ export default component$(() => {
     </div>
   );
 });
+
+// quantity of cards in the carousel
+//   const updateViewport = $(() => {
+//     const width = window.innerWidth;
+
+//     if (width >= 1440) {
+//       viewportCategory.value = "desktop";
+//       slidesPerView.value = 3;
+//     } else if (width >= 768) {
+//       viewportCategory.value = "tablet";
+//       slidesPerView.value = 2.3;
+//     } else {
+//       viewportCategory.value = "mobile";
+//       slidesPerView.value = 1;
+//     }
+
+//     const root = document.documentElement;
+//     root.style.setProperty("--slides-inf-per-view", slidesPerView.value.toString());
+//   });
+
+//   useOnWindow(
+//     "load",
+//     $(() => {
+//       updateViewport();
+//     }),
+//   );
+
+//   useOnWindow(
+//     "resize",
+//     $(() => {
+//       updateViewport();
+//     }),
+//   );

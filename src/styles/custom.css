@@ -150,6 +150,7 @@ main {
 
 :root {
   --slides-inf-per-view: 1;
+  --inf-gap: 10px;
 }
 @media (min-width: 48rem) {
   :root {

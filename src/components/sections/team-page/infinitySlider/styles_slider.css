@@ -13,7 +13,7 @@
 .carousel-track {
   display: flex;
   will-change: transform;
-
+  gap: var(--inf-gap);
   /* gap: 10px; */
 }
 
