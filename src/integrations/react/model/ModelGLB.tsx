@@ -43,7 +43,7 @@ function SceneCopy({
       dpr={[1, 2]}
       key={model}
     >
-      <directionalLight position={[0, 3, 20]} intensity={20} />
+      <directionalLight position={[0, 0, 2]} intensity={5} />
       <Suspense fallback={null}>
         <Center position={[0, 0, 0]} scale={4}>
           <ModelCopy />
