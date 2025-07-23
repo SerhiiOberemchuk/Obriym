@@ -1,11 +1,4 @@
-import {
-  component$,
-  useSignal,
-  useVisibleTask$,
-  useStylesScoped$,
-  useStore,
-  useOnWindow,
-} from "@qwik.dev/core";
+import { component$, $, useSignal, useVisibleTask$, useStylesScoped$ } from "@qwik.dev/core";
 import { Carousel } from "@qwik-ui/headless";
 
 import styles from "./styles_qwik_slider.css?inline";
@@ -18,7 +11,7 @@ export default component$(() => {
   const currentIndex = useSignal(1); // Start at real first slide
   const viewportCategory = useSignal<"mobile" | "tablet" | "desktop">("mobile");
   const scrollerRef = useSignal<HTMLElement>();
-  const isPlaying = useSignal(true);
+
   const slideCount = colors.length;
 
   // eslint-disable-next-line qwik/no-use-visible-task
@@ -36,6 +29,7 @@ export default component$(() => {
   });
   // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(({ cleanup }) => {
+    if (viewportCategory.value !== "mobile") return;
     const scroller = scrollerRef.value;
     if (!scroller) return;
 
@@ -78,11 +72,24 @@ export default component$(() => {
     cleanup(() => clearInterval(interval));
   });
 
+  //   const scrollOne = $((dir: "next" | "prev") => {
+  //     const scroller = scrollerRef.value;
+  //     if (!scroller) return;
+
+  //     const slide = scroller.querySelector(".carousel-slide") as HTMLElement;
+  //     if (!slide) return;
+
+  //     const offset = slide.offsetWidth + parseFloat(getComputedStyle(scroller).gap || "0");
+  //     scroller.scrollBy({ left: dir === "next" ? offset : -offset, behavior: "smooth" });
+  //   });
   return (
     <Carousel.Root gap={0} class="carousel-root">
-      <div class="carousel-buttons">
-        <Carousel.Player>{isPlaying.value ? "<LuPause />" : "<LuPlay />"}</Carousel.Player>
-      </div>
+      {/* BUTTONS viewportCategory.value === "tablet"*/}
+
+      {/* <div class="inf_btn_controls">
+        <button onClick$={() => scrollOne("prev")}>←</button>
+        <button onClick$={() => scrollOne("next")}>→</button>
+      </div> */}
 
       <Carousel.Scroller class="carousel-scroller" ref={scrollerRef}>
         {colors.map((color, i) => (

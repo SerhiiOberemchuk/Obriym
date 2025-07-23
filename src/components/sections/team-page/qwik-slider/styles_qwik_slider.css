@@ -1,3 +1,8 @@
+/* Buttons */
+.inf_btn_controls {
+  display: none;
+}
+
 /* dots */
 .inf_carousel-dots {
   display: flex;
@@ -20,7 +25,34 @@
   background: #0070f3;
 }
 @media (min-width: 768px) {
+  .inf_btn_controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .inf_btn_controls button {
+    padding: 0.5rem 1rem;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .inf_btn_controls button:hover {
+    background-color: #005bb5;
+  }
   .inf_carousel-dots {
+    display: none;
+  }
+}
+
+@media (min-width: 1440px) {
+  .inf_btn_controls {
     display: none;
   }
 }

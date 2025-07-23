@@ -72,30 +72,6 @@ main {
 }
 
 /* all for carousel  */
-.carousel-root {
-  width: 100%;
-  position: relative;
-}
-.carousel-stepper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.carousel-slide {
-  border: 2px dotted blue;
-  min-height: 10rem;
-  max-height: 10rem;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  width: 300px;
-}
-
-.carousel-animation {
-  animation: slide-infinite 15s linear infinite;
-}
 
 @keyframes slide-infinite {
   0% {
@@ -109,15 +85,20 @@ main {
 /* for  slider from QWIK */
 :root {
   --slides-per-view: 1;
+  --slides-gap: 8px;
 }
+
 @media (min-width: 48rem) {
   :root {
     --slides-per-view: 2.3;
+    --slides-gap: 16px;
   }
 }
+
 @media (min-width: 90rem) {
   :root {
     --slides-per-view: 3;
+    --slides-gap: 24px;
   }
 }
 /* for  slider from inet */
@@ -132,16 +113,18 @@ main {
 /* for my slider  */
 :root {
   --slides-inf-per-view: 1;
-  --inf-gap: 10px;
+  --inf-gap: 0px;
 }
 @media (min-width: 48rem) {
   :root {
     --slides-inf-per-view: 2.3;
+    --inf-gap: 10px;
   }
 }
 @media (min-width: 90rem) {
   :root {
     --slides-inf-per-view: 3;
+    --inf-gap: 10px;
   }
 }
 
@@ -181,4 +164,10 @@ main {
   align-items: center;
   font-size: 2rem;
   color: white;
+}
+.carousel-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
