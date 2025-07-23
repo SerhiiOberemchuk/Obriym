@@ -8,7 +8,7 @@ import { Canvas } from "@react-three/fiber";
 
 function ModelCopy() {
   const group = useRef<Group>(null);
-  const { scene, animations } = useGLTF("/src/models/gordian.glb");
+  const { scene, animations } = useGLTF("/src/models/organicball.glb");
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
@@ -24,18 +24,32 @@ function ModelCopy() {
   );
 }
 
-function SceneCopy() {
+function SceneCopy({
+  model,
+  styleCanvas,
+  width,
+  height,
+}: {
+  model: "organicball";
+  styleCanvas?: string;
+  width: number;
+  height: number;
+}) {
   return (
-    <div className="">
-      <Canvas gl={{ antialias: true }} dpr={[1, 2]} key="robot-copy">
-        <directionalLight position={[-5, 0, 5]} intensity={10} />
-        <Suspense fallback={null}>
-          <Center position={[0, 0, 0]}>
-            <ModelCopy />
-          </Center>
-        </Suspense>
-      </Canvas>
-    </div>
+    <Canvas
+      style={{ width, height }}
+      className={styleCanvas}
+      gl={{ antialias: true }}
+      dpr={[1, 2]}
+      key={model}
+    >
+      <directionalLight position={[0, 3, 20]} intensity={20} />
+      <Suspense fallback={null}>
+        <Center position={[0, 0, 0]} scale={4}>
+          <ModelCopy />
+        </Center>
+      </Suspense>
+    </Canvas>
   );
 }
 
