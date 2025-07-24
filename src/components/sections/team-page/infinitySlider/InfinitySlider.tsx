@@ -6,8 +6,11 @@ import {
   $,
   useOnWindow,
 } from "@qwik.dev/core";
+import { TEAM_MEMBERS } from "~/const/team";
 
 import styles from "./styles_slider.css?inline";
+import SlideComponent from "./slide-component/SlideComponent";
+import { TeamMemberType } from "~/types/team-member";
 
 export function getSlideWidthWithGap(track: HTMLElement | null): number {
   if (!track) return 0;
@@ -26,7 +29,8 @@ export function getSlideWidthWithGap(track: HTMLElement | null): number {
 export default component$(() => {
   useStylesScoped$(styles);
 
-  const baseItems = useSignal(["a", "b", "c"]);
+  //   const baseItems = useSignal(["a", "b", "c"]);
+  const baseItems = useSignal<TeamMemberType[]>([]);
   const trackRef = useSignal<HTMLElement>();
   const isPaused = useSignal(false);
   const slidesPerView = useSignal(1);
@@ -34,6 +38,9 @@ export default component$(() => {
   const viewportCategory = useSignal<"mobile" | "tablet" | "desktop">("mobile");
   const isAnimating = useSignal(false);
 
+  useVisibleTask$(() => {
+    baseItems.value = [...TEAM_MEMBERS]; // Initialize with team members
+  });
   // Update slidesPerView from CSS variable
   const updateSlidesPerViewFromCSS = $(() => {
     const rootStyles = getComputedStyle(document.documentElement);
@@ -187,7 +194,8 @@ export default component$(() => {
       >
         {getClonedItems().map((item, i) => (
           <div class="inf_carousel-slide" key={`${item}-${i}`}>
-            {item}
+            {/* {item} */}
+            <SlideComponent item={item} />
           </div>
         ))}
       </div>

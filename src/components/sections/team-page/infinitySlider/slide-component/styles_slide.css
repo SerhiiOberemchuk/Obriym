@@ -1,0 +1,12 @@
+.slide-component {
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--white);
+  /* padding: 0px 0px 24px 0px; */
+  /* width: 343px;
+  height: 558px; */
+}
+.slide-top {
+}
+.slide-bottom {
+}
