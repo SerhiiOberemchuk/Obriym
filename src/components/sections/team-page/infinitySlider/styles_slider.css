@@ -8,13 +8,14 @@
 .inf_carousel-track {
   display: flex;
   will-change: transform;
-  gap: var(--inf-gap);
+  /* gap: var(--inf-gap); */
   /* gap: 10px; */
 }
 
 .inf_carousel-slide {
-  flex: 0 0 calc(100% / var(--slides-inf-per-view));
-  max-width: 100%;
+  flex: 0 0 calc(100% - (2 * var(--inf-container-padding)) / var(--slides-inf-per-view));
+
+  /* max-width: 100%; */
   height: 180px;
   background: #ddd;
   border: 2px solid #aaa;
@@ -64,8 +65,14 @@
     /* gap: 10px; */
   }
   .inf_carousel-slide {
-    flex: 0 0 calc(100% / var(--slides-inf-per-view));
-    max-width: calc(100% / var(--slides-inf-per-view));
+    /* flex: 0 0 calc((100% - (1 * var(--inf-container-padding))) / var(--slides-inf-per-view)); */
+    flex: 0 0
+      calc(
+        ((100% - (1 * var(--inf-container-padding))) / var(--slides-inf-per-view)) -
+          (var(--inf-gap) * ((var(--slides-inf-per-view) - 1) / var(--slides-inf-per-view)))
+      );
+    /* max-width: calc(100% / var(--slides-inf-per-view)); */
+    margin-right: var(--inf-gap);
   }
   .inf_carousel-dots {
     display: none;
@@ -95,5 +102,12 @@
 @media (min-width: 1440px) {
   .inf_btn_controls {
     display: none;
+  }
+  .inf_carousel-slide {
+    flex: 0 0
+      calc(
+        (100% / var(--slides-inf-per-view)) -
+          (var(--inf-gap) * ((var(--slides-inf-per-view) - 1) / var(--slides-inf-per-view)))
+      );
   }
 }

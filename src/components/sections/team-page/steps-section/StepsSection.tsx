@@ -21,9 +21,9 @@ export default component$(() => {
       <div class="inf_carousel_wrp">
         <InfinitySlider />
       </div>
-      <div class="inf_carousel_wrp">
+      {/* <div class="inf_carousel_wrp">
         <QwikSlider />
-      </div>
+      </div> */}
     </section>
   );
 });

@@ -15,9 +15,10 @@ export function getSlideWidthWithGap(track: HTMLElement | null): number {
   const rootStyles = getComputedStyle(document.documentElement);
   const slides = parseFloat(rootStyles.getPropertyValue("--slides-inf-per-view")) || 1;
   const gap = parseFloat(rootStyles.getPropertyValue("--inf-gap")) || 0;
+  const padding = parseFloat(rootStyles.getPropertyValue("--inf-container-padding")) || 0;
 
   const totalGap = gap * (slides - 1);
-  const slideWidth = (track.offsetWidth - totalGap) / slides;
+  const slideWidth = (track.offsetWidth - totalGap - 1 * padding) / slides;
 
   return slideWidth + gap;
 }
