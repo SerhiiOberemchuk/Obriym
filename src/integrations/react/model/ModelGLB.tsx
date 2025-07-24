@@ -6,9 +6,11 @@ import { useRef, useEffect, Suspense } from "react";
 import { Group } from "three";
 import { Canvas } from "@react-three/fiber";
 
-function ModelCopy() {
+type Model = { model: "organicball" | "spring" };
+
+function ModelCopy({ model }: Model) {
   const group = useRef<Group>(null);
-  const { scene, animations } = useGLTF("/src/models/organicball.glb");
+  const { scene, animations } = useGLTF(`/src/models/${model}.glb`);
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
@@ -30,11 +32,10 @@ function SceneCopy({
   width,
   height,
 }: {
-  model: "organicball";
   styleCanvas?: string;
   width: number;
   height: number;
-}) {
+} & Model) {
   return (
     <Canvas
       style={{ width, height }}
@@ -45,8 +46,8 @@ function SceneCopy({
     >
       <directionalLight position={[0, 0, 2]} intensity={5} />
       <Suspense fallback={null}>
-        <Center position={[0, 0, 0]} scale={4}>
-          <ModelCopy />
+        <Center position={[0, 0, 0]} scale={1}>
+          <ModelCopy model={model} />
         </Center>
       </Suspense>
     </Canvas>
