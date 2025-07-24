@@ -1,5 +1,4 @@
 import { component$, $, useSignal, useVisibleTask$, useStylesScoped$ } from "@qwik.dev/core";
-import { Carousel } from "@qwik-ui/headless";
 
 import styles from "./styles_qwik_slider.css?inline";
 

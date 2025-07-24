@@ -59,7 +59,7 @@ export default component$(() => {
     return [last, ...items, first];
   };
 
-  // paused slider
+  // paused slider!!!!!
 
   //autoscroll for mobile
   // eslint-disable-next-line qwik/no-use-visible-task
@@ -71,7 +71,6 @@ export default component$(() => {
 
       if (!track) return;
 
-      // const slideWidth = track.offsetWidth / slidesPerView.value;
       const slideWidthWithGap = getSlideWidthWithGap(track);
 
       track.style.transition = "transform 0.4s ease";
@@ -99,7 +98,6 @@ export default component$(() => {
   });
 
   //Next
-
   // В nextSlide:
   const nextSlide = $(() => {
     if (isAnimating.value) return;
@@ -135,7 +133,6 @@ export default component$(() => {
   });
 
   // Previous slide
-
   const prevSlide = $(() => {
     if (isAnimating.value) return;
     isAnimating.value = true;
@@ -170,14 +167,7 @@ export default component$(() => {
     }, 400); // same as transition duration
   });
   return (
-    <div
-      class="inf_carousel-container"
-      onMouseEnter$={() => (isPaused.value = true)}
-      onMouseLeave$={() => (isPaused.value = false)}
-      onTouchStart$={() => (isPaused.value = true)}
-      onTouchEnd$={() => (isPaused.value = false)}
-      onTouchCancel$={() => (isPaused.value = false)}
-    >
+    <div class="inf_carousel-container">
       {/* BUTTONS viewportCategory.value === "tablet"*/}
 
       <div class="inf_btn_controls">
@@ -186,7 +176,15 @@ export default component$(() => {
       </div>
 
       {/* SLIDER */}
-      <div class="inf_carousel-track" ref={trackRef}>
+      <div
+        class="inf_carousel-track"
+        ref={trackRef}
+        onMouseEnter$={() => (isPaused.value = true)}
+        onMouseLeave$={() => (isPaused.value = false)}
+        onTouchStart$={() => (isPaused.value = true)}
+        onTouchEnd$={() => (isPaused.value = false)}
+        onTouchCancel$={() => (isPaused.value = false)}
+      >
         {getClonedItems().map((item, i) => (
           <div class="inf_carousel-slide" key={`${item}-${i}`}>
             {item}
