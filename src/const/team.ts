@@ -6,20 +6,20 @@ import { TeamMemberType } from "~/types/team-member";
 export const TEAM_MEMBERS: TeamMemberType[] = [
   {
     id: 1,
-    name: "John Doe",
-    role: "Developer",
-    image: Person1,
-  },
-  {
-    id: 2,
     name: "Jane Smith",
     role: "Designer",
     image: Person2,
   },
   {
-    id: 3,
+    id: 2,
     name: "Alice Johnson",
     role: "Product Manager",
     image: Person3,
+  },
+  {
+    id: 3,
+    name: "Serhii Oberemchuk",
+    role: "Founder & CEO",
+    image: Person1,
   },
 ];

@@ -4,5 +4,5 @@ export type TeamMemberType = {
   id: number;
   name: string;
   role: string;
-  image: FunctionComponent;
+  image: FunctionComponent<{ class?: string }>;
 };

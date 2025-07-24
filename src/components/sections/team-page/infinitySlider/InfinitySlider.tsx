@@ -193,7 +193,7 @@ export default component$(() => {
         onTouchCancel$={() => (isPaused.value = false)}
       >
         {getClonedItems().map((item, i) => (
-          <div class="inf_carousel-slide" key={`${item}-${i}`}>
+          <div class="inf_carousel-slide" key={`slide-${item.id}-${i}`}>
             {/* {item} */}
             <SlideComponent item={item} />
           </div>
