@@ -201,7 +201,7 @@ export default component$(() => {
       </div>
       <div class="inf_carousel-dots">
         {baseItems.value.map((_, i) => (
-          <button class={`inf_dot ${i === activeIndex.value ? "active" : ""}`} key={`dot-${i}`} />
+          <div class={`inf_dot ${i === activeIndex.value ? "active" : ""}`} key={`dot-${i}`} />
         ))}
       </div>
     </div>

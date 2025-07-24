@@ -4,7 +4,6 @@ import { component$, useStylesScoped$ } from "@qwik.dev/core";
 import styles from "./styles_steps.css?inline";
 import PinkImg from "~/assets/images/pink.png?w=100&h=100&jsx";
 import InfinitySlider from "../infinitySlider/InfinitySlider";
-import QwikSlider from "~/components/sections/team-page/qwik-slider/QwikSlider";
 
 export default component$(() => {
   //   const t = inlineTranslate();

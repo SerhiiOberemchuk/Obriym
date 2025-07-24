@@ -105,13 +105,13 @@ main {
 @media (min-width: 48rem) {
   :root {
     --slides-inf-per-view: 2;
-    --inf-gap: 10px;
+    --inf-gap: 1rem;
     --inf-container-padding: 40px;
   }
 }
 @media (min-width: 90rem) {
   :root {
     --slides-inf-per-view: 3;
-    --inf-gap: 10px;
+    --inf-gap: 12px;
   }
 }
