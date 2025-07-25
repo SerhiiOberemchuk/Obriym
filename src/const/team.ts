@@ -3,13 +3,13 @@ import { TeamMemberType } from "~/types/team-member";
 export const TEAM_MEMBERS: TeamMemberType[] = [
   {
     id: 1,
-    name: "Jane Smith",
+    name: "Person 1",
     role: "Designer",
     imageKey: "person2",
   },
   {
     id: 2,
-    name: "Alice Johnson",
+    name: "Person 2",
     role: "Product Manager",
     imageKey: "person3",
   },

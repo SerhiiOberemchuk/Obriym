@@ -5,6 +5,7 @@ import {
   useStylesScoped$,
   $,
   useOnWindow,
+  useComputed$,
 } from "@qwik.dev/core";
 
 import styles from "./styles_slider.css?inline";
@@ -30,9 +31,9 @@ export function getSlideWidthWithGap(track: HTMLElement | null): number {
 export default component$(({ items }: { items: TeamMemberType[] }) => {
   useStylesScoped$(styles);
 
-  //   const baseItems = useSignal(["a", "b", "c"]);
   // const baseItems = useSignal<TeamMemberType[]>([]);
-  const baseItems = useSignal(items);
+  // const baseItems = useSignal(items);
+  const itemsSignal = useSignal<TeamMemberType[]>(items);
   const trackRef = useSignal<HTMLElement>();
   const isPaused = useSignal(false);
   const slidesPerView = useSignal(1);
@@ -43,6 +44,7 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
   // useVisibleTask$(() => {
   //   baseItems.value = [...TEAM_MEMBERS]; // Initialize with team members
   // });
+
   // Update slidesPerView from CSS variable
   const updateSlidesPerViewFromCSS = $(() => {
     const rootStyles = getComputedStyle(document.documentElement);
@@ -60,13 +62,23 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
   useOnWindow("load", updateSlidesPerViewFromCSS);
   useOnWindow("resize", updateSlidesPerViewFromCSS);
   //cloned Arr
-  const getClonedItems = () => {
-    const items = baseItems.value;
+  // const getClonedItems = () => {
+  //   const items = baseItems.value;
+  //   if (items.length === 0) return [];
+  //   const last = items[items.length - 1];
+  //   const first = items[0];
+  //   return [last, ...items, first];
+  // };
+  const baseItems = useComputed$(() => {
+    const items = itemsSignal.value;
     if (items.length === 0) return [];
+    if (viewportCategory.value === "mobile") {
+      return items; // without cloning for mobile
+    }
     const last = items[items.length - 1];
     const first = items[0];
     return [last, ...items, first];
-  };
+  });
 
   // paused slider!!!!!
 
@@ -86,12 +98,18 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
       track.style.transform = `translateX(-${slideWidthWithGap}px)`;
 
       setTimeout(() => {
-        const items = [...baseItems.value];
+        // const items = [...baseItems.value];
+        // const first = items.shift()!;
+        // items.push(first);
+        // baseItems.value = items;
+        const items = [...itemsSignal.value];
+
         const first = items.shift()!;
         items.push(first);
-        baseItems.value = items;
+        itemsSignal.value = items;
         //active dots
-        activeIndex.value = (activeIndex.value + 1) % baseItems.value.length;
+        // activeIndex.value = (activeIndex.value + 1) % baseItems.value.length;
+        activeIndex.value = (activeIndex.value + 1) % itemsSignal.value.length;
 
         // Reset the track position
         requestAnimationFrame(() => {
@@ -100,7 +118,7 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
             track.style.transform = "translateX(0)";
           }
         });
-      }, 400);
+      }, 450);
     }, 3000);
 
     cleanup(() => clearInterval(interval));
@@ -124,10 +142,14 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
 
     setTimeout(() => {
       // after the animation, we change the order of items- first item to the end
-      const items = [...baseItems.value];
+      // const items = [...baseItems.value];
+      // const first = items.shift()!;
+      // items.push(first);
+      // baseItems.value = items;
+      const items = [...itemsSignal.value];
       const first = items.shift()!;
       items.push(first);
-      baseItems.value = items;
+      itemsSignal.value = items;
 
       //reset the track position
       track.style.transition = "none";
@@ -137,7 +159,8 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
       isAnimating.value = false;
 
       // update active index for dots
-      activeIndex.value = (activeIndex.value + 1) % baseItems.value.length;
+      // activeIndex.value = (activeIndex.value + 1) % baseItems.value.length;
+      activeIndex.value = (activeIndex.value + 1) % itemsSignal.value.length;
     }, 400);
   });
 
@@ -153,10 +176,14 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
     const slideWidthWithGap = getSlideWidthWithGap(track);
 
     // change the order of items in baseItems
-    const items = [...baseItems.value];
+    // const items = [...baseItems.value];
+    // const last = items.pop()!;
+    // items.unshift(last);
+    // baseItems.value = items;
+    const items = [...itemsSignal.value];
     const last = items.pop()!;
     items.unshift(last);
-    baseItems.value = items;
+    itemsSignal.value = items;
 
     // without animation, move the track to the left by slideWidth
     track.style.transition = "none";
@@ -173,6 +200,8 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
     // Reset the flag after the animation is complete
     setTimeout(() => {
       isAnimating.value = false;
+      activeIndex.value =
+        (activeIndex.value - 1 + itemsSignal.value.length) % itemsSignal.value.length;
     }, 400); // same as transition duration
   });
   return (
@@ -198,7 +227,7 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
         onTouchEnd$={() => (isPaused.value = false)}
         onTouchCancel$={() => (isPaused.value = false)}
       >
-        {getClonedItems().map((item, i) => (
+        {baseItems.value.map((item, i) => (
           <div class="inf_carousel-slide" key={`slide-${item.id}-${i}`}>
             {/* {item} */}
             <SlideComponent item={item} />

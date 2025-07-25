@@ -17,6 +17,7 @@ const imageMap: Record<ImageKey, () => JSX.Element> = {
 
 export default component$(({ item }: { item: TeamMemberType }) => {
   useStylesScoped$(styles);
+  // console.log("item", item.id);
 
   return (
     <div class="slide-component">
