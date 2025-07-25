@@ -70,6 +70,7 @@
     /* scroll-snap-type: x mandatory; */
     /* -webkit-overflow-scrolling: touch; */
     margin-bottom: 0px;
+    gap: var(--inf-gap);
 
     /* gap: 10px; */
   }
@@ -81,7 +82,7 @@
           (var(--inf-gap) * ((var(--slides-inf-per-view) - 1) / var(--slides-inf-per-view)))
       );
     /* max-width: calc(100% / var(--slides-inf-per-view)); */
-    margin-right: var(--inf-gap);
+    /* margin-right: var(--inf-gap); */
   }
   .inf_carousel-dots {
     display: none;
