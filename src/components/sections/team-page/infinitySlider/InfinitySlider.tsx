@@ -79,20 +79,19 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
     const first = items[0];
     return [last, ...items, first];
   });
+  // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(() => {
-    console.log("useVisibleTask$ triggered");
     const track = trackRef.value;
     if (!track || baseItems.value.length === 0) return;
 
     const slideWidthWithGap = getSlideWidthWithGap(track);
 
-    // Если у нас desktop или tablet с клонированными слайдами — начальное смещение на 1 слайд
+    // if not mobile, set initial transform
     if (viewportCategory.value !== "mobile") {
       track.style.transition = "none";
       track.style.transform = `translateX(-${slideWidthWithGap}px)`;
     }
 
-    // Показываем компонент
     requestAnimationFrame(() => {
       isReady.value = true;
     });
@@ -135,7 +134,7 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
             track.style.transform = "translateX(0)";
           }
         });
-      }, 450);
+      }, 400);
     }, 3000);
 
     cleanup(() => clearInterval(interval));
@@ -155,7 +154,8 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
 
     //animation shift to the left from 0 to -slideWidth
     track.style.transition = "transform 0.4s ease";
-    track.style.transform = `translateX(-${slideWidthWithGap}px)`;
+    // track.style.transform = `translateX(-${slideWidthWithGap}px)`;
+    track.style.transform = `translateX(-${slideWidthWithGap * 2}px)`;
 
     setTimeout(() => {
       // after the animation, we change the order of items- first item to the end
@@ -170,7 +170,8 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
 
       //reset the track position
       track.style.transition = "none";
-      track.style.transform = "translateX(0)";
+      // track.style.transform = "translateX(0)";
+      track.style.transform = `translateX(-${slideWidthWithGap}px)`;
 
       // allow new animation
       isAnimating.value = false;
@@ -204,13 +205,15 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
 
     // without animation, move the track to the left by slideWidth
     track.style.transition = "none";
-    track.style.transform = `translateX(-${slideWidthWithGap}px)`;
+    // track.style.transform = `translateX(-${slideWidthWithGap}px)`;
+    track.style.transform = `translateX(-${slideWidthWithGap * 2}px)`;
 
     // Double rAF: ensures the browser applies the initial transform
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         track.style.transition = "transform 0.4s ease";
-        track.style.transform = "translateX(0)";
+        // track.style.transform = "translateX(0)";
+        track.style.transform = `translateX(-${slideWidthWithGap}px)`;
       });
     });
 
@@ -246,7 +249,6 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
       >
         {isReady.value && (
           <>
-            {" "}
             {baseItems.value.map((item, i) => (
               <div class="inf_carousel-slide" key={`slide-${item.id}-${i}`}>
                 {/* {item} */}
@@ -256,11 +258,13 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
           </>
         )}
       </div>
-      <div class="inf_carousel-dots">
-        {baseItems.value.map((_, i) => (
-          <div class={`inf_dot ${i === activeIndex.value ? "active" : ""}`} key={`dot-${i}`} />
-        ))}
-      </div>
+      {isReady.value && (
+        <div class="inf_carousel-dots">
+          {baseItems.value.map((_, i) => (
+            <div class={`inf_dot ${i === activeIndex.value ? "active" : ""}`} key={`dot-${i}`} />
+          ))}
+        </div>
+      )}
     </div>
   );
 });
