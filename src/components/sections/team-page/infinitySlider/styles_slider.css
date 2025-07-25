@@ -103,11 +103,12 @@
     width: 56px;
     height: 56px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    color: var(--grey-light);
+    transition: color 0.3s;
   }
 
   .inf_btn_controls button:hover {
-    background-color: #005bb5;
+    color: black;
   }
 }
 

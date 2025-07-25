@@ -41,7 +41,11 @@
   border-radius: 40px;
   padding: 8px 12px;
 
-  /* color: var(--grey-light); */
+  color: var(--grey-light);
+  transition: color 0.3s;
+}
+.slide-btn-plus:hover {
+  color: black;
 }
 @media (min-width: 768px) {
   .slide-component {
