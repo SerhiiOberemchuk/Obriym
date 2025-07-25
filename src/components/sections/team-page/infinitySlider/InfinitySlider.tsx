@@ -40,7 +40,7 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
   const activeIndex = useSignal(0);
   const viewportCategory = useSignal<"mobile" | "tablet" | "desktop">("mobile");
   const isAnimating = useSignal(false);
-
+  const isReady = useSignal(false);
   // useVisibleTask$(() => {
   //   baseItems.value = [...TEAM_MEMBERS]; // Initialize with team members
   // });
@@ -79,7 +79,24 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
     const first = items[0];
     return [last, ...items, first];
   });
+  useVisibleTask$(() => {
+    console.log("useVisibleTask$ triggered");
+    const track = trackRef.value;
+    if (!track || baseItems.value.length === 0) return;
 
+    const slideWidthWithGap = getSlideWidthWithGap(track);
+
+    // Если у нас desktop или tablet с клонированными слайдами — начальное смещение на 1 слайд
+    if (viewportCategory.value !== "mobile") {
+      track.style.transition = "none";
+      track.style.transform = `translateX(-${slideWidthWithGap}px)`;
+    }
+
+    // Показываем компонент
+    requestAnimationFrame(() => {
+      isReady.value = true;
+    });
+  });
   // paused slider!!!!!
 
   //autoscroll for mobile
@@ -227,12 +244,17 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
         onTouchEnd$={() => (isPaused.value = false)}
         onTouchCancel$={() => (isPaused.value = false)}
       >
-        {baseItems.value.map((item, i) => (
-          <div class="inf_carousel-slide" key={`slide-${item.id}-${i}`}>
-            {/* {item} */}
-            <SlideComponent item={item} />
-          </div>
-        ))}
+        {isReady.value && (
+          <>
+            {" "}
+            {baseItems.value.map((item, i) => (
+              <div class="inf_carousel-slide" key={`slide-${item.id}-${i}`}>
+                {/* {item} */}
+                <SlideComponent item={item} />
+              </div>
+            ))}
+          </>
+        )}
       </div>
       <div class="inf_carousel-dots">
         {baseItems.value.map((_, i) => (
