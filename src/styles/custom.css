@@ -113,5 +113,6 @@ main {
   :root {
     --slides-inf-per-view: 3;
     --inf-gap: 12px;
+    --inf-container-padding: 40px;
   }
 }

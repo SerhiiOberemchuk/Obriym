@@ -1,10 +1,18 @@
 import { component$, Slot } from "@qwik.dev/core";
+import { routeLoader$ } from "@qwik.dev/router";
 import NavList from "~/components/common/nav-list/NavList";
 import Footer from "~/components/layout/footer/Footer";
 import Header from "~/components/layout/header/Header";
 import LetsWork from "~/components/lets-work/LetsWork";
 import MobileMenu from "~/components/mobile-menu/MobileMenu";
 
+export const useContactFormLoader = routeLoader$(() => ({
+  services: [],
+  budget: "",
+  name: "",
+  email: "",
+  message: "",
+}));
 export default component$(() => {
   return (
     <>

@@ -34,7 +34,7 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
   // const baseItems = useSignal<TeamMemberType[]>([]);
 
   const itemsSignal = useSignal<TeamMemberType[]>(items);
-  const trackRef = useSignal<HTMLElement>();
+  const trackRef = useSignal<HTMLElement | undefined>();
   const isPaused = useSignal(false);
   const slidesPerView = useSignal(1);
   const activeIndex = useSignal(0);
@@ -54,8 +54,13 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
     else if (parsed > 1.5) viewportCategory.value = "tablet";
     else viewportCategory.value = "mobile";
   });
+  //does not work when we come from another page
+  //useOnWindow("load", updateSlidesPerViewFromCSS);
 
-  useOnWindow("load", updateSlidesPerViewFromCSS);
+  // eslint-disable-next-line qwik/no-use-visible-task
+  useVisibleTask$(() => {
+    updateSlidesPerViewFromCSS();
+  });
   useOnWindow("resize", updateSlidesPerViewFromCSS);
 
   const baseItems = useComputed$(() => {
@@ -78,7 +83,6 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
 
     // if not mobile, set initial transform
     if (viewportCategory.value !== "mobile") {
-      console.log("in first useVisibleTask$", slideWidthWithGap);
       track.style.transition = "none";
       //track.style.transform = `translateX(-${slideWidthWithGap}px)`;
       track.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
@@ -112,11 +116,16 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
         const first = items.shift()!;
         items.push(first);
         itemsSignal.value = items;
-        //active dots
 
-        activeIndex.value = (activeIndex.value + 1) % itemsSignal.value.length;
+        //active dots
+        // activeIndex.value = (activeIndex.value + 1) % itemsSignal.value.length;
         // Reset the track position
+        // if (track) {
+        //   track.style.transition = "none";
+        //   track.style.transform = "translate3d(0, 0, 0)";
+        // }
         requestAnimationFrame(() => {
+          activeIndex.value = (activeIndex.value + 1) % itemsSignal.value.length;
           if (track) {
             track.style.transition = "none";
             // track.style.transform = "translateX(0)";

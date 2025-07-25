@@ -1,4 +1,3 @@
-// eslint-disable-next-line qwik/no-use-visible-task
 import { component$, useStylesScoped$ } from "@qwik.dev/core";
 
 import styles from "./styles_steps.css?inline";
@@ -23,10 +22,6 @@ export default component$(() => {
           <InfinitySlider items={TEAM_MEMBERS} />
         </div>
       </div>
-
-      {/* <div class="inf_carousel_wrp">
-        <QwikSlider />
-      </div> */}
     </section>
   );
 });

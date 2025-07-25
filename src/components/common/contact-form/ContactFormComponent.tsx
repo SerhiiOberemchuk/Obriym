@@ -8,7 +8,7 @@ import { ContactSchema } from "~/schemas/contactSchema";
 import { ContactForm, ContactFormResponse } from "~/types/contact-form.type";
 import { AlertType } from "~/types/alert.type";
 
-import { useContactFormLoader } from "~/routes/[...lang]";
+import { useContactFormLoader } from "~/routes/[...lang]/layout";
 import { useFormAction } from "~/utils/useFormAction";
 
 import {
