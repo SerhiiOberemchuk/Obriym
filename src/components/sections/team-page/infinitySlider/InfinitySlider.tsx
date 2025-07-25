@@ -100,6 +100,7 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
 
   //autoscroll for mobile
   // eslint-disable-next-line qwik/no-use-visible-task
+
   useVisibleTask$(({ cleanup }) => {
     const interval = setInterval(() => {
       if (isPaused.value || viewportCategory.value !== "mobile" || isAnimating.value) return;
@@ -111,27 +112,23 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
       const slideWidthWithGap = getSlideWidthWithGap(track);
 
       track.style.transition = "transform 0.4s ease";
-      track.style.transform = `translateX(-${slideWidthWithGap}px)`;
+      // track.style.transform = `translateX(-${slideWidthWithGap}px)`;
+      track.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
 
       setTimeout(() => {
-        // const items = [...baseItems.value];
-        // const first = items.shift()!;
-        // items.push(first);
-        // baseItems.value = items;
         const items = [...itemsSignal.value];
-
         const first = items.shift()!;
         items.push(first);
         itemsSignal.value = items;
         //active dots
         // activeIndex.value = (activeIndex.value + 1) % baseItems.value.length;
         activeIndex.value = (activeIndex.value + 1) % itemsSignal.value.length;
-
         // Reset the track position
         requestAnimationFrame(() => {
           if (track) {
             track.style.transition = "none";
-            track.style.transform = "translateX(0)";
+            // track.style.transform = "translateX(0)";
+            track.style.transform = "translate3d(0, 0, 0)";
           }
         });
       }, 400);

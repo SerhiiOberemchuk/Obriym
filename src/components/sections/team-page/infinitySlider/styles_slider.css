@@ -9,6 +9,8 @@
   display: flex;
   will-change: transform;
   margin-bottom: 32px;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
   /* gap: var(--inf-gap); */
   /* gap: 10px; */
 }
@@ -64,9 +66,9 @@
   .inf_carousel-track {
     display: flex;
     will-change: transform;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
+    /* scroll-behavior: smooth; */
+    /* scroll-snap-type: x mandatory; */
+    /* -webkit-overflow-scrolling: touch; */
     margin-bottom: 0px;
 
     /* gap: 10px; */
