@@ -22,15 +22,39 @@
   margin: 0 auto;
 }
 @media (min-width: 768px) {
+  .team_steps_container_wrp {
+    position: relative;
+  }
+  .team_steps_title {
+    margin-bottom: 24px;
+    gap: 10px;
+  }
+  .team_steps_image {
+    width: 64px;
+    height: 64px;
+  }
   .inf_carousel_wrp {
+    position: absolute;
+    top: 0;
     padding-left: 40px;
     padding-right: 0;
   }
 }
 
 @media (min-width: 1440px) {
+  .team_steps_container_wrp {
+    position: static; /*  relative */
+  }
+
+  .inf_carousel_wrp {
+    position: static; /*  absolute */
+  }
   .inf_carousel_wrp {
     padding-left: 40px;
     padding-right: 40px;
+  }
+  .team_steps_image {
+    width: 100px;
+    height: 100px;
   }
 }

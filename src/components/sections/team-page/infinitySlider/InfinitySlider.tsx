@@ -178,8 +178,8 @@ export default component$(() => {
       {/* BUTTONS viewportCategory.value === "tablet"*/}
 
       <div class="inf_btn_controls">
-        <button onClick$={prevSlide}>← Назад</button>
-        <button onClick$={nextSlide}>Вперёд →</button>
+        <button onClick$={prevSlide}>&lt;</button>
+        <button onClick$={nextSlide}>&gt;</button>
       </div>
 
       {/* SLIDER */}

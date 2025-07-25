@@ -11,15 +11,18 @@ export default component$(() => {
 
   return (
     <section class="team_steps_section">
-      <div class="container ">
-        <div class="team_steps_title">
-          <PinkImg class="team_steps_image" />
-          <h2 class="H3_uppercase">Our Team</h2>
+      <div class=" team_steps_container_wrp">
+        <div class="container ">
+          <div class="team_steps_title">
+            <PinkImg class="team_steps_image" />
+            <h2 class="H3_uppercase">Our Team</h2>
+          </div>
+        </div>
+        <div class="inf_carousel_wrp">
+          <InfinitySlider />
         </div>
       </div>
-      <div class="inf_carousel_wrp">
-        <InfinitySlider />
-      </div>
+
       {/* <div class="inf_carousel_wrp">
         <QwikSlider />
       </div> */}
