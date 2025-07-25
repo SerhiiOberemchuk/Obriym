@@ -66,12 +66,13 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
   const baseItems = useComputed$(() => {
     const items = itemsSignal.value;
     if (items.length === 0) return [];
-    if (viewportCategory.value === "mobile") {
-      return items; // without cloning for mobile
+    if (viewportCategory.value === "tablet") {
+      const last = items[items.length - 1];
+      const first = items[0];
+      return [last, ...items, first]; // without cloning for mobile
     }
-    const last = items[items.length - 1];
-    const first = items[0];
-    return [last, ...items, first];
+
+    return items; // without cloning for mobile or desktop
   });
 
   // eslint-disable-next-line qwik/no-use-visible-task
@@ -82,7 +83,7 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
     const slideWidthWithGap = getSlideWidthWithGap(track);
 
     // if not mobile, set initial transform
-    if (viewportCategory.value !== "mobile") {
+    if (viewportCategory.value === "tablet") {
       track.style.transition = "none";
       //track.style.transform = `translateX(-${slideWidthWithGap}px)`;
       track.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
