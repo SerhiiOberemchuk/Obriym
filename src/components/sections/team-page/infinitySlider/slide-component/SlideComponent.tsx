@@ -2,7 +2,7 @@ import { component$, useStylesScoped$ } from "@qwik.dev/core";
 
 import styles from "./styles_slide.css?inline";
 import type { TeamMemberType } from "~/types/team-member";
-import ItemBtnPlus from "~/assets/icons/icon_btn_plus.svg?w=56&h=56&jsx";
+import IconPlus from "~/assets/icons/icon_plus.svg?w=24&h=24&jsx";
 
 export default component$(({ item }: { item: TeamMemberType }) => {
   useStylesScoped$(styles);
@@ -10,7 +10,7 @@ export default component$(({ item }: { item: TeamMemberType }) => {
   return (
     <div class="slide-component">
       <div class="slide-top">
-        <item.image class="slide-image" />
+        <item.image class="slide-image" draggable={false} />
       </div>
       <div class="slide-bottom">
         <div class="slide-text-wrp">
@@ -18,8 +18,8 @@ export default component$(({ item }: { item: TeamMemberType }) => {
           <p class="btn_header grey">{item.role}</p>
         </div>
 
-        <button class="slide-btn-plus">
-          <ItemBtnPlus />
+        <button class="slide-btn-plus ">
+          <IconPlus />
         </button>
       </div>
     </div>

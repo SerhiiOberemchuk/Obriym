@@ -22,6 +22,9 @@
   margin: 0 auto;
 }
 @media (min-width: 768px) {
+  .team_steps_section {
+    height: 824px;
+  }
   .team_steps_container_wrp {
     position: relative;
   }
@@ -42,6 +45,9 @@
 }
 
 @media (min-width: 1440px) {
+  .team_steps_section {
+    height: 1000px;
+  }
   .team_steps_container_wrp {
     position: static; /*  relative */
   }

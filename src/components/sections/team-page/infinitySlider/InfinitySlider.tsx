@@ -9,6 +9,8 @@ import {
 import { TEAM_MEMBERS } from "~/const/team";
 
 import styles from "./styles_slider.css?inline";
+import IconLeft from "~/assets/icons/icon_left.svg?w=24&h=24&jsx";
+import IconRight from "~/assets/icons/icon_right.svg?w=24&h=24&jsx";
 import SlideComponent from "./slide-component/SlideComponent";
 import { TeamMemberType } from "~/types/team-member";
 
@@ -178,8 +180,12 @@ export default component$(() => {
       {/* BUTTONS viewportCategory.value === "tablet"*/}
 
       <div class="inf_btn_controls">
-        <button onClick$={prevSlide}>&lt;</button>
-        <button onClick$={nextSlide}>&gt;</button>
+        <button onClick$={prevSlide}>
+          <IconLeft />
+        </button>
+        <button onClick$={nextSlide}>
+          <IconRight />
+        </button>
       </div>
 
       {/* SLIDER */}
