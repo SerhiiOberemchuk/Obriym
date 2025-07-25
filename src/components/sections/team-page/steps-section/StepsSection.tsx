@@ -2,6 +2,7 @@
 import { component$, useStylesScoped$ } from "@qwik.dev/core";
 
 import styles from "./styles_steps.css?inline";
+import { TEAM_MEMBERS } from "~/const/team";
 import PinkImg from "~/assets/images/pink.png?w=100&h=100&jsx";
 import InfinitySlider from "../infinitySlider/InfinitySlider";
 
@@ -19,7 +20,7 @@ export default component$(() => {
           </div>
         </div>
         <div class="inf_carousel_wrp">
-          <InfinitySlider />
+          <InfinitySlider items={TEAM_MEMBERS} />
         </div>
       </div>
 

@@ -6,7 +6,6 @@ import {
   $,
   useOnWindow,
 } from "@qwik.dev/core";
-import { TEAM_MEMBERS } from "~/const/team";
 
 import styles from "./styles_slider.css?inline";
 import IconLeft from "~/assets/icons/icon_left.svg?w=24&h=24&jsx";
@@ -28,11 +27,12 @@ export function getSlideWidthWithGap(track: HTMLElement | null): number {
   return slideWidth + gap;
 }
 
-export default component$(() => {
+export default component$(({ items }: { items: TeamMemberType[] }) => {
   useStylesScoped$(styles);
 
   //   const baseItems = useSignal(["a", "b", "c"]);
-  const baseItems = useSignal<TeamMemberType[]>([]);
+  // const baseItems = useSignal<TeamMemberType[]>([]);
+  const baseItems = useSignal(items);
   const trackRef = useSignal<HTMLElement>();
   const isPaused = useSignal(false);
   const slidesPerView = useSignal(1);
@@ -40,9 +40,9 @@ export default component$(() => {
   const viewportCategory = useSignal<"mobile" | "tablet" | "desktop">("mobile");
   const isAnimating = useSignal(false);
 
-  useVisibleTask$(() => {
-    baseItems.value = [...TEAM_MEMBERS]; // Initialize with team members
-  });
+  // useVisibleTask$(() => {
+  //   baseItems.value = [...TEAM_MEMBERS]; // Initialize with team members
+  // });
   // Update slidesPerView from CSS variable
   const updateSlidesPerViewFromCSS = $(() => {
     const rootStyles = getComputedStyle(document.documentElement);

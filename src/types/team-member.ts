@@ -1,8 +1,7 @@
-import type { FunctionComponent } from "@qwik.dev/core";
-
 export type TeamMemberType = {
   id: number;
   name: string;
   role: string;
-  image: FunctionComponent<{ class?: string; draggable?: boolean }>;
+  imageKey: "person1" | "person2" | "person3";
+  // image: FunctionComponent<{ class?: string; draggable?: boolean }>;
 };
