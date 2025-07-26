@@ -54,7 +54,7 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
       const first = items[0];
       return [last, ...items, first]; // without cloning for mobile
     }
-
+    console.log("baseItems1");
     return items; // without cloning for mobile or desktop
   });
 
@@ -71,9 +71,11 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
       track.style.transition = "none";
       //track.style.transform = `translateX(-${slideWidthWithGap}px)`;
       track.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
+
       requestAnimationFrame(() => {
-        isReady.value = true;
         track.style.transition = "transform 0.4s ease";
+
+        isReady.value = true;
       });
     } else {
       isReady.value = true;
@@ -158,7 +160,7 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
   //Next
   // В nextSlide:
   const nextSlide = $(() => {
-    if (isAnimating.value) return;
+    if (!isReady.value || isAnimating.value) return;
     isAnimating.value = true;
 
     const track = trackRef.value;
@@ -167,6 +169,7 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
     const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
 
     //animation shift to the left from 0 to -slideWidth
+
     track.style.transition = "transform 0.4s ease";
 
     track.style.transform = `translate3d(-${slideWidthWithGap * 2}px, 0, 0)`;
@@ -194,7 +197,7 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
 
   // Previous slide
   const prevSlide = $(() => {
-    if (isAnimating.value) return;
+    if (!isReady.value || isAnimating.value) return;
     isAnimating.value = true;
 
     const track = trackRef.value;
