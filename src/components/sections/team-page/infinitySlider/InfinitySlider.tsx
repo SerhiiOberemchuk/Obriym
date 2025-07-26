@@ -36,6 +36,7 @@ export function getSlideWidthWithGap(track: HTMLElement | null): number {
 export default component$(({ viewportCategory, items }: InfinitySliderProps) => {
   useStylesScoped$(styles);
 
+  const itemsOriginalSignal = useSignal<TeamMemberType[]>(items);
   const currentMegaIndex = useSignal(2);
   const itemsSignal = useSignal<TeamMemberType[]>(items);
   const trackRef = useSignal<HTMLElement | undefined>();
@@ -112,9 +113,10 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
     if (!track) return;
     // from first real slide
     let currentIndex = 1;
-
-    const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
+    const cloneCount = 1; //pro side
+    const realSlidesCount = itemsOriginalSignal.value.length;
     const totalSlides = baseItems.value.length;
+    const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
 
     const interval = setInterval(() => {
       isAnimating.value = true;
@@ -127,6 +129,7 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
       const onTransitionEnd = () => {
         track.removeEventListener("transitionend", onTransitionEnd);
 
+        activeIndex.value = (currentIndex - cloneCount + realSlidesCount) % realSlidesCount;
         if (currentIndex >= totalSlides - 1) {
           currentIndex = 1;
           track.style.transition = "none";
@@ -235,7 +238,7 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
       </div>
       {isReady.value && (
         <div class="inf_carousel-dots">
-          {baseItems.value.map((_, i) => (
+          {itemsOriginalSignal.value.map((_, i) => (
             <div class={`inf_dot ${i === activeIndex.value ? "active" : ""}`} key={`dot-${i}`} />
           ))}
         </div>
