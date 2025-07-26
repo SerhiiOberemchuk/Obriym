@@ -16,7 +16,10 @@
   margin-top: 2rem;
 }
 .list {
-  height: calc(var(--servise-card-height-md) * 5 + var(--top-sticky-card-md) * 5);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: calc(var(--servise-card-height-md) * 5 + var(--top-sticky-card-md) * 3);
 }
 
 .li_item {
@@ -46,7 +49,7 @@
 }
 @media (90rem >= width >= 48rem) {
   .list {
-    height: calc(var(--servise-card-height-t) * 5 + var(--top-sticky-card-t) * 5);
+    height: calc(var(--servise-card-height-t) * 5 + var(--top-sticky-card-t) * 3);
   }
   .li_item[data-num="0"] {
     background-color: var(--blue);
