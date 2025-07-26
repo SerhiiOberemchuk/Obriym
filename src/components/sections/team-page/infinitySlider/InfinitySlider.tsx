@@ -46,31 +46,10 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
   const isAnimating = useSignal(false);
   const isReady = useSignal(false);
 
-  // Update slidesPerView from CSS variable
-  // const updateViewport = $(() => {
-  //   const rootStyles = getComputedStyle(document.documentElement);
-  //   const cssSlidesPerView = rootStyles.getPropertyValue("--slides-inf-per-view");
-  //   const parsed = parseFloat(cssSlidesPerView.trim());
-  //   slidesPerView.value = parsed;
-
-  //   // Update viewportCategory based on parsed value
-  //   if (parsed >= 3) viewportCategory.value = "desktop";
-  //   else if (parsed > 1.5) viewportCategory.value = "tablet";
-  //   else viewportCategory.value = "mobile";
-  // });
-  //does not work when we come from another page
-  //useOnWindow("load", updateSlidesPerViewFromCSS);
-
-  // eslint-disable-next-line qwik/no-use-visible-task
-  // useVisibleTask$(() => {
-  //   updateViewport();
-  // });
-  // useOnWindow("resize", updateViewport);
-
   const baseItems = useComputed$(() => {
     const items = itemsSignal.value;
     if (items.length === 0) return [];
-    if (viewportCategory === "tablet") {
+    if (viewportCategory !== "desktop") {
       const last = items[items.length - 1];
       const first = items[0];
       return [last, ...items, first]; // without cloning for mobile
@@ -84,60 +63,93 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
     const track = trackRef.value;
     if (!track || baseItems.value.length === 0) return;
 
-    const slideWidthWithGap = getSlideWidthWithGap(track);
+    //const slideWidthWithGap = getSlideWidthWithGap(track);
+    const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
 
     // if not mobile, set initial transform
-    if (viewportCategory === "tablet") {
+    if (viewportCategory !== "desktop") {
       track.style.transition = "none";
       //track.style.transform = `translateX(-${slideWidthWithGap}px)`;
       track.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
-    }
-
-    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        isReady.value = true;
+        track.style.transition = "transform 0.4s ease";
+      });
+    } else {
       isReady.value = true;
-    });
+    }
   });
 
   // paused slider
   //autoscroll for mobile
+
+  // useVisibleTask$(({ cleanup }) => {
+  //   const interval = setInterval(() => {
+  //     if (!isReady.value || isPaused.value || viewportCategory !== "mobile" || isAnimating.value)
+  //       return;
+
+  //     const track = trackRef.value;
+
+  //     if (!track) return;
+
+  //     //const slideWidthWithGap = getSlideWidthWithGap(track);
+  //     const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
+
+  //     track.style.transition = "transform 0.4s ease";
+  //     // track.style.transform = `translateX(-${slideWidthWithGap}px)`;
+  //     track.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
+
+  //     setTimeout(() => {
+  //       const items = [...itemsSignal.value];
+  //       const first = items.shift()!;
+  //       items.push(first);
+  //       itemsSignal.value = items;
+
+  //       requestAnimationFrame(() => {
+  //         activeIndex.value = (activeIndex.value + 1) % itemsSignal.value.length;
+  //         if (track) {
+  //           track.style.transition = "none";
+  //           // track.style.transform = "translateX(0)";
+  //           track.style.transform = "translate3d(0, 0, 0)";
+  //         }
+  //       });
+  //     }, 400);
+  //   }, 3000);
+
+  //   cleanup(() => clearInterval(interval));
+  // });
   // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(({ cleanup }) => {
+    if (!isReady.value || isPaused.value || viewportCategory !== "mobile" || isAnimating.value)
+      return;
+    const track = trackRef.value;
+    if (!track) return;
+    // from first real slide
+    let currentIndex = 1;
+
+    const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
+    const totalSlides = baseItems.value.length;
+
     const interval = setInterval(() => {
-      if (isPaused.value || viewportCategory !== "mobile" || isAnimating.value) return;
+      isAnimating.value = true;
 
-      const track = trackRef.value;
-
-      if (!track) return;
-
-      //const slideWidthWithGap = getSlideWidthWithGap(track);
-      const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
-
+      currentIndex++;
+      console.log("viewportCategory2", viewportCategory);
       track.style.transition = "transform 0.4s ease";
-      // track.style.transform = `translateX(-${slideWidthWithGap}px)`;
-      track.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
+      track.style.transform = `translate3d(-${slideWidthWithGap * currentIndex}px, 0, 0)`;
 
-      setTimeout(() => {
-        const items = [...itemsSignal.value];
-        const first = items.shift()!;
-        items.push(first);
-        itemsSignal.value = items;
+      const onTransitionEnd = () => {
+        track.removeEventListener("transitionend", onTransitionEnd);
 
-        //active dots
-        // activeIndex.value = (activeIndex.value + 1) % itemsSignal.value.length;
-        // Reset the track position
-        // if (track) {
-        //   track.style.transition = "none";
-        //   track.style.transform = "translate3d(0, 0, 0)";
-        // }
-        requestAnimationFrame(() => {
-          activeIndex.value = (activeIndex.value + 1) % itemsSignal.value.length;
-          if (track) {
-            track.style.transition = "none";
-            // track.style.transform = "translateX(0)";
-            track.style.transform = "translate3d(0, 0, 0)";
-          }
-        });
-      }, 400);
+        if (currentIndex >= totalSlides - 1) {
+          currentIndex = 1;
+          track.style.transition = "none";
+          track.style.transform = `translate3d(-${slideWidthWithGap * currentIndex}px, 0, 0)`;
+        }
+        isAnimating.value = false;
+      };
+
+      track.addEventListener("transitionend", onTransitionEnd);
     }, 3000);
 
     cleanup(() => clearInterval(interval));
@@ -152,12 +164,11 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
     const track = trackRef.value;
     if (!track) return;
 
-    // const slideWidthWithGap = getSlideWidthWithGap(track);
     const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
 
     //animation shift to the left from 0 to -slideWidth
     track.style.transition = "transform 0.4s ease";
-    //track.style.transform = `translateX(-${slideWidthWithGap * 2}px)`;
+
     track.style.transform = `translate3d(-${slideWidthWithGap * 2}px, 0, 0)`;
 
     setTimeout(() => {
@@ -170,7 +181,6 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
       //reset the track position
       track.style.transition = "none";
 
-      //track.style.transform = `translateX(-${slideWidthWithGap}px)`;
       track.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
 
       // allow new animation
