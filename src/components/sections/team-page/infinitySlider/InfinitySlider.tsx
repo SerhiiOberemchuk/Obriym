@@ -5,6 +5,7 @@ import {
   useStylesScoped$,
   $,
   useComputed$,
+  Signal,
 } from "@qwik.dev/core";
 
 import styles from "./styles_slider.css?inline";
@@ -14,7 +15,7 @@ import SlideComponent from "./slide-component/SlideComponent";
 import { TeamMemberType } from "~/types/team-member";
 
 interface InfinitySliderProps {
-  viewportCategory: "mobile" | "tablet" | "desktop";
+  viewportCategory: Signal<string>;
   items: TeamMemberType[];
 }
 
@@ -47,12 +48,12 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
   const baseItems = useComputed$(() => {
     const items = itemsSignal.value;
     if (items.length === 0) return [];
-    if (viewportCategory === "mobile") {
+    if (viewportCategory.value === "mobile") {
       const last = items[items.length - 1];
       const first = items[0];
       return [last, ...items, first];
     }
-    if (viewportCategory === "tablet") {
+    if (viewportCategory.value === "tablet") {
       const cloneCount = 2;
 
       // from end
@@ -73,7 +74,7 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
 
     const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
 
-    if (viewportCategory === "mobile") {
+    if (viewportCategory.value === "mobile") {
       track.style.transition = "none";
       track.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
 
@@ -82,7 +83,7 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
 
         isReady.value = true;
       });
-    } else if (viewportCategory === "tablet") {
+    } else if (viewportCategory.value === "tablet") {
       const cloneCount = 2;
       track.style.transition = "none";
 
@@ -100,7 +101,12 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
   //for mobile
   // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(({ cleanup }) => {
-    if (!isReady.value || isPaused.value || viewportCategory !== "mobile" || isAnimating.value)
+    if (
+      !isReady.value ||
+      isPaused.value ||
+      viewportCategory.value !== "mobile" ||
+      isAnimating.value
+    )
       return;
     const track = trackRef.value;
     if (!track) return;

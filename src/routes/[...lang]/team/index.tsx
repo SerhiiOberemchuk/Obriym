@@ -36,15 +36,8 @@ export default component$(() => {
   return (
     <>
       <HeroSection />
-      <StepsSection viewportCategory={viewportCategory.value} />
+      <StepsSection viewportCategory={viewportCategory} />
       <SectionContact />
-
-      {/* Uncomment to use the InfinitySlider component */}
-      {/* <InfinitySlider /> */}
-
-      {/* Uncomment to use the following components */}
-      {/* <InfinityCarousel />
-      <InfinityScroll2 /> */}
 
       {/* <p>{t(`runtime.${key}`)}</p> */}
     </>

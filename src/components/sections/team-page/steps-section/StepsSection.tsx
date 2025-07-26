@@ -1,15 +1,15 @@
-import { component$, useStylesScoped$ } from "@qwik.dev/core";
+import { component$, useStylesScoped$, Signal } from "@qwik.dev/core";
 
 import styles from "./styles_steps.css?inline";
 import { TEAM_MEMBERS } from "~/const/team";
 import PinkImg from "~/assets/images/pink.png?w=100&h=100&jsx";
 import InfinitySlider from "../infinitySlider/InfinitySlider";
 
-interface StepsSectionProps {
-  viewportCategory: "mobile" | "tablet" | "desktop";
-}
+// interface StepsSectionProps {
+//   viewportCategory: "mobile" | "tablet" | "desktop";
+// }
 
-export default component$(({ viewportCategory }: StepsSectionProps) => {
+export default component$(({ viewportCategory }: { viewportCategory: Signal<string> }) => {
   //   const t = inlineTranslate();
   useStylesScoped$(styles);
 
