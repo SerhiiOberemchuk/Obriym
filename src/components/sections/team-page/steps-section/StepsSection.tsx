@@ -5,7 +5,11 @@ import { TEAM_MEMBERS } from "~/const/team";
 import PinkImg from "~/assets/images/pink.png?w=100&h=100&jsx";
 import InfinitySlider from "../infinitySlider/InfinitySlider";
 
-export default component$(() => {
+interface StepsSectionProps {
+  viewportCategory: "mobile" | "tablet" | "desktop";
+}
+
+export default component$(({ viewportCategory }: StepsSectionProps) => {
   //   const t = inlineTranslate();
   useStylesScoped$(styles);
 
@@ -19,7 +23,7 @@ export default component$(() => {
           </div>
         </div>
         <div class="inf_carousel_wrp">
-          <InfinitySlider items={TEAM_MEMBERS} />
+          <InfinitySlider items={TEAM_MEMBERS} viewportCategory={viewportCategory} />
         </div>
       </div>
     </section>

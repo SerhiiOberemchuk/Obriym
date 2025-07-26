@@ -4,7 +4,6 @@ import {
   useVisibleTask$,
   useStylesScoped$,
   $,
-  useOnWindow,
   useComputed$,
 } from "@qwik.dev/core";
 
@@ -13,6 +12,11 @@ import IconLeft from "~/assets/icons/icon_left.svg?w=24&h=24&jsx";
 import IconRight from "~/assets/icons/icon_right.svg?w=24&h=24&jsx";
 import SlideComponent from "./slide-component/SlideComponent";
 import { TeamMemberType } from "~/types/team-member";
+
+interface InfinitySliderProps {
+  viewportCategory: "mobile" | "tablet" | "desktop";
+  items: TeamMemberType[];
+}
 
 export function getSlideWidthWithGap(track: HTMLElement | null): number {
   if (!track) return 0;
@@ -28,7 +32,7 @@ export function getSlideWidthWithGap(track: HTMLElement | null): number {
   return slideWidth + gap;
 }
 
-export default component$(({ items }: { items: TeamMemberType[] }) => {
+export default component$(({ viewportCategory, items }: InfinitySliderProps) => {
   useStylesScoped$(styles);
 
   // const baseItems = useSignal<TeamMemberType[]>([]);
@@ -36,37 +40,37 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
   const itemsSignal = useSignal<TeamMemberType[]>(items);
   const trackRef = useSignal<HTMLElement | undefined>();
   const isPaused = useSignal(false);
-  const slidesPerView = useSignal(1);
+  // const slidesPerView = useSignal(1);
   const activeIndex = useSignal(0);
-  const viewportCategory = useSignal<"mobile" | "tablet" | "desktop">("mobile");
+  // const viewportCategory = useSignal<"mobile" | "tablet" | "desktop">("mobile");
   const isAnimating = useSignal(false);
   const isReady = useSignal(false);
 
   // Update slidesPerView from CSS variable
-  const updateSlidesPerViewFromCSS = $(() => {
-    const rootStyles = getComputedStyle(document.documentElement);
-    const cssSlidesPerView = rootStyles.getPropertyValue("--slides-inf-per-view");
-    const parsed = parseFloat(cssSlidesPerView.trim());
-    slidesPerView.value = parsed;
+  // const updateViewport = $(() => {
+  //   const rootStyles = getComputedStyle(document.documentElement);
+  //   const cssSlidesPerView = rootStyles.getPropertyValue("--slides-inf-per-view");
+  //   const parsed = parseFloat(cssSlidesPerView.trim());
+  //   slidesPerView.value = parsed;
 
-    // Update viewportCategory based on parsed value
-    if (parsed >= 3) viewportCategory.value = "desktop";
-    else if (parsed > 1.5) viewportCategory.value = "tablet";
-    else viewportCategory.value = "mobile";
-  });
+  //   // Update viewportCategory based on parsed value
+  //   if (parsed >= 3) viewportCategory.value = "desktop";
+  //   else if (parsed > 1.5) viewportCategory.value = "tablet";
+  //   else viewportCategory.value = "mobile";
+  // });
   //does not work when we come from another page
   //useOnWindow("load", updateSlidesPerViewFromCSS);
 
   // eslint-disable-next-line qwik/no-use-visible-task
-  useVisibleTask$(() => {
-    updateSlidesPerViewFromCSS();
-  });
-  useOnWindow("resize", updateSlidesPerViewFromCSS);
+  // useVisibleTask$(() => {
+  //   updateViewport();
+  // });
+  // useOnWindow("resize", updateViewport);
 
   const baseItems = useComputed$(() => {
     const items = itemsSignal.value;
     if (items.length === 0) return [];
-    if (viewportCategory.value === "tablet") {
+    if (viewportCategory === "tablet") {
       const last = items[items.length - 1];
       const first = items[0];
       return [last, ...items, first]; // without cloning for mobile
@@ -83,7 +87,7 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
     const slideWidthWithGap = getSlideWidthWithGap(track);
 
     // if not mobile, set initial transform
-    if (viewportCategory.value === "tablet") {
+    if (viewportCategory === "tablet") {
       track.style.transition = "none";
       //track.style.transform = `translateX(-${slideWidthWithGap}px)`;
       track.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
@@ -99,7 +103,7 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
   // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(({ cleanup }) => {
     const interval = setInterval(() => {
-      if (isPaused.value || viewportCategory.value !== "mobile" || isAnimating.value) return;
+      if (isPaused.value || viewportCategory !== "mobile" || isAnimating.value) return;
 
       const track = trackRef.value;
 
@@ -241,16 +245,15 @@ export default component$(({ items }: { items: TeamMemberType[] }) => {
         onTouchEnd$={() => (isPaused.value = false)}
         onTouchCancel$={() => (isPaused.value = false)}
       >
-        {isReady.value && (
-          <>
-            {baseItems.value.map((item, i) => (
-              <div class="inf_carousel-slide" key={`slide-${item.id}-${i}`}>
-                {/* {item} */}
-                <SlideComponent item={item} />
-              </div>
-            ))}
-          </>
-        )}
+        {baseItems.value.map((item, i) => (
+          // <div class="inf_carousel-slide" key={`slide-${item.id}-${i}`}>
+          <div
+            class={`inf_carousel-slide ${!isReady.value ? "invisible" : ""}`}
+            key={`slide-${item.id}-${i}`}
+          >
+            <SlideComponent item={item} />
+          </div>
+        ))}
       </div>
       {isReady.value && (
         <div class="inf_carousel-dots">

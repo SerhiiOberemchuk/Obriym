@@ -1,3 +1,8 @@
+.invisible {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden; /* опционально */
+}
 .inf_carousel-container {
   overflow: hidden;
   width: 100%;
