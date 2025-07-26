@@ -24,6 +24,7 @@ footer {
   max-width: 32rem;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
 }
 .f_box_title img {
   margin-inline-start: 0.25rem;
