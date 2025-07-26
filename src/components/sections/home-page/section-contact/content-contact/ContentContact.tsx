@@ -5,6 +5,7 @@ import styles from "./styles_content.css?inline";
 import IconTelegram from "~/assets/icons/icon_telegram.svg?w=24&h24&jsx";
 import OberemImg from "~/assets/images/oberem-image.png?jsx";
 import IconSchedule from "~/assets/icons/icon_schedule.svg?w=64&h64&jsx";
+import Upwork from "~/assets/images/upwork-logo.png?w=120&h39&jsx";
 import LinkEmail from "~/components/common/link-email/LinkEmail";
 
 export default component$(() => {
@@ -35,6 +36,11 @@ export default component$(() => {
             </div>
           </div>
         </div>
+      </div>
+      {/* upwork */}
+      <div>
+        <p class="btn_header grey cc_upwork_text">Also find us anytime at Upwork</p>
+        <Upwork />
       </div>
       {/* calendly */}
       <div class="cc_calendly_box">
