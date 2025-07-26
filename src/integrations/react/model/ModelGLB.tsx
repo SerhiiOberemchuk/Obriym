@@ -6,11 +6,11 @@ import { useRef, useEffect, Suspense } from "react";
 import { Group } from "three";
 import { Canvas } from "@react-three/fiber";
 
-type Model = { model: "organicball" | "spring" };
+type Model = { model: "organicball" | "spring" | "gordian" };
 
 function ModelCopy({ model }: Model) {
   const group = useRef<Group>(null);
-  const { scene, animations } = useGLTF(`/src/models/${model}.glb`);
+  const { scene, animations } = useGLTF(`/models/${model}.glb`);
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
