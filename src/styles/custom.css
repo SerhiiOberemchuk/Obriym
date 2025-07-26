@@ -105,7 +105,7 @@ main {
 @media (min-width: 48rem) {
   :root {
     --slides-inf-per-view: 2;
-    --inf-gap: 1rem;
+    --inf-gap: 16px;
     --inf-container-padding: 40px;
   }
 }

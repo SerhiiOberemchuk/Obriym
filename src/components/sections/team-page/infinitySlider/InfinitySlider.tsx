@@ -28,7 +28,8 @@ export function getSlideWidthWithGap(track: HTMLElement | null): number {
 
   const totalGap = gap * (slides - 1);
   const slideWidth = (track.offsetWidth - totalGap - 1 * padding) / slides;
-
+  console.log("slideWidth  ", slideWidth);
+  console.log("gap  ", gap);
   return slideWidth + gap;
 }
 
@@ -36,7 +37,7 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
   useStylesScoped$(styles);
 
   // const baseItems = useSignal<TeamMemberType[]>([]);
-
+  const currentMegaIndex = useSignal(2);
   const itemsSignal = useSignal<TeamMemberType[]>(items);
   const trackRef = useSignal<HTMLElement | undefined>();
   const isPaused = useSignal(false);
@@ -49,12 +50,22 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
   const baseItems = useComputed$(() => {
     const items = itemsSignal.value;
     if (items.length === 0) return [];
-    if (viewportCategory !== "desktop") {
+    if (viewportCategory === "mobile") {
       const last = items[items.length - 1];
       const first = items[0];
       return [last, ...items, first]; // without cloning for mobile
     }
-    console.log("baseItems1");
+    if (viewportCategory === "tablet") {
+      const cloneCount = 2;
+
+      // from end
+      const clonesFromEnd = items.slice(-cloneCount);
+
+      // from start
+      const clonesFromStart = items.slice(0, cloneCount);
+
+      return [...clonesFromEnd, ...items, ...clonesFromStart];
+    }
     return items; // without cloning for mobile or desktop
   });
 
@@ -67,14 +78,23 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
     const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
 
     // if not mobile, set initial transform
-    if (viewportCategory !== "desktop") {
+    if (viewportCategory === "mobile") {
       track.style.transition = "none";
-      //track.style.transform = `translateX(-${slideWidthWithGap}px)`;
       track.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
 
       requestAnimationFrame(() => {
         track.style.transition = "transform 0.4s ease";
 
+        isReady.value = true;
+      });
+    } else if (viewportCategory === "tablet") {
+      const cloneCount = 2;
+      track.style.transition = "none";
+      console.log("slideWidthWithGap 2 ", slideWidthWithGap);
+      track.style.transform = `translate3d(-${slideWidthWithGap * cloneCount}px, 0, 0)`;
+
+      requestAnimationFrame(() => {
+        track.style.transition = "transform 0.4s ease";
         isReady.value = true;
       });
     } else {
@@ -136,7 +156,7 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
       isAnimating.value = true;
 
       currentIndex++;
-      console.log("viewportCategory2", viewportCategory);
+
       track.style.transition = "transform 0.4s ease";
       track.style.transform = `translate3d(-${slideWidthWithGap * currentIndex}px, 0, 0)`;
 
@@ -159,42 +179,69 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
 
   //Next
   // В nextSlide:
+  // const nextSlide = $(() => {
+  //   if (!isReady.value || isAnimating.value) return;
+  //   isAnimating.value = true;
+
+  //   const track = trackRef.value;
+  //   if (!track) return;
+
+  //   const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
+
+  //   //animation shift to the left from 0 to -slideWidth
+
+  //   track.style.transition = "transform 0.4s ease";
+
+  //   track.style.transform = `translate3d(-${slideWidthWithGap * 2}px, 0, 0)`;
+
+  //   setTimeout(() => {
+  //     // after the animation, we change the order of items- first item to the end
+  //     const items = [...itemsSignal.value];
+  //     const first = items.shift()!;
+  //     items.push(first);
+  //     itemsSignal.value = items;
+
+  //     //reset the track position
+  //     track.style.transition = "none";
+
+  //     track.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
+
+  //     // allow new animation
+  //     isAnimating.value = false;
+
+  //     // update active index for dots
+
+  //     // activeIndex.value = (activeIndex.value + 1) % itemsSignal.value.length;
+  //   }, 400);
+  // });
   const nextSlide = $(() => {
     if (!isReady.value || isAnimating.value) return;
-    isAnimating.value = true;
-
     const track = trackRef.value;
     if (!track) return;
 
     const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
+    isAnimating.value = true;
 
-    //animation shift to the left from 0 to -slideWidth
+    currentMegaIndex.value += 1;
 
     track.style.transition = "transform 0.4s ease";
+    track.style.transform = `translate3d(-${slideWidthWithGap * currentMegaIndex.value}px, 0, 0)`;
 
-    track.style.transform = `translate3d(-${slideWidthWithGap * 2}px, 0, 0)`;
+    const onTransitionEnd = () => {
+      track.removeEventListener("transitionend", onTransitionEnd);
 
-    setTimeout(() => {
-      // after the animation, we change the order of items- first item to the end
-      const items = [...itemsSignal.value];
-      const first = items.shift()!;
-      items.push(first);
-      itemsSignal.value = items;
+      console.log("baseItems.value.length ", baseItems.value.length);
+      if (currentMegaIndex.value === baseItems.value.length - 2) {
+        currentMegaIndex.value = 2;
+        track.style.transition = "none";
+        track.style.transform = `translate3d(-${slideWidthWithGap * currentMegaIndex.value}px, 0, 0)`;
+      }
 
-      //reset the track position
-      track.style.transition = "none";
-
-      track.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
-
-      // allow new animation
       isAnimating.value = false;
+    };
 
-      // update active index for dots
-
-      // activeIndex.value = (activeIndex.value + 1) % itemsSignal.value.length;
-    }, 400);
+    track.addEventListener("transitionend", onTransitionEnd);
   });
-
   // Previous slide
   const prevSlide = $(() => {
     if (!isReady.value || isAnimating.value) return;
