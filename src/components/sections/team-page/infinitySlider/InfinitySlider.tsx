@@ -28,22 +28,19 @@ export function getSlideWidthWithGap(track: HTMLElement | null): number {
 
   const totalGap = gap * (slides - 1);
   const slideWidth = (track.offsetWidth - totalGap - 1 * padding) / slides;
-  console.log("slideWidth  ", slideWidth);
-  console.log("gap  ", gap);
+
   return slideWidth + gap;
 }
 
 export default component$(({ viewportCategory, items }: InfinitySliderProps) => {
   useStylesScoped$(styles);
 
-  // const baseItems = useSignal<TeamMemberType[]>([]);
   const currentMegaIndex = useSignal(2);
   const itemsSignal = useSignal<TeamMemberType[]>(items);
   const trackRef = useSignal<HTMLElement | undefined>();
   const isPaused = useSignal(false);
-  // const slidesPerView = useSignal(1);
   const activeIndex = useSignal(0);
-  // const viewportCategory = useSignal<"mobile" | "tablet" | "desktop">("mobile");
+
   const isAnimating = useSignal(false);
   const isReady = useSignal(false);
 
@@ -53,7 +50,7 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
     if (viewportCategory === "mobile") {
       const last = items[items.length - 1];
       const first = items[0];
-      return [last, ...items, first]; // without cloning for mobile
+      return [last, ...items, first];
     }
     if (viewportCategory === "tablet") {
       const cloneCount = 2;
@@ -66,7 +63,7 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
 
       return [...clonesFromEnd, ...items, ...clonesFromStart];
     }
-    return items; // without cloning for mobile or desktop
+    return items; // without cloning for  desktop
   });
 
   // eslint-disable-next-line qwik/no-use-visible-task
@@ -74,10 +71,8 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
     const track = trackRef.value;
     if (!track || baseItems.value.length === 0) return;
 
-    //const slideWidthWithGap = getSlideWidthWithGap(track);
     const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
 
-    // if not mobile, set initial transform
     if (viewportCategory === "mobile") {
       track.style.transition = "none";
       track.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
@@ -90,7 +85,7 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
     } else if (viewportCategory === "tablet") {
       const cloneCount = 2;
       track.style.transition = "none";
-      console.log("slideWidthWithGap 2 ", slideWidthWithGap);
+
       track.style.transform = `translate3d(-${slideWidthWithGap * cloneCount}px, 0, 0)`;
 
       requestAnimationFrame(() => {
@@ -102,44 +97,7 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
     }
   });
 
-  // paused slider
-  //autoscroll for mobile
-
-  // useVisibleTask$(({ cleanup }) => {
-  //   const interval = setInterval(() => {
-  //     if (!isReady.value || isPaused.value || viewportCategory !== "mobile" || isAnimating.value)
-  //       return;
-
-  //     const track = trackRef.value;
-
-  //     if (!track) return;
-
-  //     //const slideWidthWithGap = getSlideWidthWithGap(track);
-  //     const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
-
-  //     track.style.transition = "transform 0.4s ease";
-  //     // track.style.transform = `translateX(-${slideWidthWithGap}px)`;
-  //     track.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
-
-  //     setTimeout(() => {
-  //       const items = [...itemsSignal.value];
-  //       const first = items.shift()!;
-  //       items.push(first);
-  //       itemsSignal.value = items;
-
-  //       requestAnimationFrame(() => {
-  //         activeIndex.value = (activeIndex.value + 1) % itemsSignal.value.length;
-  //         if (track) {
-  //           track.style.transition = "none";
-  //           // track.style.transform = "translateX(0)";
-  //           track.style.transform = "translate3d(0, 0, 0)";
-  //         }
-  //       });
-  //     }, 400);
-  //   }, 3000);
-
-  //   cleanup(() => clearInterval(interval));
-  // });
+  //for mobile
   // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(({ cleanup }) => {
     if (!isReady.value || isPaused.value || viewportCategory !== "mobile" || isAnimating.value)
@@ -178,42 +136,6 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
   });
 
   //Next
-  // В nextSlide:
-  // const nextSlide = $(() => {
-  //   if (!isReady.value || isAnimating.value) return;
-  //   isAnimating.value = true;
-
-  //   const track = trackRef.value;
-  //   if (!track) return;
-
-  //   const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
-
-  //   //animation shift to the left from 0 to -slideWidth
-
-  //   track.style.transition = "transform 0.4s ease";
-
-  //   track.style.transform = `translate3d(-${slideWidthWithGap * 2}px, 0, 0)`;
-
-  //   setTimeout(() => {
-  //     // after the animation, we change the order of items- first item to the end
-  //     const items = [...itemsSignal.value];
-  //     const first = items.shift()!;
-  //     items.push(first);
-  //     itemsSignal.value = items;
-
-  //     //reset the track position
-  //     track.style.transition = "none";
-
-  //     track.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
-
-  //     // allow new animation
-  //     isAnimating.value = false;
-
-  //     // update active index for dots
-
-  //     // activeIndex.value = (activeIndex.value + 1) % itemsSignal.value.length;
-  //   }, 400);
-  // });
   const nextSlide = $(() => {
     if (!isReady.value || isAnimating.value) return;
     const track = trackRef.value;
@@ -230,7 +152,6 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
     const onTransitionEnd = () => {
       track.removeEventListener("transitionend", onTransitionEnd);
 
-      console.log("baseItems.value.length ", baseItems.value.length);
       if (currentMegaIndex.value === baseItems.value.length - 2) {
         currentMegaIndex.value = 2;
         track.style.transition = "none";
@@ -242,50 +163,41 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
 
     track.addEventListener("transitionend", onTransitionEnd);
   });
+
   // Previous slide
   const prevSlide = $(() => {
     if (!isReady.value || isAnimating.value) return;
-    isAnimating.value = true;
 
     const track = trackRef.value;
     if (!track) return;
 
     const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
+    isAnimating.value = true;
 
-    // change the order of items in baseItems
+    currentMegaIndex.value -= 1;
 
-    const items = [...itemsSignal.value];
-    const last = items.pop()!;
-    items.unshift(last);
-    itemsSignal.value = items;
+    track.style.transition = "transform 0.4s ease";
+    track.style.transform = `translate3d(-${slideWidthWithGap * currentMegaIndex.value}px, 0, 0)`;
 
-    // without animation, move the track to the left by slideWidth
-    track.style.transition = "none";
+    const onTransitionEnd = () => {
+      track.removeEventListener("transitionend", onTransitionEnd);
 
-    //track.style.transform = `translateX(-${slideWidthWithGap * 2}px)`;
-    track.style.transform = `translate3d(-${slideWidthWithGap * 2}px, 0, 0)`;
+      // if we are at the first ind clonedslide, go to the last real slide
+      if (currentMegaIndex.value === 1) {
+        currentMegaIndex.value = baseItems.value.length - 3;
 
-    // Double rAF: ensures the browser applies the initial transform
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        track.style.transition = "transform 0.4s ease";
+        track.style.transition = "none";
+        track.style.transform = `translate3d(-${slideWidthWithGap * currentMegaIndex.value}px, 0, 0)`;
+      }
 
-        //track.style.transform = `translateX(-${slideWidthWithGap}px)`;
-        track.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
-      });
-    });
-
-    // Reset the flag after the animation is complete
-    setTimeout(() => {
       isAnimating.value = false;
-      // activeIndex.value =
-      //   (activeIndex.value - 1 + itemsSignal.value.length) % itemsSignal.value.length;
-    }, 400); // same as transition duration
+    };
+
+    track.addEventListener("transitionend", onTransitionEnd);
   });
   return (
     <div class="inf_carousel-container">
       {/* BUTTONS viewportCategory.value === "tablet"*/}
-
       <div class="inf_btn_controls">
         <button onClick$={prevSlide}>
           <IconLeft />
@@ -358,3 +270,79 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
 //       updateViewport();
 //     }),
 //   );
+
+// const prevSlide = $(() => {
+//   if (!isReady.value || isAnimating.value) return;
+//   isAnimating.value = true;
+
+//   const track = trackRef.value;
+//   if (!track) return;
+
+//   const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
+
+//   // change the order of items in baseItems
+
+//   const items = [...itemsSignal.value];
+//   const last = items.pop()!;
+//   items.unshift(last);
+//   itemsSignal.value = items;
+
+//   // without animation, move the track to the left by slideWidth
+//   track.style.transition = "none";
+
+//   //track.style.transform = `translateX(-${slideWidthWithGap * 2}px)`;
+//   track.style.transform = `translate3d(-${slideWidthWithGap * 2}px, 0, 0)`;
+
+//   // Double rAF: ensures the browser applies the initial transform
+//   requestAnimationFrame(() => {
+//     requestAnimationFrame(() => {
+//       track.style.transition = "transform 0.4s ease";
+
+//       //track.style.transform = `translateX(-${slideWidthWithGap}px)`;
+//       track.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
+//     });
+//   });
+
+//   // Reset the flag after the animation is complete
+//   setTimeout(() => {
+//     isAnimating.value = false;
+//     // activeIndex.value =
+//     //   (activeIndex.value - 1 + itemsSignal.value.length) % itemsSignal.value.length;
+//   }, 400); // same as transition duration
+// });
+// В nextSlide:
+// const nextSlide = $(() => {
+//   if (!isReady.value || isAnimating.value) return;
+//   isAnimating.value = true;
+
+//   const track = trackRef.value;
+//   if (!track) return;
+
+//   const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
+
+//   //animation shift to the left from 0 to -slideWidth
+
+//   track.style.transition = "transform 0.4s ease";
+
+//   track.style.transform = `translate3d(-${slideWidthWithGap * 2}px, 0, 0)`;
+
+//   setTimeout(() => {
+//     // after the animation, we change the order of items- first item to the end
+//     const items = [...itemsSignal.value];
+//     const first = items.shift()!;
+//     items.push(first);
+//     itemsSignal.value = items;
+
+//     //reset the track position
+//     track.style.transition = "none";
+
+//     track.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
+
+//     // allow new animation
+//     isAnimating.value = false;
+
+//     // update active index for dots
+
+//     // activeIndex.value = (activeIndex.value + 1) % itemsSignal.value.length;
+//   }, 400);
+// });
