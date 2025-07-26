@@ -20,4 +20,9 @@
   --background-page: #f6faff;
   --red: #e90206;
   --font-family: "Plus Jakarta Sans", sans-serif;
+
+  --top-sticky-card-md: 7.5rem;
+  --top-sticky-card-t: 4.75rem;
+  --servise-card-height-md: 40rem;
+  --servise-card-height-t: 36.25rem;
 }

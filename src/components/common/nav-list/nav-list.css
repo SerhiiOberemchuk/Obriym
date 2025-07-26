@@ -19,6 +19,7 @@
   background-color: var(--blue);
   border-radius: 48px;
   padding-block: 2px;
+  z-index: 1000;
 }
 .nav_list[data-place="header"] {
   flex-direction: row;
