@@ -61,7 +61,7 @@ export default component$(() => {
   return (
     <section class="sh_section">
       <div class="container">
-        <h2 class="body_big grey title triggertitle">
+        <h2 class="body_big grey_dark title triggertitle">
           {t(
             "home.shsection@@{{name}} — from first spark to full launch.<br> From insight to execution.<br> We plan, design, develop, and launch products that make a real impact.",
             { name: "OBRIYM" },

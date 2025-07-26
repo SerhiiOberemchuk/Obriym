@@ -30,7 +30,7 @@ export default component$(() => {
             {t("home.stitle.5span@@concept to launch")}
           </span>
         </h1>
-        <ImgHeroSl class="notebook mobile" />
+        <ImgHeroSl class="notebook mobile" alt="Image notebook" />
       </div>
     </section>
   );

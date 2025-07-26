@@ -12,11 +12,16 @@ export default component$(() => {
 
   return (
     <div class="f_social_wrapper">
-      <h4 class="H4">{t("footer.followUs@@Follow us on")}</h4>
+      <h2 class="H4">{t("footer.followUs@@Follow us on")}</h2>
       <ul class="f_social_list">
         {socialLinks.map(item => (
           <li key={item.network}>
-            <a href={item.link} target="_blank" rel="noopener noreferrer">
+            <a
+              href={item.link}
+              target="_blank"
+              aria-label={item.ariaLabel}
+              rel="noopener noreferrer"
+            >
               {item.network === "facebook" ? (
                 <IconFacebook class="f_social_icon" />
               ) : item.network === "linkedIn" ? (
