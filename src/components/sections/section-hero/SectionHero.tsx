@@ -1,8 +1,8 @@
 import { $, component$, useOnWindow, useStylesScoped$ } from "@qwik.dev/core";
-import styles from "./sh-styles.css?inline";
 import { inlineTranslate } from "qwik-speak";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import gsap from "gsap";
+import styles from "./sh-styles.css?inline";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default component$(() => {
   useStylesScoped$(styles);
@@ -10,7 +10,9 @@ export default component$(() => {
 
   useOnWindow(
     "load",
-    $(() => {
+    $(async () => {
+      const gsap = (await import("gsap")).default;
+      const ScrollTrigger = (await import("gsap/ScrollTrigger")).default;
       gsap.registerPlugin(ScrollTrigger);
 
       const words = gsap.utils.toArray<HTMLElement>(".fly_word");
@@ -65,9 +67,9 @@ export default component$(() => {
             { name: "OBRIYM" },
           )
             .split(" ")
-            .map((it, key) => (
+            .map((item, key) => (
               <span class="fly_word" key={key}>
-                {it}
+                {item}
               </span>
             ))}
         </h2>

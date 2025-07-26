@@ -43,10 +43,12 @@ function SceneCopy({
       gl={{ antialias: true }}
       dpr={[1, 2]}
       key={model}
+      aria-hidden={true}
+      aria-label={`3d model ${model}`}
     >
       <directionalLight position={[0, 0, 2]} intensity={5} />
       <Suspense fallback={null}>
-        <Center position={[0, 0, 0]} scale={1}>
+        <Center position={[0, 0, 0]} scale={3}>
           <ModelCopy model={model} />
         </Center>
       </Suspense>

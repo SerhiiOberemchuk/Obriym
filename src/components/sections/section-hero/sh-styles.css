@@ -1,5 +1,6 @@
 .sh_section {
   padding-block: 13.75rem;
+  overflow: hidden;
 }
 .title {
   display: flex;
