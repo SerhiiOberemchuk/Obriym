@@ -3,6 +3,10 @@ import { DocumentHead } from "@qwik.dev/router"; //routeLoader$
 import { inlineTranslate } from "qwik-speak";
 import SectionContact from "~/components/sections/home-page/section-contact/SectionContact";
 
+import SectionHero from "~/components/sections/section-hero/SectionHero";
+import Services from "~/components/sections/section-services/Services";
+import SectionTitle from "~/components/sections/section-title/SectionTitle";
+
 // export const useContactFormLoader = routeLoader$(() => ({
 //   services: [],
 //   budget: "",
@@ -14,6 +18,9 @@ import SectionContact from "~/components/sections/home-page/section-contact/Sect
 export default component$(() => {
   return (
     <>
+      <SectionTitle />
+      <SectionHero />
+      <Services />
       <SectionContact />
     </>
   );

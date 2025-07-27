@@ -2,13 +2,74 @@
   "home": {
     "contact-section": {
       "content": {
+        "oberem_img_alt": "Ritratto di Serhii, fondatore e CEO",
         "text1": "Hai un progetto?",
         "text2": "Parliamone!",
         "text3": "Iniziamo la conversazione ed esploriamo come possiamo realizzare la tua visione.",
-        "text4": "Fissa una chiamata con Serhii",
-        "oberem_img_alt": "Ritratto di Serhii, fondatore e CEO"
+        "text4": "Fissa una chiamata con Serhii"
       },
+      "oberem_img_alt": "Portrait of Serhii, founder and CEO",
       "title": "Contattaci "
+    },
+    "services": {
+      "1": {
+        "title": "Ricerca e strategia",
+        "descr": "Scopriamo insight, definiamo obiettivi e creiamo strategie chiare e orientate all'utente.",
+        "list": [
+          "Ricerca utente",
+          "Analisi di mercato",
+          "Analisi della concorrenza",
+          "Strategia di prodotto",
+          "Audit UX"
+        ]
+      },
+      "2": {
+        "title": "UX UI Design",
+        "descr": "Creiamo interfacce intuitive e gradevoli che offrono esperienze d’uso fluide e naturali.",
+        "list": ["Wireframe", "Prototipi", "Design UI", "Flussi UX", "Design system"]
+      },
+      "3": {
+        "title": "Branding",
+        "descr": "Costruiamo identità di marca uniche e coerenti che riflettano i tuoi valori e parlino al pubblico.",
+        "list": [
+          "Identità visiva",
+          "Design del logo",
+          "Linee guida brand",
+          "Tono di voce",
+          "Posizionamento del brand"
+        ]
+      },
+      "4": {
+        "title": "Sviluppo web e app",
+        "descr": "Trasformiamo il design in prodotti digitali performanti, scalabili e reattivi.",
+        "list": [
+          "Frontend Development",
+          "Backend Development",
+          "Integrazione CMS",
+          "Webflow / WordPress / Custom",
+          "Sviluppo app mobile"
+        ]
+      },
+      "5": {
+        "title": "Lancio e ottimizzazione",
+        "descr": "Garantiamo un lancio fluido e una crescita continua tramite test, analisi e miglioramento.",
+        "list": [
+          "Test QA",
+          "Ottimizzazione prestazioni",
+          "Test A/B",
+          "Setup Analytics",
+          "Miglioramento continuo"
+        ]
+      },
+      "title": "servizi"
+    },
+    "shsection": "{{name}} — dalla prima scintilla al lancio completo. Dall’intuizione all’esecuzione. Pianifichiamo, progettiamo, sviluppiamo e lanciamo prodotti che fanno davvero la differenza.",
+    "stitle": {
+      "1span": "Prodotti",
+      "2span": "digitali",
+      "3span": "completi",
+      "4span": "Dall`",
+      "5span": "idea al lancio"
     }
   }
 }

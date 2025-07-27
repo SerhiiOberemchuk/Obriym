@@ -2,6 +2,9 @@
   "navigation": {
     "about": "Chi siamo",
     "contact": "Contatti",
+    "linkHome": "Link alla home pege",
+    "linkLabel": "Link alla sezione",
+    "navTitle": "Navigazione principale",
     "portfolio": "Portfolio",
     "services": "Servizi",
     "team": "Scuadra"

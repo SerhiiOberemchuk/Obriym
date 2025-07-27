@@ -1,0 +1,25 @@
+.c_box_title {
+  display: flex;
+  align-items: center;
+  padding-block: 0.625rem;
+  gap: 0.5rem;
+}
+.c_title_icon {
+  width: 2rem;
+  height: 2rem;
+}
+@media (min-width: 48rem) {
+  .c_box_title {
+    gap: 0.625rem;
+  }
+  .c_title_icon {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+@media (min-width: 90rem) {
+  .c_title_icon {
+    width: 6.25rem;
+    height: 6.25rem;
+  }
+}
