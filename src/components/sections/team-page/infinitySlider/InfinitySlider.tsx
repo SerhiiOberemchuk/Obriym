@@ -7,8 +7,10 @@ import {
   useComputed$,
   Signal,
 } from "@qwik.dev/core";
+import { Modal } from "@qwik-ui/headless";
 
 import styles from "./styles_slider.css?inline";
+
 import IconLeft from "~/assets/icons/icon_left.svg?w=24&h=24&jsx";
 import IconRight from "~/assets/icons/icon_right.svg?w=24&h=24&jsx";
 import SlideComponent from "./slide-component/SlideComponent";
@@ -36,6 +38,11 @@ export function getSlideWidthWithGap(track: HTMLElement | null): number {
 export default component$(({ viewportCategory, items }: InfinitySliderProps) => {
   useStylesScoped$(styles);
 
+  // for modal
+  const isOpen = useSignal(false);
+  const selectedItem = useSignal<TeamMemberType | null>(null);
+
+  // for slider
   const itemsOriginalSignal = useSignal<TeamMemberType[]>(items);
   const currentMegaIndex = useSignal(2);
   const itemsSignal = useSignal<TeamMemberType[]>(items);
@@ -204,6 +211,12 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
 
     track.addEventListener("transitionend", onTransitionEnd);
   });
+
+  //for modal
+  const openModal = $((item: TeamMemberType) => {
+    selectedItem.value = item;
+    isOpen.value = true;
+  });
   return (
     <div class="inf_carousel-container">
       {/* BUTTONS viewportCategory.value === "tablet"*/}
@@ -228,11 +241,14 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
       >
         {baseItems.value.map((item, i) => (
           // <div class="inf_carousel-slide" key={`slide-${item.id}-${i}`}>
+
           <div
             class={`inf_carousel-slide ${!isReady.value ? "invisible" : ""}`}
             key={`slide-${item.id}-${i}`}
           >
-            <SlideComponent item={item} />
+            <SlideComponent item={item} onOpen$={$(() => openModal(item))} />
+            {/* // onOpen$={$(() => openModal(item))} onOpen$={() => openModal(item)}*/}
+            <div>Content {item.name}</div>
           </div>
         ))}
       </div>
@@ -243,6 +259,21 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
           ))}
         </div>
       )}
+      <Modal.Root bind:show={isOpen}>
+        <Modal.Panel class="modal-panel">
+          {selectedItem.value && (
+            <>
+              <Modal.Title>{selectedItem.value.name}</Modal.Title>
+              <Modal.Description>{selectedItem.value.role}</Modal.Description>
+              {/* любое другое содержимое */}
+
+              <Modal.Close class="modal-close">
+                <button>Закрыть</button>
+              </Modal.Close>
+            </>
+          )}
+        </Modal.Panel>
+      </Modal.Root>
     </div>
   );
 });

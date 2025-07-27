@@ -1,4 +1,4 @@
-import { component$, useStylesScoped$ } from "@qwik.dev/core";
+import { component$, useStylesScoped$, QRL } from "@qwik.dev/core";
 import type { JSX } from "@qwik.dev/core";
 
 import styles from "./styles_slide.css?inline";
@@ -15,22 +15,24 @@ const imageMap: Record<ImageKey, () => JSX.Element> = {
   person3: () => <Person3 class="slide-image" draggable={false} />,
 };
 
-export default component$(({ item }: { item: TeamMemberType }) => {
-  useStylesScoped$(styles);
+export default component$(
+  ({ item, onOpen$ }: { item: TeamMemberType; onOpen$: QRL<() => void> }) => {
+    useStylesScoped$(styles);
 
-  return (
-    <div class="slide-component">
-      <div class="slide-top">{imageMap[item.imageKey]()}</div>
-      <div class="slide-bottom">
-        <div class="slide-text-wrp">
-          <p class="H6"> {item.name}</p>
-          <p class="btn_header grey">{item.role}</p>
+    return (
+      <div class="slide-component">
+        <div class="slide-top">{imageMap[item.imageKey]()}</div>
+        <div class="slide-bottom">
+          <div class="slide-text-wrp">
+            <p class="H6"> {item.name}</p>
+            <p class="btn_header grey">{item.role}</p>
+          </div>
+
+          <button class="slide-btn-plus " onClick$={onOpen$}>
+            <IconPlus />
+          </button>
         </div>
-
-        <button class="slide-btn-plus ">
-          <IconPlus />
-        </button>
       </div>
-    </div>
-  );
-});
+    );
+  },
+);
