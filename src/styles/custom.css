@@ -169,7 +169,7 @@ main {
   gap: 0.5rem;
 } */
 
-.modal-panel button {
+.modal-close {
   position: absolute;
   left: 0.5rem;
   bottom: 0;

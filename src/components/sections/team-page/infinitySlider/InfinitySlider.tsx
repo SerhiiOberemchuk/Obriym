@@ -261,7 +261,6 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
           >
             <SlideComponent item={item} onOpen$={$(() => openModal(item))} />
             {/* // onOpen$={$(() => openModal(item))} onOpen$={() => openModal(item)}*/}
-            <div>Content {item.name}</div>
           </div>
         ))}
       </div>
@@ -278,7 +277,7 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
             <>
               <div class="modal-content">
                 <div>
-                  <Modal.Title class="modal-title body_big">{selectedItem.value.name}</Modal.Title>
+                  <h2 class="modal-title body_big">{selectedItem.value.name}</h2>
                   {/* <Modal.Description>{selectedItem.value.role}</Modal.Description> */}
                   {/* любое другое содержимое */}
                   <p class="H6 grey">{selectedItem.value.role}</p>
