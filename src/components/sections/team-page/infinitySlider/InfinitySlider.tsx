@@ -8,13 +8,13 @@ import {
   Signal,
   useTask$,
 } from "@qwik.dev/core";
-import { Modal } from "@qwik-ui/headless";
 
 import styles from "./styles_slider.css?inline";
 
 import IconLeft from "~/assets/icons/icon_left.svg?w=24&h=24&jsx";
 import IconRight from "~/assets/icons/icon_right.svg?w=24&h=24&jsx";
 import SlideComponent from "./slide-component/SlideComponent";
+import ModalWrapper from "~/components/common/modal-component/ModalComponent";
 import { TeamMemberType } from "~/types/team-member";
 
 interface InfinitySliderProps {
@@ -75,7 +75,7 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
     }
     return items; // without cloning for  desktop
   });
-  console.log("openModal2", isOpen.value);
+  console.log("selectedItem ", selectedItem.value);
   // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(() => {
     const track = trackRef.value;
@@ -230,6 +230,12 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
     selectedItem.value = item;
     isOpen.value = true;
   });
+  useTask$(({ track }) => {
+    const open = track(() => isOpen.value);
+    if (!open) {
+      selectedItem.value = null;
+    }
+  });
   return (
     <div class="inf_carousel-container">
       {/* BUTTONS viewportCategory.value === "tablet"*/}
@@ -271,15 +277,37 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
           ))}
         </div>
       )}
-      <Modal.Root bind:show={isOpen}>
+
+      <ModalWrapper show={isOpen}>
+        {selectedItem.value && (
+          <>
+            <div class="modal-content">
+              <div>
+                <h2 class="modal-title body_big">{selectedItem.value.name}</h2>
+
+                <p class="H6 grey">{selectedItem.value.role}</p>
+              </div>
+              <div class="modal-text-block">
+                <p class="btn_body grey">{selectedItem.value.description}</p>
+                <button>linkedin</button>
+              </div>
+            </div>
+          </>
+        )}
+      </ModalWrapper>
+    </div>
+  );
+});
+
+{
+  /* <Modal.Root bind:show={isOpen}>
         <Modal.Panel class="modal-panel">
           {selectedItem.value && (
             <>
               <div class="modal-content">
                 <div>
                   <h2 class="modal-title body_big">{selectedItem.value.name}</h2>
-                  {/* <Modal.Description>{selectedItem.value.role}</Modal.Description> */}
-                  {/* любое другое содержимое */}
+
                   <p class="H6 grey">{selectedItem.value.role}</p>
                 </div>
                 <div class="modal-text-block">
@@ -291,11 +319,8 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
             </>
           )}
         </Modal.Panel>
-      </Modal.Root>
-    </div>
-  );
-});
-
+      </Modal.Root> */
+}
 // quantity of cards in the carousel
 //   const updateViewport = $(() => {
 //     const width = window.innerWidth;
