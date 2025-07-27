@@ -6,6 +6,7 @@ import {
   $,
   useComputed$,
   Signal,
+  useTask$,
 } from "@qwik.dev/core";
 import { Modal } from "@qwik-ui/headless";
 
@@ -106,46 +107,58 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
     }
   });
 
+  // add it if we need
+  // // eslint-disable-next-line qwik/no-use-visible-task
+  // useVisibleTask$(() => {
+  //   isVisible.value = true;
+  // });
+
   //for mobile
-  // eslint-disable-next-line qwik/no-use-visible-task
-  useVisibleTask$(({ cleanup }) => {
+  useTask$(({ cleanup, track }) => {
+    // console.log("isOpen", isOpen.value);
+    track(() => isOpen.value);
+    track(() => isReady.value);
+    track(() => isPaused.value);
+    track(() => viewportCategory.value);
+
     if (
+      isOpen.value ||
       !isReady.value ||
       isPaused.value ||
-      viewportCategory.value !== "mobile" ||
-      isAnimating.value
+      viewportCategory.value !== "mobile"
+      //|| isAnimating.value
     )
       return;
-    const track = trackRef.value;
-    if (!track) return;
+    const trackR = trackRef.value;
+    if (!trackR) return;
     // from first real slide
     let currentIndex = 1;
     const cloneCount = 1; //pro side
     const realSlidesCount = itemsOriginalSignal.value.length;
     const totalSlides = baseItems.value.length;
-    const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
+    const slideWidthWithGap = Math.round(getSlideWidthWithGap(trackR));
 
     const interval = setInterval(() => {
       isAnimating.value = true;
 
       currentIndex++;
 
-      track.style.transition = "transform 0.4s ease";
-      track.style.transform = `translate3d(-${slideWidthWithGap * currentIndex}px, 0, 0)`;
+      trackR.style.transition = "transform 0.4s ease";
+      trackR.style.transform = `translate3d(-${slideWidthWithGap * currentIndex}px, 0, 0)`;
 
       const onTransitionEnd = () => {
-        track.removeEventListener("transitionend", onTransitionEnd);
+        trackR.removeEventListener("transitionend", onTransitionEnd);
 
         activeIndex.value = (currentIndex - cloneCount + realSlidesCount) % realSlidesCount;
         if (currentIndex >= totalSlides - 1) {
           currentIndex = 1;
-          track.style.transition = "none";
-          track.style.transform = `translate3d(-${slideWidthWithGap * currentIndex}px, 0, 0)`;
+          trackR.style.transition = "none";
+          trackR.style.transform = `translate3d(-${slideWidthWithGap * currentIndex}px, 0, 0)`;
         }
         isAnimating.value = false;
       };
 
-      track.addEventListener("transitionend", onTransitionEnd);
+      trackR.addEventListener("transitionend", onTransitionEnd);
     }, 3000);
 
     cleanup(() => clearInterval(interval));
@@ -216,6 +229,7 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
   const openModal = $((item: TeamMemberType) => {
     selectedItem.value = item;
     isOpen.value = true;
+    console.log("openModal2", isOpen.value);
   });
   return (
     <div class="inf_carousel-container">
@@ -262,15 +276,29 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
       <Modal.Root bind:show={isOpen}>
         <Modal.Panel class="modal-panel">
           {selectedItem.value && (
-            <>
-              <Modal.Title>{selectedItem.value.name}</Modal.Title>
-              <Modal.Description>{selectedItem.value.role}</Modal.Description>
-              {/* любое другое содержимое */}
+            <div class="modal-content">
+              <div>
+                <Modal.Title class="modal-title body_big">{selectedItem.value.name}</Modal.Title>
+                {/* <Modal.Description>{selectedItem.value.role}</Modal.Description> */}
+                {/* любое другое содержимое */}
+                <p class="H6 grey">{selectedItem.value.role}</p>
+              </div>
+              <div class="modal-text-block">
+                <p class="btn_body grey">
+                  Serhii is a strategic leader with a clear vision for how design, technology, and
+                  business intersect. As the CEO and co-founder of the agency, he brings over a
+                  decade of experience in building teams, managing complex projects, and scaling
+                  digital products. Before launching the agency. Serhii led digital transformation
+                  initiatives across multiple industries, where he identified the need for a more
+                  agile, design-driven approach to business growth.
+                </p>
+                <button>linkedin</button>
+              </div>
 
               <Modal.Close class="modal-close">
                 <button>Закрыть</button>
               </Modal.Close>
-            </>
+            </div>
           )}
         </Modal.Panel>
       </Modal.Root>
