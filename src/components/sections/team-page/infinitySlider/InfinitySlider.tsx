@@ -75,7 +75,7 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
     }
     return items; // without cloning for  desktop
   });
-
+  console.log("openModal2", isOpen.value);
   // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(() => {
     const track = trackRef.value;
@@ -229,7 +229,6 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
   const openModal = $((item: TeamMemberType) => {
     selectedItem.value = item;
     isOpen.value = true;
-    console.log("openModal2", isOpen.value);
   });
   return (
     <div class="inf_carousel-container">
@@ -276,29 +275,21 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
       <Modal.Root bind:show={isOpen}>
         <Modal.Panel class="modal-panel">
           {selectedItem.value && (
-            <div class="modal-content">
-              <div>
-                <Modal.Title class="modal-title body_big">{selectedItem.value.name}</Modal.Title>
-                {/* <Modal.Description>{selectedItem.value.role}</Modal.Description> */}
-                {/* любое другое содержимое */}
-                <p class="H6 grey">{selectedItem.value.role}</p>
+            <>
+              <div class="modal-content">
+                <div>
+                  <Modal.Title class="modal-title body_big">{selectedItem.value.name}</Modal.Title>
+                  {/* <Modal.Description>{selectedItem.value.role}</Modal.Description> */}
+                  {/* любое другое содержимое */}
+                  <p class="H6 grey">{selectedItem.value.role}</p>
+                </div>
+                <div class="modal-text-block">
+                  <p class="btn_body grey">{selectedItem.value.description}</p>
+                  <button>linkedin</button>
+                </div>
               </div>
-              <div class="modal-text-block">
-                <p class="btn_body grey">
-                  Serhii is a strategic leader with a clear vision for how design, technology, and
-                  business intersect. As the CEO and co-founder of the agency, he brings over a
-                  decade of experience in building teams, managing complex projects, and scaling
-                  digital products. Before launching the agency. Serhii led digital transformation
-                  initiatives across multiple industries, where he identified the need for a more
-                  agile, design-driven approach to business growth.
-                </p>
-                <button>linkedin</button>
-              </div>
-
-              <Modal.Close class="modal-close">
-                <button>Закрыть</button>
-              </Modal.Close>
-            </div>
+              <Modal.Close class="modal-close">X</Modal.Close>
+            </>
           )}
         </Modal.Panel>
       </Modal.Root>

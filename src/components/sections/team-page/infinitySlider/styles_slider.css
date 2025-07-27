@@ -126,13 +126,13 @@
   }
 }
 
-/* modal */
+/*MODAL*/
 .modal-content {
   display: flex;
   gap: 20px;
   flex-direction: column;
 
-  width: calc(100% - 2 * 38px);
+  width: 100%;
   background-color: white;
   border-radius: 40px;
   padding: 24px;
