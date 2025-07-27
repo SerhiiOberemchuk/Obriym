@@ -280,19 +280,22 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
 
       <ModalWrapper show={isOpen}>
         {selectedItem.value && (
-          <>
+          <div class="modal-wrapper">
+            <div class="modal-img-wrp"> IMAGE</div>
             <div class="modal-content">
-              <div>
-                <h2 class="modal-title body_big">{selectedItem.value.name}</h2>
+              {/* title */}
+              <div class="modal-title-block">
+                <h2 class=" body_big">{selectedItem.value.name}</h2>
 
                 <p class="H6 grey">{selectedItem.value.role}</p>
               </div>
+              {/* text-block*/}
               <div class="modal-text-block">
                 <p class="btn_body grey">{selectedItem.value.description}</p>
-                <button>linkedin</button>
+                <button class="btn-linkedin btn_body">LinkedIn</button>
               </div>
             </div>
-          </>
+          </div>
         )}
       </ModalWrapper>
     </div>
