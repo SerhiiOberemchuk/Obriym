@@ -24,7 +24,9 @@
   display: flex;
   gap: 0.75rem;
 }
-
+.cc_upwork_text {
+  margin-bottom: 0.75rem;
+}
 .cc_calendly_box {
   border-radius: 1.5rem;
   padding: 1.25rem;
