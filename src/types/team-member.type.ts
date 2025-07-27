@@ -6,3 +6,4 @@ export type TeamMemberType = {
   description: string;
   // image: FunctionComponent<{ class?: string; draggable?: boolean }>;
 };
+export type ImageKey = "person1" | "person2" | "person3";

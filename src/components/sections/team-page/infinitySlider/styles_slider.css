@@ -176,6 +176,8 @@
     align-items: center;
     justify-content: center;
     width: 40%;
+    padding-top: 48px;
+    padding-bottom: 48px;
   }
   .modal-content {
     width: 60%;

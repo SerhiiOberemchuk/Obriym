@@ -159,8 +159,8 @@ main {
   .modal-panel {
     padding: 2.375rem 2.875rem;
 
-    max-width: 1100px;
-    min-width: 690px;
+    /* max-width: 1100px; */
+    max-width: 744px;
     overflow: hidden;
   }
 }

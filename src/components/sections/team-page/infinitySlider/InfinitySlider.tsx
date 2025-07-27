@@ -15,7 +15,8 @@ import IconLeft from "~/assets/icons/icon_left.svg?w=24&h=24&jsx";
 import IconRight from "~/assets/icons/icon_right.svg?w=24&h=24&jsx";
 import SlideComponent from "./slide-component/SlideComponent";
 import ModalWrapper from "~/components/common/modal-component/ModalComponent";
-import { TeamMemberType } from "~/types/team-member";
+import { TeamMemberType } from "~/types/team-member.type";
+import { imageMap } from "~/const/team";
 
 interface InfinitySliderProps {
   viewportCategory: Signal<string>;
@@ -75,7 +76,7 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
     }
     return items; // without cloning for  desktop
   });
-  console.log("selectedItem ", selectedItem.value);
+
   // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(() => {
     const track = trackRef.value;
@@ -115,7 +116,6 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
 
   //for mobile
   useTask$(({ cleanup, track }) => {
-    // console.log("isOpen", isOpen.value);
     track(() => isOpen.value);
     track(() => isReady.value);
     track(() => isPaused.value);
@@ -281,7 +281,10 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
       <ModalWrapper show={isOpen}>
         {selectedItem.value && (
           <div class="modal-wrapper">
-            <div class="modal-img-wrp"> IMAGE</div>
+            <div class="modal-img-wrp">
+              {" "}
+              {selectedItem.value && imageMap[selectedItem.value.imageKey]()}
+            </div>
             <div class="modal-content">
               {/* title */}
               <div class="modal-title-block">
