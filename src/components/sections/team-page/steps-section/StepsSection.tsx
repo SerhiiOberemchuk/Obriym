@@ -1,4 +1,4 @@
-import { component$, useStylesScoped$, Signal } from "@qwik.dev/core";
+import { component$, useStylesScoped$ } from "@qwik.dev/core";
 
 import styles from "./styles_steps.css?inline";
 import { TEAM_MEMBERS } from "~/const/team";
@@ -9,7 +9,7 @@ import InfinitySlider from "../infinitySlider/InfinitySlider";
 //   viewportCategory: "mobile" | "tablet" | "desktop";
 // }
 
-export default component$(({ viewportCategory }: { viewportCategory: Signal<string> }) => {
+export default component$(() => {
   //   const t = inlineTranslate();
   useStylesScoped$(styles);
 
@@ -23,7 +23,7 @@ export default component$(({ viewportCategory }: { viewportCategory: Signal<stri
           </div>
         </div>
         <div class="inf_carousel_wrp">
-          <InfinitySlider items={TEAM_MEMBERS} viewportCategory={viewportCategory} />
+          <InfinitySlider items={TEAM_MEMBERS} />
         </div>
       </div>
     </section>

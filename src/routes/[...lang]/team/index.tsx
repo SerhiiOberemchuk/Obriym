@@ -1,4 +1,4 @@
-import { component$, useSignal, useVisibleTask$, $, useOnWindow } from "@qwik.dev/core";
+import { component$ } from "@qwik.dev/core";
 import { DocumentHead } from "@qwik.dev/router";
 import { inlineTranslate } from "qwik-speak";
 
@@ -9,34 +9,34 @@ import StepsSection from "~/components/sections/team-page/steps-section/StepsSec
 import SectionContact from "~/components/sections/home-page/section-contact/SectionContact";
 
 export default component$(() => {
-  const slidesPerView = useSignal(1);
-  const viewportCategory = useSignal<"mobile" | "tablet" | "desktop">("mobile");
+  // const slidesPerView = useSignal(1);
+  // const viewportCategory = useSignal<"mobile" | "tablet" | "desktop">("mobile");
   // const t = inlineTranslate();
 
   // const key = "dynamic";
 
-  const updateViewport = $(() => {
-    const rootStyles = getComputedStyle(document.documentElement);
+  // const updateViewport = $(() => {
+  //   const rootStyles = getComputedStyle(document.documentElement);
 
-    const cssSlidesPerView = rootStyles.getPropertyValue("--slides-inf-per-view");
-    const parsed = parseFloat(cssSlidesPerView.trim());
-    slidesPerView.value = parsed;
+  //   const cssSlidesPerView = rootStyles.getPropertyValue("--slides-inf-per-view");
+  //   const parsed = parseFloat(cssSlidesPerView.trim());
+  //   slidesPerView.value = parsed;
 
-    // Update viewportCategory based on parsed value
-    if (parsed >= 3) viewportCategory.value = "desktop";
-    else if (parsed > 1.5) viewportCategory.value = "tablet";
-    else viewportCategory.value = "mobile";
-  });
-  // eslint-disable-next-line qwik/no-use-visible-task
-  useVisibleTask$(() => {
-    updateViewport();
-  });
-  useOnWindow("resize", updateViewport);
+  //   // Update viewportCategory based on parsed value
+  //   if (parsed >= 3) viewportCategory.value = "desktop";
+  //   else if (parsed > 1.5) viewportCategory.value = "tablet";
+  //   else viewportCategory.value = "mobile";
+  // });
+
+  // useVisibleTask$(() => {
+  //   updateViewport();
+  // });
+  // useOnWindow("resize", updateViewport);
 
   return (
     <>
       <HeroSection />
-      <StepsSection viewportCategory={viewportCategory} />
+      <StepsSection />
       <SectionContact />
 
       {/* <p>{t(`runtime.${key}`)}</p> */}
