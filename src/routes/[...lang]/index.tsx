@@ -3,6 +3,7 @@ import { DocumentHead, routeLoader$ } from "@qwik.dev/router";
 import { inlineTranslate } from "qwik-speak";
 import SectionContact from "~/components/sections/section-contact/SectionContact";
 import SectionHero from "~/components/sections/section-hero/SectionHero";
+import SectionProjects from "~/components/sections/section-projects/SectionProjects";
 import Services from "~/components/sections/section-services/Services";
 import SectionTitle from "~/components/sections/section-title/SectionTitle";
 
@@ -20,6 +21,7 @@ export default component$(() => {
       <SectionTitle />
       <SectionHero />
       <Services />
+      <SectionProjects />
       <SectionContact />
     </>
   );

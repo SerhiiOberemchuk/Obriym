@@ -77,7 +77,7 @@ export default component$(() => {
     },
   ];
   return (
-    <section>
+    <section class="section">
       <div class="container">
         <SubTitle classes="title" section="ourTeam">
           {t("home.services.title@@services")}
