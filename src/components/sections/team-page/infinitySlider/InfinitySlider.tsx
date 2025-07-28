@@ -5,8 +5,8 @@ import {
   useStylesScoped$,
   $,
   useComputed$,
-  Signal,
   useTask$,
+  useContext,
 } from "@qwik.dev/core";
 
 import styles from "./styles_slider.css?inline";
@@ -17,9 +17,9 @@ import SlideComponent from "./slide-component/SlideComponent";
 import ModalWrapper from "~/components/common/modal-component/ModalComponent";
 import { TeamMemberType } from "~/types/team-member.type";
 import { imageMap } from "~/const/team";
+import { ViewportContext } from "~/routes/[...lang]/layout";
 
 interface InfinitySliderProps {
-  viewportCategory: Signal<string>;
   items: TeamMemberType[];
 }
 
@@ -37,9 +37,9 @@ export function getSlideWidthWithGap(track: HTMLElement | null): number {
   return slideWidth + gap;
 }
 
-export default component$(({ viewportCategory, items }: InfinitySliderProps) => {
+export default component$(({ items }: InfinitySliderProps) => {
   useStylesScoped$(styles);
-
+  const viewportCategory = useContext(ViewportContext);
   // for modal
   const isOpen = useSignal(false);
   const selectedItem = useSignal<TeamMemberType | null>(null);
@@ -74,9 +74,10 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
 
       return [...clonesFromEnd, ...items, ...clonesFromStart];
     }
+
     return items; // without cloning for  desktop
   });
-
+  // console.log("viewportCategory", viewportCategory.value);
   // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(() => {
     const track = trackRef.value;
@@ -104,6 +105,7 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
         isReady.value = true;
       });
     } else {
+      console.log("for desktop", viewportCategory.value);
       isReady.value = true;
     }
   });
@@ -166,6 +168,7 @@ export default component$(({ viewportCategory, items }: InfinitySliderProps) => 
 
   //Next
   const nextSlide = $(() => {
+    // console.log("in next");
     if (!isReady.value || isAnimating.value) return;
     const track = trackRef.value;
     if (!track) return;
