@@ -8,7 +8,7 @@ import { ContactSchema } from "~/schemas/contactSchema";
 import { ContactForm, ContactFormResponse } from "~/types/contact-form.type";
 import { AlertType } from "~/types/alert.type";
 
-import { useContactFormLoader } from "~/routes/[...lang]";
+import { useContactFormLoader } from "~/routes/[...lang]/layout";
 import { useFormAction } from "~/utils/useFormAction";
 
 import {
@@ -193,12 +193,12 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                     <textarea
                       {...props}
                       value={field.value}
+                      role="textbox"
                       id="message-textarea"
-                      // placeholder={
-                      //   modal
-                      //     ? t("app.form.message.placeholder.modal@@Add information")
-                      //     : t("app.form.message.placeholder.not-modal@@Add description")
-                      // }
+                      aria-multiline="true"
+                      aria-placeholder={t(
+                        "app.form.message.placeholder.not-modal@@Add information",
+                      )}
                       placeholder={t("app.form.message.placeholder.not-modal@@Add information")}
                       class={`btn_body grey_dark ic_form_textarea ${field.error ? "border-red" : ""}`}
                     >
