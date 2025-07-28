@@ -268,7 +268,7 @@ export default component$(({ items }: InfinitySliderProps) => {
       >
         {baseItems.value.map((item, i) => (
           // <div class="inf_carousel-slide" key={`slide-${item.id}-${i}`}>
-
+          //  ${!isReady.value ? "invisible" : ""}
           <div
             class={`inf_carousel-slide ${!isReady.value ? "invisible" : ""}`}
             key={`slide-${item.id}-${i}`}
