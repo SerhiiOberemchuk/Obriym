@@ -1,7 +1,6 @@
 import {
   component$,
   useSignal,
-  useVisibleTask$,
   useStylesScoped$,
   $,
   useComputed$,
@@ -78,35 +77,41 @@ export default component$(({ items }: InfinitySliderProps) => {
     return items; // without cloning for  desktop
   });
   // console.log("viewportCategory", viewportCategory.value);
-  // eslint-disable-next-line qwik/no-use-visible-task
-  useVisibleTask$(() => {
-    const track = trackRef.value;
-    if (!track || baseItems.value.length === 0) return;
 
-    const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
+  useTask$(({ track }) => {
+    track(() => viewportCategory.value);
+    const trackR = trackRef.value;
+    if (!trackR || baseItems.value.length === 0) return;
+
+    const slideWidthWithGap = Math.round(getSlideWidthWithGap(trackR));
 
     if (viewportCategory.value === "mobile") {
-      track.style.transition = "none";
-      track.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
+      trackR.style.transition = "none";
+      trackR.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
 
       requestAnimationFrame(() => {
-        track.style.transition = "transform 0.4s ease";
+        trackR.style.transition = "transform 0.4s ease";
 
         isReady.value = true;
       });
     } else if (viewportCategory.value === "tablet") {
       const cloneCount = 2;
-      track.style.transition = "none";
+      trackR.style.transition = "none";
 
-      track.style.transform = `translate3d(-${slideWidthWithGap * cloneCount}px, 0, 0)`;
+      trackR.style.transform = `translate3d(-${slideWidthWithGap * cloneCount}px, 0, 0)`;
 
       requestAnimationFrame(() => {
-        track.style.transition = "transform 0.4s ease";
+        trackR.style.transition = "transform 0.4s ease";
         isReady.value = true;
       });
     } else {
-      console.log("for desktop", viewportCategory.value);
-      isReady.value = true;
+      trackR.style.transition = "none";
+      trackR.style.transform = "translate3d(0, 0, 0)";
+
+      requestAnimationFrame(() => {
+        trackR.style.transition = "transform 0.4s ease";
+        isReady.value = true;
+      });
     }
   });
 

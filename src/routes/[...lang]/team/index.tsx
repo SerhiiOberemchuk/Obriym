@@ -28,8 +28,7 @@ export default component$(() => {
   //   else viewportCategory.value = "mobile";
   // });
 
-  // eslint-disable-next-line qwik/no-use-visible-task
-  // useTask$(() => {
+  // useVisibleTask$(() => {
   //   updateViewport();
   // });
   // useOnWindow("resize", updateViewport);

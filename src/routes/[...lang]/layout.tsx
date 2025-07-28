@@ -28,7 +28,7 @@ export const useContactFormLoader = routeLoader$(() => ({
 }));
 export default component$(() => {
   const viewportCategory = useSignal<"mobile" | "tablet" | "desktop">("desktop");
-  console.log("viewport in layout", viewportCategory.value);
+
   const updateViewport = $(() => {
     const width = window.innerWidth;
     if (width >= 1440) viewportCategory.value = "desktop";
