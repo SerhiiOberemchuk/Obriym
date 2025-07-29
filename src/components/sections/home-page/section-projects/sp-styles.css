@@ -12,10 +12,10 @@
   margin-inline: auto;
   max-width: 43rem;
 }
-/* .article {
+.list_projects li {
+  max-width: 41rem;
 }
-.link_project {
-} */
+
 .image_wrapper {
   display: flex;
   margin-bottom: 0.75rem;
@@ -38,6 +38,7 @@
   padding: 0.25rem 0.5rem;
   border: solid 1px;
   border-radius: 0.75rem;
+  max-width: 41.75rem;
 }
 .list_technologies > :nth-child(1) {
   border-color: var(--pink);
