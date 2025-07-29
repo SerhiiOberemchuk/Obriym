@@ -50,7 +50,7 @@ export default component$(() => {
         //     onLeave: element => gsap.to(element, { opacity: 0, duration: 1 }),
         //   });
         // });
-        // console.log(store.currentProjects);
+        console.log(store.currentProjects);
       }, 10000);
 
       cleanup(() => clearInterval(start));
