@@ -290,7 +290,6 @@ export default component$(({ items }: InfinitySliderProps) => {
         {selectedItem.value && (
           <div class="modal-wrapper">
             <div class="modal-img-wrp">
-              {" "}
               {selectedItem.value && imageMap[selectedItem.value.imageKey]()}
             </div>
             <div class="modal-content">
