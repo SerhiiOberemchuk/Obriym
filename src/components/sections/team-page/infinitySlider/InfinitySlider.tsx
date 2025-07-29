@@ -302,7 +302,15 @@ export default component$(({ items }: InfinitySliderProps) => {
               {/* text-block*/}
               <div class="modal-text-block">
                 <p class="btn_body grey">{selectedItem.value.description}</p>
-                <button class="btn-linkedin btn_body">LinkedIn</button>
+                {/* //https://www.linkedin.com/in/serhii-oberemchuk/ */}
+                <a
+                  class="btn-linkedin btn_body"
+                  href="https://www.linkedin.com/in/serhii-oberemchuk/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
               </div>
             </div>
           </div>

@@ -148,6 +148,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.3s ease-in-out;
 }
 .modal-close_span {
   display: none;
@@ -165,6 +166,9 @@ main {
     /* max-width: 1100px; */
     max-width: 744px;
     overflow: hidden;
+  }
+  .modal-close:hover {
+    background-color: var(--blue-light);
   }
 }
 @media (min-width: 90rem) {

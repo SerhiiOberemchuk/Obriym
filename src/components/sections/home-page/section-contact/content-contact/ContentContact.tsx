@@ -30,17 +30,29 @@ export default component$(() => {
           </p>
           <div class="cc_text_soc_media_box">
             <LinkEmail place="main" />
-            <div class="cc_soc_media_row">
+            <a
+              class="cc_soc_media_link"
+              href="https://t.me/obriym"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <IconTelegram aria-hidden="true" />
-              <p class="btn_header grey">@obriym</p>
-            </div>
+              <span class="btn_header grey">@obriym</span>
+            </a>
           </div>
         </div>
       </div>
       {/* upwork */}
       <div>
         <p class="btn_header grey cc_upwork_text">Also find us anytime at Upwork</p>
-        <Upwork />
+        <a
+          class="cc_upwork_link"
+          href="https://www.upwork.com/agencies/obriym"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Upwork />
+        </a>
       </div>
       {/* calendly */}
       <div class="cc_calendly_box">
