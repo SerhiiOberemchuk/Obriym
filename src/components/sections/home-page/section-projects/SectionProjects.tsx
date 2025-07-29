@@ -20,6 +20,7 @@ export default component$(() => {
     const data = track(() => projects.value.data);
     // const gsap = (await import("gsap")).default;
     // const { Flip } = await import("gsap/Flip");
+
     // gsap.registerPlugin(Flip);
     store.visibleCount = window.innerWidth < 768 ? 2 : 4;
     if (data) {
@@ -50,7 +51,6 @@ export default component$(() => {
         //     onLeave: element => gsap.to(element, { opacity: 0, duration: 1 }),
         //   });
         // });
-        // console.log(store.currentProjects);
       }, 10000);
 
       cleanup(() => clearInterval(start));
