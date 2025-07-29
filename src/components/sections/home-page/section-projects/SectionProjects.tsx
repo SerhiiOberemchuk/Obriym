@@ -15,6 +15,7 @@ export default component$(() => {
   const { lang } = useSpeakLocale();
 
   const projects = useFetchProjects();
+  console.log(projects.value);
 
   useVisibleTask$(({ track, cleanup }) => {
     const data = track(() => projects.value.data);
