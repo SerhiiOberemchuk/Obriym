@@ -1,11 +1,13 @@
 import { component$ } from "@qwik.dev/core";
-import { DocumentHead } from "@qwik.dev/router"; //routeLoader$
+import { DocumentHead, routeLoader$ } from "@qwik.dev/router"; //
 import { inlineTranslate } from "qwik-speak";
 import SectionContact from "~/components/sections/home-page/section-contact/SectionContact";
 
-import SectionHero from "~/components/sections/section-hero/SectionHero";
-import Services from "~/components/sections/section-services/Services";
-import SectionTitle from "~/components/sections/section-title/SectionTitle";
+import SectionHero from "~/components/sections/home-page/section-hero/SectionHero";
+import SectionProjects from "~/components/sections/home-page/section-projects/SectionProjects";
+import Services from "~/components/sections/home-page/section-services/Services";
+import SectionTitle from "~/components/sections/home-page/section-title/SectionTitle";
+import { Project } from "~/types/project.type";
 
 // export const useContactFormLoader = routeLoader$(() => ({
 //   services: [],
@@ -14,6 +16,20 @@ import SectionTitle from "~/components/sections/section-title/SectionTitle";
 //   email: "",
 //   message: "",
 // }));
+export const useFetchProjects = routeLoader$(async () => {
+  try {
+    const url = import.meta.env.PUBLIC_URL_PROJECTS;
+    const response = await fetch(`${url}/api/projects`);
+    const projects = await response.json();
+    return {
+      status: true as boolean,
+      message: "successful fetch" as string,
+      data: projects.data as Project[],
+    };
+  } catch (error) {
+    return { status: false as boolean, message: `error : ${error}` };
+  }
+});
 
 export default component$(() => {
   return (
@@ -21,6 +37,7 @@ export default component$(() => {
       <SectionTitle />
       <SectionHero />
       <Services />
+      <SectionProjects />
       <SectionContact />
     </>
   );

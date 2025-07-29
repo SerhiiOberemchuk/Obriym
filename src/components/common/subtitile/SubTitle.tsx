@@ -1,14 +1,16 @@
 import { component$, Slot, useStylesScoped$ } from "@qwik.dev/core";
 import IconPink from "~/assets/images/pink_dark.png?w=64&h=64&jsx";
+import IconShapeProjects from "~/assets/images/shape-project.png?w=64&h=64&jsx";
 import styles from "./subt-styles.css?inline";
 
-type Props = { section: "ourTeam"; classes?: string };
+type Props = { section: "ourTeam" | "projects"; classes?: string };
 
 const Image = ({ section, classes }: { section: Props["section"]; classes: string }) => {
   switch (section) {
     case "ourTeam":
       return <IconPink class={classes} aria-hidden="true" />;
-
+    case "projects":
+      return <IconShapeProjects class={classes} aria-hidden="true" />;
     default:
       return null;
   }

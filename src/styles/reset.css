@@ -21,7 +21,8 @@ ol,
 li,
 button,
 input,
-textarea {
+textarea,
+figure {
   margin: 0;
 }
 
