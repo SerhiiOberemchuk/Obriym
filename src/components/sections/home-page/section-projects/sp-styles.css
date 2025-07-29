@@ -11,6 +11,7 @@
   row-gap: 4rem;
   margin-inline: auto;
   max-width: 43rem;
+  overflow: hidden;
 }
 .list_projects li {
   max-width: 41rem;
