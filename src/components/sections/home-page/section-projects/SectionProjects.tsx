@@ -15,7 +15,6 @@ export default component$(() => {
   const { lang } = useSpeakLocale();
 
   const projects = useFetchProjects();
-  console.log(projects.value);
 
   useVisibleTask$(({ track, cleanup }) => {
     const data = track(() => projects.value.data);
@@ -52,7 +51,6 @@ export default component$(() => {
         //     onLeave: element => gsap.to(element, { opacity: 0, duration: 1 }),
         //   });
         // });
-        console.log(store.currentProjects);
       }, 10000);
 
       cleanup(() => clearInterval(start));
