@@ -267,21 +267,23 @@ export default component$(({ items }: InfinitySliderProps) => {
         onTouchCancel$={() => (isPaused.value = false)}
       >
         {baseItems.value.map((item, i) => (
-          // <div class="inf_carousel-slide" key={`slide-${item.id}-${i}`}>
-
           <div
             class={`inf_carousel-slide ${!isReady.value ? "invisible" : ""}`}
             key={`slide-${item.id}-${i}`}
           >
             <SlideComponent item={item} onOpen$={$(() => openModal(item))} />
-            {/* // onOpen$={$(() => openModal(item))} onOpen$={() => openModal(item)}*/}
           </div>
         ))}
       </div>
       {isReady.value && (
         <div class="inf_carousel-dots">
           {itemsOriginalSignal.value.map((_, i) => (
-            <div class={`inf_dot ${i === activeIndex.value ? "active" : ""}`} key={`dot-${i}`} />
+            <div
+              key={`dot-${i}`}
+              class={`inf_dot-wrapper ${i === activeIndex.value ? "active" : ""}`}
+            >
+              <div class={`inf_dot ${i === activeIndex.value ? "active" : ""}`} />
+            </div>
           ))}
         </div>
       )}
@@ -290,7 +292,6 @@ export default component$(({ items }: InfinitySliderProps) => {
         {selectedItem.value && (
           <div class="modal-wrapper">
             <div class="modal-img-wrp">
-              {" "}
               {selectedItem.value && imageMap[selectedItem.value.imageKey]()}
             </div>
             <div class="modal-content">
@@ -303,7 +304,15 @@ export default component$(({ items }: InfinitySliderProps) => {
               {/* text-block*/}
               <div class="modal-text-block">
                 <p class="btn_body grey">{selectedItem.value.description}</p>
-                <button class="btn-linkedin btn_body">LinkedIn</button>
+                {/* //https://www.linkedin.com/in/serhii-oberemchuk/ */}
+                <a
+                  class="btn-linkedin btn_body"
+                  href="https://www.linkedin.com/in/serhii-oberemchuk/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
               </div>
             </div>
           </div>
