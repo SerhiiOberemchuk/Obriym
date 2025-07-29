@@ -267,21 +267,23 @@ export default component$(({ items }: InfinitySliderProps) => {
         onTouchCancel$={() => (isPaused.value = false)}
       >
         {baseItems.value.map((item, i) => (
-          // <div class="inf_carousel-slide" key={`slide-${item.id}-${i}`}>
-          //  ${!isReady.value ? "invisible" : ""}
           <div
             class={`inf_carousel-slide ${!isReady.value ? "invisible" : ""}`}
             key={`slide-${item.id}-${i}`}
           >
             <SlideComponent item={item} onOpen$={$(() => openModal(item))} />
-            {/* // onOpen$={$(() => openModal(item))} onOpen$={() => openModal(item)}*/}
           </div>
         ))}
       </div>
       {isReady.value && (
         <div class="inf_carousel-dots">
           {itemsOriginalSignal.value.map((_, i) => (
-            <div class={`inf_dot ${i === activeIndex.value ? "active" : ""}`} key={`dot-${i}`} />
+            <div
+              key={`dot-${i}`}
+              class={`inf_dot-wrapper ${i === activeIndex.value ? "active" : ""}`}
+            >
+              <div class={`inf_dot ${i === activeIndex.value ? "active" : ""}`} />
+            </div>
           ))}
         </div>
       )}

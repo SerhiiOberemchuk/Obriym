@@ -41,15 +41,17 @@
   width: 6px;
   height: 6px;
   background-color: var(--blue-light);
-  transition:
-    width 0.3s ease,
-    border-radius 0.3s ease;
-  transform-origin: right center;
+  transition: transform 0.3s ease;
+
+  transform-origin: left center;
 }
 
-.inf_dot.active {
-  border-radius: 12px;
+.inf_dot-wrapper.active {
   width: 45px;
+}
+.inf_dot.active {
+  border-radius: 1.5px;
+  transform: scaleX(7.5);
   /* scale: 45px 6px; */
   height: 6px;
   background-color: var(--blue);
