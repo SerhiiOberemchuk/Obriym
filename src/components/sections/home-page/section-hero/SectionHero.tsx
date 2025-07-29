@@ -30,8 +30,8 @@ export default component$(() => {
       words.forEach(word => {
         const randomX = gsap.utils.random(-150, 150);
         const randomY = gsap.utils.random(-100, 100);
-        const randomRot = gsap.utils.random(-60, 60);
-        const randomScale = gsap.utils.random(0.5, 1.5);
+        const randomRot = gsap.utils.random(-90, 90);
+        const randomScale = gsap.utils.random(0, 0.1);
 
         tl.fromTo(
           word,
@@ -40,7 +40,7 @@ export default component$(() => {
             y: randomY,
             rotationZ: randomRot,
             scale: randomScale,
-            opacity: 0,
+            // opacity: 0.5,
           },
 
           {
@@ -48,7 +48,7 @@ export default component$(() => {
             y: 0,
             rotationZ: 0,
             scale: 1,
-            opacity: 1,
+            // opacity: 1,
             duration: 1,
             ease: "power3.out",
           },
@@ -61,7 +61,7 @@ export default component$(() => {
   return (
     <section class="sh_section">
       <div class="container">
-        <h2 class="body_big grey_dark title triggertitle">
+        <h2 class="body_big grey title triggertitle">
           {t(
             "home.shsection@@{{name}} — from first spark to full launch.<br> From insight to execution.<br> We plan, design, develop, and launch products that make a real impact.",
             { name: "OBRIYM" },

@@ -1,10 +1,20 @@
-import { $, useOnWindow, useSignal } from "@qwik.dev/core";
+import { $, useOnDocument, useSignal } from "@qwik.dev/core";
 
 export const useResponsive = () => {
   const isMobile = useSignal(false);
   const isTablet = useSignal(false);
   const isDesctop = useSignal(false);
-  useOnWindow(
+  const update = () => {
+    if (typeof window !== "undefined") {
+      const width = window.innerWidth;
+      isMobile.value = width <= 768;
+      isDesctop.value = width >= 1440;
+      isTablet.value = !isMobile.value && !isDesctop.value;
+    }
+  };
+
+  update();
+  useOnDocument(
     "load",
     $(() => {
       const matchMobile = window.matchMedia("(max-width:768px)");
@@ -23,5 +33,5 @@ export const useResponsive = () => {
       };
     }),
   );
-  return { isMobile, isTablet, isDesctop };
+  return { isMobile: isMobile.value, isTablet: isTablet.value, isDesctop: isDesctop.value };
 };

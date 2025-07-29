@@ -12,7 +12,7 @@
     align-items: center;
   }
 }
-@media (width > 90rem) {
+@media (width >= 90rem) {
   .header {
     padding-block: 1.5rem;
   }

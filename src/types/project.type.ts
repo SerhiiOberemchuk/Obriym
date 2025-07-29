@@ -1,0 +1,25 @@
+export type Project = {
+  id: number;
+  slug: string;
+  title: string;
+  titleEN: string;
+  titleIT: string;
+  category: string;
+  categoryEN: string;
+  categoryIT: string;
+  image_src: string;
+  description: string;
+  descriptionEN: string;
+  descriptionIT: string;
+  technologies: string[];
+  features: string[];
+  featuresEN: string[];
+  featuresIT: string[];
+  year: string;
+  client: string;
+  clientEN: string;
+  clientIT: string;
+  website_url: string;
+  created_at: string;
+  updated_at: string;
+};
