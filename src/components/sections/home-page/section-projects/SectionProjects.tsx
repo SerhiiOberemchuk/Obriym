@@ -4,7 +4,7 @@ import SubTitle from "~/components/common/subtitile/SubTitle";
 import { useSpeakLocale } from "qwik-speak";
 import { useFetchProjects } from "~/routes/[...lang]";
 import { Project } from "~/types/project.type";
-import gsap from "gsap";
+// import gsap from "gsap";
 
 export default component$(() => {
   useStylesScoped$(styles);
@@ -61,7 +61,7 @@ export default component$(() => {
 
     if (projectsData?.length) {
       (async () => {
-        // const gsap = (await import("gsap")).default;
+        const gsap = (await import("gsap")).default;
 
         gsap.from(".item_animate", {
           x: 50,
