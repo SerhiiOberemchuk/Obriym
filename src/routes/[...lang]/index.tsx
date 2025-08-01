@@ -61,16 +61,13 @@ export const head: DocumentHead = () => {
     ],
     scripts: [
       {
-        props: { type: "application/ld+json" },
-        script: JSON.stringify(howToWorkSchemaEN),
+        props: { type: "application/ld+json", children: JSON.stringify(howToWorkSchemaEN) },
       },
       {
-        props: { type: "application/ld+json" },
-        script: JSON.stringify(organizationSchema),
+        props: { type: "application/ld+json", children: JSON.stringify(organizationSchema) },
       },
       {
-        props: { type: "application/ld+json" },
-        script: JSON.stringify(faqSchema),
+        props: { type: "application/ld+json", children: JSON.stringify(faqSchema) },
       },
     ],
   };
