@@ -7,7 +7,7 @@ import {
   useTask$,
   useContext,
 } from "@qwik.dev/core";
-
+import { inlineTranslate } from "qwik-speak";
 import styles from "./styles_slider.css?inline";
 
 import IconLeft from "~/assets/icons/icon_left.svg?w=24&h=24&jsx";
@@ -38,6 +38,7 @@ export function getSlideWidthWithGap(track: HTMLElement | null): number {
 
 export default component$(({ items }: InfinitySliderProps) => {
   useStylesScoped$(styles);
+  const t = inlineTranslate();
   const viewportCategory = useContext(ViewportContext);
   const viewportWidth = useContext(ViewportWidthContext);
   // for modal
@@ -243,10 +244,10 @@ export default component$(({ items }: InfinitySliderProps) => {
     <div class="inf_carousel-container">
       {/* BUTTONS viewportCategory.value === "tablet"*/}
       <div class="inf_btn_controls">
-        <button onClick$={prevSlide} aria-label="Previous slide">
+        <button onClick$={prevSlide} aria-label={t("team.slider.button_prev@@Previous slide")}>
           <IconLeft />
         </button>
-        <button onClick$={nextSlide} aria-label="Next slide">
+        <button onClick$={nextSlide} aria-label={t("team.slider.button_next@@Next slide")}>
           <IconRight />
         </button>
       </div>
@@ -276,12 +277,15 @@ export default component$(({ items }: InfinitySliderProps) => {
         ))}
       </div>
       {isReady.value && (
-        <div class="inf_carousel-dots" aria-label="Slide navigation">
+        <div class="inf_carousel-dots" aria-label={t("team.slider.dots_btn@@Slide navigation")}>
           {itemsOriginalSignal.value.map((_, i) => (
             <div
               key={`dot-${i}`}
               aria-current={i === activeIndex.value ? "true" : undefined}
-              aria-label={`Slide ${i + 1} of ${itemsOriginalSignal.value.length}`}
+              aria-label={t("team.slider.dots_current@@Slide {current} of {total}", {
+                current: i + 1,
+                total: itemsOriginalSignal.value.length,
+              })}
               class={`inf_dot-wrapper ${i === activeIndex.value ? "active" : ""}`}
             >
               <div class={`inf_dot ${i === activeIndex.value ? "active" : ""}`} />
@@ -306,7 +310,7 @@ export default component$(({ items }: InfinitySliderProps) => {
               {/* title */}
               <div class="modal-title-block">
                 <h2 class=" body_big" id={`modal-title-${selectedItem.value.id}`}>
-                  {selectedItem.value.name}
+                  {t(`team.member.${selectedItem.value.slug}.name@@${selectedItem.value.name}`)}
                 </h2>
 
                 <p class="H6 grey" id={`slide-role-${selectedItem.value.id}`}>
@@ -315,14 +319,20 @@ export default component$(({ items }: InfinitySliderProps) => {
               </div>
               {/* text-block*/}
               <div class="modal-text-block" id={`modal-desc-${selectedItem.value.id}`}>
-                <p class="btn_body grey">{selectedItem.value.description}</p>
+                <p class="btn_body grey">
+                  {t(
+                    `team.member.${selectedItem.value.slug}.description@@${selectedItem.value.description}`,
+                  )}
+                </p>
                 {/* //https://www.linkedin.com/in/serhii-oberemchuk/ */}
                 <a
                   class="btn-linkedin btn_body"
-                  href="https://www.linkedin.com/in/serhii-oberemchuk/"
+                  href={selectedItem.value.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`LinkedIn profile of ${selectedItem.value.name}`}
+                  aria-label={t(
+                    `team.member.${selectedItem.value.slug}.linkedin@@LinkedIn profile of ${selectedItem.value.name}`,
+                  )}
                 >
                   LinkedIn
                 </a>

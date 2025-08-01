@@ -14,10 +14,12 @@ export default component$(() => {
   return (
     <div class="cc_content_box">
       {/* title */}
-      <div class="cc_title_box">
+      <div class="cc_title_box" role="region" aria-labelledby="contact-section-heading">
         {/* title title*/}
         <div>
-          <h2 class="body_big">{t("home.contact-section.content.text1@@Have a project?")}</h2>
+          <h2 class="body_big">
+            {t("home.contact-section.content.text1@@Have a project?")} id="contact-section-heading"
+          </h2>
 
           <h3 class="body_big">{t("home.contact-section.content.text2@@Let's talk!")}</h3>
         </div>
@@ -35,6 +37,9 @@ export default component$(() => {
               href="https://t.me/obriym"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={t(
+                "home.contact-section.content.link_telegram@@Contact via Telegram: @obriym",
+              )}
             >
               <IconTelegram aria-hidden="true" />
               <span class="btn_header grey">@obriym</span>
@@ -50,26 +55,39 @@ export default component$(() => {
           href="https://www.upwork.com/agencies/obriym"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label={t(
+            "home.contact-section.content.link_upwork@@Visit our Upwork agency profile",
+          )}
         >
-          <Upwork />
+          <Upwork aria-hidden="true" />
         </a>
       </div>
       {/* calendly */}
-      <div class="cc_calendly_box">
+      <div
+        class="cc_calendly_box"
+        role="region"
+        aria-labelledby="calendly-heading"
+        aria-describedby="calendly-desc"
+      >
         <div class="cc_calendly__foto_box_blue">
           <div class="cc_calendly__foto_box_white">
             <div class="cc_calendly__foto">
               <OberemImg
                 alt={t("home.contact-section.oberem_img_alt@@Portrait of Serhii, founder and CEO")}
+                role="img"
               />
             </div>
           </div>
         </div>
         <div class="cc_calendly_text_box">
           <div class="cc_calendly_text_wrap">
-            <p class="H6">{t("home.contact-section.content.text4@@Schedule a call with Serhii")}</p>
+            <p class="H6" id="calendly-heading">
+              {t("home.contact-section.content.text4@@Schedule a call with Serhii")}
+            </p>
 
-            <p class="btn_body grey">Founder & CEO</p>
+            <p class="btn_body grey" id="calendly-desc">
+              Founder & CEO
+            </p>
           </div>
 
           <IconSchedule class="cc_calendly_text_icon" aria-hidden="true" />

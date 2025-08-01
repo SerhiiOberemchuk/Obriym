@@ -2,6 +2,8 @@
   "home": {
     "contact-section": {
       "content": {
+        "link_telegram": "Contattaci su Telegram: @obriym",
+        "link_upwork": "Visita il nostro profilo agenzia su Upwork",
         "oberem_img_alt": "Ritratto di Serhii, fondatore e CEO",
         "text1": "Hai un progetto?",
         "text2": "Parliamone!",
@@ -13,53 +15,59 @@
     },
     "services": {
       "1": {
-        "title": "Ricerca e strategia",
         "descr": "Scopriamo insight, definiamo obiettivi e creiamo strategie chiare e orientate all'utente.",
-        "list": [
-          "Ricerca utente",
-          "Analisi di mercato",
-          "Analisi della concorrenza",
-          "Strategia di prodotto",
-          "Audit UX"
-        ]
+        "list": {
+          "0": "Ricerca utente",
+          "1": "Analisi di mercato",
+          "2": "Analisi della concorrenza",
+          "3": "Strategia di prodotto",
+          "4": "Audit UX"
+        },
+        "title": "Ricerca e strategia"
       },
       "2": {
-        "title": "UX UI Design",
         "descr": "Creiamo interfacce intuitive e gradevoli che offrono esperienze d’uso fluide e naturali.",
-        "list": ["Wireframe", "Prototipi", "Design UI", "Flussi UX", "Design system"]
+        "list": {
+          "0": "Wireframe",
+          "1": "Prototipi",
+          "2": "Design UI",
+          "3": "Flussi UX",
+          "4": "Design system"
+        },
+        "title": "UX UI Design"
       },
       "3": {
-        "title": "Branding",
         "descr": "Costruiamo identità di marca uniche e coerenti che riflettano i tuoi valori e parlino al pubblico.",
-        "list": [
-          "Identità visiva",
-          "Design del logo",
-          "Linee guida brand",
-          "Tono di voce",
-          "Posizionamento del brand"
-        ]
+        "list": {
+          "0": "Identità visiva",
+          "1": "Design del logo",
+          "2": "Linee guida brand",
+          "3": "Tono di voce",
+          "4": "Posizionamento del brand"
+        },
+        "title": "Branding"
       },
       "4": {
-        "title": "Sviluppo web e app",
         "descr": "Trasformiamo il design in prodotti digitali performanti, scalabili e reattivi.",
-        "list": [
-          "Frontend Development",
-          "Backend Development",
-          "Integrazione CMS",
-          "Webflow / WordPress / Custom",
-          "Sviluppo app mobile"
-        ]
+        "list": {
+          "0": "Frontend Development",
+          "1": "Backend Development",
+          "2": "Integrazione CMS",
+          "3": "Webflow / WordPress / Custom",
+          "4": "Sviluppo app mobile"
+        },
+        "title": "Sviluppo web e app"
       },
       "5": {
-        "title": "Lancio e ottimizzazione",
         "descr": "Garantiamo un lancio fluido e una crescita continua tramite test, analisi e miglioramento.",
-        "list": [
-          "Test QA",
-          "Ottimizzazione prestazioni",
-          "Test A/B",
-          "Setup Analytics",
-          "Miglioramento continuo"
-        ]
+        "list": {
+          "0": "Test QA",
+          "1": "Ottimizzazione prestazioni",
+          "2": "Test A/B",
+          "3": "Setup Analytics",
+          "4": "Miglioramento continuo"
+        },
+        "title": "Lancio e ottimizzazione"
       },
       "title": "servizi"
     },
