@@ -11,14 +11,7 @@ import { AlertType } from "~/types/alert.type";
 import { useContactFormLoader } from "~/routes/[...lang]/layout";
 import { useFormAction } from "~/utils/useFormAction";
 
-import {
-  SERVICES_OPTIONS_EN,
-  // SERVICES_OPTIONS_IT,
-  // SERVICES_OPTIONS_UA,
-  BUDGET_OPTIONS_EN,
-  // BUDGET_OPTIONS_IT,
-  // BUDGET_OPTIONS_UA,
-} from "~/const/form-const";
+import { SERVICES_OPTIONS_EN, BUDGET_OPTIONS_EN } from "~/const/form-const";
 
 import PopoverComponent from "~/components/common/popover/Popover";
 import FormError from "~/components/common/form-error/form_error";
@@ -32,21 +25,6 @@ type ContactFormComponentProps = {
 export default component$(({ modal }: ContactFormComponentProps) => {
   useStylesScoped$(styles);
   const t = inlineTranslate();
-  //const locale = useSpeakLocale();
-  //console.log("locale", locale.lang); //uk-UA it-IT en-EU
-  // const SERVICES_OPTIONS =
-  //   locale.lang === "uk-UA"
-  //     ? SERVICES_OPTIONS_UA
-  //     : locale.lang === "it-IT"
-  //       ? SERVICES_OPTIONS_IT
-  //       : SERVICES_OPTIONS_EN;
-
-  // const BUDGET_OPTIONS =
-  //   locale.lang === "uk-UA"
-  //     ? BUDGET_OPTIONS_UA
-  //     : locale.lang === "it-IT"
-  //       ? BUDGET_OPTIONS_IT
-  //       : BUDGET_OPTIONS_EN;
 
   const anchorRef = useSignal<HTMLElement>();
   const popoverId = "contact-popover";
@@ -109,7 +87,8 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                   </legend>
                 )}
                 <OptionsGroup
-                  {...props}
+                  onInput$={props.onInput$}
+                  onBlur$={props.onBlur$}
                   name="services"
                   type="checkbox"
                   options={SERVICES_OPTIONS_EN}
@@ -131,12 +110,13 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                   {t("app.form.budget.legend@@Your budget range?")}
                 </legend>
                 <OptionsGroup
-                  {...props}
                   name="budget"
                   type="radio"
                   options={BUDGET_OPTIONS_EN}
                   label={t("app.form.budget.sr-label@@Budget options")}
                   value={field.value}
+                  onInput$={props.onInput$}
+                  onBlur$={props.onBlur$}
                 />
               </fieldset>
 
@@ -156,11 +136,12 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                 <Field name="name">
                   {(field, props) => (
                     <TextInput
-                      {...props}
                       name="name"
                       type="text"
                       value={field.value}
                       error={field.error}
+                      onInput$={props.onInput$}
+                      onBlur$={props.onBlur$}
                       placeholder={t("app.form.name.placeholder@@Enter your name")}
                       label={t("app.form.name.label@@Your name")}
                     />
@@ -172,11 +153,12 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                 <Field name="email">
                   {(field, props) => (
                     <TextInput
-                      {...props}
                       name="email"
                       type="email"
                       value={field.value}
                       error={field.error}
+                      onInput$={props.onInput$}
+                      onBlur$={props.onBlur$}
                       placeholder={t("app.form.email.placeholder@@Enter your email")}
                       label={t("app.form.email.label@@Your email")}
                     />
@@ -191,8 +173,10 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                       label={t("app.form.message.sr-label@@Your message")}
                     </label>
                     <textarea
-                      {...props}
                       value={field.value}
+                      onInput$={props.onInput$}
+                      onBlur$={props.onBlur$}
+                      name={props.name}
                       role="textbox"
                       id="message-textarea"
                       aria-multiline="true"
@@ -201,14 +185,38 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                       )}
                       placeholder={t("app.form.message.placeholder.not-modal@@Add information")}
                       class={`btn_body grey_dark ic_form_textarea ${field.error ? "border-red" : ""}`}
-                    >
-                      {field.value}
-                    </textarea>
+                    />
 
                     <FormError error={field.error} id={`message-error`} />
                   </div>
                 )}
               </Field>
+              {/* <Field name="message">
+                {(field, props) => {
+                  return (
+                    <div class="ic_form_fieldset_wrp" ref={anchorRef}>
+                      <label class="sr-only" for="message-textarea">
+                        {t("app.form.message.sr-label@@Your message")}
+                      </label>
+                      <textarea
+                        value={field.value}
+                        onInput$={props.onInput$}
+                        onBlur$={props.onBlur$}
+                        name={props.name}
+                        role="textbox"
+                        id="message-textarea"
+                        aria-multiline="true"
+                        aria-placeholder={t(
+                          "app.form.message.placeholder.not-modal@@Add information",
+                        )}
+                        placeholder={t("app.form.message.placeholder.not-modal@@Add information")}
+                        class={`btn_body grey_dark ic_form_textarea ${field.error ? "border-red" : ""}`}
+                      />
+                      <FormError error={field.error} id={`message-error`} />
+                    </div>
+                  );
+                }}
+              </Field> */}
             </div>
           </fieldset>
           <div class="ic_form_btn_wrp">

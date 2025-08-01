@@ -4,7 +4,7 @@ import styles from "./options-group_styles.css?inline";
 import { OptionsGroupProps } from "~/types/contact-form.type";
 
 export const OptionsGroup = component$(
-  ({ name, type, options, label, value, ...props }: OptionsGroupProps) => {
+  ({ name, type, options, label, value, onInput$, onBlur$ }: OptionsGroupProps) => {
     const t = inlineTranslate();
     useStylesScoped$(styles);
 
@@ -24,7 +24,8 @@ export const OptionsGroup = component$(
           return (
             <label key={key} class={`ic_form_option ${isSelected ? "selected" : ""}`}>
               <input
-                {...props}
+                onInput$={onInput$}
+                onBlur$={onBlur$}
                 type={type}
                 name={name}
                 value={key}
@@ -45,55 +46,3 @@ export const OptionsGroup = component$(
     );
   },
 );
-
-{
-  /* <div class="ic_form_options" role={groupRole} aria-labelledby={groupLabelId}>
-  <span id={groupLabelId} class="sr-only">
-    {label}
-  </span>
-
-  {Object.entries(options).map(([key, label]) => {
-    const isSelected = isCheckbox ? Array.isArray(value) && value.includes(key) : value === key;
-    return (
-      <label key={key} class={`ic_form_option ${isSelected ? "selected" : ""}`}>
-        <input
-          {...props}
-          type={type}
-          value={key}
-          checked={isSelected}
-          class="visually-hidden"
-          aria-checked={isSelected}
-        />
-        <span class="grey_dark btn_body ic_form_label">
-          hhhhhhh
-        </span>
-      </label>
-    );
-  })}
-</div>; */
-}
-
-// <div class="ic_form_options" role={groupRole} aria-labelledby={groupLabelId}>
-//   <span id={groupLabelId} class="sr-only">
-//     {label}
-//   </span>
-//   {options.map(option => {
-//     const isSelected = isCheckbox
-//       ? Array.isArray(value) && value.includes(option)
-//       : value === option;
-
-//     return (
-//       <label key={option} class={`ic_form_option ${isSelected ? "selected" : ""}`}>
-//         <input
-//           {...props}
-//           type={type}
-//           value={option}
-//           checked={isSelected}
-//           class="visually-hidden"
-//           aria-checked={isSelected}
-//         />
-//         <span class="grey_dark btn_body ic_form_label">{option}</span>
-//       </label>
-//     );
-//   })}
-// </div>

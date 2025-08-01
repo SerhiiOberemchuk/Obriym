@@ -4,25 +4,24 @@ import { TextInputProps } from "~/types/contact-form.type";
 import FormError from "~/components/common/form-error/form_error";
 
 export const TextInput = component$(
-  ({ label, type, name, value, placeholder, error, ...props }: TextInputProps) => {
-    // const { name } = props;
+  ({ label, type, name, value, placeholder, error, onInput$, onBlur$ }: TextInputProps) => {
     useStylesScoped$(styles);
 
     const id = `${name}-input`;
     return (
       <div class={`ic_form_fieldset_wrp ${error ? "has-error" : ""}`}>
         {
-          // class="sr-only"
           <label class="form-label" for={id}>
             {label}
           </label>
         }
 
         <input
-          {...props}
           id={id}
           type={type}
-          //   name={name}
+          onInput$={onInput$}
+          onBlur$={onBlur$}
+          name={name}
           value={value}
           class={`btn_body grey_dark ic_form_input ${error ? "border-red" : ""}`}
           placeholder={placeholder}
