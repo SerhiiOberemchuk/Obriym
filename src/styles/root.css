@@ -25,4 +25,6 @@
   --top-sticky-card-t: 4.75rem;
   --servise-card-height-md: 40rem;
   --servise-card-height-t: 36.25rem;
+  --container-pad-inl-mob: 1rem;
+  --container-pad-inl-tab: 2.5rem;
 }
