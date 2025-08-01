@@ -2,13 +2,21 @@
   "team": {
     "aria": {
       "carousel": "Team members carousel",
-      "linkedin": "LinkedIn profile of {name}",
+      "linkedin": "LinkedIn profile of {{name}}",
       "slider": {
         "button_next": "Next slide",
         "button_prev": "Previous slide",
         "dots_btn": "Slide navigation",
-        "dots_current": "Slide {current} of {total}",
-        "plus_btn": "More about {name}"
+        "dots_current": "Slide {{current}} of {{total}}",
+        "plus_btn": "More about {{name}}"
+      }
+    },
+    "hero": {
+      "title": {
+        "line1": "Our team",
+        "line2": "is the best",
+        "line3": "product we have",
+        "line4": "created together"
       }
     },
     "member": {
@@ -31,7 +39,6 @@
         "role": "Founder & CEO"
       }
     },
-
     "title": "Our Team"
   }
 }

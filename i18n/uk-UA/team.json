@@ -1,14 +1,22 @@
 {
   "team": {
     "aria": {
-      "carousel": "Team members carousel",
-      "linkedin": "LinkedIn profile of {name}",
+      "carousel": "Карусель учасників команди",
+      "linkedin": "Профіль LinkedIn {{name}}",
       "slider": {
         "button_next": "Наступний слайд",
         "button_prev": "Попередній слайд",
         "dots_btn": "Навігація по слайдах",
-        "dots_current": "Слайд {current} з {total}",
-        "plus_btn": "Більше про {name}"
+        "dots_current": "Слайд {{current}} з {{total}}",
+        "plus_btn": "Більше про {{name}}"
+      }
+    },
+    "hero": {
+      "title": {
+        "line1": "Наша команда",
+        "line2": "- найкраща",
+        "line3": "продукція, яку ми",
+        "line4": "створили разом"
       }
     },
     "member": {
@@ -31,7 +39,6 @@
         "role": "Засновник та генеральний директор"
       }
     },
-
     "title": "Наша команда"
   }
 }

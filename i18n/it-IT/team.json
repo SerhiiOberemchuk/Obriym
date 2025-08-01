@@ -1,14 +1,22 @@
 {
   "team": {
     "aria": {
-      "carousel": "Team members carousel",
-      "linkedin": "LinkedIn profile of {name}",
+      "carousel": "Carosello dei membri del team",
+      "linkedin": "Profilo LinkedIn di {{name}}",
       "slider": {
         "button_next": "Slide successiva",
         "button_prev": "Slide precedente",
         "dots_btn": "Navigazione tra le slide",
-        "dots_current": "Slide {current} di {total}",
-        "plus_btn": "Maggiori informazioni su {name}"
+        "dots_current": "Slide {{current}} di {{total}}",
+        "plus_btn": "Maggiori informazioni su {{name}}"
+      }
+    },
+    "hero": {
+      "title": {
+        "line1": "Il nostro team",
+        "line2": "è il migliore",
+        "line3": "prodotto che abbiamo",
+        "line4": "creato insieme"
       }
     },
     "member": {
@@ -31,7 +39,6 @@
         "role": "Fondatore e CEO"
       }
     },
-
     "title": "Il nostro team"
   }
 }

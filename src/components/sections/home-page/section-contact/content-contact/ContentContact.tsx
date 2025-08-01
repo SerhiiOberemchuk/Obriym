@@ -49,7 +49,9 @@ export default component$(() => {
       </div>
       {/* upwork */}
       <div>
-        <p class="btn_header grey cc_upwork_text">Also find us anytime at Upwork</p>
+        <p class="btn_header grey cc_upwork_text">
+          {t("home.contact-section.content.text5@@Also find us anytime at Upwork")}
+        </p>
         <a
           class="cc_upwork_link"
           href="https://www.upwork.com/agencies/obriym"

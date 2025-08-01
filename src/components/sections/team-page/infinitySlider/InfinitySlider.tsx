@@ -240,6 +240,16 @@ export default component$(({ items }: InfinitySliderProps) => {
       selectedItem.value = null;
     }
   });
+
+  const memberName = t(
+    `team.member.${selectedItem?.value?.slug}.name@@${selectedItem?.value?.name}`,
+  );
+  const linkedinLabel = t("team.aria.linkedin@@LinkedIn profile of {{name}}", {
+    name: memberName,
+  });
+  //  aria-label={t("team.aria.linkedin@@LinkedIn profile of {name}", {
+  //                   name: selectedItem.value.name,
+  //                 })}
   return (
     <div class="inf_carousel-container">
       {/* BUTTONS viewportCategory.value === "tablet"*/}
@@ -251,7 +261,6 @@ export default component$(({ items }: InfinitySliderProps) => {
           <IconRight />
         </button>
       </div>
-
       {/* SLIDER */}
       <div
         class="inf_carousel-track"
@@ -275,6 +284,7 @@ export default component$(({ items }: InfinitySliderProps) => {
           </div>
         ))}
       </div>
+      {/* DOTS */}
       {isReady.value && (
         <div
           class="inf_carousel-dots"
@@ -284,7 +294,7 @@ export default component$(({ items }: InfinitySliderProps) => {
             <div
               key={`dot-${i}`}
               aria-current={i === activeIndex.value ? "true" : undefined}
-              aria-label={t("team.aria.slider.dots_current@@Slide {current} of {total}", {
+              aria-label={t("team.aria.slider.dots_current@@Slide {{current}} of {{total}}", {
                 current: i + 1,
                 total: itemsOriginalSignal.value.length,
               })}
@@ -295,7 +305,6 @@ export default component$(({ items }: InfinitySliderProps) => {
           ))}
         </div>
       )}
-
       <ModalWrapper show={isOpen}>
         {selectedItem.value && (
           <div
@@ -332,9 +341,10 @@ export default component$(({ items }: InfinitySliderProps) => {
                   href={selectedItem.value.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={t("team.aria.linkedin@@LinkedIn profile of {name}", {
-                    name: selectedItem.value.name,
-                  })}
+                  // aria-label={t("team.aria.linkedin@@LinkedIn profile of {name}", {
+                  //   name: selectedItem.value.name,
+                  // })}
+                  aria-label={linkedinLabel}
                 >
                   LinkedIn
                 </a>

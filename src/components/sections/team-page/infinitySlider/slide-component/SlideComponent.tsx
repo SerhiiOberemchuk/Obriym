@@ -10,6 +10,10 @@ export default component$(
     const t = inlineTranslate();
     useStylesScoped$(styles);
 
+    const memberName = t(`team.member.${item.slug}.name@@${item.name}`);
+    const plusLabel = t("team.aria.slider.plus_btn@@More about {{name}}", {
+      name: memberName,
+    });
     return (
       <div class="slide-component">
         <div class="slide-top">{imageMap[item.imageKey]()}</div>
@@ -23,13 +27,7 @@ export default component$(
             </p>
           </div>
 
-          <button
-            class="slide-btn-plus "
-            onClick$={onOpen$}
-            aria-label={t("team.aria.slider.plus_btn@@More about {name}", {
-              name: item.name,
-            })}
-          >
+          <button class="slide-btn-plus " onClick$={onOpen$} aria-label={plusLabel}>
             <IconPlus />
           </button>
         </div>
