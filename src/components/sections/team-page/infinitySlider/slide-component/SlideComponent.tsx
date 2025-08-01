@@ -13,11 +13,15 @@ export default component$(
         <div class="slide-top">{imageMap[item.imageKey]()}</div>
         <div class="slide-bottom">
           <div class="slide-text-wrp">
-            <p class="H6"> {item.name}</p>
-            <p class="btn_header grey">{item.role}</p>
+            <p class="H6" id={`name-${item.id}`}>
+              {item.name}
+            </p>
+            <p class="btn_header grey" id={`role-${item.id}`}>
+              {item.role}
+            </p>
           </div>
 
-          <button class="slide-btn-plus " onClick$={onOpen$}>
+          <button class="slide-btn-plus " onClick$={onOpen$} aria-label={`More about ${item.name}`}>
             <IconPlus />
           </button>
         </div>

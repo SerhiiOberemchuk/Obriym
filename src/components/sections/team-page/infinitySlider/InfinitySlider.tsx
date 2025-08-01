@@ -243,10 +243,10 @@ export default component$(({ items }: InfinitySliderProps) => {
     <div class="inf_carousel-container">
       {/* BUTTONS viewportCategory.value === "tablet"*/}
       <div class="inf_btn_controls">
-        <button onClick$={prevSlide}>
+        <button onClick$={prevSlide} aria-label="Previous slide">
           <IconLeft />
         </button>
-        <button onClick$={nextSlide}>
+        <button onClick$={nextSlide} aria-label="Next slide">
           <IconRight />
         </button>
       </div>
@@ -254,6 +254,8 @@ export default component$(({ items }: InfinitySliderProps) => {
       {/* SLIDER */}
       <div
         class="inf_carousel-track"
+        role="region"
+        aria-label="Team carousel"
         ref={trackRef}
         onMouseEnter$={() => (isPaused.value = true)}
         onMouseLeave$={() => (isPaused.value = false)}
@@ -265,16 +267,21 @@ export default component$(({ items }: InfinitySliderProps) => {
           <div
             class={`inf_carousel-slide ${!isReady.value ? "invisible" : ""}`}
             key={`slide-${item.id}-${i}`}
+            role="group"
+            aria-labelledby={`name-${item.id}`}
+            aria-describedby={`role-${item.id}`}
           >
             <SlideComponent item={item} onOpen$={$(() => openModal(item))} />
           </div>
         ))}
       </div>
       {isReady.value && (
-        <div class="inf_carousel-dots">
+        <div class="inf_carousel-dots" aria-label="Slide navigation">
           {itemsOriginalSignal.value.map((_, i) => (
             <div
               key={`dot-${i}`}
+              aria-current={i === activeIndex.value ? "true" : undefined}
+              aria-label={`Slide ${i + 1} of ${itemsOriginalSignal.value.length}`}
               class={`inf_dot-wrapper ${i === activeIndex.value ? "active" : ""}`}
             >
               <div class={`inf_dot ${i === activeIndex.value ? "active" : ""}`} />
@@ -285,19 +292,29 @@ export default component$(({ items }: InfinitySliderProps) => {
 
       <ModalWrapper show={isOpen}>
         {selectedItem.value && (
-          <div class="modal-wrapper">
+          <div
+            class="modal-wrapper"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={`modal-title-${selectedItem.value.id}`}
+            aria-describedby={`modal-desc-${selectedItem.value.id}`}
+          >
             <div class="modal-img-wrp">
               {selectedItem.value && imageMap[selectedItem.value.imageKey]()}
             </div>
             <div class="modal-content">
               {/* title */}
               <div class="modal-title-block">
-                <h2 class=" body_big">{selectedItem.value.name}</h2>
+                <h2 class=" body_big" id={`modal-title-${selectedItem.value.id}`}>
+                  {selectedItem.value.name}
+                </h2>
 
-                <p class="H6 grey">{selectedItem.value.role}</p>
+                <p class="H6 grey" id={`slide-role-${selectedItem.value.id}`}>
+                  {selectedItem.value.role}
+                </p>
               </div>
               {/* text-block*/}
-              <div class="modal-text-block">
+              <div class="modal-text-block" id={`modal-desc-${selectedItem.value.id}`}>
                 <p class="btn_body grey">{selectedItem.value.description}</p>
                 {/* //https://www.linkedin.com/in/serhii-oberemchuk/ */}
                 <a
@@ -305,6 +322,7 @@ export default component$(({ items }: InfinitySliderProps) => {
                   href="https://www.linkedin.com/in/serhii-oberemchuk/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`LinkedIn profile of ${selectedItem.value.name}`}
                 >
                   LinkedIn
                 </a>

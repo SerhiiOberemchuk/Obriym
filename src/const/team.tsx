@@ -32,7 +32,18 @@ export const TEAM_MEMBERS: TeamMemberType[] = [
 ];
 
 export const imageMap: Record<ImageKey, () => JSX.Element> = {
-  person1: () => <Person1 class="slide-image" draggable={false} />,
-  person2: () => <Person2 class="slide-image" draggable={false} />,
-  person3: () => <Person3 class="slide-image" draggable={false} />,
+  person1: () => (
+    <Person1
+      class="slide-image"
+      draggable={false}
+      role="img"
+      aria-label="Photo of Serhii Oberemchuk"
+    />
+  ),
+  person2: () => (
+    <Person2 class="slide-image" draggable={false} role="img" aria-label="Photo of Person 2" />
+  ),
+  person3: () => (
+    <Person3 class="slide-image" draggable={false} role="img" aria-label="Photo of Person 3" />
+  ),
 };
