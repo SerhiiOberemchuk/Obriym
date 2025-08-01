@@ -5,7 +5,6 @@ import {
   useContextProvider,
   type Signal,
   createContextId,
-  useOnWindow,
   useVisibleTask$,
   $,
 } from "@qwik.dev/core";
@@ -18,6 +17,7 @@ import MobileMenu from "~/components/mobile-menu/MobileMenu";
 
 export const ViewportContext =
   createContextId<Signal<"mobile" | "tablet" | "desktop">>("app.viewport");
+export const ViewportWidthContext = createContextId<Signal<number>>("viewport.width");
 
 export const useContactFormLoader = routeLoader$(() => ({
   services: [],
@@ -27,10 +27,13 @@ export const useContactFormLoader = routeLoader$(() => ({
   message: "",
 }));
 export default component$(() => {
-  const viewportCategory = useSignal<"mobile" | "tablet" | "desktop">("desktop");
+  // const viewportCategory = useSignal<"mobile" | "tablet" | "desktop">("desktop");
+  const viewportCategory = useSignal<"mobile" | "tablet" | "desktop" | null>(null);
+  const viewportWidth = useSignal(0);
 
   const updateViewport = $(() => {
     const width = window.innerWidth;
+    viewportWidth.value = width;
     if (width >= 1440) viewportCategory.value = "desktop";
     else if (width >= 768) viewportCategory.value = "tablet";
     else viewportCategory.value = "mobile";
@@ -39,8 +42,17 @@ export default component$(() => {
   useVisibleTask$(() => {
     updateViewport();
   });
-  useOnWindow("resize", updateViewport);
+  // useOnWindow("resize", updateViewport);
+
+  // eslint-disable-next-line qwik/no-use-visible-task
+  useVisibleTask$(({ cleanup }) => {
+    updateViewport();
+    window.addEventListener("resize", updateViewport);
+    cleanup(() => window.removeEventListener("resize", updateViewport));
+  });
+
   useContextProvider(ViewportContext, viewportCategory);
+  useContextProvider(ViewportWidthContext, viewportWidth);
   return (
     <>
       <Header />

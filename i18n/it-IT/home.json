@@ -2,13 +2,16 @@
   "home": {
     "contact-section": {
       "content": {
+        "link_telegram": "Contattaci su Telegram: @obriym",
+        "link_upwork": "Visita il nostro profilo agenzia su Upwork",
         "oberem_img_alt": "Ritratto di Serhii, fondatore e CEO",
         "text1": "Hai un progetto?",
         "text2": "Parliamone!",
         "text3": "Iniziamo la conversazione ed esploriamo come possiamo realizzare la tua visione.",
-        "text4": "Fissa una chiamata con Serhii"
+        "text4": "Fissa una chiamata con Serhii",
+        "text5": "Puoi trovarci in qualsiasi momento su Upwork"
       },
-      "oberem_img_alt": "Portrait of Serhii, founder and CEO",
+      "oberem_img_alt": "Ritratto di Serhii, fondatore e CEO",
       "title": "Contattaci "
     },
     "sectionHIW": {

@@ -26,6 +26,7 @@ export const OptionsGroup = component$(
               <input
                 {...props}
                 type={type}
+                name={name}
                 value={key}
                 checked={isSelected}
                 class="visually-hidden"
