@@ -1,3 +1,4 @@
+import { inlineTranslate } from "qwik-speak";
 import { TeamMemberType, ImageKey } from "~/types/team-member.type";
 import Person1 from "~/assets/images/oberemchuk.png?w=880&h=1192&jsx";
 import Person2 from "~/assets/images/person2.png?w=880&h=1192&jsx";
@@ -38,18 +39,59 @@ export const TEAM_MEMBERS: TeamMemberType[] = [
 ];
 
 export const imageMap: Record<ImageKey, () => JSX.Element> = {
-  person1: () => (
-    <Person1
-      class="slide-image"
-      draggable={false}
-      role="img"
-      aria-label="Photo of Serhii Oberemchuk"
-    />
-  ),
-  person2: () => (
-    <Person2 class="slide-image" draggable={false} role="img" aria-label="Photo of Person 2" />
-  ),
-  person3: () => (
-    <Person3 class="slide-image" draggable={false} role="img" aria-label="Photo of Person 3" />
-  ),
+  person1: () => {
+    const t = inlineTranslate();
+    return (
+      <Person1
+        class="slide-image"
+        draggable={false}
+        role="img"
+        aria-label={t("team.member.serhii_oberemchuk.image_alt@@Photo of {{name}}", {
+          name: t("team.member.serhii_oberemchuk.name@@Serhii Oberemchuk"),
+        })}
+      />
+    );
+  },
+  person2: () => {
+    const t = inlineTranslate();
+    return (
+      <Person2
+        class="slide-image"
+        draggable={false}
+        role="img"
+        aria-label={t("team.member.person_2.image_alt@@Photo of {{name}}", {
+          name: t("team.member.person_2.name@@Person 2"),
+        })}
+      />
+    );
+  },
+  person3: () => {
+    const t = inlineTranslate();
+    return (
+      <Person3
+        class="slide-image"
+        draggable={false}
+        role="img"
+        aria-label={t("team.member.person_3.image_alt@@Photo of {{name}}", {
+          name: t("team.member.person_3.name@@Person 3"),
+        })}
+      />
+    );
+  },
 };
+// export const imageMap: Record<ImageKey, () => JSX.Element> = {
+//   person1: () => (
+//     <Person1
+//       class="slide-image"
+//       draggable={false}
+//       role="img"
+//       aria-label="Photo of Serhii Oberemchuk"
+//     />
+//   ),
+//   person2: () => (
+//     <Person2 class="slide-image" draggable={false} role="img" aria-label="Photo of Person 2" />
+//   ),
+//   person3: () => (
+//     <Person3 class="slide-image" draggable={false} role="img" aria-label="Photo of Person 3" />
+//   ),
+// };

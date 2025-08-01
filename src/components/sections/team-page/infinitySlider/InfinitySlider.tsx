@@ -247,9 +247,7 @@ export default component$(({ items }: InfinitySliderProps) => {
   const linkedinLabel = t("team.aria.linkedin@@LinkedIn profile of {{name}}", {
     name: memberName,
   });
-  //  aria-label={t("team.aria.linkedin@@LinkedIn profile of {name}", {
-  //                   name: selectedItem.value.name,
-  //                 })}
+
   return (
     <div class="inf_carousel-container">
       {/* BUTTONS viewportCategory.value === "tablet"*/}
@@ -335,15 +333,12 @@ export default component$(({ items }: InfinitySliderProps) => {
                     `team.member.${selectedItem.value.slug}.description@@${selectedItem.value.description}`,
                   )}
                 </p>
-                {/* //https://www.linkedin.com/in/serhii-oberemchuk/ */}
+
                 <a
                   class="btn-linkedin btn_body"
                   href={selectedItem.value.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  // aria-label={t("team.aria.linkedin@@LinkedIn profile of {name}", {
-                  //   name: selectedItem.value.name,
-                  // })}
                   aria-label={linkedinLabel}
                 >
                   LinkedIn
