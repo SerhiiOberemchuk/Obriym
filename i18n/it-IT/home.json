@@ -14,6 +14,25 @@
       "oberem_img_alt": "Ritratto di Serhii, fondatore e CEO",
       "title": "Contattaci "
     },
+    "sectionHIW": {
+      "steps": {
+        "step1": {
+          "step": "I passo",
+          "text": "Iniziamo con una consulenza approfondita per capire i tuoi obiettivi e le tue sfide.",
+          "title": "Parliamone"
+        },
+        "step2": {
+          "step": "II passo",
+          "text": "Ricevi una proposta su misura con ambito, tempi e budget — tutto in piena trasparenza.",
+          "title": "Ottieni il piano"
+        },
+        "step3": {
+          "step": "III passo",
+          "text": "Progettiamo, sviluppiamo, consegniamo. Passo dopo passo — ti terremo aggiornato sempre.",
+          "title": "Rendilo reale"
+        }
+      }
+    },
     "services": {
       "1": {
         "descr": "Scopriamo insight, definiamo obiettivi e creiamo strategie chiare e orientate all'utente.",

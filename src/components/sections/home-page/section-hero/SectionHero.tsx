@@ -30,7 +30,7 @@ export default component$(() => {
       words.forEach(word => {
         const randomX = gsap.utils.random(-150, 150);
         const randomY = gsap.utils.random(-100, 100);
-        const randomRot = gsap.utils.random(-90, 90);
+        // const randomRot = gsap.utils.random(-90, 90);
         const randomScale = gsap.utils.random(0, 0.1);
 
         tl.fromTo(
@@ -38,7 +38,7 @@ export default component$(() => {
           {
             x: randomX,
             y: randomY,
-            rotationZ: randomRot,
+            // rotationZ: randomRot,
             scale: randomScale,
             // opacity: 0.5,
           },
@@ -46,7 +46,7 @@ export default component$(() => {
           {
             x: 0,
             y: 0,
-            rotationZ: 0,
+            // rotationZ: 0,
             scale: 1,
             // opacity: 1,
             duration: 1,

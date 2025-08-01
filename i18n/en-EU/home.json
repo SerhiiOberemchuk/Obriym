@@ -14,6 +14,25 @@
       "oberem_img_alt": "Portrait of Serhii, founder and CEO",
       "title": "get a contact"
     },
+    "sectionHIW": {
+      "steps": {
+        "step1": {
+          "step": "I step",
+          "text": "We begin with an in-depth consultation to understand your business objectives and challenges.",
+          "title": "Let’s Talk"
+        },
+        "step2": {
+          "step": "II step",
+          "text": "You receive a tailored proposal outlining the scope, timeline, and budget — fully transparent.",
+          "title": "get the plan"
+        },
+        "step3": {
+          "step": "III step",
+          "text": "Design, develop, deliver. Step by step — we’ll keep you in the loop every step of the way.",
+          "title": "Make It Real"
+        }
+      }
+    },
     "services": {
       "1": {
         "descr": "We uncover insights, define goals, and map out clear, user-centered strategies.",
