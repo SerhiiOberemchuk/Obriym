@@ -14,7 +14,7 @@ export const config: SpeakConfig = {
   // Translations available in the whole app
   assets: ["app", "footer", "logo", "navigation", "home"],
   // Translations with dynamic keys available in the whole app
-  runtimeAssets: ["runtime", "errors", "services", "budget", "alert"],
+  runtimeAssets: ["runtime", "errors", "services", "budget", "alert", "team"],
 
   domainBasedRouting: { prefix: "always" },
 };
