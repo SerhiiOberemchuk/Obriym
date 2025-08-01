@@ -16,7 +16,7 @@ import SlideComponent from "./slide-component/SlideComponent";
 import ModalWrapper from "~/components/common/modal-component/ModalComponent";
 import { TeamMemberType } from "~/types/team-member.type";
 import { imageMap } from "~/const/team";
-import { ViewportContext } from "~/routes/[...lang]/layout";
+import { ViewportContext, ViewportWidthContext } from "~/routes/[...lang]/layout";
 
 interface InfinitySliderProps {
   items: TeamMemberType[];
@@ -39,6 +39,7 @@ export function getSlideWidthWithGap(track: HTMLElement | null): number {
 export default component$(({ items }: InfinitySliderProps) => {
   useStylesScoped$(styles);
   const viewportCategory = useContext(ViewportContext);
+  const viewportWidth = useContext(ViewportWidthContext);
   // for modal
   const isOpen = useSignal(false);
   const selectedItem = useSignal<TeamMemberType | null>(null);
@@ -54,7 +55,9 @@ export default component$(({ items }: InfinitySliderProps) => {
   const isAnimating = useSignal(false);
   const isReady = useSignal(false);
 
+  // chahge array
   const baseItems = useComputed$(() => {
+    // void viewportWidth.value;
     const items = itemsSignal.value;
     if (items.length === 0) return [];
     if (viewportCategory.value === "mobile") {
@@ -76,43 +79,34 @@ export default component$(({ items }: InfinitySliderProps) => {
 
     return items; // without cloning for  desktop
   });
-  // console.log("viewportCategory", viewportCategory.value);
 
+  //move track to first position
   useTask$(({ track }) => {
     track(() => viewportCategory.value);
+    track(() => viewportWidth.value);
     const trackR = trackRef.value;
     if (!trackR || baseItems.value.length === 0) return;
+    trackR.style.transition = "none";
 
-    const slideWidthWithGap = Math.round(getSlideWidthWithGap(trackR));
-
-    if (viewportCategory.value === "mobile") {
-      trackR.style.transition = "none";
-      trackR.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
-
+    requestAnimationFrame(() => {
       requestAnimationFrame(() => {
+        const slideWidthWithGap = Math.round(getSlideWidthWithGap(trackR));
+
+        if (viewportCategory.value === "mobile") {
+          trackR.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
+        } else if (viewportCategory.value === "tablet") {
+          const cloneCount = 2;
+          trackR.style.transform = `translate3d(-${slideWidthWithGap * cloneCount}px, 0, 0)`;
+        } else {
+          trackR.style.transform = "translate3d(0, 0, 0)";
+        }
+
+        // Возвращаем transition
         trackR.style.transition = "transform 0.4s ease";
 
         isReady.value = true;
       });
-    } else if (viewportCategory.value === "tablet") {
-      const cloneCount = 2;
-      trackR.style.transition = "none";
-
-      trackR.style.transform = `translate3d(-${slideWidthWithGap * cloneCount}px, 0, 0)`;
-
-      requestAnimationFrame(() => {
-        trackR.style.transition = "transform 0.4s ease";
-        isReady.value = true;
-      });
-    } else {
-      trackR.style.transition = "none";
-      trackR.style.transform = "translate3d(0, 0, 0)";
-
-      requestAnimationFrame(() => {
-        trackR.style.transition = "transform 0.4s ease";
-        isReady.value = true;
-      });
-    }
+    });
   });
 
   // add it if we need
@@ -127,6 +121,7 @@ export default component$(({ items }: InfinitySliderProps) => {
     track(() => isReady.value);
     track(() => isPaused.value);
     track(() => viewportCategory.value);
+    track(() => viewportWidth.value);
 
     if (
       isOpen.value ||
@@ -321,134 +316,3 @@ export default component$(({ items }: InfinitySliderProps) => {
     </div>
   );
 });
-
-{
-  /* <Modal.Root bind:show={isOpen}>
-        <Modal.Panel class="modal-panel">
-          {selectedItem.value && (
-            <>
-              <div class="modal-content">
-                <div>
-                  <h2 class="modal-title body_big">{selectedItem.value.name}</h2>
-
-                  <p class="H6 grey">{selectedItem.value.role}</p>
-                </div>
-                <div class="modal-text-block">
-                  <p class="btn_body grey">{selectedItem.value.description}</p>
-                  <button>linkedin</button>
-                </div>
-              </div>
-              <Modal.Close class="modal-close">X</Modal.Close>
-            </>
-          )}
-        </Modal.Panel>
-      </Modal.Root> */
-}
-// quantity of cards in the carousel
-//   const updateViewport = $(() => {
-//     const width = window.innerWidth;
-
-//     if (width >= 1440) {
-//       viewportCategory.value = "desktop";
-//       slidesPerView.value = 3;
-//     } else if (width >= 768) {
-//       viewportCategory.value = "tablet";
-//       slidesPerView.value = 2.3;
-//     } else {
-//       viewportCategory.value = "mobile";
-//       slidesPerView.value = 1;
-//     }
-
-//     const root = document.documentElement;
-//     root.style.setProperty("--slides-inf-per-view", slidesPerView.value.toString());
-//   });
-
-//   useOnWindow(
-//     "load",
-//     $(() => {
-//       updateViewport();
-//     }),
-//   );
-
-//   useOnWindow(
-//     "resize",
-//     $(() => {
-//       updateViewport();
-//     }),
-//   );
-
-// const prevSlide = $(() => {
-//   if (!isReady.value || isAnimating.value) return;
-//   isAnimating.value = true;
-
-//   const track = trackRef.value;
-//   if (!track) return;
-
-//   const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
-
-//   // change the order of items in baseItems
-
-//   const items = [...itemsSignal.value];
-//   const last = items.pop()!;
-//   items.unshift(last);
-//   itemsSignal.value = items;
-
-//   // without animation, move the track to the left by slideWidth
-//   track.style.transition = "none";
-
-//   //track.style.transform = `translateX(-${slideWidthWithGap * 2}px)`;
-//   track.style.transform = `translate3d(-${slideWidthWithGap * 2}px, 0, 0)`;
-
-//   // Double rAF: ensures the browser applies the initial transform
-//   requestAnimationFrame(() => {
-//     requestAnimationFrame(() => {
-//       track.style.transition = "transform 0.4s ease";
-
-//       //track.style.transform = `translateX(-${slideWidthWithGap}px)`;
-//       track.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
-//     });
-//   });
-
-//   // Reset the flag after the animation is complete
-//   setTimeout(() => {
-//     isAnimating.value = false;
-//     // activeIndex.value =
-//     //   (activeIndex.value - 1 + itemsSignal.value.length) % itemsSignal.value.length;
-//   }, 400); // same as transition duration
-// });
-// В nextSlide:
-// const nextSlide = $(() => {
-//   if (!isReady.value || isAnimating.value) return;
-//   isAnimating.value = true;
-
-//   const track = trackRef.value;
-//   if (!track) return;
-
-//   const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
-
-//   //animation shift to the left from 0 to -slideWidth
-
-//   track.style.transition = "transform 0.4s ease";
-
-//   track.style.transform = `translate3d(-${slideWidthWithGap * 2}px, 0, 0)`;
-
-//   setTimeout(() => {
-//     // after the animation, we change the order of items- first item to the end
-//     const items = [...itemsSignal.value];
-//     const first = items.shift()!;
-//     items.push(first);
-//     itemsSignal.value = items;
-
-//     //reset the track position
-//     track.style.transition = "none";
-
-//     track.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
-
-//     // allow new animation
-//     isAnimating.value = false;
-
-//     // update active index for dots
-
-//     // activeIndex.value = (activeIndex.value + 1) % itemsSignal.value.length;
-//   }, 400);
-// });
