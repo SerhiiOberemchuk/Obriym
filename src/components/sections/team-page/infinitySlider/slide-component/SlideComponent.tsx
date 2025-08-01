@@ -26,7 +26,9 @@ export default component$(
           <button
             class="slide-btn-plus "
             onClick$={onOpen$}
-            aria-label={t(`team.slider.plus_btn@@More about ${item.name}`)}
+            aria-label={t("team.aria.slider.plus_btn@@More about {name}", {
+              name: item.name,
+            })}
           >
             <IconPlus />
           </button>

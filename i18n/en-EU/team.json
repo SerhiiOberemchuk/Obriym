@@ -1,31 +1,37 @@
 {
   "team": {
-    "slider": {
-      "button_next": "Next slide",
-      "button_prev": "Previous slide",
-      "dots_btn": "Slide navigation",
-      "dots_current": "Slide {current} of {total}",
-      "plus_btn": "More about {name}"
+    "aria": {
+      "carousel": "Team members carousel",
+      "linkedin": "LinkedIn profile of {name}",
+      "slider": {
+        "button_next": "Next slide",
+        "button_prev": "Previous slide",
+        "dots_btn": "Slide navigation",
+        "dots_current": "Slide {current} of {total}",
+        "plus_btn": "More about {name}"
+      }
     },
     "member": {
-      "serhii_oberemchuk": {
-        "name": "Serhii Oberemchuk",
-        "role": "Founder & CEO",
-        "linkedin": "LinkedIn profile of Serhii Oberemchuk",
-        "description": " Serhii is a strategic leader with a clear vision for how design, technology, and business intersect. As the CEO and co-founder of the agency, he brings over a decade of experience in building teams, managing complex projects, and scaling digital products. Before launching the agency. Serhii led digital transformation initiatives across multiple industries, where he identified the need for a more agile, design-driven approach to business growth."
-      },
       "person_2": {
-        "name": "Person 2",
-        "role": "Designer",
+        "description": " Person2 is a strategic leader with a clear vision for how design, technology, and business intersect. As the CEO and co-founder of the agency, he brings over a decade of experience in building teams, managing complex projects, and scaling digital products. Before launching the agency. Serhii led digital transformation initiatives across multiple industries, where he identified the need for a more agile, design-driven approach to business growth.",
         "linkedin": "LinkedIn profile of Person 2",
-        "description": " Person2 is a strategic leader with a clear vision for how design, technology, and business intersect. As the CEO and co-founder of the agency, he brings over a decade of experience in building teams, managing complex projects, and scaling digital products. Before launching the agency. Serhii led digital transformation initiatives across multiple industries, where he identified the need for a more agile, design-driven approach to business growth."
+        "name": "Person 2",
+        "role": "Designer"
       },
       "person_3": {
-        "name": "Person 3",
-        "role": "Product Manager",
+        "description": " Person3 is a strategic leader with a clear vision for how design, technology, and business intersect. As the CEO and co-founder of the agency, he brings over a decade of experience in building teams, managing complex projects, and scaling digital products. Before launching the agency. Serhii led digital transformation initiatives across multiple industries, where he identified the need for a more agile, design-driven approach to business growth.",
         "linkedin": "LinkedIn profile of Person 3",
-        "description": " Person3 is a strategic leader with a clear vision for how design, technology, and business intersect. As the CEO and co-founder of the agency, he brings over a decade of experience in building teams, managing complex projects, and scaling digital products. Before launching the agency. Serhii led digital transformation initiatives across multiple industries, where he identified the need for a more agile, design-driven approach to business growth."
+        "name": "Person 3",
+        "role": "Product Manager"
+      },
+      "serhii_oberemchuk": {
+        "description": " Serhii is a strategic leader with a clear vision for how design, technology, and business intersect. As the CEO and co-founder of the agency, he brings over a decade of experience in building teams, managing complex projects, and scaling digital products. Before launching the agency. Serhii led digital transformation initiatives across multiple industries, where he identified the need for a more agile, design-driven approach to business growth.",
+        "linkedin": "LinkedIn profile of Serhii Oberemchuk",
+        "name": "Serhii Oberemchuk",
+        "role": "Founder & CEO"
       }
-    }
+    },
+
+    "title": "Our Team"
   }
 }

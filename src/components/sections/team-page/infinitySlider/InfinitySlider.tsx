@@ -244,10 +244,10 @@ export default component$(({ items }: InfinitySliderProps) => {
     <div class="inf_carousel-container">
       {/* BUTTONS viewportCategory.value === "tablet"*/}
       <div class="inf_btn_controls">
-        <button onClick$={prevSlide} aria-label={t("team.slider.button_prev@@Previous slide")}>
+        <button onClick$={prevSlide} aria-label={t("team.aria.slider.button_prev@@Previous slide")}>
           <IconLeft />
         </button>
-        <button onClick$={nextSlide} aria-label={t("team.slider.button_next@@Next slide")}>
+        <button onClick$={nextSlide} aria-label={t("team.aria.slider.button_next@@Next slide")}>
           <IconRight />
         </button>
       </div>
@@ -256,7 +256,6 @@ export default component$(({ items }: InfinitySliderProps) => {
       <div
         class="inf_carousel-track"
         role="region"
-        aria-label="Team carousel"
         ref={trackRef}
         onMouseEnter$={() => (isPaused.value = true)}
         onMouseLeave$={() => (isPaused.value = false)}
@@ -277,12 +276,15 @@ export default component$(({ items }: InfinitySliderProps) => {
         ))}
       </div>
       {isReady.value && (
-        <div class="inf_carousel-dots" aria-label={t("team.slider.dots_btn@@Slide navigation")}>
+        <div
+          class="inf_carousel-dots"
+          aria-label={t("team.aria.slider.dots_btn@@Slide navigation")}
+        >
           {itemsOriginalSignal.value.map((_, i) => (
             <div
               key={`dot-${i}`}
               aria-current={i === activeIndex.value ? "true" : undefined}
-              aria-label={t("team.slider.dots_current@@Slide {current} of {total}", {
+              aria-label={t("team.aria.slider.dots_current@@Slide {current} of {total}", {
                 current: i + 1,
                 total: itemsOriginalSignal.value.length,
               })}
@@ -330,9 +332,9 @@ export default component$(({ items }: InfinitySliderProps) => {
                   href={selectedItem.value.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={t(
-                    `team.member.${selectedItem.value.slug}.linkedin@@LinkedIn profile of ${selectedItem.value.name}`,
-                  )}
+                  aria-label={t("team.aria.linkedin@@LinkedIn profile of {name}", {
+                    name: selectedItem.value.name,
+                  })}
                 >
                   LinkedIn
                 </a>

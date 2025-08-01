@@ -1,31 +1,37 @@
 {
   "team": {
-    "slider": {
-      "button_next": "Slide successiva",
-      "button_prev": "Slide precedente",
-      "dots_btn": "Navigazione tra le slide",
-      "dots_current": "Slide {current} di {total}",
-      "plus_btn": "Maggiori informazioni su {name}"
+    "aria": {
+      "carousel": "Team members carousel",
+      "linkedin": "LinkedIn profile of {name}",
+      "slider": {
+        "button_next": "Slide successiva",
+        "button_prev": "Slide precedente",
+        "dots_btn": "Navigazione tra le slide",
+        "dots_current": "Slide {current} di {total}",
+        "plus_btn": "Maggiori informazioni su {name}"
+      }
     },
     "member": {
-      "serhii_oberemchuk": {
-        "name": "Serhii Oberemchuk",
-        "role": "Fondatore e CEO",
-        "linkedin": "Profilo LinkedIn di Serhii Oberemchuk",
-        "description": "Serhii è un leader strategico con una chiara visione di come design, tecnologia e business si intrecciano. In qualità di CEO e co-fondatore dell'agenzia, porta oltre un decennio di esperienza nella costruzione di team, gestione di progetti complessi e scalabilità di prodotti digitali. Prima di avviare l'agenzia, Serhii ha guidato iniziative di trasformazione digitale in diversi settori, dove ha identificato la necessità di un approccio più agile e guidato dal design per la crescita aziendale."
-      },
       "person_2": {
-        "name": "Persona 2",
-        "role": "Designer",
+        "description": "Persona 2 è un leader strategico con una chiara visione di come design, tecnologia e business si intrecciano. In qualità di CEO e co-fondatore dell'agenzia, porta oltre un decennio di esperienza nella costruzione di team, gestione di progetti complessi e scalabilità di prodotti digitali. Prima di avviare l'agenzia, Serhii ha guidato iniziative di trasformazione digitale in diversi settori, dove ha identificato la necessità di un approccio più agile e guidato dal design per la crescita aziendale.",
         "linkedin": "Profilo LinkedIn di Persona 2",
-        "description": "Persona 2 è un leader strategico con una chiara visione di come design, tecnologia e business si intrecciano. In qualità di CEO e co-fondatore dell'agenzia, porta oltre un decennio di esperienza nella costruzione di team, gestione di progetti complessi e scalabilità di prodotti digitali. Prima di avviare l'agenzia, Serhii ha guidato iniziative di trasformazione digitale in diversi settori, dove ha identificato la necessità di un approccio più agile e guidato dal design per la crescita aziendale."
+        "name": "Persona 2",
+        "role": "Designer"
       },
       "person_3": {
-        "name": "Persona 3",
-        "role": "Product Manager",
+        "description": "Persona 3 è un leader strategico con una chiara visione di come design, tecnologia e business si intrecciano. In qualità di CEO e co-fondatore dell'agenzia, porta oltre un decennio di esperienza nella costruzione di team, gestione di progetti complessi e scalabilità di prodotti digitali. Prima di avviare l'agenzia, Serhii ha guidato iniziative di trasformazione digitale in diversi settori, dove ha identificato la necessità di un approccio più agile e guidato dal design per la crescita aziendale.",
         "linkedin": "Profilo LinkedIn di Persona 3",
-        "description": "Persona 3 è un leader strategico con una chiara visione di come design, tecnologia e business si intrecciano. In qualità di CEO e co-fondatore dell'agenzia, porta oltre un decennio di esperienza nella costruzione di team, gestione di progetti complessi e scalabilità di prodotti digitali. Prima di avviare l'agenzia, Serhii ha guidato iniziative di trasformazione digitale in diversi settori, dove ha identificato la necessità di un approccio più agile e guidato dal design per la crescita aziendale."
+        "name": "Persona 3",
+        "role": "Product Manager"
+      },
+      "serhii_oberemchuk": {
+        "description": "Serhii è un leader strategico con una chiara visione di come design, tecnologia e business si intrecciano. In qualità di CEO e co-fondatore dell'agenzia, porta oltre un decennio di esperienza nella costruzione di team, gestione di progetti complessi e scalabilità di prodotti digitali. Prima di avviare l'agenzia, Serhii ha guidato iniziative di trasformazione digitale in diversi settori, dove ha identificato la necessità di un approccio più agile e guidato dal design per la crescita aziendale.",
+        "linkedin": "Profilo LinkedIn di Serhii Oberemchuk",
+        "name": "Serhii Oberemchuk",
+        "role": "Fondatore e CEO"
       }
-    }
+    },
+
+    "title": "Il nostro team"
   }
 }
