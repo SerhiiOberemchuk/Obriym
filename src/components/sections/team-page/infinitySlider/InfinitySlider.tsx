@@ -305,15 +305,14 @@ export default component$(({ items }: InfinitySliderProps) => {
       )}
       <ModalWrapper show={isOpen}>
         {selectedItem.value && (
-          <div
-            class="modal-wrapper"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby={`modal-title-${selectedItem.value.id}`}
-            aria-describedby={`modal-desc-${selectedItem.value.id}`}
-          >
-            <div class="modal-scrollable-content">
-              {" "}
+          <div class="modal-scrollable-content">
+            <div
+              class="modal-wrapper"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby={`modal-title-${selectedItem.value.id}`}
+              aria-describedby={`modal-desc-${selectedItem.value.id}`}
+            >
               <div class="modal-img-wrp">
                 {selectedItem.value && imageMap[selectedItem.value.imageKey]()}
               </div>

@@ -121,7 +121,6 @@ main {
 /* for modal  */
 
 .modal-panel {
-  position: relative;
   max-height: 100vh;
   padding: 0 2.375rem 2.875rem;
 
@@ -132,8 +131,8 @@ main {
   border: none;
 }
 .modal-scrollable-content {
-  overflow-y: auto;
-  flex: 1;
+  max-height: 100vh;
+  display: flex;
 }
 .modal-panel::backdrop {
   backdrop-filter: blur(3px) brightness(50%);
