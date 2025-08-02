@@ -22,6 +22,7 @@ export default component$(() => {
         t("home.services.1.list.3@@Product Strategy"),
         t("home.services.1.list.4@@UX Audits"),
       ],
+      srcImage: "/images/services/opaum.webp",
     },
     {
       title: t("home.services.2.title@@UX UI Design"),
@@ -35,6 +36,7 @@ export default component$(() => {
         t("home.services.2.list.3@@UX Flows"),
         t("home.services.2.list.4@@Design Systems"),
       ],
+      srcImage: "/images/services/ai.webp",
     },
     {
       title: t("home.services.3.title@@Branding"),
@@ -48,6 +50,7 @@ export default component$(() => {
         t("home.services.3.list.3@@Tone of Voice"),
         t("home.services.3.list.4@@Brand Positioning"),
       ],
+      srcImage: "/images/services/mocup-branding.webp",
     },
     {
       title: t("home.services.4.title@@Web & App Development"),
@@ -61,6 +64,7 @@ export default component$(() => {
         t("home.services.4.list.3@@Webflow / WordPress / Custom"),
         t("home.services.4.list.4@@Mobile App Development"),
       ],
+      srcImage: "/images/services/crm-auto.webp",
     },
     {
       title: t("home.services.5.title@@Launch & Optimization"),
@@ -74,20 +78,35 @@ export default component$(() => {
         t("home.services.5.list.3@@Analytics Setup"),
         t("home.services.5.list.4@@Continuous Improvement"),
       ],
+      srcImage: "/images/services/spa.webp",
     },
   ];
   return (
-    <section class="section">
+    <section class="section" id="ourTeam" aria-label={t("home.services.title@@services")}>
       <div class="container">
         <SubTitle classes="title" section="ourTeam">
           {t("home.services.title@@services")}
         </SubTitle>
         <div class="ins_wrapper">
-          <IconO class="icon_o" />
+          <IconO class="icon_o" aria-hidden="true" focusable="false" />
           <ul class="list">
-            {cards.map(({ title, description, list }, index) => (
+            {cards.map(({ title, description, list, srcImage }, index) => (
               <li key={index} class="li_item" data-num={index}>
-                <Card title={title} description={description} list={list} />
+                <Card title={title} description={description} list={list} srcImage={srcImage} />
+                <script type="application/ld+json">
+                  {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Service",
+                    serviceType: title,
+                    description: description,
+                    provider: {
+                      "@type": "Organization",
+                      name: "OBRIYM",
+                    },
+                    image: srcImage,
+                    keywords: list.join(", "),
+                  })}
+                </script>
               </li>
             ))}
           </ul>

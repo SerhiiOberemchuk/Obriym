@@ -8,18 +8,18 @@ import SectionHowItWork from "~/components/sections/home-page/section-hiw/Sectio
 import SectionProjects from "~/components/sections/home-page/section-projects/SectionProjects";
 import Services from "~/components/sections/home-page/section-services/Services";
 import SectionTitle from "~/components/sections/home-page/section-title/SectionTitle";
-import { faqSchema } from "~/seo/schemas/faq/faq";
+import { faqSchemaEN } from "~/seo/schemas/faq/faq.en";
+import { faqSchemaIT } from "~/seo/schemas/faq/faq.it";
+import { faqSchemaUA } from "~/seo/schemas/faq/faq.ua";
 import { howToWorkSchemaEN } from "~/seo/schemas/howToWork/howToSchema.en";
-import { organizationSchema } from "~/seo/schemas/organization/organization";
+import { howToWorkSchemaIT } from "~/seo/schemas/howToWork/howToSchema.it";
+import { howToWorkSchemaUA } from "~/seo/schemas/howToWork/howToSchema.ua";
+import { organizationSchemaEN } from "~/seo/schemas/organization/organization.en";
+import { organizationSchemaIT } from "~/seo/schemas/organization/organization.it";
+import { organizationSchemaUA } from "~/seo/schemas/organization/organization.ua";
 import { Project } from "~/types/project.type";
 
-// export const useContactFormLoader = routeLoader$(() => ({
-//   services: [],
-//   budget: "",
-//   name: "",
-//   email: "",
-//   message: "",
-// }));
+export const useLocalLoader = routeLoader$(({ locale }) => locale);
 export const useFetchProjects = routeLoader$(async () => {
   try {
     const url = import.meta.env.PUBLIC_URL_PROJECTS;
@@ -48,8 +48,33 @@ export default component$(() => {
   );
 });
 
-export const head: DocumentHead = () => {
+export const head: DocumentHead = ({ resolveValue }) => {
   const t = inlineTranslate();
+  let schemaHOW;
+  let schemaOrganization;
+  let schemaFAQ;
+  const lang = resolveValue(useLocalLoader);
+
+  switch (lang) {
+    case "uk-UA":
+      schemaHOW = howToWorkSchemaUA;
+      schemaFAQ = faqSchemaUA;
+      schemaOrganization = organizationSchemaUA;
+      break;
+    case "it-IT":
+      schemaHOW = howToWorkSchemaIT;
+      schemaFAQ = faqSchemaIT;
+      schemaOrganization = organizationSchemaIT;
+
+      break;
+
+    default:
+      schemaHOW = howToWorkSchemaEN;
+      schemaFAQ = faqSchemaEN;
+      schemaOrganization = organizationSchemaEN;
+
+      break;
+  }
 
   return {
     title: t("app.head.home.title@@{{name}}", { name: "Obriym" }),
@@ -61,13 +86,13 @@ export const head: DocumentHead = () => {
     ],
     scripts: [
       {
-        props: { type: "application/ld+json", children: JSON.stringify(howToWorkSchemaEN) },
+        props: { type: "application/ld+json", children: JSON.stringify(schemaHOW) },
       },
       {
-        props: { type: "application/ld+json", children: JSON.stringify(organizationSchema) },
+        props: { type: "application/ld+json", children: JSON.stringify(schemaOrganization) },
       },
       {
-        props: { type: "application/ld+json", children: JSON.stringify(faqSchema) },
+        props: { type: "application/ld+json", children: JSON.stringify(schemaFAQ) },
       },
     ],
   };

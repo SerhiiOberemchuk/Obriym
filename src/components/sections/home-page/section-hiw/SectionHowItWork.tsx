@@ -34,7 +34,7 @@ export default component$(() => {
           scrub: true,
         },
 
-        y: "100svh",
+        scale: 0,
       });
       gsap.from(".list_steps > :nth-child(3)", {
         scrollTrigger: {
@@ -92,7 +92,7 @@ export default component$(() => {
               <div class="list_wrap">
                 <ul class="list_steps">
                   {steps.map((item, index) => (
-                    <li key={index} class="item">
+                    <li key={index} class="item" id={`step${index + 1}`}>
                       <article class="card">
                         <header>
                           <p class="H4 grey_dark">{item.step}</p>
