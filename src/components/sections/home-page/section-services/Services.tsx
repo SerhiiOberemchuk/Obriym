@@ -99,15 +99,35 @@ export default component$(() => {
                     "@context": "https://schema.org",
                     "@type": "Service",
                     serviceType: title,
-                    description: description,
+                    url: "https://obriym.com/services", // або сторінка конкретної послуги
+                    description: `${description} Our services include ${list.join(", ")} for businesses in Italy and across Europe.`,
                     provider: {
                       "@type": "Organization",
                       name: "OBRIYM",
+                      url: "https://obriym.com",
+                      logo: "https://obriym.com/images/logo.png",
+                      sameAs: [
+                        "https://www.facebook.com/obriym",
+                        "https://www.instagram.com/obriym",
+                        "https://www.linkedin.com/company/obriym",
+                      ],
                     },
                     image: srcImage,
-                    keywords: list.join(", "),
+                    areaServed: [
+                      { "@type": "Country", name: "Italy" },
+                      { "@type": "Country", name: "Ukraine" },
+                      { "@type": "Country", name: "European Union" },
+                    ],
+                    inLanguage: ["en", "it", "uk"],
+                    offers: {
+                      "@type": "Offer",
+                      priceCurrency: "EUR",
+                      price: "1500",
+                      availability: "https://schema.org/InStock",
+                      url: "https://obriym.com/contact",
+                    },
                   })}
-                ></script>
+                />
               </li>
             ))}
           </ul>
