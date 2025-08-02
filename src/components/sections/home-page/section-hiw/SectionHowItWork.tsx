@@ -7,7 +7,7 @@ import { inlineTranslate } from "qwik-speak";
 export default component$(() => {
   useStylesScoped$(styles);
   const t = inlineTranslate();
-  useVisibleTask$(async () => {
+  useVisibleTask$(async ({ cleanup }) => {
     const gsap = (await import("gsap")).default;
     const { ScrollTrigger } = await import("gsap/ScrollTrigger");
     gsap.registerPlugin(ScrollTrigger);
@@ -45,6 +45,7 @@ export default component$(() => {
       rotate: -12,
       x: "-100svw",
     });
+    cleanup(() => ScrollTrigger.killAll(true));
   });
   const steps: StepHowItWork[] = [
     {

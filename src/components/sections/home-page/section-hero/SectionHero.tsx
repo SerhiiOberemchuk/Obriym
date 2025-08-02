@@ -8,9 +8,9 @@ export default component$(() => {
   useStylesScoped$(styles);
   const t = inlineTranslate();
 
-  useVisibleTask$(async () => {
+  useVisibleTask$(async ({ cleanup }) => {
     const gsap = (await import("gsap")).default;
-    const ScrollTrigger = await import("gsap/ScrollTrigger");
+    const { ScrollTrigger } = await import("gsap/ScrollTrigger");
     gsap.registerPlugin(ScrollTrigger);
 
     const words = gsap.utils.toArray<HTMLElement>(".fly_word");
@@ -54,7 +54,7 @@ export default component$(() => {
       );
     });
 
-    // cleanup(() => ScrollTrigger.);
+    cleanup(() => ScrollTrigger.killAll(true));
   });
 
   return (
