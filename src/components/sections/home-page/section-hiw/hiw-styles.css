@@ -2,7 +2,7 @@
   padding-block: 5rem;
 }
 .sticky_wrapper {
-  height: 200rem;
+  height: 210rem;
 }
 .sticky_box {
   position: sticky;
@@ -112,5 +112,8 @@
   .list_steps > :nth-child(3) {
     top: 7%;
     right: 5%;
+  }
+  .sticky_wrapper {
+    height: 200rem;
   }
 }
