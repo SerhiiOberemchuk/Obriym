@@ -1,4 +1,4 @@
-import { $, component$, useOnWindow, useStylesScoped$ } from "@qwik.dev/core";
+import { component$, useStylesScoped$, useVisibleTask$ } from "@qwik.dev/core";
 import styles from "./hiw-styles.css?inline";
 import SubTitle from "~/components/common/subtitile/SubTitle";
 import { StepHowItWork } from "~/types/step-how-it-eork.type";
@@ -7,48 +7,46 @@ import { inlineTranslate } from "qwik-speak";
 export default component$(() => {
   useStylesScoped$(styles);
   const t = inlineTranslate();
-  useOnWindow(
-    "load",
-    $(async () => {
-      const gsap = (await import("gsap")).default;
-      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-      gsap.registerPlugin(ScrollTrigger);
+  useVisibleTask$(async ({ cleanup }) => {
+    const gsap = (await import("gsap")).default;
+    const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+    gsap.registerPlugin(ScrollTrigger);
 
-      gsap.from(".list_steps > :nth-child(1)", {
-        scrollTrigger: {
-          trigger: ".sticky_wrapper",
-          // markers: true,
-          start: "top top",
-          end: "+=800",
-          scrub: true,
-        },
-        rotate: 12,
-        x: "100svw",
-      });
-      gsap.from(".list_steps > :nth-child(2)", {
-        scrollTrigger: {
-          trigger: ".sticky_wrapper",
-          // markers: true,
-          start: "+=800",
-          end: "+=800",
-          scrub: true,
-        },
+    gsap.from(".list_steps > :nth-child(1)", {
+      scrollTrigger: {
+        trigger: ".sticky_wrapper",
+        // markers: true,
+        start: "top top",
+        end: "+=800",
+        scrub: true,
+      },
+      rotate: 12,
+      x: "100svw",
+    });
+    gsap.from(".list_steps > :nth-child(2)", {
+      scrollTrigger: {
+        trigger: ".sticky_wrapper",
+        // markers: true,
+        start: "+=800",
+        end: "+=800",
+        scrub: true,
+      },
 
-        y: "100svh",
-      });
-      gsap.from(".list_steps > :nth-child(3)", {
-        scrollTrigger: {
-          trigger: ".sticky_wrapper",
-          // markers: true,
-          start: "+=1600",
-          end: "+=800",
-          scrub: true,
-        },
-        rotate: -12,
-        x: "-100svw",
-      });
-    }),
-  );
+      scale: 0,
+    });
+    gsap.from(".list_steps > :nth-child(3)", {
+      scrollTrigger: {
+        trigger: ".sticky_wrapper",
+        // markers: true,
+        start: "+=1600",
+        end: "+=800",
+        scrub: true,
+      },
+      rotate: -12,
+      x: "-100svw",
+    });
+    cleanup(() => ScrollTrigger.killAll(true));
+  });
   const steps: StepHowItWork[] = [
     {
       step: t("home.sectionHIW.steps.step1.step@@I step"),
@@ -92,7 +90,7 @@ export default component$(() => {
               <div class="list_wrap">
                 <ul class="list_steps">
                   {steps.map((item, index) => (
-                    <li key={index} class="item">
+                    <li key={index} class="item" id={`step${index + 1}`}>
                       <article class="card">
                         <header>
                           <p class="H4 grey_dark">{item.step}</p>
