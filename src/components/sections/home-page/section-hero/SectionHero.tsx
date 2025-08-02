@@ -58,7 +58,7 @@ export default component$(() => {
   });
 
   return (
-    <section class="sh_section">
+    <section class="sh_section" id="about">
       <div class="container">
         <h2 class="body_big grey title triggertitle">
           {t(

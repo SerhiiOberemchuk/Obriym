@@ -15,6 +15,8 @@
       "title": "Contattaci "
     },
     "sectionHIW": {
+      "sectionAriaLabel": "Come funziona il nostro processo di creazione siti",
+      "sectionTitle": "Segui questi 3 semplici passaggi per lanciare un sito SEO moderno e ottimizzato, su misura per i tuoi obiettivi aziendali.",
       "steps": {
         "step1": {
           "step": "I passo",
@@ -31,7 +33,12 @@
           "text": "Progettiamo, sviluppiamo, consegniamo. Passo dopo passo — ti terremo aggiornato sempre.",
           "title": "Rendilo reale"
         }
-      }
+      },
+      "subTitle": "COME FUNZIONA"
+    },
+    "sectionProject": {
+      "error": "Spiacenti, non è stato possibile caricare i progetti. Riprova più tardi.",
+      "title": "I nostri progetti"
     },
     "services": {
       "1": {
@@ -93,9 +100,9 @@
     },
     "shsection": "{{name}} — dalla prima scintilla al lancio completo. Dall’intuizione all’esecuzione. Pianifichiamo, progettiamo, sviluppiamo e lanciamo prodotti che fanno davvero la differenza.",
     "stitle": {
-      "1span": "Prodotti",
-      "2span": "digitali",
-      "3span": "completi",
+      "1span": "Completi",
+      "2span": "prodotti",
+      "3span": "digitali",
       "4span": "Dall`",
       "5span": "idea al lancio"
     }

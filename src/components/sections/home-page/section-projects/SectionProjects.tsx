@@ -2,7 +2,7 @@ import { component$, useStore, useStylesScoped$, useTask$, useVisibleTask$ } fro
 // import gsap from "gsap";
 import styles from "./sp-styles.css?inline";
 import SubTitle from "~/components/common/subtitile/SubTitle";
-import { useSpeakLocale } from "qwik-speak";
+import { inlineTranslate, useSpeakLocale } from "qwik-speak";
 import { useFetchProjects } from "~/routes/[...lang]";
 import { Project } from "~/types/project.type";
 
@@ -14,7 +14,7 @@ export default component$(() => {
     visibleCount: number;
   }>({ visibleProjects: [], currentProjects: [], visibleCount: 4 });
   const { lang } = useSpeakLocale();
-
+  const t = inlineTranslate();
   const projects = useFetchProjects();
   useTask$(({ track }) => {
     const data = track(() => projects.value.data);
@@ -40,19 +40,6 @@ export default component$(() => {
     return () => clearInterval(intervsl);
   });
 
-  // useOnWindow(
-  //   "DOMContentLoaded",
-  //   $(async () => {
-  //      const gsap = (await import("gsap")).default;
-  //     gsap.from(".item_animate", {
-  //       x: 150,
-  //       opacity: 0,
-  //       duration: 2,
-  //       stagger: 0.2,
-  //       ease: "power2.inOut",
-  //     });
-  //   }),
-  // );
   useVisibleTask$(async ({ track }) => {
     track(() => store.visibleProjects);
     const gsap = (await import("gsap")).default;
@@ -66,10 +53,10 @@ export default component$(() => {
   });
 
   return (
-    <section class="section" id="projects">
+    <section class="section" id="portfolio">
       <div class="container">
         <SubTitle section="projects" classes="subtitle">
-          projects
+          {t("home.sectionProject.title@@projects")}
         </SubTitle>
 
         <ul class="list_projects">
@@ -134,7 +121,7 @@ export default component$(() => {
             })
           ) : (
             <div>
-              <p>error to fetch projects</p>
+              <p>{t("home.sectionProject.error@@error to fetch projects")}</p>
             </div>
           )}
         </ul>

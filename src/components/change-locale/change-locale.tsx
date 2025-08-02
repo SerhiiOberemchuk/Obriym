@@ -53,7 +53,7 @@ export const ChangeLocale = component$(({ place }: { place: "mob-menu" | "header
       >
         <span class="cl_btn_m">{dn(locale.lang.slice(0, 2), { type: "language" })}</span>
         <span class="cl_btn_t">
-          {dn(locale.lang.slice(0, 2), { type: "language" }).slice(0, 3)}
+          {locale.lang === "uk-UA" ? "Укр" : locale.lang === "it-IT" ? "It" : "Eng"}
         </span>
         <IconArrow />
       </button>
@@ -72,7 +72,13 @@ export const ChangeLocale = component$(({ place }: { place: "mob-menu" | "header
               class="cl_link"
               href={getPath(pathname, value.lang)}
             >
-              <span>{dn(value.lang.slice(0, 2), { type: "language" })}</span>
+              <span>
+                {value.lang === "uk-UA"
+                  ? "Українська"
+                  : value.lang === "it-IT"
+                    ? "Italiano"
+                    : "English"}
+              </span>
               {value.lang === locale.lang && <IconSelected />}
             </a>
           </li>
