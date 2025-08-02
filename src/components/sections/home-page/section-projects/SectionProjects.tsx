@@ -1,12 +1,4 @@
-import {
-  $,
-  component$,
-  useOnDocument,
-  useStore,
-  useStylesScoped$,
-  useTask$,
-  useVisibleTask$,
-} from "@qwik.dev/core";
+import { component$, useStore, useStylesScoped$, useTask$, useVisibleTask$ } from "@qwik.dev/core";
 // import gsap from "gsap";
 import styles from "./sp-styles.css?inline";
 import SubTitle from "~/components/common/subtitile/SubTitle";
@@ -32,24 +24,21 @@ export default component$(() => {
     }
   });
 
-  useOnDocument(
-    "DOMContentLoaded",
-    $(() => {
-      const intervsl = setInterval(() => {
-        store.visibleCount = window.innerWidth < 768 ? 2 : 4;
+  useVisibleTask$(() => {
+    const intervsl = setInterval(() => {
+      store.visibleCount = window.innerWidth < 768 ? 2 : 4;
 
-        const xArray = [...store.currentProjects];
-        const firstItem = xArray.shift();
-        if (firstItem === undefined) {
-          return;
-        }
-        store.currentProjects = [...xArray, firstItem];
-        store.visibleProjects = store.currentProjects.slice(0, store.visibleCount);
-      }, 10000);
+      const xArray = [...store.currentProjects];
+      const firstItem = xArray.shift();
+      if (firstItem === undefined) {
+        return;
+      }
+      store.currentProjects = [...xArray, firstItem];
+      store.visibleProjects = store.currentProjects.slice(0, store.visibleCount);
+    }, 10000);
 
-      return () => clearInterval(intervsl);
-    }),
-  );
+    return () => clearInterval(intervsl);
+  });
 
   // useOnWindow(
   //   "DOMContentLoaded",
