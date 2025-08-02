@@ -1,8 +1,9 @@
 import { component$, useStylesScoped$ } from "@qwik.dev/core";
 import styles from "./st-styles.css?inline";
 import { inlineTranslate } from "qwik-speak";
-import ImgGreen from "~/assets/images/green.png?w124&h124&jsx";
-import ImgHeroSl from "~/assets/images/hero_slides.png?w233&h124&jsx";
+import ImgGreen from "~/assets/images/green.png?w=124&h=124&jsx";
+import ImgHeroSl from "~/assets/images/hero_slides.png?w=233&h=124&jsx";
+import IconTitle from "~/assets/images/element-title.png?w=64&h=64&jsx";
 // import { useResponsive } from "~/hooks/useResponsive";
 // import { QModel } from "~/integrations/react/model/ModelGLB";
 
@@ -17,7 +18,10 @@ export default component$(() => {
     <section class="st_section">
       <div class="container">
         <h1 class="H2_light black title">
-          <span>{t("home.stitle.1span@@Complete")}</span>
+          <span class="icon_span">
+            {t("home.stitle.1span@@Complete")}
+            <IconTitle class="icon_title" width={60} height={60} />
+          </span>
           <span class="H1_extra_light grey_dark">{t("home.stitle.2span@@digital")}</span>
           <ImgGreen class="spring_img" alt="dfd" />
           {/* <QModel model="spring" width={75} height={75} /> */}
