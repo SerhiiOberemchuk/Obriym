@@ -47,7 +47,8 @@ export default component$<Props>(({ place, onClick }) => {
       class="navigation"
       aria-label={t("navigation.navTitle@@Main navigation")}
     >
-      <ul data-place={place} class="nav_list">
+      <div></div>
+      <ul data-place={place} class="nav_list glass-card">
         {place === "header" && (
           <li id="home-link">
             <Link href={homePath} aria-label={t("navigation.linkHome@@Link to home page")}>
