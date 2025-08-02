@@ -22,15 +22,15 @@
     "member": {
       "person_2": {
         "description": "Persona 2 è un leader strategico con una chiara visione di come design, tecnologia e business si intrecciano. In qualità di CEO e co-fondatore dell'agenzia, porta oltre un decennio di esperienza nella costruzione di team, gestione di progetti complessi e scalabilità di prodotti digitali. Prima di avviare l'agenzia, Serhii ha guidato iniziative di trasformazione digitale in diversi settori, dove ha identificato la necessità di un approccio più agile e guidato dal design per la crescita aziendale.",
-        "linkedin": "Profilo LinkedIn di Persona 2",
         "image_alt": "Foto di {{name}}",
+        "linkedin": "Profilo LinkedIn di Persona 2",
         "name": "Persona 2",
         "role": "Designer"
       },
       "person_3": {
         "description": "Persona 3 è un leader strategico con una chiara visione di come design, tecnologia e business si intrecciano. In qualità di CEO e co-fondatore dell'agenzia, porta oltre un decennio di esperienza nella costruzione di team, gestione di progetti complessi e scalabilità di prodotti digitali. Prima di avviare l'agenzia, Serhii ha guidato iniziative di trasformazione digitale in diversi settori, dove ha identificato la necessità di un approccio più agile e guidato dal design per la crescita aziendale.",
-        "linkedin": "Profilo LinkedIn di Persona 3",
         "image_alt": "Foto di {{name}}",
+        "linkedin": "Profilo LinkedIn di Persona 3",
         "name": "Persona 3",
         "role": "Product Manager"
       },

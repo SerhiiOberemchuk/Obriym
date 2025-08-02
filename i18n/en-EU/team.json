@@ -22,15 +22,15 @@
     "member": {
       "person_2": {
         "description": " Person2 is a strategic leader with a clear vision for how design, technology, and business intersect. As the CEO and co-founder of the agency, he brings over a decade of experience in building teams, managing complex projects, and scaling digital products. Before launching the agency. Serhii led digital transformation initiatives across multiple industries, where he identified the need for a more agile, design-driven approach to business growth.",
-        "linkedin": "LinkedIn profile of Person 2",
         "image_alt": "Photo of {{name}}",
+        "linkedin": "LinkedIn profile of Person 2",
         "name": "Person 2",
         "role": "Designer"
       },
       "person_3": {
         "description": " Person3 is a strategic leader with a clear vision for how design, technology, and business intersect. As the CEO and co-founder of the agency, he brings over a decade of experience in building teams, managing complex projects, and scaling digital products. Before launching the agency. Serhii led digital transformation initiatives across multiple industries, where he identified the need for a more agile, design-driven approach to business growth.",
-        "linkedin": "LinkedIn profile of Person 3",
         "image_alt": "Photo of {{name}}",
+        "linkedin": "LinkedIn profile of Person 3",
         "name": "Person 3",
         "role": "Product Manager"
       },
