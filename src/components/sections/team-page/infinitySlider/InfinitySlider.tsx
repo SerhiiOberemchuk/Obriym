@@ -312,37 +312,40 @@ export default component$(({ items }: InfinitySliderProps) => {
             aria-labelledby={`modal-title-${selectedItem.value.id}`}
             aria-describedby={`modal-desc-${selectedItem.value.id}`}
           >
-            <div class="modal-img-wrp">
-              {selectedItem.value && imageMap[selectedItem.value.imageKey]()}
-            </div>
-            <div class="modal-content">
-              {/* title */}
-              <div class="modal-title-block">
-                <h2 class=" body_big" id={`modal-title-${selectedItem.value.id}`}>
-                  {t(`team.member.${selectedItem.value.slug}.name@@${selectedItem.value.name}`)}
-                </h2>
-
-                <p class="H6 grey" id={`slide-role-${selectedItem.value.id}`}>
-                  {selectedItem.value.role}
-                </p>
+            <div class="modal-scrollable-content">
+              {" "}
+              <div class="modal-img-wrp">
+                {selectedItem.value && imageMap[selectedItem.value.imageKey]()}
               </div>
-              {/* text-block*/}
-              <div class="modal-text-block" id={`modal-desc-${selectedItem.value.id}`}>
-                <p class="btn_body grey">
-                  {t(
-                    `team.member.${selectedItem.value.slug}.description@@${selectedItem.value.description}`,
-                  )}
-                </p>
+              <div class="modal-content">
+                {/* title */}
+                <div class="modal-title-block">
+                  <h2 class=" body_big" id={`modal-title-${selectedItem.value.id}`}>
+                    {t(`team.member.${selectedItem.value.slug}.name@@${selectedItem.value.name}`)}
+                  </h2>
 
-                <a
-                  class="btn-linkedin btn_body"
-                  href={selectedItem.value.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={linkedinLabel}
-                >
-                  LinkedIn
-                </a>
+                  <p class="H6 grey" id={`slide-role-${selectedItem.value.id}`}>
+                    {selectedItem.value.role}
+                  </p>
+                </div>
+                {/* text-block*/}
+                <div class="modal-text-block" id={`modal-desc-${selectedItem.value.id}`}>
+                  <p class="btn_body grey">
+                    {t(
+                      `team.member.${selectedItem.value.slug}.description@@${selectedItem.value.description}`,
+                    )}
+                  </p>
+
+                  <a
+                    class="btn-linkedin btn_body"
+                    href={selectedItem.value.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={linkedinLabel}
+                  >
+                    LinkedIn
+                  </a>
+                </div>
               </div>
             </div>
           </div>

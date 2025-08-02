@@ -123,6 +123,7 @@
 
 /*MODAL*/
 .modal-wrapper {
+  max-height: 100vh;
   display: flex;
   width: 100%;
   background-color: white;
