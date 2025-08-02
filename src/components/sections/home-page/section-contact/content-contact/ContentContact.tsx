@@ -17,8 +17,8 @@ export default component$(() => {
       <div class="cc_title_box" role="region" aria-labelledby="contact-section-heading">
         {/* title title*/}
         <div>
-          <h2 class="body_big">
-            {t("home.contact-section.content.text1@@Have a project?")} id="contact-section-heading"
+          <h2 class="body_big" id="contact-section-heading">
+            {t("home.contact-section.content.text1@@Have a project?")}
           </h2>
 
           <h3 class="body_big">{t("home.contact-section.content.text2@@Let's talk!")}</h3>

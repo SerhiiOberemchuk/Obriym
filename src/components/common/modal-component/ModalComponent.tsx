@@ -11,10 +11,13 @@ export default component$(({ show }: ModalWrapperProps) => {
   return (
     <Modal.Root bind:show={show}>
       <Modal.Panel class="modal-panel">
-        <Slot />
-        <Modal.Close class="modal-close btn_body">
-          <span class="modal-close_span">Close</span> <IconClose />
-        </Modal.Close>
+        <div class="modal-scrollable-content">
+          <Slot />
+
+          <Modal.Close class="modal-close btn_body">
+            <span class="modal-close_span">Close</span> <IconClose />
+          </Modal.Close>
+        </div>
       </Modal.Panel>
     </Modal.Root>
   );

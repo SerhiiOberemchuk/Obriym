@@ -128,6 +128,8 @@
   background-color: white;
   border-radius: 2.5rem;
   padding: 1.5rem;
+  overflow-y: auto;
+  /* flex: 1; */
 }
 .modal-img-wrp {
   display: none;

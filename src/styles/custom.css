@@ -132,6 +132,7 @@ main {
 /* for modal  */
 
 .modal-panel {
+  max-height: 100vh;
   padding: 0 2.375rem 2.875rem;
 
   max-width: 400px;
@@ -140,13 +141,17 @@ main {
   background-color: transparent;
   border: none;
 }
-
+.modal-scrollable-content {
+  max-height: 100vh;
+  display: flex;
+}
 .modal-panel::backdrop {
   backdrop-filter: blur(3px) brightness(50%);
 }
 
 .modal-close {
   position: absolute;
+  /* position: sticky; */
   left: 0.5rem;
   bottom: 0;
   border: none;
