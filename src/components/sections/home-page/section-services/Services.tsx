@@ -93,8 +93,9 @@ export default component$(() => {
             {cards.map(({ title, description, list, srcImage }, index) => (
               <li key={index} class="li_item" data-num={index}>
                 <Card title={title} description={description} list={list} srcImage={srcImage} />
-                <script type="application/ld+json">
-                  {JSON.stringify({
+                <script
+                  type="application/ld+json"
+                  dangerouslySetInnerHTML={JSON.stringify({
                     "@context": "https://schema.org",
                     "@type": "Service",
                     serviceType: title,
@@ -106,7 +107,7 @@ export default component$(() => {
                     image: srcImage,
                     keywords: list.join(", "),
                   })}
-                </script>
+                ></script>
               </li>
             ))}
           </ul>

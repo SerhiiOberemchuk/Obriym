@@ -115,8 +115,9 @@ export default component$(() => {
                         <li key={index}>{<span class="helper_text grey_dark">{item}</span>}</li>
                       ))}
                     </ul>
-                    <script type="application/ld+json">
-                      {JSON.stringify({
+                    <script
+                      type="application/ld+json"
+                      dangerouslySetInnerHTML={JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "CreativeWork",
                         name: title,
@@ -126,7 +127,7 @@ export default component$(() => {
                         inLanguage: lang,
                         keywords: item.technologies.join(", "),
                       })}
-                    </script>
+                    ></script>
                   </article>
                 </li>
               );
