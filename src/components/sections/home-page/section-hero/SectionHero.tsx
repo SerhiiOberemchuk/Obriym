@@ -53,6 +53,8 @@ export default component$(() => {
         "<",
       );
     });
+
+    // cleanup(() => ScrollTrigger.);
   });
 
   return (
