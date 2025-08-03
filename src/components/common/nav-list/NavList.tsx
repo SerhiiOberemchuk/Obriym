@@ -59,6 +59,7 @@ export default component$<Props>(({ place, onClick }) => {
           return (
             <li key={item.link}>
               <Link
+                data-place={place}
                 href={
                   item.link === "team"
                     ? `${teamPath}`
