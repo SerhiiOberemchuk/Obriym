@@ -1,0 +1,14 @@
+.title {
+  text-align: center;
+  padding-block: 5rem;
+}
+.privacy_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-bottom: 5rem;
+}
+.privacy_wrapper ol {
+  padding-left: 1.2rem;
+  list-style-type: disc;
+}

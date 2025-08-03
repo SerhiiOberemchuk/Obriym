@@ -1,6 +1,6 @@
-import { component$ } from "@qwik.dev/core";
+import { component$, useStylesScoped$ } from "@qwik.dev/core";
 import { inlineTranslate } from "qwik-speak";
-import "./follow-styles.css";
+import styles from "./follow-styles.css?inline";
 import { socialLinks } from "~/types/social-links.type";
 import IconFacebook from "~/assets/icons/icon-facebook.svg?w=64&h64&jsx";
 import IconLinkedIn from "~/assets/icons/icon-linkedIn.svg?w=64&h64&jsx";
@@ -9,7 +9,7 @@ import LinkEmail from "~/components/common/link-email/LinkEmail";
 
 export default component$(() => {
   const t = inlineTranslate();
-
+  useStylesScoped$(styles);
   return (
     <div class="f_social_wrapper">
       <h2 class="H4">{t("footer.followUs@@Follow us on")}</h2>

@@ -1,0 +1,39 @@
+{
+  "cookies": {
+    "intro": "This website (obriym.com) uses cookies to ensure you get the best experience on our site.",
+    "manage": {
+      "text": "You can choose which cookies you want to accept by adjusting your preferences in the cookie banner or your browser settings. Please note that disabling some cookies may affect your browsing experience. For more details, contact us at: info@obriym.com",
+      "title": "How to manage cookies:"
+    },
+    "storage": {
+      "text": "Your data is stored in our database of leads and clients for an indefinite period of time. You can always request its deletion on: info@obriym.com",
+      "title": "How Long We Store Personal Data:"
+    },
+    "title": "Cookies Policy",
+    "types": {
+      "advertising": {
+        "text": "These cookies are used to show you ads that are relevant to your interests. They can also limit the number of times you see an advertisement and help measure the effectiveness of advertising campaigns.",
+        "title": "Advertising cookies:"
+      },
+      "analytics": {
+        "text": "These cookies collect information about how visitors use our site, such as which pages are most popular, how long users spend on the site, etc. This helps us to improve the site and provide you with more interesting content.",
+        "title": "Analytics cookies:"
+      },
+      "desc": "Cookies are small text files stored on your device when you visit a website. They help us improve performance, analyze traffic, and personalize your experience.",
+      "functionality": {
+        "text": "These cookies allow the site to remember your choices (such as username, language or region) and provide enhanced, more personalized features.",
+        "title": "Functionality cookies:"
+      },
+      "required": {
+        "text": "These cookies are essential for the basic functioning of the website. They allow you to navigate the site and use its basic functions. Without these files, the website may not function properly.",
+        "title": "Required cookies:"
+      },
+      "title": "Types of cookies we use:"
+    },
+    "updated": "Last updated: 21 July 2025",
+    "what": {
+      "text": "Cookies are small text files stored on your device when you visit a website. They help us improve performance, analyze traffic, and personalize your experience.",
+      "title": "What Cookies Are"
+    }
+  }
+}

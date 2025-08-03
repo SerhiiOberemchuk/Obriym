@@ -1,0 +1,45 @@
+{
+  "privacy": {
+    "collect": {
+      "items": {
+        "nameContact": "Nome e dettagli di contatto (se compili un modulo o ci contatti)",
+        "technical": "Dati tecnici (indirizzo IP, tipo di browser, sistema operativo)",
+        "usage": "Dati di utilizzo (visualizzazioni di pagine, tempo trascorso sulle pagine)"
+      },
+      "title": "Quali informazioni raccogliamo:"
+    },
+    "contact": "Se hai domande o desideri esercitare i tuoi diritti, contattaci a: info@obriym.com",
+    "intro": "In Obriym (obriym.com) rispettiamo la tua privacy e ci impegniamo a proteggere i tuoi dati personali.",
+    "legal": {
+      "text": "Trattiamo i tuoi dati sulla base del tuo consenso o dei nostri legittimi interessi a migliorare i nostri servizi.",
+      "title": "Base legale per il trattamento dei dati:"
+    },
+    "protect": {
+      "text": "Utilizziamo server sicuri e tecnologie conformi agli standard di settore per proteggere le tue informazioni.",
+      "title": "Come proteggiamo i tuoi dati:"
+    },
+    "rights": {
+      "items": {
+        "access": "Accedere ai tuoi dati",
+        "correction": "Richiedere la correzione o la cancellazione",
+        "withdraw": "Revocare il consenso in qualsiasi momento"
+      },
+      "title": "Hai il diritto di:"
+    },
+    "storage": {
+      "text": "Conserviamo i tuoi dati personali solo per il tempo necessario a raggiungere gli scopi indicati in questa politica, salvo che la legge richieda un periodo di conservazione più lungo.",
+      "title": "Per quanto tempo conserviamo i tuoi dati:"
+    },
+    "title": "Informativa sulla Privacy",
+    "updated": "Ultimo aggiornamento: 21 luglio 2025",
+    "use": {
+      "items": {
+        "analytics": "Per analisi e monitoraggio delle prestazioni",
+        "improve": "Per migliorare il nostro sito web e i nostri servizi",
+        "inquiries": "Per rispondere alle richieste",
+        "newsletter": "Per inviare aggiornamenti o newsletter (solo con il tuo consenso)"
+      },
+      "title": "Come utilizziamo le tue informazioni:"
+    }
+  }
+}
