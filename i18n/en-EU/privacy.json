@@ -1,0 +1,45 @@
+{
+  "privacy": {
+    "collect": {
+      "items": {
+        "nameContact": "Name and contact details (if you fill out a form or contact us)",
+        "technical": "Technical data (IP address, browser type, operating system)",
+        "usage": "Usage data (page views, time spent on pages)"
+      },
+      "title": "What information we collect:"
+    },
+    "contact": "If you have any questions or want to exercise your rights, contact us at: info@obriym.com",
+    "intro": "At Obriym (obriym.com), we respect your privacy and are committed to protecting your personal data.",
+    "legal": {
+      "text": "We process your data based on your consent or our legitimate interests in improving our services.",
+      "title": "Legal basis for processing data:"
+    },
+    "protect": {
+      "text": "We use secure servers and industry-standard technologies to protect your information.",
+      "title": "How we protect your data:"
+    },
+    "rights": {
+      "items": {
+        "access": "Access your data",
+        "correction": "Request correction or deletion",
+        "withdraw": "Withdraw consent at any time"
+      },
+      "title": "You have the right to:"
+    },
+    "storage": {
+      "text": "We store your personal data only as long as necessary to fulfill the purposes outlined in this policy, unless a longer retention period is required by law.",
+      "title": "How long we store your data:"
+    },
+    "title": "Privacy Policy",
+    "updated": "Last updated: 21 July 2025",
+    "use": {
+      "items": {
+        "analytics": "For analytics and performance tracking",
+        "improve": "To improve our website and services",
+        "inquiries": "To respond to inquiries",
+        "newsletter": "To send updates or newsletters (only with your consent)"
+      },
+      "title": "How we use your information:"
+    }
+  }
+}

@@ -48,9 +48,17 @@
       }
     },
     "head": {
+      "cookies": {
+        "description": "Read the cookies policy of Obriym Web Agency. Learn what cookies we use, why we use them, and how you can manage your preferences.",
+        "title": "Cookies Policy | Obriym"
+      },
       "home": {
         "description": "Benvenuto in {{name}}",
         "title": "{{name}}"
+      },
+      "privacy": {
+        "description": "Read the Privacy Policy of Obriym Web Agency. Learn how we collect, use, and protect your personal data.",
+        "title": "Privacy Policy | Obriym"
       }
     },
     "header": {

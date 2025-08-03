@@ -1,0 +1,39 @@
+{
+  "cookies": {
+    "intro": "Questo sito web (obriym.com) utilizza i cookie per garantire la migliore esperienza possibile.",
+    "manage": {
+      "text": "Puoi scegliere quali cookie accettare regolando le tue preferenze nel banner dei cookie o nelle impostazioni del browser. Tieni presente che disabilitare alcuni cookie può influenzare la tua esperienza di navigazione. Per ulteriori dettagli, contattaci a: info@obriym.com",
+      "title": "Come gestire i cookie:"
+    },
+    "storage": {
+      "text": "I tuoi dati vengono conservati nel nostro database di clienti a tempo indeterminato. Puoi sempre richiederne la cancellazione scrivendo a: info@obriym.com",
+      "title": "Per quanto tempo conserviamo i dati personali:"
+    },
+    "title": "Informativa sui Cookie",
+    "types": {
+      "advertising": {
+        "text": "Questi cookie vengono utilizzati per mostrarti annunci pertinenti ai tuoi interessi. Possono anche limitare il numero di volte in cui vedi lo stesso annuncio e contribuire a misurare l’efficacia delle campagne pubblicitarie.",
+        "title": "Cookie pubblicitari:"
+      },
+      "analytics": {
+        "text": "Questi cookie raccolgono informazioni su come i visitatori utilizzano il nostro sito, ad esempio quali pagine sono più popolari e quanto tempo trascorrono sul sito. Ci aiutano a migliorare il sito e a offrirti contenuti più interessanti.",
+        "title": "Cookie analitici:"
+      },
+      "desc": "I cookie sono piccoli file di testo memorizzati sul tuo dispositivo quando visiti un sito web. Ci aiutano a migliorare le prestazioni, analizzare il traffico e personalizzare la tua esperienza.",
+      "functionality": {
+        "text": "Questi cookie permettono al sito di ricordare le tue preferenze (come nome utente, lingua o regione) e di offrire funzionalità avanzate e più personalizzate.",
+        "title": "Cookie funzionali:"
+      },
+      "required": {
+        "text": "Questi cookie sono essenziali per il corretto funzionamento di base del sito. Ti permettono di navigare e usare le funzioni principali. Senza di essi il sito potrebbe non funzionare correttamente.",
+        "title": "Cookie necessari:"
+      },
+      "title": "Tipi di cookie che utilizziamo:"
+    },
+    "updated": "Ultimo aggiornamento: 21 luglio 2025",
+    "what": {
+      "text": "I cookie sono piccoli file di testo memorizzati sul tuo dispositivo quando visiti un sito web. Ci aiutano a migliorare le prestazioni, analizzare il traffico e personalizzare la tua esperienza.",
+      "title": "Cosa sono i Cookie"
+    }
+  }
+}
