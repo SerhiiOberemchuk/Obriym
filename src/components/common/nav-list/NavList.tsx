@@ -1,7 +1,7 @@
-import { component$, QRL } from "@qwik.dev/core";
+import { component$, QRL, useStylesScoped$ } from "@qwik.dev/core";
 import { Link, useLocation } from "@qwik.dev/router";
 import { inlineTranslate, localizePath } from "qwik-speak";
-import "./nav-list.css";
+import styles from "./nav-list.css?inline";
 import IconHome from "~/assets/icons/icon-home.svg?h38&w39&jsx";
 
 import { NavListItem } from "~/types/nav-list.type";
@@ -14,7 +14,7 @@ type Props = {
 export default component$<Props>(({ place, onClick }) => {
   const t = inlineTranslate();
   const location = useLocation();
-
+  useStylesScoped$(styles);
   const currentPath = location.url.pathname;
 
   const getPath = localizePath();
@@ -47,7 +47,6 @@ export default component$<Props>(({ place, onClick }) => {
       class="navigation"
       aria-label={t("navigation.navTitle@@Main navigation")}
     >
-      <div></div>
       <ul data-place={place} class="nav_list glass-card">
         {place === "header" && (
           <li id="home-link">
