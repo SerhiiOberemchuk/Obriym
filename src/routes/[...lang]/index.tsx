@@ -94,6 +94,48 @@ export const head: DocumentHead = ({ resolveValue }) => {
       {
         props: { type: "application/ld+json", children: JSON.stringify(schemaFAQ) },
       },
+      // {
+      //   props: {
+      //     type: "application/ld+json",
+      //     children: JSON.stringify({
+      //       "@context": "https://schema.org",
+      //       "@type": "WebSite",
+      //       url: "https://obriym.com/",
+      //       potentialAction: {
+      //         "@type": "SearchAction",
+      //         target: "https://obriym.com/?s={search_term_string}",
+      //         "query-input": "required name=search_term_string",
+      //       },
+      //     }),
+      //   },
+      // },
+      {
+        props: {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SiteNavigationElement",
+            name: [
+              "Services",
+              "Portfolio",
+              "Team",
+              "About",
+              "Contact",
+              "Cookies policy",
+              "Privacy policy",
+            ],
+            url: [
+              "https://obriym.com/#services",
+              "https://obriym.com/#portfolio",
+              "https://obriym.com/team/",
+              "https://obriym.com/cookies-policy/",
+              "https://obriym.com/privacy-policy/",
+              "https://obriym.com/#about",
+              "https://obriym.com/#contact",
+            ],
+          }),
+        },
+      },
     ],
   };
 };
