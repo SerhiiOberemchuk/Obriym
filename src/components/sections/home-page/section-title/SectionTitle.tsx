@@ -1,9 +1,9 @@
 import { component$, useStylesScoped$ } from "@qwik.dev/core";
 import styles from "./st-styles.css?inline";
 import { inlineTranslate } from "qwik-speak";
-import ImgGreen from "~/assets/images/green.png?w=124&h=124&jsx";
-import ImgHeroSl from "~/assets/images/hero_slides.png?w=233&h=124&jsx";
-import IconTitle from "~/assets/images/element-title.png?w=64&h=64&jsx";
+// import ImgGreen from "~/assets/images/green.png?w=124&h=124&jsx";
+// import ImgHeroSl from "~/assets/images/hero_slides.png?w=233&h=124&jsx";
+// import IconTitle from "~/assets/images/element-title.png?w=64&h=64&jsx";
 // import { useResponsive } from "~/hooks/useResponsive";
 // import { QModel } from "~/integrations/react/model/ModelGLB";
 
@@ -20,13 +20,22 @@ export default component$(() => {
         <h1 class="H2_light black title">
           <span class="icon_span">
             {t("home.stitle.1span@@Complete")}
-            <IconTitle class="icon_title" width={60} height={60} />
+            {/* <IconTitle class="icon_title" width={60} height={60} /> */}
+            <img
+              src="/src/assets/images/element-title.png"
+              alt="f"
+              class="icon_title"
+              width={60}
+              height={60}
+            />
           </span>
           <span class="H1_extra_light grey_dark">{t("home.stitle.2span@@digital")}</span>
-          <ImgGreen class="spring_img" alt="dfd" />
+          {/* <ImgGreen class="spring_img" alt="dfd" /> */}
+          <img src="/src/assets/images/green.png" class="spring_img" alt="green" />
           {/* <QModel model="spring" width={75} height={75} /> */}
           <span class="H1_extra_light grey_dark">{t("home.stitle.3span@@products")}.</span>
-          <ImgHeroSl class="notebook tablet" alt="desc" />
+          {/* <ImgHeroSl class="notebook tablet" alt="desc" /> */}
+          <img src="/src/assets/images/hero_slides.png" class="notebook tablet" alt="slider" />
 
           <span class="from_sp1">{t("home.stitle.4span@@From")}</span>
           <span class="text_center">
@@ -34,7 +43,8 @@ export default component$(() => {
             {t("home.stitle.5span@@concept to launch")}
           </span>
         </h1>
-        <ImgHeroSl class="notebook mobile" alt="Image notebook" />
+        {/* <ImgHeroSl class="notebook mobile" alt="Image notebook" /> */}
+        <img src="/src/assets/images/hero_slides.png" class="notebook mobile" alt="slider" />
       </div>
     </section>
   );

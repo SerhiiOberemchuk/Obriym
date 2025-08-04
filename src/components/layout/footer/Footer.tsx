@@ -20,19 +20,23 @@ export default component$(() => {
     <footer>
       <div class="container f_container" id="contact">
         <Logo place="footer" />
-        <NavList place="footer" />
-        <FollowUs />
-        <h2 class="f_box_title" aria-label="Footer title">
+        <div>
+          <NavList place="footer" />
+        </div>
+        <div>
+          <FollowUs />
+        </div>
+        <h3 class="f_box_title" aria-label="Company motto">
           <span class="body_big grey">{t("footer.text.webuild1@@We build end-to-end")}</span>
           <span class="body_big grey"> {t("footer.text.webuild2@@digital products")}</span>
           <QModel model="organicball" width={48} height={48} />
-        </h2>
+        </h3>
         <div class="nav_wrapper">
-          <button type="button" class="btn_cookies">
+          <button type="button" class="btn_cookies" aria-label="Cookie preferences">
             <IconCookies />
           </button>
           <p class="btn_header grey f_copyright">Copyright ©Obriym{currentYear}</p>
-          <nav>
+          <nav aria-label="Legal information">
             <ul class="privacy_list">
               <li class="btn_header">
                 <Link href={privacyPath}>Privacy policy</Link>
