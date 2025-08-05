@@ -6,6 +6,7 @@ import "./styles/global.css";
 import { useQwikSpeak } from "qwik-speak";
 import { config } from "./speak-config";
 import { translationFn } from "./speak-functions";
+import { QwikPartytown } from "./components/partytown/partytown";
 
 export default component$(() => {
   /**
@@ -19,6 +20,7 @@ export default component$(() => {
     <QwikRouterProvider>
       <head>
         <meta charset="utf-8" />
+        <QwikPartytown forward={["gtag", "dataLayer.push"]} />
         {!isDev && <link rel="manifest" href={`${import.meta.env.BASE_URL}manifest.json`} />}
         <RouterHead />
         {/* <ServiceWorkerRegister /> */}
