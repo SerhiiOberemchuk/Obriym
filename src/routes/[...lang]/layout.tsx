@@ -10,6 +10,7 @@ import {
 } from "@qwik.dev/core";
 import { routeLoader$ } from "@qwik.dev/router";
 import NavList from "~/components/common/nav-list/NavList";
+import CookiesBanner from "~/components/cookies-banner/CookiesBanner";
 import Footer from "~/components/layout/footer/Footer";
 import Header from "~/components/layout/header/Header";
 import LetsWork from "~/components/lets-work/LetsWork";
@@ -63,6 +64,7 @@ export default component$(() => {
         <Slot />
       </main>
       <Footer />
+      <CookiesBanner />
     </>
   );
 });
