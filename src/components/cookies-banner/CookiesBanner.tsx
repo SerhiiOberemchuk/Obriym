@@ -8,6 +8,7 @@ import {
 } from "@qwik.dev/core";
 import styles from "./styles.css?inline";
 import { COOKIES_LOCAL_STORAGE, CookiesTypes } from "~/types/cookies.type";
+import { loadAnalytics } from "~/utils/loadGoogleAnalitics";
 
 export default component$(() => {
   useStylesScoped$(styles);
@@ -28,8 +29,10 @@ export default component$(() => {
         cookiesData.cookiesAccepted = cookiesLocal.cookiesAccepted;
         cookiesData.requiredCookies = cookiesLocal.requiredCookies;
         cookiesData.analyticsCookies = cookiesLocal.analyticsCookies;
-      }
-      if (!isLocalCookies) {
+        if (cookiesLocal.analyticsCookies) {
+          loadAnalytics();
+        }
+      } else {
         document.querySelector(".cookies_banner")?.classList.add("cookies_visible");
       }
     }),
@@ -39,6 +42,7 @@ export default component$(() => {
     cookiesData.cookiesAccepted = true;
     cookiesData.analyticsCookies = true;
     localStorage.setItem(COOKIES_LOCAL_STORAGE, JSON.stringify(cookiesData));
+    loadAnalytics();
     console.log("All cookies accepted");
   });
 
@@ -50,6 +54,9 @@ export default component$(() => {
       cookiesData.cookiesAccepted = true;
       localStorage.setItem(COOKIES_LOCAL_STORAGE, JSON.stringify(cookiesData));
       console.log("Accepted selected cookies");
+      if (cookiesData.analyticsCookies) {
+        loadAnalytics();
+      }
     }
   });
 
