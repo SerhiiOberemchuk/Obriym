@@ -10,6 +10,10 @@ import {
 } from "@qwik.dev/core";
 import { routeLoader$ } from "@qwik.dev/router";
 import NavList from "~/components/common/nav-list/NavList";
+import {
+  CookiesBannerContext,
+  CookiesBannerContextType,
+} from "~/components/cookies-banner/coocies-banner-context";
 import CookiesBanner from "~/components/cookies-banner/CookiesBanner";
 import Footer from "~/components/layout/footer/Footer";
 import Header from "~/components/layout/header/Header";
@@ -51,7 +55,15 @@ export default component$(() => {
     window.addEventListener("resize", updateViewport);
     cleanup(() => window.removeEventListener("resize", updateViewport));
   });
+  const isVisible = useSignal<boolean>(false);
+  const cookiesContextFunctions: CookiesBannerContextType = {
+    isVisible,
+    openBanner: $(() => {
+      isVisible.value = true;
+    }),
+  };
 
+  useContextProvider(CookiesBannerContext, cookiesContextFunctions);
   useContextProvider(ViewportContext, viewportCategory);
   useContextProvider(ViewportWidthContext, viewportWidth);
   return (

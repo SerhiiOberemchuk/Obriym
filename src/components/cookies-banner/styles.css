@@ -13,6 +13,11 @@
   border: solid 1px var(--grey-light);
   border-radius: 2rem;
   background-color: var(--white);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.cookies_banner::-webkit-scrollbar {
+  display: none;
 }
 .cookies_banner {
   display: none;
