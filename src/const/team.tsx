@@ -41,7 +41,7 @@ export const TEAM_MEMBERS: TeamMemberType[] = [
       "Olga is a UX UI designer who values structure and system thinking, always focusing on creating products that work seamlessly and solve real user needs. She’s open to modern design trends and innovative solutions but believes they should be balanced with thoughtful, purposeful design, not just trendy visuals.",
     description2:
       "Outside of work, she enjoys exploring new ideas and staying curious about how design and technology can come together to improve everyday life.",
-    linkedin: "https://www.linkedin.com/in/olga-nazarenko/",
+    linkedin: "https://www.linkedin.com/in/olya7715/",
   },
   {
     id: 4,
@@ -53,7 +53,7 @@ export const TEAM_MEMBERS: TeamMemberType[] = [
       "Svitlana is a UX UI designer who values structure and system thinking, always focusing on creating products that work seamlessly and solve real user needs. She’s open to modern design trends and innovative solutions but believes they should be balanced with thoughtful, purposeful design, not just trendy visuals.",
     description2:
       "Outside of work, she enjoys exploring new ideas and staying curious about how design and technology can come together to improve everyday life.",
-    linkedin: "https://www.linkedin.com/in/svitlana-kiriiaka/",
+    linkedin: "https://www.linkedin.com/in/svitlana-kiriyaka/",
   },
 ];
 
