@@ -1,6 +1,7 @@
 import {
   $,
   component$,
+  useContext,
   useOnDocument,
   useSignal,
   useStore,
@@ -9,6 +10,7 @@ import {
 import styles from "./styles.css?inline";
 import { COOKIES_LOCAL_STORAGE, CookiesTypes } from "~/types/cookies.type";
 import { loadAnalytics } from "~/utils/loadGoogleAnalitics";
+import { CookiesBannerContext } from "./coocies-banner-context";
 
 export default component$(() => {
   useStylesScoped$(styles);
@@ -19,6 +21,8 @@ export default component$(() => {
     requiredCookies: true,
     analyticsCookies: false,
   });
+
+  const { isVisible } = useContext(CookiesBannerContext);
 
   useOnDocument(
     "DOMContentLoaded",
@@ -33,7 +37,7 @@ export default component$(() => {
           loadAnalytics();
         }
       } else {
-        document.querySelector(".cookies_banner")?.classList.add("cookies_visible");
+        isVisible.value = true;
       }
     }),
   );
@@ -43,27 +47,26 @@ export default component$(() => {
     cookiesData.analyticsCookies = true;
     localStorage.setItem(COOKIES_LOCAL_STORAGE, JSON.stringify(cookiesData));
     loadAnalytics();
-    console.log("All cookies accepted");
+    isVisible.value = false;
   });
 
   const handleSettings = $(() => {
     if (typeCookiesBanner.value === "info") {
       typeCookiesBanner.value = "settings";
-      console.log("open settings");
     } else {
       cookiesData.cookiesAccepted = true;
       localStorage.setItem(COOKIES_LOCAL_STORAGE, JSON.stringify(cookiesData));
-      console.log("Accepted selected cookies");
       if (cookiesData.analyticsCookies) {
         loadAnalytics();
       }
+      isVisible.value = false;
     }
   });
 
   return (
     <>
-      {!cookiesData.cookiesAccepted && (
-        <div class="btn_body black cookies_banner">
+      {isVisible.value && (
+        <div class="btn_body black cookies_banner cookies_visible">
           <h5 class="H4 black">
             {typeCookiesBanner.value === "info"
               ? "We use cookies"
@@ -85,13 +88,7 @@ export default component$(() => {
                 <div class="check_wrapper">
                   <p class="H6">Required cookies:</p>
                   <label class="switch">
-                    <input
-                      disabled
-                      type="checkbox"
-                      checked
-                      aria-label="Required cookies"
-                      class="checkbox_cookies"
-                    />
+                    <input disabled type="checkbox" checked aria-label="Required cookies" />
                     <span class="slider"></span>
                   </label>
                 </div>
@@ -104,14 +101,11 @@ export default component$(() => {
                   <label class="switch">
                     <input
                       type="checkbox"
-                      id="analyticsCookies"
-                      name="analyticsCookies"
                       checked={cookiesData.analyticsCookies}
                       aria-label="Analytics cookies"
                       onChange$={() => {
                         cookiesData.analyticsCookies = !cookiesData.analyticsCookies;
                       }}
-                      class="checkbox_cookies"
                     />
                     <span class="slider"></span>
                   </label>
