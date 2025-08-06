@@ -111,7 +111,7 @@ main {
 /* for my slider !!!!!! */
 :root {
   --slides-inf-per-view: 1;
-  --inf-gap: 0px;
+  --inf-gap: 10px;
   --inf-container-padding: 0px;
 }
 @media (min-width: 48rem) {
@@ -141,10 +141,7 @@ main {
   background-color: transparent;
   border: none;
 }
-.modal-scrollable-content {
-  max-height: 100vh;
-  display: flex;
-}
+
 .modal-panel::backdrop {
   backdrop-filter: blur(3px) brightness(50%);
 }

@@ -331,7 +331,12 @@ export default component$(({ items }: InfinitySliderProps) => {
                 <div class="modal-text-block" id={`modal-desc-${selectedItem.value.id}`}>
                   <p class="btn_body grey">
                     {t(
-                      `team.member.${selectedItem.value.slug}.description@@${selectedItem.value.description}`,
+                      `team.member.${selectedItem.value.slug}.description1@@${selectedItem.value.description1}`,
+                    )}
+                  </p>
+                  <p class="btn_body grey">
+                    {t(
+                      `team.member.${selectedItem.value.slug}.description2@@${selectedItem.value.description2}`,
                     )}
                   </p>
 

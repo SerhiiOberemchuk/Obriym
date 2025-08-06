@@ -11,7 +11,7 @@ export default component$(({ show }: ModalWrapperProps) => {
   return (
     <Modal.Root bind:show={show}>
       <Modal.Panel class="modal-panel">
-        <div class="modal-scrollable-content">
+        <div>
           <Slot />
 
           <Modal.Close class="modal-close btn_body">
