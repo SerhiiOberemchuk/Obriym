@@ -141,10 +141,7 @@ main {
   background-color: transparent;
   border: none;
 }
-.modal-scrollable-content {
-  max-height: 100vh;
-  display: flex;
-}
+
 .modal-panel::backdrop {
   backdrop-filter: blur(3px) brightness(50%);
 }

@@ -136,6 +136,10 @@
   overflow-y: auto;
   /* flex: 1; */
 }
+.modal-scrollable-content {
+  max-height: 100vh;
+  display: flex;
+}
 .modal-img-wrp {
   display: none;
 }
