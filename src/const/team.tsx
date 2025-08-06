@@ -60,13 +60,14 @@ export const TEAM_MEMBERS: TeamMemberType[] = [
 export const imageMap: Record<ImageKey, () => JSX.Element> = {
   person1: () => {
     const t = inlineTranslate();
+    const name = t("team.member.serhii_oberemchuk.name@@Serhii Oberemchuk");
     return (
       <Oberemchuk
         class="slide-image"
         draggable={false}
         role="img"
         aria-label={t("team.member.serhii_oberemchuk.image_alt@@Photo of {{name}}", {
-          name: t("team.member.serhii_oberemchuk.name@@Serhii Oberemchuk"),
+          name,
         })}
       />
     );

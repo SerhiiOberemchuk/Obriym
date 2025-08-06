@@ -23,7 +23,7 @@
       "ganna_kovchyk": {
         "description1": "Ganna è una sviluppatrice Full Stack che lavora sia sul front-end che sul back-end, concentrandosi su funzionalità, prestazioni e affidabilità. Non ha paura di implementare soluzioni non convenzionali o complesse quando il progetto lo richiede. Sempre attenta a perfezionare il suo lavoro e orientata ai risultati concreti, Ganna affronta ogni compito con attenzione ai dettagli e un approccio riflessivo.",
         "description2": "Fuori dal lavoro, ama fare surf, trascorrere del tempo nella natura e valorizza la libertà — nel codice, nella vita e nel pensiero.",
-        "image_alt": "Foto di {{name}}",
+        "image_alt": "Foto di Ganna Kovchyk",
         "linkedin": "Profilo LinkedIn di Ganna Kovchyk",
         "name": "Ganna Kovchyk",
         "role": "Full stack Developer"
@@ -31,7 +31,7 @@
       "olga_nazarenko": {
         "description1": "Olga è una designer UX/UI che valorizza la struttura e il pensiero sistemico, sempre concentrata sulla creazione di prodotti che funzionano senza problemi e risolvono le reali esigenze degli utenti. È aperta alle moderne tendenze di design e alle soluzioni innovative, ma crede che debbano essere bilanciate con un design riflessivo e mirato, non solo con elementi visivi di tendenza.",
         "description2": "Fuori dal lavoro, ama esplorare nuove idee e rimanere curiosa su come design e tecnologia possano unirsi per migliorare la vita quotidiana.",
-        "image_alt": "Foto di {{name}}",
+        "image_alt": "Foto di Olga Nazarenko",
         "linkedin": "Profilo LinkedIn di Olga Nazarenko",
         "name": "Olga Nazarenko",
         "role": "UX UI Designer"
@@ -39,7 +39,7 @@
       "svitlana_kiriiaka": {
         "description1": "Svitlana è una designer UX/UI che valorizza la struttura e il pensiero sistemico, sempre concentrata sulla creazione di prodotti che funzionano senza problemi e risolvono le reali esigenze degli utenti. È aperta alle moderne tendenze di design e alle soluzioni innovative, ma crede che debbano essere bilanciate con un design riflessivo e mirato, non solo con elementi visivi di tendenza.",
         "description2": "Fuori dal lavoro, ama esplorare nuove idee e rimanere curiosa su come design e tecnologia possano unirsi per migliorare la vita quotidiana.",
-        "image_alt": "Foto di {{name}}",
+        "image_alt": "Foto di Svitlana Kiriiaka",
         "linkedin": "Profilo LinkedIn di Svitlana Kiriiaka",
         "name": "Svitlana Kiriiaka",
         "role": "UX UI Designer"
@@ -47,7 +47,7 @@
       "serhii_oberemchuk": {
         "description1": "Serhii è un leader strategico con una visione chiara di come design, tecnologia e business si intersechino. Come CEO e co-fondatore dell’agenzia, porta con sé oltre un decennio di esperienza nella costruzione di team, nella gestione di progetti complessi e nella scalabilità di prodotti digitali.",
         "description2": "Prima del lancio dell’agenzia, Serhii ha guidato iniziative di trasformazione digitale in diversi settori, dove ha identificato la necessità di un approccio più agile e orientato al design per la crescita del business.",
-        "image_alt": "Foto di {{name}}",
+        "image_alt": "Foto di Serhii Oberemchuk",
         "linkedin": "Profilo LinkedIn di Serhii Oberemchuk",
         "name": "Serhii Oberemchuk",
         "role": "Fondatore e CEO"
