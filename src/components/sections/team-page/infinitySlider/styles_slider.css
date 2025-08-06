@@ -10,6 +10,7 @@
 
 .inf_carousel-track {
   display: flex;
+  gap: var(--inf-gap);
   will-change: transform;
   margin-bottom: 2rem;
   backface-visibility: hidden;
@@ -17,8 +18,12 @@
 }
 
 .inf_carousel-slide {
-  flex: 0 0 calc(100% - (2 * var(--inf-container-padding)) / var(--slides-inf-per-view));
-
+  /* flex: 0 0 calc(100% - (2 * var(--inf-container-padding)) / var(--slides-inf-per-view)); */
+  flex: 0 0
+    calc(
+      ((100% - (2 * var(--inf-container-padding))) / var(--slides-inf-per-view)) -
+        (var(--inf-gap) * ((var(--slides-inf-per-view) - 1) / var(--slides-inf-per-view)))
+    );
   align-items: center;
   justify-content: center;
 
