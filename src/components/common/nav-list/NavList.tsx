@@ -59,7 +59,6 @@ export default component$<Props>(({ place, onClick }) => {
           return (
             <li key={item.link}>
               <Link
-                data-place={place}
                 href={
                   item.link === "team"
                     ? `${teamPath}`
@@ -68,10 +67,12 @@ export default component$<Props>(({ place, onClick }) => {
                       : `${homePath}#${item.link}`
                 }
                 aria-label={`${t("navigation.linkLabel@@Link to section")} ${item.label}`}
-                class="btn_body link"
+                class="btn_body"
                 onClick$={onClick}
               >
-                {item.label}
+                <span data-place={place} class="page_link">
+                  {item.label}{" "}
+                </span>
               </Link>
             </li>
           );
