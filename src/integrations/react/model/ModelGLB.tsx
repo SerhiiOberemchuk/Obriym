@@ -6,7 +6,7 @@ import { useRef, useEffect, Suspense } from "react";
 import { Group } from "three";
 import { Canvas } from "@react-three/fiber";
 
-type Model = { model: "organicball" | "spring" | "gordian" };
+type Model = { model: "organicball" | "spring" | "gordian" | "puff" };
 
 function ModelCopy({ model }: Model) {
   const group = useRef<Group>(null);
@@ -36,6 +36,18 @@ function SceneCopy({
   width: number;
   height: number;
 } & Model) {
+  let scale;
+  switch (model) {
+    case "puff":
+      scale = 0.7;
+      break;
+    case "spring":
+      scale = 1.3;
+      break;
+    default:
+      scale = 3;
+      break;
+  }
   return (
     <Canvas
       style={{ width, height }}
@@ -48,7 +60,7 @@ function SceneCopy({
     >
       <directionalLight position={[0, 0, 2]} intensity={5} />
       <Suspense fallback={null}>
-        <Center position={[0, 0, 0]} scale={3}>
+        <Center position={[0, 0, 0]} scale={scale}>
           <ModelCopy model={model} />
         </Center>
       </Suspense>
