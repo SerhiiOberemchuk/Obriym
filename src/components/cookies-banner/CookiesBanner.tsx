@@ -69,15 +69,15 @@ export default component$(() => {
         <div class="btn_body black cookies_banner">
           <h5 class="H4 black">
             {typeCookiesBanner.value === "info"
-              ? t("coockies.banner.title.general@@We use cookies")
-              : t("coockies.banner.title.settings@@Choose which cookies you want to accept:")}
+              ? t("cookies.banner.title.general@@We use cookies")
+              : t("cookies.banner.title.settings@@Choose which cookies you want to accept:")}
           </h5>
           <p>
             {t(
-              "coockies.banner.description1@@This site uses cookies. By continuing to browse the site, you are agreeing to our use of cookies.",
+              "cookies.banner.description1@@This site uses cookies. By continuing to browse the site, you are agreeing to our use of cookies.",
             )}
             <br />
-            {t("coockies.banner.description2@@Read more on")}{" "}
+            {t("cookies.banner.description2@@Read more on")}{" "}
             <a href="https://obriym.com/cookie-policy" target="_blank" rel="noopener noreferrer">
               https://obriym.com/cookie-policy
             </a>
@@ -87,7 +87,7 @@ export default component$(() => {
             <ul class="settings_list">
               <li>
                 <div class="check_wrapper">
-                  <p class="H6">{t("coockies.banner.required.title@@Required cookies:")}</p>
+                  <p class="H6">{t("cookies.banner.required.title@@Required cookies:")}</p>
                   <label class="switch">
                     <input disabled type="checkbox" checked aria-label="Required cookies" />
                     <span class="slider"></span>
@@ -95,14 +95,14 @@ export default component$(() => {
                 </div>
                 <p>
                   {t(
-                    "coockies.banner.required.description@@These cookies are essential for the basic functioning of the website.",
+                    "cookies.banner.required.description@@These cookies are essential for the basic functioning of the website.",
                   )}
                 </p>
               </li>
 
               <li>
                 <div class="check_wrapper">
-                  <p class="H6">{t("coockies.banner.analitics.title@@Analytics cookies:")}</p>
+                  <p class="H6">{t("cookies.banner.analitics.title@@Analytics cookies:")}</p>
                   <label class="switch">
                     <input
                       type="checkbox"
@@ -117,7 +117,7 @@ export default component$(() => {
                 </div>
                 <p>
                   {t(
-                    "coockies.banner.analitics.description@@These cookies collect information about how visitors use our site.",
+                    "cookies.banner.analitics.description@@These cookies collect information about how visitors use our site.",
                   )}
                 </p>
               </li>
@@ -127,11 +127,11 @@ export default component$(() => {
           <div class="buttons_wrapper">
             <button type="button" class="grey_dark btn_set" onClick$={handleSettings}>
               {typeCookiesBanner.value === "info"
-                ? t("coockies.banner.button.setCookies@@Set cookies")
-                : t("coockies.banner.button.acceptSelected@@Accept selected")}
+                ? t("cookies.banner.button.setCookies@@Set cookies")
+                : t("cookies.banner.button.acceptSelected@@Accept selected")}
             </button>
             <button type="button" class="btn_accept" onClick$={handleAcceptAllCookies}>
-              {t("coockies.banner.button.acceptAll@@Accept all")}
+              {t("cookies.banner.button.acceptAll@@Accept all")}
             </button>
           </div>
         </div>
