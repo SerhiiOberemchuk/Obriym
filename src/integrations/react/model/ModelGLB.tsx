@@ -39,7 +39,7 @@ function SceneCopy({
   let scale;
   switch (model) {
     case "puff":
-      scale = 0.5;
+      scale = 0.7;
       break;
     case "spring":
       scale = 1.3;

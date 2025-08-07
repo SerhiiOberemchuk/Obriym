@@ -52,8 +52,15 @@ export default component$(() => {
             </div>
           </span>
           <span class="H1_extra_light grey_dark">{t("home.stitle.2span@@digital")}</span>
+          <div class="spring_model">
+            {" "}
+            <QModel
+              model="spring"
+              width={sizeModel.spring.width}
+              height={sizeModel.spring.height}
+            />
+          </div>
 
-          <QModel model="spring" width={sizeModel.spring.width} height={sizeModel.spring.height} />
           <span class="H1_extra_light grey_dark">{t("home.stitle.3span@@products")}.</span>
           <ImgHeroSl class="notebook tablet" alt="desc" />
 

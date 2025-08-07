@@ -19,8 +19,7 @@
   position: absolute;
   left: 5px;
   top: 11px;
-  width: 20px;
-  height: 20px;
+
   z-index: -1;
 }
 
@@ -38,6 +37,9 @@
 }
 .from_sp1 {
   display: none;
+}
+.spring_model {
+  width: 2.75rem;
 }
 @media (width >= 48rem) {
   .st_section {
@@ -59,12 +61,12 @@
   .from_sp2 {
     display: none;
   }
-
+  .spring_model {
+    width: 4.5rem;
+  }
   .icon_title {
     left: 8px;
     top: 18px;
-    width: 42px;
-    height: 42px;
   }
 }
 
@@ -76,14 +78,14 @@
     column-gap: 2rem;
     max-width: 81rem;
   }
-
+  .spring_model {
+    width: 7.75rem;
+  }
   .tablet {
     width: 15rem;
   }
   .icon_title {
     left: 18px;
     top: 40px;
-    width: 60px;
-    height: 60px;
   }
 }
