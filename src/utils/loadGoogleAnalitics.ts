@@ -9,6 +9,7 @@ export const loadAnalytics = () => {
   document.head.appendChild(script1);
 
   const script2 = document.createElement("script");
+  script2.id = "gtag-script";
   script2.setAttribute("type", "text/partytown");
   script2.innerHTML = `
     window.dataLayer = window.dataLayer || [];
@@ -19,4 +20,10 @@ export const loadAnalytics = () => {
   document.head.appendChild(script2);
 
   console.log("Google Analytics loaded dynamically");
+};
+
+export const disableAnalitics = () => {
+  document.getElementById("ga-script")?.remove();
+  document.getElementById("gtag-script")?.remove();
+  console.log("Google Analytics disabled");
 };

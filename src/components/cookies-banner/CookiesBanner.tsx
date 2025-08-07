@@ -2,19 +2,20 @@ import {
   $,
   component$,
   useContext,
-  useOnDocument,
   useSignal,
   useStore,
   useStylesScoped$,
+  useVisibleTask$,
 } from "@qwik.dev/core";
 import styles from "./styles.css?inline";
 import { COOKIES_LOCAL_STORAGE, CookiesTypes } from "~/types/cookies.type";
-import { loadAnalytics } from "~/utils/loadGoogleAnalitics";
+import { disableAnalitics, loadAnalytics } from "~/utils/loadGoogleAnalitics";
 import { CookiesBannerContext } from "./coocies-banner-context";
+import { inlineTranslate } from "qwik-speak";
 
 export default component$(() => {
   useStylesScoped$(styles);
-
+  const t = inlineTranslate();
   const typeCookiesBanner = useSignal<"info" | "settings">("info");
   const cookiesData = useStore<CookiesTypes>({
     cookiesAccepted: false,
@@ -24,23 +25,20 @@ export default component$(() => {
 
   const { isVisible } = useContext(CookiesBannerContext);
 
-  useOnDocument(
-    "DOMContentLoaded",
-    $(() => {
-      const isLocalCookies = localStorage.getItem(COOKIES_LOCAL_STORAGE);
-      if (isLocalCookies) {
-        const cookiesLocal: CookiesTypes = JSON.parse(isLocalCookies);
-        cookiesData.cookiesAccepted = cookiesLocal.cookiesAccepted;
-        cookiesData.requiredCookies = cookiesLocal.requiredCookies;
-        cookiesData.analyticsCookies = cookiesLocal.analyticsCookies;
-        if (cookiesLocal.analyticsCookies) {
-          loadAnalytics();
-        }
-      } else {
-        isVisible.value = true;
+  useVisibleTask$(() => {
+    const isLocalCookies = localStorage.getItem(COOKIES_LOCAL_STORAGE);
+    if (isLocalCookies) {
+      const cookiesLocal: CookiesTypes = JSON.parse(isLocalCookies);
+      cookiesData.cookiesAccepted = cookiesLocal.cookiesAccepted;
+      cookiesData.requiredCookies = cookiesLocal.requiredCookies;
+      cookiesData.analyticsCookies = cookiesLocal.analyticsCookies;
+      if (cookiesLocal.analyticsCookies) {
+        loadAnalytics();
       }
-    }),
-  );
+    } else {
+      isVisible.value = true;
+    }
+  });
 
   const handleAcceptAllCookies = $(() => {
     cookiesData.cookiesAccepted = true;
@@ -58,6 +56,8 @@ export default component$(() => {
       localStorage.setItem(COOKIES_LOCAL_STORAGE, JSON.stringify(cookiesData));
       if (cookiesData.analyticsCookies) {
         loadAnalytics();
+      } else {
+        disableAnalitics();
       }
       isVisible.value = false;
     }
@@ -66,17 +66,18 @@ export default component$(() => {
   return (
     <>
       {isVisible.value && (
-        <div class="btn_body black cookies_banner cookies_visible">
+        <div class="btn_body black cookies_banner">
           <h5 class="H4 black">
             {typeCookiesBanner.value === "info"
-              ? "We use cookies"
-              : "Choose which cookies you want to accept:"}
+              ? t("cookies.banner.title.general@@We use cookies")
+              : t("cookies.banner.title.settings@@Choose which cookies you want to accept:")}
           </h5>
           <p>
-            This site uses cookies. By continuing to browse the site, you are agreeing to our use of
-            cookies.
+            {t(
+              "cookies.banner.description1@@This site uses cookies. By continuing to browse the site, you are agreeing to our use of cookies.",
+            )}
             <br />
-            Read more on{" "}
+            {t("cookies.banner.description2@@Read more on")}{" "}
             <a href="https://obriym.com/cookie-policy" target="_blank" rel="noopener noreferrer">
               https://obriym.com/cookie-policy
             </a>
@@ -86,18 +87,22 @@ export default component$(() => {
             <ul class="settings_list">
               <li>
                 <div class="check_wrapper">
-                  <p class="H6">Required cookies:</p>
+                  <p class="H6">{t("cookies.banner.required.title@@Required cookies:")}</p>
                   <label class="switch">
                     <input disabled type="checkbox" checked aria-label="Required cookies" />
                     <span class="slider"></span>
                   </label>
                 </div>
-                <p>These cookies are essential for the basic functioning of the website.</p>
+                <p>
+                  {t(
+                    "cookies.banner.required.description@@These cookies are essential for the basic functioning of the website.",
+                  )}
+                </p>
               </li>
 
               <li>
                 <div class="check_wrapper">
-                  <p class="H6">Analytics cookies:</p>
+                  <p class="H6">{t("cookies.banner.analitics.title@@Analytics cookies:")}</p>
                   <label class="switch">
                     <input
                       type="checkbox"
@@ -110,17 +115,23 @@ export default component$(() => {
                     <span class="slider"></span>
                   </label>
                 </div>
-                <p>These cookies collect information about how visitors use our site.</p>
+                <p>
+                  {t(
+                    "cookies.banner.analitics.description@@These cookies collect information about how visitors use our site.",
+                  )}
+                </p>
               </li>
             </ul>
           )}
 
           <div class="buttons_wrapper">
             <button type="button" class="grey_dark btn_set" onClick$={handleSettings}>
-              {typeCookiesBanner.value === "info" ? "Set cookies" : "Accept selected"}
+              {typeCookiesBanner.value === "info"
+                ? t("cookies.banner.button.setCookies@@Set cookies")
+                : t("cookies.banner.button.acceptSelected@@Accept selected")}
             </button>
             <button type="button" class="btn_accept" onClick$={handleAcceptAllCookies}>
-              Accept all
+              {t("cookies.banner.button.acceptAll@@Accept all")}
             </button>
           </div>
         </div>

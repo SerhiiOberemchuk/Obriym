@@ -36,14 +36,6 @@
         "name": "Olga Nazarenko",
         "role": "UX UI Designer"
       },
-      "svitlana_kiriiaka": {
-        "description1": "Svitlana is a UX UI designer who values structure and system thinking, always focusing on creating products that work seamlessly and solve real user needs. She’s open to modern design trends and innovative solutions but believes they should be balanced with thoughtful, purposeful design, not just trendy visuals.",
-        "description2": "Outside of work, she enjoys exploring new ideas and staying curious about how design and technology can come together to improve everyday life.",
-        "image_alt": "Photo of Svitlana Kiriiaka",
-        "linkedin": "LinkedIn profile of Svitlana Kiriiaka",
-        "name": "Svitlana Kiriiaka",
-        "role": "UX UI Designer"
-      },
       "serhii_oberemchuk": {
         "description1": "Serhii is a strategic leader with a clear vision for how design, technology, and business intersect. As the CEO and co-founder of the agency, he brings over a decade of experience in building teams, managing complex projects, and scaling digital products. ",
         "description2": "Before launching the agency, Serhii led digital transformation initiatives across multiple industries, where he identified the need for a more agile, design-driven approach to business growth.",
@@ -51,6 +43,14 @@
         "linkedin": "LinkedIn profile of Serhii Oberemchuk",
         "name": "Serhii Oberemchuk",
         "role": "Founder & CEO"
+      },
+      "svitlana_kiriiaka": {
+        "description1": "Svitlana is a UX UI designer who values structure and system thinking, always focusing on creating products that work seamlessly and solve real user needs. She’s open to modern design trends and innovative solutions but believes they should be balanced with thoughtful, purposeful design, not just trendy visuals.",
+        "description2": "Outside of work, she enjoys exploring new ideas and staying curious about how design and technology can come together to improve everyday life.",
+        "image_alt": "Photo of Svitlana Kiriiaka",
+        "linkedin": "LinkedIn profile of Svitlana Kiriiaka",
+        "name": "Svitlana Kiriiaka",
+        "role": "UX UI Designer"
       }
     },
     "title": "Our Team"
