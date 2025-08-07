@@ -23,9 +23,6 @@ export const loadAnalytics = () => {
 };
 
 export const disableAnalitics = () => {
-  const script1 = document.getElementById("ga-script");
-  const script2 = document.getElementById("gtag-script");
-  if (!script1 || !script2) return;
-  script1.remove();
-  script2.remove();
+  document.getElementById("ga-script")?.remove();
+  document.getElementById("gtag-script")?.remove();
 };
