@@ -1,0 +1,78 @@
+.section {
+  padding-block: 5rem;
+}
+.subtitle {
+  margin-bottom: 2rem;
+}
+
+.list_projects {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 4rem;
+  margin-inline: auto;
+  max-width: 43rem;
+  overflow: hidden;
+}
+.list_projects li {
+  max-width: 41rem;
+}
+
+.image_wrapper {
+  display: flex;
+  margin-bottom: 0.75rem;
+  aspect-ratio: 2.01;
+}
+.image_project {
+  border-radius: 1.5rem;
+  object-fit: cover;
+}
+.list_technologies {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+.list_technologies li {
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  padding: 0.25rem 0.5rem;
+  border: solid 1px;
+  border-radius: 0.75rem;
+  max-width: 41.75rem;
+}
+.list_technologies > :nth-child(1) {
+  border-color: var(--pink);
+  background-color: var(--pink-light);
+}
+.list_technologies > :nth-child(2) {
+  border-color: var(--blue);
+  background-color: var(--blue-light);
+}
+.list_technologies > :nth-child(3) {
+  border-color: var(--yellow);
+  background-color: var(--yellow-light);
+}
+.list_technologies > :nth-child(4) {
+  border-color: var(--green);
+  background-color: var(--green-light);
+}
+.list_technologies > :nth-child(5) {
+  border-color: var(--peach);
+  background-color: var(--peach-light);
+}
+@media (width >= 90rem) {
+  .subtitle {
+    margin-bottom: 1.5rem;
+  }
+  .list_projects {
+    max-width: 100%;
+    margin-top: 1.5rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 2.75rem;
+    column-gap: 1.25rem;
+    justify-content: space-between;
+  }
+}

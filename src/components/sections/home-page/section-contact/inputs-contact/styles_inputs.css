@@ -1,0 +1,19 @@
+.ic_content_box {
+  border-radius: 2rem;
+  padding: 1.5rem;
+  background-color: var(--white);
+}
+
+@media (min-width: 48rem) {
+  .ic_content_box {
+    border-radius: 2.5rem;
+    padding: 1.75rem;
+  }
+}
+
+@media (min-width: 90rem) {
+  .ic_content_box {
+    border-radius: 3rem;
+    padding: 2.25rem;
+  }
+}

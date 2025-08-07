@@ -1,0 +1,30 @@
+:root {
+  --black: #111;
+  --white: #fff;
+  --grey-dark: #505050;
+  --grey: #6f6f6f;
+  --grey-light: #bbb7b7;
+  --peach-dark: #e55d4b;
+  --peach: #f16f5e;
+  --peach-light: #ff9284;
+  --pink-dark: #f480b6;
+  --pink: #fcc0dc;
+  --pink-light: #ffe5f1;
+  --blue-dark: #3c82df;
+  --blue: #70aeff;
+  --blue-light: rgba(204, 225, 253, 0.86);
+  --green: #4fc270;
+  --green-light: #8ce7a6;
+  --yellow: #f6c832;
+  --yellow-light: #ffe388;
+  --background-page: #f6faff;
+  --red: #e90206;
+  --font-family: "Plus Jakarta Sans", sans-serif;
+
+  --top-sticky-card-md: 7.5rem;
+  --top-sticky-card-t: 4.75rem;
+  --servise-card-height-md: 40rem;
+  --servise-card-height-t: 36.25rem;
+  --container-pad-inl-mob: 1rem;
+  --container-pad-inl-tab: 2.5rem;
+}

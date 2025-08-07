@@ -1,0 +1,78 @@
+{
+  "app": {
+    "btnLetsWork": "Let’s work",
+    "changeLocale": "Змінити мову",
+    "form": {
+      "additional": {
+        "legend": "Додаткові деталі"
+      },
+      "btn": {
+        "submitting": "Надсилається...",
+        "text": "Надіслати запит"
+      },
+      "btn-close": {
+        "modal": "Закрити"
+      },
+      "budget": {
+        "legend": "Який у вас бюджет?",
+        "sr-label": "Варіанти бюджету"
+      },
+      "email": {
+        "label": "Ваша електронна пошта",
+        "placeholder": "Введіть свою електронну пошту"
+      },
+      "message": {
+        "placeholder": {
+          "modal": "Додайте інформацію",
+          "not-modal": "Додайте опис"
+        },
+        "sr-label": "Ваше повідомлення"
+      },
+      "name": {
+        "label": "Ваше ім’я",
+        "placeholder": "Введіть своє ім’я"
+      },
+      "services": {
+        "legend": {
+          "modal": "Що ми можемо створити для вас?",
+          "not-modal": "Чим ми можемо вам допомогти?"
+        },
+        "sr-label": "Запропоновані послуги"
+      },
+      "sr-only": {
+        "title": "Будь ласка, заповніть цю форму, щоб надіслати нам запит."
+      },
+      "title": {
+        "modal": "Час втілювати вашу ідею",
+        "not-modal": "Форма зв’язку"
+      }
+    },
+    "head": {
+      "cookies": {
+        "description": "Прочитайте політику використання cookies веб-агенції Obriym. Дізнайтесь, які файли cookie ми використовуємо, навіщо та як керувати своїми вподобаннями.",
+        "title": "Cookies Policy | Obriym"
+      },
+      "home": {
+        "description": "Obriym — веб-агенція повного циклу. Створюємо сучасні сайти, дизайн, анімації та SEO-рішення для бізнесу. Від ідеї до запуску під ключ.",
+        "title": "{{name}}"
+      },
+      "privacy": {
+        "description": "Прочитайте політику конфіденційності веб-агенції Obriym. Дізнайтесь, як ми збираємо, використовуємо та захищаємо ваші персональні дані.",
+        "title": "Privacy Policy | Obriym"
+      }
+    },
+    "header": {
+      "buttonChLang": "Button to change locale"
+    },
+    "logo": {
+      "link": "Логотип {{name}} посилання на головну"
+    },
+    "nav": {
+      "home": "Home",
+      "page": "Page"
+    },
+    "title": "{{name}} italiano demo"
+  },
+  "dates": "Date",
+  "numbers": "Numeri"
+}

@@ -1,0 +1,135 @@
+.cookies_banner {
+  max-height: 100svh;
+  overflow-y: scroll;
+  position: fixed;
+  bottom: 5%;
+  right: 1rem;
+  margin-left: 1rem;
+  max-width: 48.875rem;
+  padding: 1.25rem;
+
+  flex-direction: column;
+  gap: 1.5rem;
+  border: solid 1px var(--grey-light);
+  border-radius: 2rem;
+  background-color: var(--white);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.cookies_banner::-webkit-scrollbar {
+  display: none;
+}
+.cookies_banner {
+  display: none;
+}
+.cookies_visible {
+  display: flex;
+}
+.buttons_wrapper {
+  display: flex;
+  gap: 0.25rem;
+}
+.buttons_wrapper button {
+  padding-block: 0.5rem;
+  padding-inline: 0.625rem;
+  border-radius: 2.5rem;
+}
+.btn_set {
+  flex: 1;
+  border: solid 1px var(--grey-light);
+}
+.btn_accept {
+  flex: 1;
+  background-color: var(--pink);
+}
+.settings_list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  list-style: none;
+}
+.check_wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 3rem;
+  height: 1.5rem;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #777;
+  border-radius: 24px;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  top: 3px;
+
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.switch input:checked + .slider {
+  background-color: var(--blue);
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(24px);
+}
+@media (width >= 48rem) {
+  .cookies_banner {
+    padding: 1.75rem;
+    gap: 2.5rem;
+    bottom: 10%;
+  }
+  .buttons_wrapper {
+    gap: 0.5rem;
+    justify-content: end;
+  }
+  .buttons_wrapper button {
+    padding-block: 0.75rem;
+  }
+  .btn_set {
+    flex: none;
+  }
+  .btn_accept {
+    flex: none;
+  }
+  .settings_list {
+    gap: 2.5rem;
+  }
+}
+@media (width >= 90rem) {
+  .cookies_banner {
+    gap: 1.25rem;
+    padding: 2.25rem;
+  }
+  .buttons_wrapper {
+    gap: 0.75rem;
+  }
+  .settings_list {
+    gap: 1.25rem;
+  }
+}

@@ -1,0 +1,33 @@
+.lw_button {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 2.5rem;
+  background-color: var(--pink);
+  margin-top: 0.75rem;
+}
+.lw_button[data-place="header"] {
+  display: none;
+}
+@media (width >= 48rem) {
+  .lw_button[data-place="header"] {
+    display: block;
+    position: fixed;
+    z-index: 99;
+    margin-top: 0;
+    top: 1.375rem;
+    right: 2.5rem;
+    max-width: 6.875rem;
+  }
+  .lw_button[data-place="header"]:hover {
+    background-color: var(--pink-light);
+  }
+  .lw_button[data-place="header"]:active {
+    background-color: var(--pink-dark);
+  }
+}
+@media (width >= 90rem) {
+  .lw_button[data-place="header"] {
+    top: 40px;
+    max-width: 7.5rem;
+  }
+}

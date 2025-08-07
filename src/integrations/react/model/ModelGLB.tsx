@@ -1,0 +1,71 @@
+/** @jsxImportSource react */
+
+import { qwikify$ } from "@qwik.dev/react";
+import { useGLTF, useAnimations, Center } from "@react-three/drei";
+import { useRef, useEffect, Suspense } from "react";
+import { Group } from "three";
+import { Canvas } from "@react-three/fiber";
+
+type Model = { model: "organicball" | "spring" | "gordian" | "puff" };
+
+function ModelCopy({ model }: Model) {
+  const group = useRef<Group>(null);
+  const { scene, animations } = useGLTF(`/models/${model}.glb`);
+  const { actions } = useAnimations(animations, group);
+
+  useEffect(() => {
+    if (animations.length > 0) {
+      actions[animations[0].name]?.play();
+    }
+  }, [animations, actions]);
+
+  return (
+    <group ref={group} scale={[1.5, 1.5, 1]}>
+      <primitive object={scene} />
+    </group>
+  );
+}
+
+function SceneCopy({
+  model,
+  styleCanvas,
+  width,
+  height,
+}: {
+  styleCanvas?: string;
+  width: number;
+  height: number;
+} & Model) {
+  let scale;
+  switch (model) {
+    case "puff":
+      scale = 0.7;
+      break;
+    case "spring":
+      scale = 1.3;
+      break;
+    default:
+      scale = 3;
+      break;
+  }
+  return (
+    <Canvas
+      style={{ width, height }}
+      className={styleCanvas}
+      gl={{ antialias: true }}
+      dpr={[1, 2]}
+      key={model}
+      aria-hidden={true}
+      aria-label={`3d model ${model}`}
+    >
+      <directionalLight position={[0, 0, 2]} intensity={5} />
+      <Suspense fallback={null}>
+        <Center position={[0, 0, 0]} scale={scale}>
+          <ModelCopy model={model} />
+        </Center>
+      </Suspense>
+    </Canvas>
+  );
+}
+
+export const QModel = qwikify$(SceneCopy, { eagerness: "visible" });

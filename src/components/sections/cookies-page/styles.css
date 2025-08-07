@@ -1,0 +1,28 @@
+.title {
+  text-align: center;
+  padding-block: 5rem;
+}
+.list_privasy {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-bottom: 5rem;
+}
+.list_privasy > li {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.title_types {
+  margin-bottom: 0.5rem;
+}
+.list_types {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+@media (width >= 90rem) {
+  .title {
+    padding-block: 6.25rem;
+  }
+}

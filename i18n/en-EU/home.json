@@ -1,0 +1,110 @@
+{
+  "home": {
+    "contact-section": {
+      "content": {
+        "link_telegram": "Contact via Telegram: @obriym",
+        "link_upwork": "Visit our Upwork agency profile",
+        "oberem_img_alt": "Portrait of Serhii, founder and CEO",
+        "text1": "Have a project?",
+        "text2": "Let's talk!",
+        "text3": "Let's start the conversation and explore how we can bring your vision to life.",
+        "text4": "Schedule a call with Serhii",
+        "text5": "Also find us anytime at Upwork"
+      },
+      "oberem_img_alt": "Portrait of Serhii, founder and CEO",
+      "title": "get a contact"
+    },
+    "sectionHIW": {
+      "sectionAriaLabel": "How our web development process works",
+      "sectionTitle": "Follow these 3 simple steps to launch a modern, SEO-optimized website tailored to your business goals.",
+      "steps": {
+        "step1": {
+          "step": "I step",
+          "text": "We begin with an in-depth consultation to understand your business objectives and challenges.",
+          "title": "Let’s Talk"
+        },
+        "step2": {
+          "step": "II step",
+          "text": "You receive a tailored proposal outlining the scope, timeline, and budget — fully transparent.",
+          "title": "get the plan"
+        },
+        "step3": {
+          "step": "III step",
+          "text": "Design, develop, deliver. Step by step — we’ll keep you in the loop every step of the way.",
+          "title": "Make It Real"
+        }
+      },
+      "subTitle": "HOW IT WORKS"
+    },
+    "sectionProject": {
+      "error": "Sorry, we couldn’t load the projects. Please try again later.",
+      "title": "Our Projects"
+    },
+    "services": {
+      "1": {
+        "descr": "We uncover insights, define goals, and map out clear, user-centered strategies.",
+        "list": {
+          "0": "User Research",
+          "1": "Market Analysis",
+          "2": "Competitor Analysis",
+          "3": "Product Strategy",
+          "4": "UX Audits"
+        },
+        "title": "Research & Strategy"
+      },
+      "2": {
+        "descr": "We craft intuitive, aesthetically pleasing interfaces that provide seamless user experiences.",
+        "list": {
+          "0": "Wireframing",
+          "1": "Prototyping",
+          "2": "UI Design",
+          "3": "UX Flows",
+          "4": "Design Systems"
+        },
+        "title": "UX UI Design"
+      },
+      "3": {
+        "descr": "We build unique, consistent brand identities that communicate your values and connect with your audience.",
+        "list": {
+          "0": "Visual Identity",
+          "1": "Logo Design",
+          "2": "Brand Guidelines",
+          "3": "Tone of Voice",
+          "4": "Brand Positioning"
+        },
+        "title": "Branding"
+      },
+      "4": {
+        "descr": "We turn designs into high-performing digital products with scalable, responsive, and efficient code.",
+        "list": {
+          "0": "Frontend Development",
+          "1": "Backend Development",
+          "2": "CMS Integration",
+          "3": "Webflow / WordPress / Custom",
+          "4": "Mobile App Development"
+        },
+        "title": "Web & App Development"
+      },
+      "5": {
+        "descr": "We ensure a smooth launch and support long-term growth through testing, analytics, and iteration.",
+        "list": {
+          "0": "QA Testing",
+          "1": "Performance Optimization",
+          "2": "A/B Testing",
+          "3": "Analytics Setup",
+          "4": "Continuous Improvement"
+        },
+        "title": "Launch & Optimization"
+      },
+      "title": "services"
+    },
+    "shsection": "{{name}} — from first spark to full launch. From insight to execution.We plan, design, develop, and launch products that make a real impact.",
+    "stitle": {
+      "1span": "Complete",
+      "2span": "digital",
+      "3span": "products",
+      "4span": "From",
+      "5span": "concept to launch"
+    }
+  }
+}

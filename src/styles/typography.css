@@ -1,0 +1,117 @@
+.H1_extra_light {
+  font-family: var(--font-family);
+  font-style: italic;
+  font-weight: 200;
+  font-size: 2.375rem;
+  line-height: 1.1;
+  /* color: var(--grey-dark); */
+}
+
+.H2_light {
+  font-family: var(--font-family);
+  font-weight: 300;
+  font-size: 2.25rem;
+  line-height: 1.1;
+  /* color: var(--black); */
+}
+.H3_uppercase {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 1.5rem; /* 24px */
+  line-height: 1.2;
+  text-transform: uppercase;
+  /* color: var(--grey-dark); */
+}
+
+.H4 {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 1.75rem;
+  line-height: 1.3;
+  text-align: center;
+  /* color: var(--black); */
+}
+.H5 {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  /* color: var(--black); */
+}
+.H6 {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 120%;
+  /* color: var(--black); */
+}
+.helper_text {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 120%;
+}
+/* Ganna needs black  */
+.body_big {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1.3;
+  /* color: var(--grey); */
+}
+
+/* Ganna needs grey  */
+.btn_body {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.3;
+  /* color: var(--black); */
+}
+.btn_header {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.3;
+  /* color: var(--grey); */
+}
+
+@media (min-width: 48rem) {
+  .H1_extra_light {
+    font-size: 4.5rem;
+  }
+  .H2_light {
+    font-size: 4.25rem;
+  }
+  .H3_uppercase {
+    font-size: 2.5rem; /* 40px */
+  }
+  .H4 {
+    font-size: 2rem;
+  }
+  .H5 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 90rem) {
+  .H1_extra_light {
+    font-size: 8.5rem;
+  }
+  .H2_light {
+    font-size: 7.75rem;
+  }
+  .H3_uppercase {
+    font-size: 2.75rem; /* 44px */
+  }
+  .H6 {
+    font-size: 24px;
+  }
+  .btn_body {
+    font-size: 1.125rem;
+  }
+  .body_big {
+    font-size: 2.75rem;
+    line-height: 1.2;
+  }
+}

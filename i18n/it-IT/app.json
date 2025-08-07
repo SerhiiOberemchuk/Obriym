@@ -1,0 +1,78 @@
+{
+  "app": {
+    "btnLetsWork": "Let’s work",
+    "changeLocale": "Cambia lingua",
+    "form": {
+      "additional": {
+        "legend": "Dettagli aggiuntivi"
+      },
+      "btn": {
+        "submitting": "Invio in corso...",
+        "text": "Invia richiesta"
+      },
+      "btn-close": {
+        "modal": "Chiudi"
+      },
+      "budget": {
+        "legend": "Qual è il tuo budget?",
+        "sr-label": "Opzioni di budget"
+      },
+      "email": {
+        "label": "La tua email",
+        "placeholder": "Inserisci la tua email"
+      },
+      "message": {
+        "placeholder": {
+          "modal": "Aggiungi informazioni",
+          "not-modal": "Aggiungi una descrizione"
+        },
+        "sr-label": "Il tuo messaggio"
+      },
+      "name": {
+        "label": "Il tuo nome",
+        "placeholder": "Inserisci il tuo nome"
+      },
+      "services": {
+        "legend": {
+          "modal": "Cosa possiamo creare per te?",
+          "not-modal": "Come possiamo aiutarti?"
+        },
+        "sr-label": "Servizi offerti"
+      },
+      "sr-only": {
+        "title": "Compila il modulo seguente per inviarci la tua richiesta."
+      },
+      "title": {
+        "modal": "Iniziamo il tuo progetto",
+        "not-modal": "Modulo di contatto"
+      }
+    },
+    "head": {
+      "cookies": {
+        "description": "Leggi l'informativa sui cookie dell'agenzia web Obriym. Scopri quali cookie utilizziamo, perché li usiamo e come puoi gestire le tue preferenze.",
+        "title": "Cookies Policy | Obriym"
+      },
+      "home": {
+        "description": "Obriym è un'agenzia web full-service. Creiamo siti moderni, design animato e soluzioni SEO complete. Dal concept al lancio.",
+        "title": "{{name}}"
+      },
+      "privacy": {
+        "description": "Leggi l'informativa sulla privacy dell'agenzia web Obriym. Scopri come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali.",
+        "title": "Privacy Policy | Obriym"
+      }
+    },
+    "header": {
+      "buttonChLang": "Button to change locale"
+    },
+    "logo": {
+      "link": "Logo Obriym Agency link to homepage"
+    },
+    "nav": {
+      "home": "Home",
+      "page": "Page"
+    },
+    "title": "{{name}} italiano demo"
+  },
+  "dates": "Date",
+  "numbers": "Numeri"
+}

@@ -1,0 +1,109 @@
+.section {
+  padding-block: 5rem;
+}
+
+.title {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding-block: 0.5rem;
+}
+.title img {
+  width: 2rem;
+}
+.icon_o {
+  display: none;
+  position: sticky;
+  top: 0;
+}
+.ins_wrapper {
+  margin-top: 2rem;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  height: calc(var(--servise-card-height-md) * 5 + var(--top-sticky-card-md) * 3);
+}
+
+.li_item {
+  border-radius: 2rem;
+  position: sticky;
+}
+
+.li_item[data-num="0"] {
+  background-color: var(--blue);
+  top: calc(0 * var(--top-sticky-card-md));
+}
+.li_item[data-num="1"] {
+  background-color: var(--pink-dark);
+  top: calc(0 * var(--top-sticky-card-md));
+}
+.li_item[data-num="2"] {
+  background-color: var(--green);
+  top: calc(0 * var(--top-sticky-card-md));
+}
+.li_item[data-num="3"] {
+  background-color: var(--yellow);
+  top: calc(0 * var(--top-sticky-card-md));
+}
+.li_item[data-num="4"] {
+  background-color: var(--peach);
+  top: calc(0 * var(--top-sticky-card-md));
+}
+@media (90rem >= width >= 48rem) {
+  .li_item[data-num="0"] {
+    background-color: var(--blue);
+    top: calc(0 * var(--top-sticky-card-t));
+  }
+  .li_item[data-num="1"] {
+    background-color: var(--pink-dark);
+    top: calc(0 * var(--top-sticky-card-t));
+  }
+  .li_item[data-num="2"] {
+    background-color: var(--green);
+    top: calc(0 * var(--top-sticky-card-t));
+  }
+  .li_item[data-num="3"] {
+    background-color: var(--yellow);
+    top: calc(0 * var(--top-sticky-card-t));
+  }
+  .li_item[data-num="4"] {
+    background-color: var(--peach);
+    top: calc(0 * var(--top-sticky-card-t));
+  }
+}
+@media (width >= 48rem) {
+  .icon_o {
+    display: block;
+    margin-bottom: auto;
+  }
+  .title {
+    gap: 0.625rem;
+  }
+  .title img {
+    width: 4rem;
+  }
+  .ins_wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+  .list {
+    height: calc(var(--servise-card-height-t) * 5 + var(--top-sticky-card-t) * 5);
+  }
+}
+@media (width >= 90rem) {
+  .title img {
+    width: 6.25rem;
+  }
+  .icon_o {
+    padding: 4.72rem 4rem;
+    width: 25.875rem;
+  }
+  .ins_wrapper {
+    margin-top: 1.5rem;
+  }
+  .list {
+    height: calc(var(--servise-card-height-t) * 5 + var(--top-sticky-card-t) * 7);
+  }
+}

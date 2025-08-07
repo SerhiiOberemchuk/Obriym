@@ -2,3 +2,7 @@
 
 // Add global `vite/client` types. For more info, see: https://vitejs.dev/guide/features#client-types
 /// <reference types="vite/client" />
+declare module "*.css?inline" {
+  const content: string;
+  export default content;
+}

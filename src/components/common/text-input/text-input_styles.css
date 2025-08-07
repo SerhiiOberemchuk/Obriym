@@ -1,0 +1,64 @@
+.ic_form_fieldset_wrp {
+  flex: 1;
+}
+/* like for sr only  */
+.ic_form_fieldset_wrp label {
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  color: var(--grey);
+  margin-left: 1rem;
+  pointer-events: none;
+  user-select: none;
+}
+
+.ic_form_fieldset_wrp:has(input:focus) label,
+.ic_form_fieldset_wrp:has(input:active) label {
+  opacity: 1;
+  transform: translateY(0.25rem);
+  color: var(--grey-dark);
+}
+.ic_form_fieldset_wrp.has-error label {
+  opacity: 1;
+  transform: translateY(0);
+  color: var(--red);
+}
+.ic_form_input {
+  outline: none;
+  border: 1px solid var(--grey-light);
+  border-radius: 2.5rem;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  cursor: text;
+  transition: border-color 0.2s ease-in-out;
+}
+.ic_form_input:active {
+  border-color: var(--grey); /* pressed */
+  box-shadow: 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.25);
+}
+.ic_form_input.filled {
+  border-color: var(--grey); /* filled  */
+}
+.ic_form_input::placeholder {
+  opacity: 1;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 130%;
+  color: var(--grey-dark);
+}
+.border-red {
+  border: 1px solid var(--red);
+}
+@media (min-width: 48rem) {
+  .ic_form_input:hover {
+    border-color: var(--grey-dark); /* active */
+  }
+}
+@media (min-width: 90rem) {
+  .ic_form_input::placeholder {
+    font-size: 1.125rem;
+  }
+}
