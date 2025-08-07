@@ -25,4 +25,5 @@ export const loadAnalytics = () => {
 export const disableAnalitics = () => {
   document.getElementById("ga-script")?.remove();
   document.getElementById("gtag-script")?.remove();
+  console.log("Google Analytics disabled");
 };
