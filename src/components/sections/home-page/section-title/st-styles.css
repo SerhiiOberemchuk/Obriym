@@ -23,9 +23,9 @@
   height: 20px;
   z-index: -1;
 }
-.spring_img {
+/* .spring_img {
   width: 2.75rem;
-}
+} */
 .text_center {
   text-align: center;
 }
@@ -61,9 +61,9 @@
   .from_sp2 {
     display: none;
   }
-  .spring_img {
+  /* .spring_img {
     width: 4.5rem;
-  }
+  } */
   .icon_title {
     left: 8px;
     top: 18px;

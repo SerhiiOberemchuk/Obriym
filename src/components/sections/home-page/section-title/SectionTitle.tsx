@@ -1,18 +1,46 @@
-import { component$, useStylesScoped$ } from "@qwik.dev/core";
+import { component$, useContext, useStore, useStylesScoped$, useTask$ } from "@qwik.dev/core";
 import styles from "./st-styles.css?inline";
 import { inlineTranslate } from "qwik-speak";
-import ImgGreen from "~/assets/images/green.png?w=124&h=124&jsx";
+// import ImgGreen from "~/assets/images/green.png?w=124&h=124&jsx";
 import ImgHeroSl from "~/assets/images/hero_slides.png?w=233&h=124&jsx";
-import IconTitle from "~/assets/images/element-title.png?w=64&h=64&jsx";
-// import { useResponsive } from "~/hooks/useResponsive";
-// import { QModel } from "~/integrations/react/model/ModelGLB";
+import { QModel } from "~/integrations/react/model/ModelGLB";
+import { ViewportContext } from "~/routes/[...lang]/layout";
 
 export default component$(() => {
   useStylesScoped$(styles);
-
+  const sizeModel = useStore<{
+    puff: { width: number; height: number };
+    spring: { width: number; height: number };
+  }>({
+    puff: { width: 20, height: 20 },
+    spring: { width: 44, height: 44 },
+  });
   const t = inlineTranslate();
 
-  // const { isMobile, isTablet, isDesctop } = useResponsive();
+  const vieport = useContext(ViewportContext);
+  useTask$(({ track }) => {
+    track(() => vieport.value);
+    switch (vieport.value) {
+      case "tablet":
+        sizeModel.puff.height = 42;
+        sizeModel.puff.width = 42;
+        sizeModel.spring.height = 72;
+        sizeModel.spring.width = 72;
+        break;
+      case "desktop":
+        sizeModel.puff.height = 60;
+        sizeModel.puff.width = 60;
+        sizeModel.spring.height = 124;
+        sizeModel.spring.width = 124;
+        break;
+      default:
+        sizeModel.puff.width = 20;
+        sizeModel.puff.height = 20;
+        sizeModel.spring.height = 44;
+        sizeModel.spring.width = 44;
+        break;
+    }
+  });
 
   return (
     <section class="st_section">
@@ -20,11 +48,15 @@ export default component$(() => {
         <h1 class="H2_light black title">
           <span class="icon_span">
             {t("home.stitle.1span@@Complete")}
-            <IconTitle class="icon_title" width={60} height={60} />
+            {/* <IconTitle class="icon_title" width={60} height={60} /> */}
+            <div class="icon_title">
+              <QModel model="puff" width={sizeModel.puff.width} height={sizeModel.puff.height} />
+            </div>
           </span>
           <span class="H1_extra_light grey_dark">{t("home.stitle.2span@@digital")}</span>
-          <ImgGreen class="spring_img" alt="dfd" />
-          {/* <QModel model="spring" width={75} height={75} /> */}
+          {/* <ImgGreen class="spring_img" alt="dfd" /> */}
+
+          <QModel model="spring" width={sizeModel.spring.width} height={sizeModel.spring.height} />
           <span class="H1_extra_light grey_dark">{t("home.stitle.3span@@products")}.</span>
           <ImgHeroSl class="notebook tablet" alt="desc" />
 
