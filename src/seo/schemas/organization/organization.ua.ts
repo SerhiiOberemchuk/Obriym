@@ -7,7 +7,6 @@ export const organizationSchemaUA = {
   logo: "https://obriym.com/images/logo.png",
   description:
     "OBRIYM — веб-агенція повного циклу з Італії, яка створює SEO-оптимізовані сайти, UX/UI дизайн та брендинг для бізнесів по всій Європі.",
-  inLanguage: "uk",
   contactPoint: [
     {
       "@type": "ContactPoint",

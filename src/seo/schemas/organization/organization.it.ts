@@ -7,7 +7,6 @@ export const organizationSchemaIT = {
   logo: "https://obriym.com/images/logo.png",
   description:
     "OBRIYM è un'agenzia di sviluppo web full-cycle con sede in Italia, che offre siti web SEO-friendly, design UX/UI e servizi di branding per aziende in tutta Europa.",
-  inLanguage: "it",
   contactPoint: [
     {
       "@type": "ContactPoint",
