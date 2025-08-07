@@ -1,5 +1,26 @@
 {
   "cookies": {
+    "banner": {
+      "analitics": {
+        "description": "Questi cookie raccolgono informazioni su come i visitatori usano il nostro sito.",
+        "title": "Cookie analitici:"
+      },
+      "button": {
+        "acceptAll": "Accetta tutti",
+        "acceptSelected": "Accetta selezionati",
+        "setCookies": "Imposta i cookie"
+      },
+      "description1": "Questo sito usa i cookie. Continuando la navigazione, accetti il loro utilizzo.",
+      "description2": "Leggi di più su",
+      "required": {
+        "description": "Questi cookie sono essenziali per il funzionamento base del sito.",
+        "title": "Cookie necessari:"
+      },
+      "title": {
+        "general": "Usiamo i cookie",
+        "settings": "Scegli quali cookie vuoi accettare:"
+      }
+    },
     "intro": "Questo sito web (obriym.com) utilizza i cookie per garantirti la migliore esperienza possibile.",
     "manage": {
       "text": "Puoi scegliere quali cookie accettare regolando le tue preferenze nel banner dei cookie o nelle impostazioni del browser. Tieni presente che disabilitare alcuni cookie può influenzare la tua esperienza di navigazione. Per ulteriori dettagli, contattaci a: info@obriym.com",

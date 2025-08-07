@@ -1,5 +1,26 @@
 {
   "cookies": {
+    "banner": {
+      "analitics": {
+        "description": "These cookies collect information about how visitors use our site.",
+        "title": "Analytics cookies:"
+      },
+      "button": {
+        "acceptAll": "Accept all",
+        "acceptSelected": "Accept selected",
+        "setCookies": "Set cookies"
+      },
+      "description1": "This site uses cookies. By continuing to browse the site, you are agreeing to our use of cookies.",
+      "description2": "Read more on",
+      "required": {
+        "description": "These cookies are essential for the basic functioning of the website.",
+        "title": "Required cookies:"
+      },
+      "title": {
+        "general": "We use cookies",
+        "settings": "Choose which cookies you want to accept:"
+      }
+    },
     "intro": "This website (obriym.com) uses cookies to ensure you get the best experience on our site.",
     "manage": {
       "text": "You can choose which cookies you want to accept by adjusting your preferences in the cookie banner or your browser settings. Please note that disabling some cookies may affect your browsing experience. For more details, contact us at: info@obriym.com",
