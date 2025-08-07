@@ -99,7 +99,7 @@ export default component$(() => {
                     "@context": "https://schema.org",
                     "@type": "Service",
                     serviceType: title,
-                    url: "https://obriym.com/services", // або сторінка конкретної послуги
+                    url: "https://obriym.com/services",
                     description: `${description} Our services include ${list.join(", ")} for businesses in Italy and across Europe.`,
                     provider: {
                       "@type": "Organization",
@@ -118,13 +118,12 @@ export default component$(() => {
                       { "@type": "Country", name: "Ukraine" },
                       { "@type": "Country", name: "European Union" },
                     ],
-                    inLanguage: ["en", "it", "uk"],
                     offers: {
                       "@type": "Offer",
                       priceCurrency: "EUR",
                       price: "1500",
                       availability: "https://schema.org/InStock",
-                      url: "https://obriym.com/contact",
+                      url: "https://obriym.com/#contact",
                     },
                   })}
                 />

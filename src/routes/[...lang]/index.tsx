@@ -8,16 +8,8 @@ import SectionHowItWork from "~/components/sections/home-page/section-hiw/Sectio
 import SectionProjects from "~/components/sections/home-page/section-projects/SectionProjects";
 import Services from "~/components/sections/home-page/section-services/Services";
 import SectionTitle from "~/components/sections/home-page/section-title/SectionTitle";
-import { faqSchemaEN } from "~/seo/schemas/faq/faq.en";
-import { faqSchemaIT } from "~/seo/schemas/faq/faq.it";
-import { faqSchemaUA } from "~/seo/schemas/faq/faq.ua";
-import { howToWorkSchemaEN } from "~/seo/schemas/howToWork/howToSchema.en";
-import { howToWorkSchemaIT } from "~/seo/schemas/howToWork/howToSchema.it";
-import { howToWorkSchemaUA } from "~/seo/schemas/howToWork/howToSchema.ua";
-import { organizationSchemaEN } from "~/seo/schemas/organization/organization.en";
-import { organizationSchemaIT } from "~/seo/schemas/organization/organization.it";
-import { organizationSchemaUA } from "~/seo/schemas/organization/organization.ua";
 import { Project } from "~/types/project.type";
+import SchemaSeoScripts from "~/utils/SchemaSeoScripts";
 
 export const useLocalLoader = routeLoader$(({ locale }) => locale);
 export const useFetchProjects = routeLoader$(async () => {
@@ -44,37 +36,13 @@ export default component$(() => {
       <SectionProjects />
       <SectionHowItWork />
       <SectionContact />
+      <SchemaSeoScripts />
     </>
   );
 });
 
-export const head: DocumentHead = ({ resolveValue }) => {
+export const head: DocumentHead = () => {
   const t = inlineTranslate();
-  let schemaHOW;
-  let schemaOrganization;
-  let schemaFAQ;
-  const lang = resolveValue(useLocalLoader);
-
-  switch (lang) {
-    case "uk-UA":
-      schemaHOW = howToWorkSchemaUA;
-      schemaFAQ = faqSchemaUA;
-      schemaOrganization = organizationSchemaUA;
-      break;
-    case "it-IT":
-      schemaHOW = howToWorkSchemaIT;
-      schemaFAQ = faqSchemaIT;
-      schemaOrganization = organizationSchemaIT;
-
-      break;
-
-    default:
-      schemaHOW = howToWorkSchemaEN;
-      schemaFAQ = faqSchemaEN;
-      schemaOrganization = organizationSchemaEN;
-
-      break;
-  }
 
   return {
     title: t("app.head.home.title@@{{name}}", { name: "Obriym" }),
@@ -82,59 +50,6 @@ export const head: DocumentHead = ({ resolveValue }) => {
       {
         name: "description",
         content: t("app.head.home.description@@Localized routing"),
-      },
-    ],
-    scripts: [
-      {
-        props: { type: "application/ld+json", children: JSON.stringify(schemaHOW) },
-      },
-      {
-        props: { type: "application/ld+json", children: JSON.stringify(schemaOrganization) },
-      },
-      {
-        props: { type: "application/ld+json", children: JSON.stringify(schemaFAQ) },
-      },
-      // {
-      //   props: {
-      //     type: "application/ld+json",
-      //     children: JSON.stringify({
-      //       "@context": "https://schema.org",
-      //       "@type": "WebSite",
-      //       url: "https://obriym.com/",
-      //       potentialAction: {
-      //         "@type": "SearchAction",
-      //         target: "https://obriym.com/?s={search_term_string}",
-      //         "query-input": "required name=search_term_string",
-      //       },
-      //     }),
-      //   },
-      // },
-      {
-        props: {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "SiteNavigationElement",
-            name: [
-              "Services",
-              "Portfolio",
-              "Team",
-              "About",
-              "Contact",
-              "Cookies policy",
-              "Privacy policy",
-            ],
-            url: [
-              "https://obriym.com/#services",
-              "https://obriym.com/#portfolio",
-              "https://obriym.com/team/",
-              "https://obriym.com/cookies-policy/",
-              "https://obriym.com/privacy-policy/",
-              "https://obriym.com/#about",
-              "https://obriym.com/#contact",
-            ],
-          }),
-        },
       },
     ],
   };

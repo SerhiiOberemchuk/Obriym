@@ -4,7 +4,35 @@ import { inlineTranslate } from "qwik-speak";
 import CookiesSection from "~/components/sections/cookies-page/CookiesSection";
 
 export default component$(() => {
-  return <CookiesSection />;
+  return (
+    <>
+      <CookiesSection />
+      <script
+        type="application/ld+json"
+        id="obriym-cookies-schema"
+        dangerouslySetInnerHTML={JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Cookies Policy",
+          description:
+            "Cookies Policy of Obriym Web Agency. Learn what cookies we use and how to manage them.",
+          dateModified: "2025-07-21",
+          url: "https://obriym.com/cookies-policy",
+          publisher: {
+            "@type": "Organization",
+            name: "Obriym Web Agency",
+            url: "https://obriym.com",
+            logo: "https://obriym.com/logo.svg",
+          },
+          mainEntity: {
+            "@type": "WebPageElement",
+            name: "Cookies Policy",
+            description: "Details about the types of cookies used by Obriym Web Agency.",
+          },
+        })}
+      ></script>
+    </>
+  );
 });
 
 export const head: DocumentHead = () => {
@@ -60,33 +88,6 @@ export const head: DocumentHead = () => {
       {
         rel: "canonical",
         href: "https://obriym.com/cookies-policy",
-      },
-    ],
-    scripts: [
-      {
-        props: {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            name: "Cookies Policy",
-            description:
-              "Cookies Policy of Obriym Web Agency. Learn what cookies we use and how to manage them.",
-            dateModified: "2025-07-21",
-            url: "https://obriym.com/cookies-policy",
-            publisher: {
-              "@type": "Organization",
-              name: "Obriym Web Agency",
-              url: "https://obriym.com",
-              logo: "https://obriym.com/logo.svg",
-            },
-            mainEntity: {
-              "@type": "WebPageElement",
-              name: "Cookies Policy",
-              description: "Details about the types of cookies used by Obriym Web Agency.",
-            },
-          }),
-        },
       },
     ],
   };
