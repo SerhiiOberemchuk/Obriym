@@ -4,7 +4,30 @@ import { inlineTranslate } from "qwik-speak";
 import PrivacySection from "~/components/sections/privacy-page/PrivacySection";
 
 export default component$(() => {
-  return <PrivacySection />;
+  return (
+    <>
+      <PrivacySection />
+      <script
+        type="application/ld+json"
+        id="obriym-policy-schema"
+        dangerouslySetInnerHTML={JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "PrivacyPolicy",
+          name: "Privacy Policy",
+          description:
+            "Privacy Policy of Obriym Web Agency. Learn how we collect, use, and protect your personal data.",
+          dateModified: "2025-07-21",
+          url: "https://obriym.com/privacy-policy",
+          publisher: {
+            "@type": "Organization",
+            name: "Obriym Web Agency",
+            url: "https://obriym.com",
+            logo: "https://obriym.com/logo.svg",
+          },
+        })}
+      ></script>
+    </>
+  );
 });
 
 export const head: DocumentHead = () => {
@@ -42,28 +65,6 @@ export const head: DocumentHead = () => {
       { rel: "alternate", hreflang: "it-IT", href: "https://obriym.com/it-IT/privacy-policy" },
       { rel: "alternate", hreflang: "x-default", href: "https://obriym.com/privacy-policy" },
       { rel: "canonical", href: "https://obriym.com/privacy-policy" },
-    ],
-    scripts: [
-      {
-        props: {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "PrivacyPolicy",
-            name: "Privacy Policy",
-            description:
-              "Privacy Policy of Obriym Web Agency. Learn how we collect, use, and protect your personal data.",
-            dateModified: "2025-07-21",
-            url: "https://obriym.com/privacy-policy",
-            publisher: {
-              "@type": "Organization",
-              name: "Obriym Web Agency",
-              url: "https://obriym.com",
-              logo: "https://obriym.com/logo.svg",
-            },
-          }),
-        },
-      },
     ],
   };
 };

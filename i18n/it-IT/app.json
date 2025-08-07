@@ -49,15 +49,15 @@
     },
     "head": {
       "cookies": {
-        "description": "Read the cookies policy of Obriym Web Agency. Learn what cookies we use, why we use them, and how you can manage your preferences.",
+        "description": "Leggi l'informativa sui cookie dell'agenzia web Obriym. Scopri quali cookie utilizziamo, perché li usiamo e come puoi gestire le tue preferenze.",
         "title": "Cookies Policy | Obriym"
       },
       "home": {
-        "description": "Benvenuto in {{name}}",
+        "description": "Obriym è un'agenzia web full-service. Creiamo siti moderni, design animato e soluzioni SEO complete. Dal concept al lancio.",
         "title": "{{name}}"
       },
       "privacy": {
-        "description": "Read the Privacy Policy of Obriym Web Agency. Learn how we collect, use, and protect your personal data.",
+        "description": "Leggi l'informativa sulla privacy dell'agenzia web Obriym. Scopri come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali.",
         "title": "Privacy Policy | Obriym"
       }
     },
