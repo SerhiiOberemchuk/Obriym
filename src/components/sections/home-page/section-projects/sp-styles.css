@@ -1,7 +1,7 @@
 .section {
   padding-block: 5rem;
 }
-.subtitle {
+.subtitle_project {
   margin-bottom: 2rem;
 }
 
@@ -18,10 +18,11 @@
   max-width: 41rem;
 }
 
-.image_wrapper {
+.image_wrapper_project {
   display: flex;
   margin-bottom: 0.75rem;
   aspect-ratio: 2.01;
+  justify-content: center;
 }
 .image_project {
   border-radius: 1.5rem;
@@ -62,8 +63,11 @@
   border-color: var(--peach);
   background-color: var(--peach-light);
 }
+.carousel_animation_projects {
+  transition: 1s transform ease-in-out;
+}
 @media (width >= 90rem) {
-  .subtitle {
+  .subtitle_project {
     margin-bottom: 1.5rem;
   }
   .list_projects {
@@ -75,4 +79,7 @@
     column-gap: 1.25rem;
     justify-content: space-between;
   }
+}
+.carousel_projects_top {
+  margin-bottom: 4rem;
 }

@@ -12,7 +12,11 @@ import { Project } from "~/types/project.type";
 import SchemaSeoScripts from "~/utils/SchemaSeoScripts";
 
 export const useLocalLoader = routeLoader$(({ locale }) => locale);
-export const useFetchProjects = routeLoader$(async () => {
+export const useFetchProjects = routeLoader$(async ({ cacheControl }) => {
+  cacheControl({
+    staleWhileRevalidate: 60 * 60 * 24,
+    maxAge: 60 * 60,
+  });
   try {
     const url = import.meta.env.PUBLIC_URL_PROJECTS;
     const response = await fetch(`${url}/api/projects`);
