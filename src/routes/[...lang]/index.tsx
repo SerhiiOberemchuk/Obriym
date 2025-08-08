@@ -56,5 +56,14 @@ export const head: DocumentHead = () => {
         content: t("app.head.home.description@@Localized routing"),
       },
     ],
+    links: [
+      {
+        rel: "preload",
+        as: "font",
+        href: "/fonts/plus-jakarta-sans-v11-cyrillic-ext_latin-regular.woff2",
+        type: "font/woff2",
+        crossOrigin: "anonymous",
+      },
+    ],
   };
 };
