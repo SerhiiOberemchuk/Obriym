@@ -67,11 +67,11 @@ export default component$(() => {
     <>
       {isVisible.value && (
         <div class="btn_body black cookies_banner">
-          <h5 class="H4 black">
+          <h3 class="H4 black">
             {typeCookiesBanner.value === "info"
               ? t("cookies.banner.title.general@@We use cookies")
               : t("cookies.banner.title.settings@@Choose which cookies you want to accept:")}
-          </h5>
+          </h3>
           <p>
             {t(
               "cookies.banner.description1@@This site uses cookies. By continuing to browse the site, you are agreeing to our use of cookies.",
