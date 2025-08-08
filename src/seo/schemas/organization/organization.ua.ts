@@ -1,12 +1,12 @@
 export const organizationSchemaUA = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "OBRIYM Веб Агенція",
-  legalName: "OBRIYM",
+  name: "ОБРІУМ Веб Агенція",
+  legalName: "ОБРІУМ",
   url: "https://obriym.com",
   logo: "https://obriym.com/images/logo.png",
   description:
-    "OBRIYM — веб-агенція повного циклу з Італії, яка створює SEO-оптимізовані сайти, UX/UI дизайн та брендинг для бізнесів по всій Європі.",
+    "ОБРІУМ — веб-агенція повного циклу з Італії, яка створює SEO-оптимізовані сайти, UX/UI дизайн та брендинг для бізнесів по всій Європі.",
   contactPoint: [
     {
       "@type": "ContactPoint",
