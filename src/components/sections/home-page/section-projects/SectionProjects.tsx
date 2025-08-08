@@ -1,67 +1,71 @@
-import { component$, useStore, useStylesScoped$, useTask$, useVisibleTask$ } from "@qwik.dev/core";
-// import gsap from "gsap";
+import { component$, useContext, useSignal, useStyles$, useVisibleTask$ } from "@qwik.dev/core";
 import styles from "./sp-styles.css?inline";
 import SubTitle from "~/components/common/subtitile/SubTitle";
 import { inlineTranslate, useSpeakLocale } from "qwik-speak";
 import { useFetchProjects } from "~/routes/[...lang]";
-import { Project } from "~/types/project.type";
+
+import { Carousel } from "@qwik-ui/headless";
+import { ViewportContext } from "~/routes/[...lang]/layout";
 
 export default component$(() => {
-  useStylesScoped$(styles);
-  const store = useStore<{
-    currentProjects: Project[];
-    visibleProjects: Project[];
-    visibleCount: number;
-  }>({ visibleProjects: [], currentProjects: [], visibleCount: 4 });
-  const { lang } = useSpeakLocale();
+  useStyles$(styles);
+
   const t = inlineTranslate();
-  const projects = useFetchProjects();
-  useTask$(({ track }) => {
-    const data = track(() => projects.value.data);
-    if (data) {
-      store.currentProjects = data;
-      store.visibleProjects = [...store.currentProjects.slice(0, store.visibleCount)];
-    }
-  });
-
-  useVisibleTask$(() => {
-    const intervsl = setInterval(() => {
-      store.visibleCount = window.innerWidth < 768 ? 2 : 4;
-
-      const xArray = [...store.currentProjects];
-      const firstItem = xArray.shift();
-      if (firstItem === undefined) {
-        return;
-      }
-      store.currentProjects = [...xArray, firstItem];
-      store.visibleProjects = store.currentProjects.slice(0, store.visibleCount);
-    }, 10000);
-
-    return () => clearInterval(intervsl);
-  });
-
-  useVisibleTask$(async ({ track }) => {
-    track(() => store.visibleProjects);
-    const gsap = (await import("gsap")).default;
-    gsap.from(".item_animate", {
-      x: 150,
-      opacity: 0,
-      duration: 2,
-      stagger: 0.2,
-      ease: "power2.inOut",
-    });
-  });
 
   return (
     <section class="section" id="portfolio">
       <div class="container">
-        <SubTitle section="projects" classes="subtitle">
+        <SubTitle section="projects" classes="subtitle_project">
           {t("home.sectionProject.title@@projects")}
         </SubTitle>
 
-        <ul class="list_projects">
-          {store.visibleProjects ? (
-            store.visibleProjects.map(item => {
+        <CarouselComponent classC="carousel_projects_top" autoPlayIntervalMs={5000} />
+        <CarouselComponent autoPlayIntervalMs={5000} reversSlider={true} />
+      </div>
+    </section>
+  );
+});
+type PropsCarousel = {
+  classC?: string;
+  autoPlayIntervalMs?: number;
+  reversSlider?: boolean;
+  startIndex?: number;
+};
+const CarouselComponent = component$<PropsCarousel>(
+  ({ classC, autoPlayIntervalMs, startIndex, reversSlider }) => {
+    const isPlaying = useSignal<boolean>(false);
+    const slidesPerView = useSignal<number>(2);
+    const { lang } = useSpeakLocale();
+    const t = inlineTranslate();
+    const devise = useContext(ViewportContext);
+    const projects = useFetchProjects();
+    useVisibleTask$(({ track }) => {
+      track(() => devise.value);
+      slidesPerView.value = devise.value === "desktop" ? 2 : 1;
+      isPlaying.value = true;
+    });
+    const projectsToRender = () => {
+      if (!projects.value.data) {
+        return [];
+      }
+      const proj = reversSlider ? [...projects.value.data].reverse() : [...projects.value.data];
+      return proj;
+    };
+
+    return (
+      <Carousel.Root
+        id={`${Math.random()}`}
+        class={classC}
+        orientation="horizontal"
+        slidesPerView={slidesPerView.value}
+        gap={20}
+        startIndex={startIndex}
+        autoPlayIntervalMs={autoPlayIntervalMs}
+        bind:autoplay={isPlaying}
+      >
+        <Carousel.Scroller class="carousel_animation_projects">
+          {projects.value.data ? (
+            projectsToRender().map(item => {
               const title =
                 lang === "en-EU" ? item.titleEN : lang === "it-IT" ? item.titleIT : item.title;
               const description =
@@ -71,8 +75,8 @@ export default component$(() => {
                     ? item.descriptionIT
                     : item.description;
               return (
-                <li key={item.slug} class="item_animate">
-                  <article class="article">
+                <Carousel.Slide key={item.slug}>
+                  <article>
                     <h3 class="visually_hidden">{title}</h3>
                     <a
                       href={item.website_url}
@@ -82,7 +86,7 @@ export default component$(() => {
                       rel="noopener noreferrer"
                     >
                       <figure>
-                        <div class="image_wrapper">
+                        <div class="image_wrapper_project">
                           <img
                             class="image_project"
                             src={item.image_src}
@@ -116,7 +120,7 @@ export default component$(() => {
                       })}
                     ></script>
                   </article>
-                </li>
+                </Carousel.Slide>
               );
             })
           ) : (
@@ -124,8 +128,8 @@ export default component$(() => {
               <p>{t("home.sectionProject.error@@error to fetch projects")}</p>
             </div>
           )}
-        </ul>
-      </div>
-    </section>
-  );
-});
+        </Carousel.Scroller>
+      </Carousel.Root>
+    );
+  },
+);
