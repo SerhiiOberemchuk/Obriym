@@ -93,11 +93,11 @@ export default component$(() => {
                     <li key={index} class="item" id={`step${index + 1}`}>
                       <article class="card">
                         <header>
-                          <p class="H4 grey_dark">{item.step}</p>
+                          <p class="H4 ">{item.step}</p>
                           <h3 class="H3_uppercase black">{item.title}</h3>
                         </header>
 
-                        <p class="btn_body grey_dark">{item.text}</p>
+                        <p class="btn_body ">{item.text}</p>
                       </article>
                     </li>
                   ))}
