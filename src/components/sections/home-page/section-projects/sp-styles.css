@@ -60,8 +60,8 @@
   background-color: var(--green-light);
 }
 .list_technologies > :nth-child(5) {
-  border-color: var(--peach);
-  background-color: var(--peach-light);
+  border-color: var(--blue);
+  background-color: var(--blue-light);
 }
 .carousel_animation_projects {
   transition: 1s transform ease-in-out;
