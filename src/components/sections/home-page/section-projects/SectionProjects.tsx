@@ -88,11 +88,13 @@ const CarouselComponent = component$<PropsCarousel>(
                       <figure>
                         <div class="image_wrapper_project">
                           <img
+                            loading="lazy"
                             class="image_project"
                             src={item.image_src}
                             alt={`Project: ${title} - ${description}`}
                             width={668}
                             height={330}
+                            decoding="async"
                           />
                         </div>
                         <figcaption>{title}</figcaption>
