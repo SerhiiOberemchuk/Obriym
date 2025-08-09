@@ -3,8 +3,8 @@ import { inlineTranslate } from "qwik-speak";
 import styles from "./styles_content.css?inline";
 
 import IconTelegram from "~/assets/icons/icon_telegram.svg?w=24&h24&jsx";
-import OberemImg from "~/assets/images/oberem-image.png?jsx";
-import IconSchedule from "~/assets/icons/icon_schedule.svg?w=64&h64&jsx";
+// import OberemImg from "~/assets/images/oberem-image.png?jsx";
+// import IconSchedule from "~/assets/icons/icon_schedule.svg?w=64&h64&jsx";
 import Upwork from "~/assets/images/upwork-logo.png?w=120&h39&jsx";
 import LinkEmail from "~/components/common/link-email/LinkEmail";
 
@@ -65,7 +65,7 @@ export default component$(() => {
         </a>
       </div>
       {/* calendly */}
-      <div
+      {/* <div
         class="cc_calendly_box"
         role="region"
         aria-labelledby="calendly-heading"
@@ -94,7 +94,7 @@ export default component$(() => {
 
           <IconSchedule class="cc_calendly_text_icon" aria-hidden="true" />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 });
