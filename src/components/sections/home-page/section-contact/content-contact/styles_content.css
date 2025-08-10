@@ -34,7 +34,7 @@
 }
 .cc_upwork_link {
   display: inline-block;
-  transition: transform 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .cc_upwork_link:hover {
   scale: 1.05;

@@ -67,13 +67,7 @@
   width: 100%;
   gap: 0.5rem;
 }
-.ic_form_modal_btn {
-  border-radius: 40px;
-  padding: 0.75rem 1rem;
-  background-color: var(--white);
-  border: 1px solid var(--grey-light);
-  width: 100%;
-}
+
 .ic_form_btn {
   border-radius: 40px;
   padding: 0.75rem 1rem;
@@ -112,9 +106,7 @@
   .ic_form_inputs_block > div {
     flex: 1;
   }
-  .ic_form_modal_btn {
-    display: none;
-  }
+
   .ic_form_btn {
     margin-left: auto;
     width: max-content;
