@@ -47,7 +47,6 @@ export default component$(() => {
 
 export const head: DocumentHead = () => {
   const t = inlineTranslate();
-
   return {
     title: t("app.head.home.title@@{{name}}", { name: "Obriym" }),
     meta: [
