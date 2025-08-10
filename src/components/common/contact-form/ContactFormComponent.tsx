@@ -1,9 +1,8 @@
-import { component$, useStylesScoped$, useSignal, useTask$, useContext } from "@qwik.dev/core";
+import { component$, useStylesScoped$, useSignal, useTask$ } from "@qwik.dev/core";
 import { Modal, usePopover } from "@qwik-ui/headless";
 import { inlineTranslate } from "qwik-speak";
 import { reset, useForm, valiForm$ } from "@modular-forms/qwik";
 import styles from "./contact-form_styles.css?inline";
-import "./ic-form-modal-btn.css";
 
 import { ContactSchema } from "~/schemas/contactSchema";
 import { ContactForm, ContactFormResponse } from "~/types/contact-form.type";
@@ -18,7 +17,6 @@ import PopoverComponent from "~/components/common/popover/Popover";
 import FormError from "~/components/common/form-error/form_error";
 import { TextInput } from "~/components/common/text-input/TextInput";
 import { OptionsGroup } from "~/components/common/options-group/OptionsGroup";
-import { ModalLetsWork } from "~/components/lets-work/LetsWork";
 
 type ContactFormComponentProps = {
   modal?: boolean;
@@ -31,7 +29,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
   const popoverId = "contact-popover";
   const { showPopover } = usePopover(popoverId);
   const message = useSignal<AlertType>("success");
-  const isModalLetsWork = useContext(ModalLetsWork);
+
   const [contactForm, { Form, Field }] = useForm<ContactForm, ContactFormResponse>({
     loader: useContactFormLoader(),
     action: useFormAction(),
@@ -46,9 +44,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
       message.value = "success";
 
       showPopover();
-      if (modal) {
-        isModalLetsWork.value = false;
-      }
+
       reset(contactForm);
     } else if (result.status === "error") {
       message.value = "failed";
