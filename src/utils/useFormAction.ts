@@ -18,7 +18,7 @@ export const useFormAction = formAction$<ContactForm, ContactFormResponse>(
     const emailHtmlToUser = getEmailHtmlToUser(name);
     try {
       const resultToUs = await sendEmail(resendApiKey, {
-        from: email,
+        from: myDomainEmail,
         to: myDomainEmail,
         subject: "New contact form submission",
         html: emailHtmlToUs,

@@ -1,6 +1,6 @@
 import { component$, useStylesScoped$, useSignal, useTask$ } from "@qwik.dev/core";
-import { usePopover } from "@qwik-ui/headless";
-import { inlineTranslate } from "qwik-speak"; //, useSpeakLocale
+import { Modal, usePopover } from "@qwik-ui/headless";
+import { inlineTranslate } from "qwik-speak";
 import { reset, useForm, valiForm$ } from "@modular-forms/qwik";
 import styles from "./contact-form_styles.css?inline";
 
@@ -21,7 +21,6 @@ import { OptionsGroup } from "~/components/common/options-group/OptionsGroup";
 type ContactFormComponentProps = {
   modal?: boolean;
 };
-
 export default component$(({ modal }: ContactFormComponentProps) => {
   useStylesScoped$(styles);
   const t = inlineTranslate();
@@ -52,6 +51,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
       showPopover();
     }
   });
+
   return (
     <div>
       {modal ? (
@@ -221,9 +221,13 @@ export default component$(({ modal }: ContactFormComponentProps) => {
           </fieldset>
           <div class="ic_form_btn_wrp">
             {modal && (
-              <button class={`btn_body black ic_form_modal_btn `} disabled={contactForm.submitting}>
-                {t("app.form.btn-close.modal@@Close")}
-              </button>
+              // <Slot />
+              <Modal.Close
+                class="btn_body black ic_form_modal_btn"
+                disabled={contactForm.submitting}
+              >
+                <span>{t("app.form.btn-close.modal@@Close")}</span>
+              </Modal.Close>
             )}
             <button
               type="submit"
