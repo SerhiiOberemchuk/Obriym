@@ -19,13 +19,7 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
-.ic_form_modal_btn {
-  border-radius: 40px;
-  padding: 0.75rem 1rem;
-  background-color: var(--white);
-  border: 1px solid var(--grey-light);
-  width: 100%;
-}
+
 @media (width >= 48rem) {
   .lw_panel {
     padding-inline: 1.75rem;
