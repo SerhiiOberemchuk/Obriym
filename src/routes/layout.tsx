@@ -7,7 +7,7 @@ export default component$(() => {
   const toggleMenu = $(() => {
     isMenuOpen.value = !isMenuOpen.value;
   });
-  useContextProvider(MobileMenuContext, { isOpen: isMenuOpen, toggleMenu: toggleMenu });
+  useContextProvider(MobileMenuContext, { isOpen: isMenuOpen, toggleMenu });
   useContextProvider(ModalLetsWork, useSignal<boolean>(false));
   return <Slot />;
 });
