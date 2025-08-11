@@ -20,7 +20,7 @@ export default component$(() => {
   const cookiesData = useStore<CookiesTypes>({
     cookiesAccepted: false,
     requiredCookies: true,
-    analyticsCookies: false,
+    analyticsCookies: true,
   });
 
   const { isVisible } = useContext(CookiesBannerContext);
@@ -32,8 +32,8 @@ export default component$(() => {
       cookiesData.cookiesAccepted = cookiesLocal.cookiesAccepted;
       cookiesData.requiredCookies = cookiesLocal.requiredCookies;
       cookiesData.analyticsCookies = cookiesLocal.analyticsCookies;
-      if (cookiesLocal.analyticsCookies) {
-        loadAnalytics();
+      if (!cookiesLocal.analyticsCookies) {
+        disableAnalitics();
       }
     } else {
       isVisible.value = true;
@@ -54,10 +54,10 @@ export default component$(() => {
     } else {
       cookiesData.cookiesAccepted = true;
       localStorage.setItem(COOKIES_LOCAL_STORAGE, JSON.stringify(cookiesData));
-      if (cookiesData.analyticsCookies) {
-        loadAnalytics();
-      } else {
+      if (!cookiesData.analyticsCookies) {
         disableAnalitics();
+      } else {
+        loadAnalytics();
       }
       isVisible.value = false;
     }
