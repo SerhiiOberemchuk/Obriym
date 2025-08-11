@@ -14,12 +14,12 @@ import { useFormAction } from "~/utils/useFormAction";
 
 import { SERVICES_OPTIONS_EN, BUDGET_OPTIONS_EN } from "~/const/form-const";
 
-import PopoverComponent from "~/components/common/popover/Popover";
 import FormError from "~/components/common/form-error/form_error";
 import { TextInput } from "~/components/common/text-input/TextInput";
 import { OptionsGroup } from "~/components/common/options-group/OptionsGroup";
 import { ModalLetsWork } from "~/components/lets-work/LetsWork";
 import IconClose from "~/assets/icons/icon_close.svg?w=24&h=24&jsx";
+import { PopoverContex } from "../popover/Popover";
 
 type ContactFormComponentProps = {
   modal?: boolean;
@@ -28,9 +28,10 @@ export default component$(({ modal }: ContactFormComponentProps) => {
   useStylesScoped$(styles);
   const t = inlineTranslate();
 
-  const anchorRef = useSignal<HTMLElement>();
-  const popoverId = "contact-popover";
-  const { showPopover } = usePopover(popoverId);
+  // const anchorRef = useSignal<HTMLElement>();
+  const popoverFormId = "contact-popover";
+  const { showPopover } = usePopover(popoverFormId);
+  const { typePopover, popoverId } = useContext(PopoverContex);
   const message = useSignal<AlertType>("success");
   const isModalLetsWork = useContext(ModalLetsWork);
   const [contactForm, { Form, Field }] = useForm<ContactForm, ContactFormResponse>({
@@ -45,7 +46,8 @@ export default component$(({ modal }: ContactFormComponentProps) => {
     const result = contactForm.response;
     if (result.status === "success") {
       message.value = "success";
-
+      typePopover.value = message.value;
+      popoverId.value = popoverFormId;
       showPopover();
       if (modal) {
         isModalLetsWork.value = false;
@@ -53,6 +55,8 @@ export default component$(({ modal }: ContactFormComponentProps) => {
       reset(contactForm);
     } else if (result.status === "error") {
       message.value = "failed";
+      typePopover.value = message.value;
+      popoverId.value = popoverFormId;
       showPopover();
     }
   });
@@ -173,7 +177,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
               {/* MESSAGE */}
               <Field name="message">
                 {(field, props) => (
-                  <div class="ic_form_fieldset_wrp" ref={anchorRef}>
+                  <div class="ic_form_fieldset_wrp">
                     <label class="sr-only" for="message-textarea">
                       label={t("app.form.message.sr-label@@Your message")}
                     </label>
@@ -248,7 +252,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
         </div>
       </Form>
       {/* anchor={anchorRef} */}
-      <PopoverComponent popoverId={popoverId} type={message.value} anchor={anchorRef} />
+      {/* <PopoverComponent popoverId={popoverId} type={message.value} anchor={anchorRef} /> */}
     </div>
   );
 });
