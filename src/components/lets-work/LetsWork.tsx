@@ -20,7 +20,7 @@ export default component$(({ place }: { place: "mob-menu" | "header" }) => {
     }
   });
   return (
-    <Modal.Root data-place={place} class="lw_wrapper" bind:show={contextModal}>
+    <Modal.Root class="lw_wrapper" data-place={place} bind:show={contextModal}>
       <button
         type="button"
         data-place={place}
@@ -29,7 +29,7 @@ export default component$(({ place }: { place: "mob-menu" | "header" }) => {
       >
         {t("app.btnLetsWork@@Let’s work")}
       </button>
-      <Modal.Panel class="lw_panel">
+      <Modal.Panel class="lw_panel" data-place={place}>
         <ContactFormComponent modal />
       </Modal.Panel>
     </Modal.Root>
