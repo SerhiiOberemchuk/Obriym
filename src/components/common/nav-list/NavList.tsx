@@ -1,5 +1,5 @@
 import { component$, QRL, useStylesScoped$ } from "@qwik.dev/core";
-import { Link, useLocation } from "@qwik.dev/router";
+import { useLocation } from "@qwik.dev/router";
 import { inlineTranslate, localizePath } from "qwik-speak";
 import styles from "./nav-list.css?inline";
 import IconHome from "~/assets/icons/icon-home.svg?h38&w39&jsx";
@@ -50,15 +50,15 @@ export default component$<Props>(({ place, onClick }) => {
       <ul data-place={place} class="nav_list glass-card">
         {place === "header" && (
           <li id="home-link">
-            <Link href={homePath} aria-label={t("navigation.linkHome@@Link to home page")}>
+            <a href={homePath} aria-label={t("navigation.linkHome@@Link to home page")}>
               <IconHome class="icon_home" />
-            </Link>
+            </a>
           </li>
         )}
         {navListItems.map(item => {
           return (
             <li key={item.link}>
-              <Link
+              <a
                 href={
                   item.link === "team"
                     ? `${teamPath}`
@@ -73,7 +73,7 @@ export default component$<Props>(({ place, onClick }) => {
                 <span data-place={place} class="page_link">
                   {item.label}{" "}
                 </span>
-              </Link>
+              </a>
             </li>
           );
         })}
