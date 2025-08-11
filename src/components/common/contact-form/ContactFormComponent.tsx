@@ -19,6 +19,7 @@ import FormError from "~/components/common/form-error/form_error";
 import { TextInput } from "~/components/common/text-input/TextInput";
 import { OptionsGroup } from "~/components/common/options-group/OptionsGroup";
 import { ModalLetsWork } from "~/components/lets-work/LetsWork";
+import IconClose from "~/assets/icons/icon_close.svg?w=24&h=24&jsx";
 
 type ContactFormComponentProps = {
   modal?: boolean;
@@ -57,7 +58,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
   });
 
   return (
-    <div>
+    <div class="modal_lw">
       {modal ? (
         <h2 id="contact-form-title" class="H3_uppercase contact-form-title">
           {t("app.form.title.modal@@Let's start you project")}
@@ -230,7 +231,8 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                 class="btn_body black ic_form_modal_btn"
                 disabled={contactForm.submitting}
               >
-                <span>{t("app.form.btn-close.modal@@Close")}</span>
+                <span class="modal_close_text">{t("app.form.btn-close.modal@@Close")}</span>
+                <IconClose class="modal_close_icon" />
               </Modal.Close>
             )}
             <button

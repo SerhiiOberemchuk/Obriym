@@ -1,6 +1,7 @@
 import { component$, createContextId, QRL, Signal, useContext } from "@qwik.dev/core";
 import "./mb-styles.css";
 import MenuWindow from "./menu-window/MenuWindow";
+import { ViewportContext } from "~/routes/[...lang]/layout";
 
 export const MobileMenuContext = createContextId<{
   isOpen: Signal<boolean>;
@@ -9,6 +10,10 @@ export const MobileMenuContext = createContextId<{
 
 export default component$(() => {
   const { toggleMenu, isOpen } = useContext(MobileMenuContext);
+  const isMobile = useContext(ViewportContext).value;
+  if (isMobile !== "mobile") {
+    return;
+  }
   return (
     <>
       <button
