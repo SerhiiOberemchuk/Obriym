@@ -5,8 +5,27 @@
   border: 1px solid var(--grey-light);
   width: 100%;
 }
+.ic_form_modal_btn .modal_close_icon {
+  display: none;
+}
 @media (width >= 48rem) {
   .ic_form_modal_btn {
-    max-width: fit-content;
+    position: absolute;
+    left: -3rem;
+    bottom: -3rem;
+    border: none;
+    width: 3.5rem;
+    height: 3.5rem;
+    padding: 1rem;
+    background-color: var(--white);
+  }
+  .ic_form_modal_btn:hover {
+    background-color: var(--blue-light);
+  }
+  .ic_form_modal_btn .modal_close_text {
+    display: none;
+  }
+  .ic_form_modal_btn .modal_close_icon {
+    display: block;
   }
 }
