@@ -19,7 +19,7 @@ import { TextInput } from "~/components/common/text-input/TextInput";
 import { OptionsGroup } from "~/components/common/options-group/OptionsGroup";
 import { ModalLetsWork } from "~/components/lets-work/LetsWork";
 import IconClose from "~/assets/icons/icon_close.svg?w=24&h=24&jsx";
-import { PopoverContex } from "../popover/Popover";
+import { PopoverId } from "../popover/Popover";
 
 type ContactFormComponentProps = {
   modal?: boolean;
@@ -28,10 +28,9 @@ export default component$(({ modal }: ContactFormComponentProps) => {
   useStylesScoped$(styles);
   const t = inlineTranslate();
 
-  // const anchorRef = useSignal<HTMLElement>();
-  const popoverFormId = "contact-popover";
-  const { showPopover } = usePopover(popoverFormId);
-  const { typePopover, popoverId } = useContext(PopoverContex);
+  const anchorRef = useSignal<HTMLElement | undefined>();
+  const popoverSuccess = usePopover(PopoverId.contactFormSuccess);
+  const popoverFail = usePopover(PopoverId.contactFormError);
   const message = useSignal<AlertType>("success");
   const isModalLetsWork = useContext(ModalLetsWork);
   const [contactForm, { Form, Field }] = useForm<ContactForm, ContactFormResponse>({
@@ -41,23 +40,22 @@ export default component$(({ modal }: ContactFormComponentProps) => {
   });
 
   useTask$(({ track }) => {
+    // if (!isBrowser) return;
     track(() => contactForm.response);
 
     const result = contactForm.response;
     if (result.status === "success") {
       message.value = "success";
-      typePopover.value = message.value;
-      popoverId.value = popoverFormId;
-      showPopover();
+      // await popoverSuccess.hidePopover();
+      popoverSuccess.showPopover();
       if (modal) {
         isModalLetsWork.value = false;
       }
       reset(contactForm);
     } else if (result.status === "error") {
       message.value = "failed";
-      typePopover.value = message.value;
-      popoverId.value = popoverFormId;
-      showPopover();
+      // await popoverFail.hidePopover();
+      popoverFail.showPopover();
     }
   });
 
@@ -177,7 +175,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
               {/* MESSAGE */}
               <Field name="message">
                 {(field, props) => (
-                  <div class="ic_form_fieldset_wrp">
+                  <div class="ic_form_fieldset_wrp" ref={anchorRef}>
                     <label class="sr-only" for="message-textarea">
                       label={t("app.form.message.sr-label@@Your message")}
                     </label>
@@ -200,37 +198,10 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                   </div>
                 )}
               </Field>
-              {/* <Field name="message">
-                {(field, props) => {
-                  return (
-                    <div class="ic_form_fieldset_wrp" ref={anchorRef}>
-                      <label class="sr-only" for="message-textarea">
-                        {t("app.form.message.sr-label@@Your message")}
-                      </label>
-                      <textarea
-                        value={field.value}
-                        onInput$={props.onInput$}
-                        onBlur$={props.onBlur$}
-                        name={props.name}
-                        role="textbox"
-                        id="message-textarea"
-                        aria-multiline="true"
-                        aria-placeholder={t(
-                          "app.form.message.placeholder.not-modal@@Add information",
-                        )}
-                        placeholder={t("app.form.message.placeholder.not-modal@@Add information")}
-                        class={`btn_body grey_dark ic_form_textarea ${field.error ? "border-red" : ""}`}
-                      />
-                      <FormError error={field.error} id={`message-error`} />
-                    </div>
-                  );
-                }}
-              </Field> */}
             </div>
           </fieldset>
           <div class="ic_form_btn_wrp">
             {modal && (
-              // <Slot />
               <Modal.Close
                 class="btn_body black ic_form_modal_btn"
                 disabled={contactForm.submitting}
@@ -251,8 +222,6 @@ export default component$(({ modal }: ContactFormComponentProps) => {
           </div>
         </div>
       </Form>
-      {/* anchor={anchorRef} */}
-      {/* <PopoverComponent popoverId={popoverId} type={message.value} anchor={anchorRef} /> */}
     </div>
   );
 });

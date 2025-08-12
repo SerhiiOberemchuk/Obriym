@@ -7,11 +7,9 @@ import {
   createContextId,
   useVisibleTask$,
   $,
-  useContext,
 } from "@qwik.dev/core";
 import { routeLoader$ } from "@qwik.dev/router";
 import NavList from "~/components/common/nav-list/NavList";
-import { PopoverContex } from "~/components/common/popover/Popover";
 import Popover from "~/components/common/popover/Popover";
 import {
   CookiesBannerContext,
@@ -69,7 +67,6 @@ export default component$(() => {
   useContextProvider(CookiesBannerContext, cookiesContextFunctions);
   useContextProvider(ViewportContext, viewportCategory);
   useContextProvider(ViewportWidthContext, viewportWidth);
-  const { anchor } = useContext(PopoverContex);
   return (
     <>
       <Header />
@@ -82,20 +79,6 @@ export default component$(() => {
       <Footer />
       <CookiesBanner />
       <Popover />
-
-      <div
-        ref={anchor}
-        aria-hidden="true"
-        style={{
-          position: "fixed",
-          top: "16px",
-          right: "16px",
-          width: "0",
-          height: "0",
-          pointerEvents: "none",
-          zIndex: "9999",
-        }}
-      />
     </>
   );
 });
