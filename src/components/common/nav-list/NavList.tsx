@@ -2,7 +2,7 @@ import { component$, QRL, useStylesScoped$ } from "@qwik.dev/core";
 import { useLocation } from "@qwik.dev/router";
 import { inlineTranslate, localizePath } from "qwik-speak";
 import styles from "./nav-list.css?inline";
-import IconHome from "~/assets/icons/icon-home.svg?h38&w39&jsx";
+import IconHome from "~/assets/icons/icon-home.svg?h=38&w=39&jsx";
 
 import { NavListItem } from "~/types/nav-list.type";
 

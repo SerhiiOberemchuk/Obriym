@@ -1,59 +1,58 @@
-import { component$, createContextId, useContext, useStylesScoped$ } from "@qwik.dev/core";
-import type { Signal } from "@qwik.dev/core";
+import { component$, useSignal, useStylesScoped$ } from "@qwik.dev/core";
 import { inlineTranslate } from "qwik-speak";
 import { Popover } from "@qwik-ui/headless";
 
 import styles from "./popover_styles.css?inline";
 import { ALERT_MESSAGE } from "~/const/form-const";
 
-type PopoverProps = {
-  popoverId: string;
-  typePopover: keyof typeof ALERT_MESSAGE;
-  anchor?: Signal<HTMLElement | undefined>;
-};
-export const PopoverContex = createContextId<{
-  popoverId: Signal<string>;
-  typePopover: Signal<PopoverProps["typePopover"]>;
-  anchor: Signal<HTMLElement | undefined>;
-}>("popover.anchor");
+export enum PopoverId {
+  contactFormSuccess = "contact-form-success",
+  contactFormError = "contact-form-error",
+}
 
 export default component$(() => {
   const t = inlineTranslate();
-  const { popoverId, typePopover, anchor } = useContext(PopoverContex);
   useStylesScoped$(styles);
+  const anchor = useSignal<HTMLElement | undefined>(undefined);
+  const IconSuccess = ALERT_MESSAGE["success"].icon;
+  const IconError = ALERT_MESSAGE["failed"].icon;
 
-  const Icon = ALERT_MESSAGE[typePopover.value].icon;
-  const isError = typePopover.value === "failed";
-  const ariaLive = isError ? "assertive" : "polite";
-  const role = isError ? "alert" : "status";
   return (
-    // bind:anchor={anchor} gutter={40} floating="top"
-    <Popover.Root
-      id={popoverId.value}
-      bind:anchor={anchor}
-      manual
-      floating="bottom-start"
-      gutter={8}
-      // floating="top"
-      // gutter={-40}
-    >
-      <Popover.Panel class="popover-transition">
-        <div
-          role={role}
-          aria-live={ariaLive}
-          aria-atomic="true"
-          data-type={typePopover.value}
-          class="popover-content popover_text "
-        >
-          <Icon />
-          {/* <p>{ALERT_MESSAGE[type].title}</p>
+    <div ref={anchor} aria-hidden="true" class="popover_anchor">
+      <Popover.Root id={PopoverId.contactFormSuccess} bind:anchor={anchor} floating="bottom-start">
+        <Popover.Panel class="popover-transition">
+          <div
+            role={"status"}
+            aria-live={"polite"}
+            aria-atomic="true"
+            data-type={"success"}
+            class="popover-content popover_text "
+          >
+            <IconSuccess />
 
-          <p>{ALERT_MESSAGE[type].message}</p> */}
+            <p>{t(`alert.${"success"}.title@@ALERT_MESSAGE[type].title`)}</p>
 
-          <p>{t(`alert.${typePopover.value}.title@@ALERT_MESSAGE[type].title`)}</p>
-          <p>{t(`alert.${typePopover.value}.message@@ALERT_MESSAGE[type].message`)}</p>
-        </div>
-      </Popover.Panel>
-    </Popover.Root>
+            <p>{t(`alert.${"success"}.message@@ALERT_MESSAGE[type].message`)}</p>
+          </div>
+        </Popover.Panel>
+      </Popover.Root>
+      <Popover.Root id={PopoverId.contactFormError} bind:anchor={anchor} floating="bottom-start">
+        <Popover.Panel class="popover-transition">
+          <div
+            role={"alert"}
+            aria-live={"assertive"}
+            aria-atomic="true"
+            data-type={"failed"}
+            class="popover-content popover_text "
+          >
+            <IconError />
+
+            <p>{t(`alert.${"failed"}.title@@ALERT_MESSAGE[type].title`)}</p>
+
+            <p>{t(`alert.${"failed"}.message@@ALERT_MESSAGE[type].message`)}</p>
+          </div>
+        </Popover.Panel>
+      </Popover.Root>
+    </div>
   );
 });
