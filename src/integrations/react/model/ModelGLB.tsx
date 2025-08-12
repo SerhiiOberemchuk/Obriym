@@ -6,7 +6,9 @@ import { useRef, useEffect, Suspense } from "react";
 import { Group } from "three";
 import { Canvas } from "@react-three/fiber";
 
-type Model = { model: "organicball" | "spring" | "gordian" | "puff" };
+export type Model = {
+  model: "organicball" | "spring" | "spring1" | "gordian" | "puff" | "pipe" | "cube" | "torus";
+};
 
 function ModelCopy({ model }: Model) {
   const group = useRef<Group>(null);
@@ -44,8 +46,14 @@ function SceneCopy({
     case "spring":
       scale = 1.3;
       break;
-    default:
+    case "spring1":
+      scale = 1.3;
+      break;
+    case "organicball":
       scale = 3;
+      break;
+    default:
+      scale = 0.5;
       break;
   }
   return (

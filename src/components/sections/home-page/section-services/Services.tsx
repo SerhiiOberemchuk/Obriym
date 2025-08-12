@@ -84,7 +84,7 @@ export default component$(() => {
   return (
     <section class="section" id="services" aria-label={t("home.services.title@@services")}>
       <div class="container">
-        <SubTitle classes="title" section="ourTeam">
+        <SubTitle classes="title" section="services">
           {t("home.services.title@@services")}
         </SubTitle>
         <div class="ins_wrapper">
