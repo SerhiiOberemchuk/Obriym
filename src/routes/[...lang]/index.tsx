@@ -45,24 +45,37 @@ export default component$(() => {
   );
 });
 
-export const head: DocumentHead = () => {
+const SITE = "https://obriym.com";
+
+const OG_IMAGE = `${SITE}/og-image.png`;
+
+export const head: DocumentHead = ({ url }) => {
   const t = inlineTranslate();
+  const title = t("app.head.home.title@@Full-cycle web agency — fast SEO sites & apps | {{name}}", {
+    name: "OBRIYM",
+  });
+  const description = t("app.head.home.description@@Localized routing");
+  const path = url.pathname.replace(/^\/(uk-UA|en-EU|it-IT)(?=\/|$)/, "") || "/";
+  const canonical = `${SITE}${path}`;
   return {
-    title: t("app.head.home.title@@{{name}}", { name: "Obriym" }),
+    title,
     meta: [
       {
         name: "description",
-        content: t("app.head.home.description@@Localized routing"),
+        content: description,
       },
+      { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "OBRIYM" },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:url", content: canonical },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
+      { name: "twitter:image", content: OG_IMAGE },
     ],
-    // links: [
-    //   {
-    //     rel: "preload",
-    //     as: "font",
-    //     href: "/fonts/plus-jakarta-sans-v11-cyrillic-ext_latin-regular.woff2",
-    //     type: "font/woff2",
-    //     crossOrigin: "anonymous",
-    //   },
-    // ],
   };
 };

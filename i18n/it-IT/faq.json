@@ -1,0 +1,72 @@
+{
+  "faq": {
+    "head": {
+      "title": "FAQ — servizi, SEO, tempi e costi | OBRIYM",
+      "desc": "Risposte su siti e web app veloci ottimizzati per la SEO, tempi 2–4 settimane, multilingua, e-commerce, analytics, GDPR, sicurezza e manutenzione."
+    },
+    "h1": "FAQ — risposte sulla realizzazione di siti SEO veloci e web app",
+    "lead": "OBRIYM è un’agenzia web full-service. Realizziamo siti e web app veloci e sicuri con focus su SEO, performance (Core Web Vitals), accessibilità e conversioni. Di seguito trovi risposte su stack (Qwik/Next.js), e-commerce, SEO multilingue, integrazioni, analytics, GDPR/Consent Mode, sicurezza, manutenzione e costi.",
+    "items": {
+      "services": {
+        "q": "Quali servizi offre OBRIYM?",
+        "a": "Progettiamo e sviluppiamo siti e web app SEO-ottimizzati: corporate, landing, blog, e-commerce, portali, microservizi e integrazioni. Stack moderno (Qwik/Next.js), design system, headless CMS (Prismic/Contentful/Strapi), analytics, SEO, accessibilità (WCAG 2.1), sicurezza e supporto post-lancio."
+      },
+      "timeline": {
+        "q": "Quanto tempo serve e quali sono le fasi?",
+        "a": "In genere 2–4 settimane in base alla complessità. Fasi: briefing e pianificazione → prototipo UX → design UI → sviluppo → contenuti e localizzazione → SEO/analytics → test → rilascio. E-commerce/integrazioni possono richiedere più tempo; definiamo tutto nell’offerta."
+      },
+      "pricing": {
+        "q": "Quanto costa un sito e cosa è incluso?",
+        "a": "I progetti base partono da €1500. Inclusi: design, layout, sviluppo, SEO di base (Title/H1, meta, semantica, sitemap, robots, Open Graph), integrazione analytics e formazione. Extra: e-commerce, integrazioni CRM, multilingua, copywriting, strategia SEO, visual."
+      },
+      "seo": {
+        "q": "Cosa fate esattamente per la SEO?",
+        "a": "SEO tecnico (canonical, hreflang, sitemap.xml, robots.txt), struttura HTML semantica, heading corretti (H1–H3), metadata, Open Graph/Twitter Cards, dati strutturati (Organization, WebSite + SearchAction, BreadcrumbList, Service/Article), velocità e Core Web Vitals (LCP, CLS, INP), linking interno, URL puliti."
+      },
+      "performance": {
+        "q": "Come ottenete alte performance e Core Web Vitals?",
+        "a": "Qwik/Next.js con SSR e reattività fine-grained, CSS critico, immagini ottimizzate (AVIF/WebP, dimensioni, decoding=async/fetchpriority), lazy-loading, cache, CDN, preconnect/preload, bundle JS minimo e controllo delle risorse bloccanti; Lighthouse/PageSpeed sempre in verde."
+      },
+      "ecommerce": {
+        "q": "Quali soluzioni e-commerce proponete?",
+        "a": "Shopify oppure storefront personalizzati su Next.js/Qwik con pagamenti (Stripe/WayForPay/PayPal), gestione prodotti, carrello/checkout, tasse, SEO per categorie/prodotti, filtri, integrazioni CRM/ERP ed email."
+      },
+      "cms": {
+        "q": "Quale CMS consigliate: headless o WordPress?",
+        "a": "Per performance e scalabilità — headless CMS (Prismic/Contentful/Strapi) con JAMstack. Se serve un setup classico — WordPress ottimizzato. La scelta dipende da redazione, SEO e budget."
+      },
+      "i18n": {
+        "q": "Realizzate siti multilingua e come impatta sulla SEO?",
+        "a": "Sì: rotte localizzate (uk/en/it), hreflang e canonical corretti, Title/Description/H1 localizzati, traduzione dei contenuti e dei testi media, mappatura keyword per lingua — fondamentale per l’SEO internazionale."
+      },
+      "a11y": {
+        "q": "E l’accessibilità (WCAG 2.1) e la UX?",
+        "a": "Markup semantico, contrasto, navigazione da tastiera, stili di focus, ARIA, testi sr-only, alt text, gerarchia logica degli heading. Migliora l’esperienza e spesso anche la SEO."
+      },
+      "analytics": {
+        "q": "Quali analytics e tracking configurate?",
+        "a": "Google Analytics 4 con Consent Mode, Google Tag Manager, eventi/conversioni, pixel (Meta/LinkedIn), webhooks server, heatmap se necessario. Tracciamento solo dopo consenso (GDPR/cookie banner)."
+      },
+      "security": {
+        "q": "Sicurezza, hosting e DevOps — come li gestite?",
+        "a": "Hosting su Vercel/Fly.io/Cloudflare, HTTPS, security headers (CSP, HSTS, X-Frame-Options), aggiornamenti dipendenze, segreti isolati, backup, monitoraggio uptime, logging."
+      },
+      "maintenance": {
+        "q": "Fornite manutenzione post-lancio?",
+        "a": "Sì: monitoraggio, aggiornamenti dipendenze, fix minori, tuning performance, supporto contenuti, audit SEO trimestrali. SLA su risposta e correzioni."
+      },
+      "handover": {
+        "q": "Fate formazione e trasferimento di proprietà?",
+        "a": "Sì. Onboarding per editor/marketing, documentazione, trasferimento accessi, repository e proprietà. Potete gestire internamente o affidarci la manutenzione."
+      },
+      "migration": {
+        "q": "Gestite migrazioni/redesign di siti esistenti?",
+        "a": "Sì. Migriamo i contenuti, preserviamo la struttura URL (o settiamo redirect 301), ripristiniamo metadata/schema, verifichiamo l’indicizzazione, ottimizziamo performance e UX. Audit tecnico pre-lancio."
+      },
+      "integrations": {
+        "q": "Quali integrazioni potete aggiungere?",
+        "a": "CRM (HubSpot/Pipedrive), email (Resend/Mailgun), pagamenti (Stripe/WayForPay), calendari/prenotazioni, webhooks, search, mappe, strumenti marketing, analytics, chat widget."
+      }
+    }
+  }
+}

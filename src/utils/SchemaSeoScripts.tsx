@@ -1,8 +1,6 @@
 import { component$ } from "@qwik.dev/core";
 import { useSpeakLocale } from "qwik-speak";
-import { faqSchemaEN } from "~/seo/schemas/faq/faq.en";
-import { faqSchemaIT } from "~/seo/schemas/faq/faq.it";
-import { faqSchemaUA } from "~/seo/schemas/faq/faq.ua";
+
 import { howToWorkSchemaEN } from "~/seo/schemas/howToWork/howToSchema.en";
 import { howToWorkSchemaIT } from "~/seo/schemas/howToWork/howToSchema.it";
 import { howToWorkSchemaUA } from "~/seo/schemas/howToWork/howToSchema.ua";
@@ -13,25 +11,22 @@ import { organizationSchemaUA } from "~/seo/schemas/organization/organization.ua
 export default component$(() => {
   let schemaHOW;
   let schemaOrganization;
-  let schemaFAQ;
+
   const { lang } = useSpeakLocale();
 
   switch (lang) {
     case "uk-UA":
       schemaHOW = howToWorkSchemaUA;
-      schemaFAQ = faqSchemaUA;
       schemaOrganization = organizationSchemaUA;
       break;
     case "it-IT":
       schemaHOW = howToWorkSchemaIT;
-      schemaFAQ = faqSchemaIT;
       schemaOrganization = organizationSchemaIT;
 
       break;
 
     default:
       schemaHOW = howToWorkSchemaEN;
-      schemaFAQ = faqSchemaEN;
       schemaOrganization = organizationSchemaEN;
 
       break;
@@ -43,11 +38,7 @@ export default component$(() => {
         type="application/ld+json"
         dangerouslySetInnerHTML={JSON.stringify(schemaHOW)}
       ></script>
-      <script
-        id="schema-FAQ"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={JSON.stringify(schemaFAQ)}
-      ></script>
+
       <script
         id="schema-organization"
         type="application/ld+json"
@@ -58,24 +49,50 @@ export default component$(() => {
         type="application/ld+json"
         dangerouslySetInnerHTML={JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "SiteNavigationElement",
-          name: [
-            "Services",
-            "Portfolio",
-            "Team",
-            "About",
-            "Contact",
-            "Cookies policy",
-            "Privacy policy",
-          ],
-          url: [
-            "https://obriym.com/#services",
-            "https://obriym.com/#portfolio",
-            "https://obriym.com/team/",
-            "https://obriym.com/cookies-policy/",
-            "https://obriym.com/privacy-policy/",
-            "https://obriym.com/#about",
-            "https://obriym.com/#contact",
+          "@type": "ItemList",
+          itemListElement: [
+            {
+              "@type": "SiteNavigationElement",
+              position: 1,
+              name: "Services",
+              url: "https://obriym.com/#services",
+            },
+            {
+              "@type": "SiteNavigationElement",
+              position: 2,
+              name: "Portfolio",
+              url: "https://obriym.com/#portfolio",
+            },
+            {
+              "@type": "SiteNavigationElement",
+              position: 3,
+              name: "Team",
+              url: "https://obriym.com/team/",
+            },
+            {
+              "@type": "SiteNavigationElement",
+              position: 4,
+              name: "About",
+              url: "https://obriym.com/#about",
+            },
+            {
+              "@type": "SiteNavigationElement",
+              position: 5,
+              name: "Contact",
+              url: "https://obriym.com/#contact",
+            },
+            {
+              "@type": "SiteNavigationElement",
+              position: 6,
+              name: "Cookies policy",
+              url: "https://obriym.com/cookies-policy/",
+            },
+            {
+              "@type": "SiteNavigationElement",
+              position: 7,
+              name: "Privacy policy",
+              url: "https://obriym.com/privacy-policy/",
+            },
           ],
         })}
       ></script>

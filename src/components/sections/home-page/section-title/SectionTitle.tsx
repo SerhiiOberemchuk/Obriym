@@ -45,15 +45,17 @@ export default component$(() => {
     <section class="st_section">
       <div class="container">
         <h1 class="H2_light black title">
-          <span class="icon_span">
+          <span class="sr-only">
+            {t("home.h1@@Full-cycle web agency — developing fast SEO websites and web apps")}
+          </span>
+          <span class="icon_span" aria-hidden={true}>
             {t("home.stitle.1span@@Complete")}
-            <div class="icon_title">
+            <div class="icon_title" aria-hidden={true}>
               <QModel model="puff" width={sizeModel.puff.width} height={sizeModel.puff.height} />
             </div>
           </span>
           <span class="H1_extra_light grey_dark">{t("home.stitle.2span@@digital")}</span>
-          <div class="spring_model">
-            {" "}
+          <div class="spring_model" aria-hidden={true}>
             <QModel
               model="spring"
               width={sizeModel.spring.width}
@@ -61,16 +63,20 @@ export default component$(() => {
             />
           </div>
 
-          <span class="H1_extra_light grey_dark">{t("home.stitle.3span@@products")}.</span>
-          <ImgHeroSl class="notebook tablet" alt="desc" />
+          <span class="H1_extra_light grey_dark" aria-hidden={true}>
+            {t("home.stitle.3span@@products")}.
+          </span>
+          <ImgHeroSl class="notebook tablet" alt="desc" aria-hidden={true} />
 
-          <span class="from_sp1">{t("home.stitle.4span@@From")}</span>
-          <span class="text_center">
+          <span class="from_sp1" aria-hidden={true}>
+            {t("home.stitle.4span@@From")}
+          </span>
+          <span class="text_center" aria-hidden={true}>
             <span class="from_sp2">{t("home.stitle.4span")}</span>{" "}
             {t("home.stitle.5span@@concept to launch")}
           </span>
         </h1>
-        <ImgHeroSl class="notebook mobile" alt="Image notebook" />
+        <ImgHeroSl class="notebook mobile" alt="Image notebook" aria-hidden={true} />
       </div>
     </section>
   );
