@@ -20,19 +20,25 @@ export default component$<Props>(({ place, onClick }) => {
   const getPath = localizePath();
 
   const [teamPath] = getPath(["/team/"]);
+  const [faqPath] = getPath(["/faq/"]);
   const [homePath] = getPath(["/"]);
 
   const baseListItems: NavListItem[] = [
-    { link: "services", label: t("navigation.services@@Services") },
-    { link: "portfolio", label: t("navigation.portfolio@@Portfolio") },
-    { link: "team", label: t("navigation.team@@Team") },
-    { link: "about", label: t("navigation.about@@About") },
-    { link: "contact", label: t("navigation.contact@@Contact") },
+    { link: "services", label: t("navigation.services@@Services"), path: `${homePath}#services` },
+    {
+      link: "portfolio",
+      label: t("navigation.portfolio@@Portfolio"),
+      path: `${homePath}#portfolio`,
+    },
+    { link: "team", label: t("navigation.team@@Team"), path: teamPath },
+    { link: "about", label: t("navigation.about@@About"), path: `${homePath}#about` },
+    { link: "contact", label: t("navigation.contact@@Contact"), path: `${currentPath}#contact` },
+    { link: "faq", label: "FAQ", path: faqPath },
   ];
 
   const navListItems = baseListItems.filter(({ link }) => {
     if (place === "mobilemenu" || place === "header") {
-      return link !== "team";
+      return link !== "team" && link !== "faq";
     }
     if (place === "footer") {
       return link !== "contact";
@@ -59,13 +65,7 @@ export default component$<Props>(({ place, onClick }) => {
           return (
             <li key={item.link}>
               <a
-                href={
-                  item.link === "team"
-                    ? `${teamPath}`
-                    : item.link === "contact"
-                      ? `${currentPath}#${item.link}`
-                      : `${homePath}#${item.link}`
-                }
+                href={item.path}
                 aria-label={`${t("navigation.linkLabel@@Link to section")} ${item.label}`}
                 class="btn_body"
                 onClick$={onClick}
