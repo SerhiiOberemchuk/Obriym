@@ -20,6 +20,7 @@ export default component$(() => {
     <QwikRouterProvider>
       <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <QwikPartytown forward={["gtag", "dataLayer.push"]} />
         <script
           id="ga-script"
