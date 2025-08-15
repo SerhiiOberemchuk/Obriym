@@ -22,27 +22,8 @@ export default component$(() => {
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <QwikPartytown forward={["gtag", "dataLayer.push"]} />
-        <script
-          id="ga-script"
-          async
-          type="text/partytown"
-          src="https://www.googletagmanager.com/gtag/js?id=G-VH4ZJDDVDG"
-        />
-        <script
-          id="gtag-script"
-          type="text/partytown"
-          dangerouslySetInnerHTML={`
-            window.dataLayer = window.dataLayer || [];
-            window.gtag = function() {
-              dataLayer.push(arguments);
-            }
-            gtag('js', new Date());
-            gtag('config', 'G-VH4ZJDDVDG');
-          `}
-        />
         {!isDev && <link rel="manifest" href={`${import.meta.env.BASE_URL}manifest.json`} />}
         <RouterHead />
-        {/* <ServiceWorkerRegister /> */}
       </head>
       <body>
         <RouterOutlet />

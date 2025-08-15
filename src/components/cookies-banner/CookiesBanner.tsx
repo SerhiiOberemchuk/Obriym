@@ -21,7 +21,7 @@ export default component$(() => {
   const cookiesData = useStore<CookiesTypes>({
     cookiesAccepted: false,
     requiredCookies: true,
-    analyticsCookies: true,
+    analyticsCookies: false,
   });
   const getPath = localizePath();
   const [cookiesPath] = getPath(["/cookies-policy/"]);
@@ -34,8 +34,8 @@ export default component$(() => {
       cookiesData.cookiesAccepted = cookiesLocal.cookiesAccepted;
       cookiesData.requiredCookies = cookiesLocal.requiredCookies;
       cookiesData.analyticsCookies = cookiesLocal.analyticsCookies;
-      if (!cookiesLocal.analyticsCookies) {
-        disableAnalitics();
+      if (cookiesLocal.analyticsCookies) {
+        loadAnalytics();
       }
     } else {
       isVisible.value = true;
