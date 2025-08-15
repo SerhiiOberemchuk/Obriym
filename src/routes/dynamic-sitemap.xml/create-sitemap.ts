@@ -11,7 +11,7 @@ export function createSitemap(entries: SitemapEntry[]) {
 ${entries.map(
   entry => `
     <url>
-        <loc>${baseUrl}${entry.loc.startsWith("/") ? "" : "/"}${entry.loc}</loc>
+        <loc>${baseUrl}${entry.loc}</loc>
         <priority>${entry.priority}</priority>
     </url>`,
 )}
