@@ -1,0 +1,95 @@
+.links_section {
+  overflow-x: hidden;
+  padding-block: 5rem;
+}
+.faq_toc {
+  display: flex;
+}
+.links_section {
+  position: relative;
+}
+/* .links_section::before,
+.links_section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+
+  height: 100%;
+  width: 50px;
+
+  z-index: 2;
+}
+
+.links_section::before {
+  left: 0;
+  background: linear-gradient(to right, var(--background-page) 0%, transparent 100%);
+}
+.links_section::after {
+  right: 0;
+  background: linear-gradient(to left, var(--background-page) 0%, transparent 100%);
+} */
+
+@keyframes navanimation {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.faq_toc_list {
+  display: flex;
+  animation: 120s navanimation infinite linear;
+}
+.animate_title {
+  display: flex;
+}
+.item {
+  padding-inline: 0.75rem;
+}
+
+.link {
+  padding: 0.625rem 1rem;
+  border-radius: 1.5rem;
+  display: flex;
+  white-space: nowrap;
+}
+.faq_toc_list .item:nth-child(4n + 1) .link {
+  background-color: var(--pink-light);
+}
+.faq_toc_list .item:nth-child(4n + 2) .link {
+  background-color: var(--yellow-light);
+}
+.faq_toc_list .item:nth-child(4n + 3) .link {
+  background-color: var(--green-light);
+}
+.faq_toc_list .item:nth-child(4n + 4) .link {
+  background-color: var(--blue-light);
+}
+@keyframes titleanimation {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+.title {
+  padding: 1.5rem;
+  white-space: nowrap;
+  text-transform: uppercase;
+  animation: 30s titleanimation infinite linear;
+}
+@media (width >= 48rem) {
+  .faq_toc:hover .faq_toc_list {
+    animation-play-state: paused;
+  }
+  .item {
+    padding-inline: 1.25rem;
+  }
+}
+@media (width >= 90rem) {
+  .item {
+    padding-inline: 1.5rem;
+  }
+}
