@@ -1,12 +1,12 @@
 import { component$ } from "@qwik.dev/core";
 import { DocumentHead } from "@qwik.dev/router";
 import { inlineTranslate } from "qwik-speak";
-import PrivacySection from "~/components/sections/privacy-page/PrivacySection";
+import PrivacyPage from "~/components/pages/PrivacyPage";
 
 export default component$(() => {
   return (
     <>
-      <PrivacySection />
+      <PrivacyPage />
       <script
         type="application/ld+json"
         id="obriym-policy-schema"

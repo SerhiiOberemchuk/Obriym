@@ -90,7 +90,7 @@ export default component$(() => {
               <div class="list_wrap">
                 <ul class="list_steps">
                   {steps.map((item, index) => (
-                    <li key={index} class="item" id={`step${index + 1}`}>
+                    <li key={index} class="item" id={`#step${index + 1}`}>
                       <article class="card">
                         <header>
                           <p class="H4 ">{item.step}</p>
