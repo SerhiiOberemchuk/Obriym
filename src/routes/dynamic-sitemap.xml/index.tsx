@@ -1,16 +1,37 @@
 import { RequestHandler } from "@qwik.dev/router";
 import { routes } from "@qwik-router-config";
 import { createSitemap } from "./create-sitemap";
+const speackRoute = ["", "/uk-UA", "/it-IT"];
 
 export const onGet: RequestHandler = ev => {
-  const siteRoutes = routes.map(([route]) => route as string).filter(route => route !== "/"); // Exclude the '/' route
+  const filteredRoutes = speackRoute.map(lang => {
+    return routes
+      .map(([route]) => {
+        let dynamicRoute = route.replace("[...lang]", lang);
+
+        if (dynamicRoute === lang) {
+          dynamicRoute = dynamicRoute + "/";
+        }
+        return dynamicRoute;
+      })
+      .filter(route => !route.startsWith("dynamic"));
+  });
+  const routesWithLang = [...new Set(filteredRoutes.flat())];
 
   const sitemap = createSitemap([
-    { loc: "/", priority: 1 }, // Manually include the root route
-    ...siteRoutes.map(route => ({
-      loc: route,
-      priority: 0.9, // Default priority, adjust as needed
-    })),
+    ...routesWithLang.map(route => {
+      console.log(`Processing route: ${route}`);
+      if (route === "/") {
+        return {
+          loc: "",
+          priority: 1,
+        };
+      } else
+        return {
+          loc: route,
+          priority: 0.9,
+        };
+    }),
   ]);
 
   const response = new Response(sitemap, {
