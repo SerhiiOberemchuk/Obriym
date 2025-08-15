@@ -45,9 +45,9 @@ export default component$(() => {
   );
 });
 
-const SITE = "https://obriym.com";
+export const SITE = "https://obriym.com";
 
-const OG_IMAGE = `${SITE}/og-image.png`;
+export const OG_IMAGE = `${SITE}/og-image.png`;
 
 export const head: DocumentHead = ({ url }) => {
   const t = inlineTranslate();

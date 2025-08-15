@@ -11,7 +11,8 @@ import styles from "./styles.css?inline";
 import { COOKIES_LOCAL_STORAGE, CookiesTypes } from "~/types/cookies.type";
 import { disableAnalitics, loadAnalytics } from "~/utils/loadGoogleAnalitics";
 import { CookiesBannerContext } from "./coocies-banner-context";
-import { inlineTranslate } from "qwik-speak";
+import { inlineTranslate, localizePath } from "qwik-speak";
+import { Link } from "@qwik.dev/router";
 
 export default component$(() => {
   useStylesScoped$(styles);
@@ -22,7 +23,8 @@ export default component$(() => {
     requiredCookies: true,
     analyticsCookies: true,
   });
-
+  const getPath = localizePath();
+  const [cookiesPath] = getPath(["/cookies-policy/"]);
   const { isVisible } = useContext(CookiesBannerContext);
 
   useVisibleTask$(() => {
@@ -78,9 +80,9 @@ export default component$(() => {
             )}
             <br />
             {t("cookies.banner.description2@@Read more on")}{" "}
-            <a href="https://obriym.com/cookie-policy" target="_blank" rel="noopener noreferrer">
+            <Link href={cookiesPath} target="_blank" rel="noopener noreferrer">
               https://obriym.com/cookie-policy
-            </a>
+            </Link>
           </p>
 
           {typeCookiesBanner.value === "settings" && (

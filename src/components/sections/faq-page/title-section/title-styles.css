@@ -1,0 +1,42 @@
+.title_section {
+  padding-top: 8.25rem;
+  padding-bottom: 17.75rem;
+}
+.icon {
+  width: 58px;
+  height: 58px;
+}
+.title {
+  max-width: 56rem;
+  margin-inline: auto;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.title_faq {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.faq_subtitle {
+  text-align: justify;
+}
+@media (width >= 48rem) {
+  .icon {
+    width: 48px;
+    height: 48px;
+  }
+  .title_section {
+    padding-bottom: 24.375rem;
+  }
+}
+@media (width >= 90rem) {
+  .icon {
+    width: 100px;
+    height: 100px;
+  }
+  .title_section {
+    padding-bottom: 18.125rem;
+  }
+}
