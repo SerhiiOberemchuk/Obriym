@@ -118,13 +118,7 @@ export default component$(() => {
             {cards.map(({ title, description, list, srcImage, image }, index) => (
               <li key={index} class="li_item" data-num={index}>
                 <Card title={title} description={description} list={list}>
-                  <figure
-                    role="img"
-                    aria-label={`${title} service illustration`}
-                    class="image_wrapper"
-                  >
-                    {image}
-                  </figure>
+                  <figure class="image_wrapper">{image}</figure>
                 </Card>
                 <script
                   type="application/ld+json"
