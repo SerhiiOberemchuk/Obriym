@@ -14,12 +14,16 @@ import SchemaSeoScripts from "~/utils/SchemaSeoScripts";
 export const useLocalLoader = routeLoader$(({ locale }) => locale);
 export const useFetchProjects = routeLoader$(async ({ cacheControl }) => {
   cacheControl({
-    staleWhileRevalidate: 60 * 60 * 24,
-    maxAge: 60 * 60,
+    public: true,
+    staleWhileRevalidate: 60 * 60,
+    maxAge: 60 * 5,
+    sMaxAge: 60 * 60 * 24,
   });
   try {
     const url = import.meta.env.PUBLIC_URL_PROJECTS;
-    const response = await fetch(`${url}/api/projects`);
+    const response = await fetch(`${url}/api/projects`, {
+      headers: { accept: "application/json" },
+    });
     const projects = await response.json();
     return {
       status: true as boolean,

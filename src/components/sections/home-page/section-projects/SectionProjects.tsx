@@ -6,6 +6,7 @@ import { useFetchProjects } from "~/routes/[...lang]";
 
 import { Carousel } from "@qwik-ui/headless";
 import { ViewportContext } from "~/routes/[...lang]/layout";
+// import { ProjectsSchema } from "./ProjectsSchema";
 
 export default component$(() => {
   useStyles$(styles);
@@ -22,6 +23,7 @@ export default component$(() => {
         <CarouselComponent classC="carousel_projects_top" autoPlayIntervalMs={5000} />
         <CarouselComponent autoPlayIntervalMs={5000} reversSlider={true} />
       </div>
+      {/* <ProjectsSchema projects={projects.value} /> */}
     </section>
   );
 });
@@ -37,8 +39,9 @@ const CarouselComponent = component$<PropsCarousel>(
     const slidesPerView = useSignal<number>(2);
     const { lang } = useSpeakLocale();
     const t = inlineTranslate();
-    const devise = useContext(ViewportContext);
     const projects = useFetchProjects();
+
+    const devise = useContext(ViewportContext);
     useVisibleTask$(({ track }) => {
       track(() => devise.value);
       slidesPerView.value = devise.value === "desktop" ? 2 : 1;
@@ -108,7 +111,7 @@ const CarouselComponent = component$<PropsCarousel>(
                         <li key={index}>{<span class="helper_text grey_dark">{item}</span>}</li>
                       ))}
                     </ul>
-                    <script
+                    {/* <script
                       type="application/ld+json"
                       dangerouslySetInnerHTML={JSON.stringify({
                         "@context": "https://schema.org",
@@ -120,7 +123,7 @@ const CarouselComponent = component$<PropsCarousel>(
                         inLanguage: lang,
                         keywords: item.technologies.join(", "),
                       })}
-                    ></script>
+                    ></script> */}
                   </article>
                 </Carousel.Slide>
               );

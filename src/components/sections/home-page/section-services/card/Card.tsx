@@ -19,7 +19,13 @@ export default component$<ServicesCardProps>(({ title, description, list, srcIma
         </ol>
       </header>
       <figure class="image_wrapper">
-        <img src={srcImage} alt={`${title} service illustration`} loading="lazy" />
+        <img
+          src={srcImage}
+          alt={`${title} service illustration`}
+          width={704}
+          height={296}
+          loading="lazy"
+        />
       </figure>
     </article>
   );
