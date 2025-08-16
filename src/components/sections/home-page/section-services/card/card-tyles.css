@@ -28,14 +28,7 @@
 .item::before {
   content: "→";
 }
-.image_wrapper {
-  max-height: 13.25rem;
-  display: flex;
-}
-.image_wrapper img {
-  object-fit: cover;
-  border-radius: 1.5rem;
-}
+
 @media (width >= 48rem) {
   .description {
     max-width: 100%;
