@@ -8,32 +8,32 @@ import SectionHowItWork from "~/components/sections/home-page/section-hiw/Sectio
 import SectionProjects from "~/components/sections/home-page/section-projects/SectionProjects";
 import Services from "~/components/sections/home-page/section-services/Services";
 import SectionTitle from "~/components/sections/home-page/section-title/SectionTitle";
-import { Project } from "~/types/project.type";
+// import { Project } from "~/types/project.type";
 import SchemaSeoScripts from "~/utils/SchemaSeoScripts";
 
 export const useLocalLoader = routeLoader$(({ locale }) => locale);
-export const useFetchProjects = routeLoader$(async ({ cacheControl }) => {
-  cacheControl({
-    public: true,
-    staleWhileRevalidate: 60 * 60,
-    maxAge: 60 * 5,
-    sMaxAge: 60 * 60 * 24,
-  });
-  try {
-    const url = import.meta.env.PUBLIC_URL_PROJECTS;
-    const response = await fetch(`${url}/api/projects`, {
-      headers: { accept: "application/json" },
-    });
-    const projects = await response.json();
-    return {
-      status: true as boolean,
-      message: "successful fetch" as string,
-      data: projects.data as Project[],
-    };
-  } catch (error) {
-    return { status: false as boolean, message: `error : ${error}` };
-  }
-});
+// export const useFetchProjects = routeLoader$(async ({ cacheControl }) => {
+//   cacheControl({
+//     public: true,
+//     staleWhileRevalidate: 60 * 60,
+//     maxAge: 60 * 5,
+//     sMaxAge: 60 * 60 * 24,
+//   });
+//   try {
+//     const url = import.meta.env.PUBLIC_URL_PROJECTS;
+//     const response = await fetch(`${url}/api/projects`, {
+//       headers: { accept: "application/json" },
+//     });
+//     const projects = await response.json();
+//     return {
+//       status: true as boolean,
+//       message: "successful fetch" as string,
+//       data: projects.data as Project[],
+//     };
+//   } catch (error) {
+//     return { status: false as boolean, message: `error : ${error}` };
+//   }
+// });
 
 export default component$(() => {
   return (
