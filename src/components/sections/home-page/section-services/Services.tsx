@@ -29,7 +29,13 @@ export default component$(() => {
         t("home.services.1.list.4@@UX Audits"),
       ],
       srcImage: "/images/services/opaum.webp",
-      image: <Services1 />,
+      image: (
+        <Services1
+          alt={`${t("home.services.1.title@@Research & Strategy")}picture`}
+          loading="lazy"
+          decoding="async"
+        />
+      ),
     },
     {
       title: t("home.services.2.title@@UX UI Design"),
@@ -44,7 +50,9 @@ export default component$(() => {
         t("home.services.2.list.4@@Design Systems"),
       ],
       srcImage: "/images/services/ai.webp",
-      image: <Services2 />,
+      image: (
+        <Services2 alt={`${t("home.services.2.title")}picture`} loading="lazy" decoding="async" />
+      ),
     },
     {
       title: t("home.services.3.title@@Branding"),
@@ -59,7 +67,9 @@ export default component$(() => {
         t("home.services.3.list.4@@Brand Positioning"),
       ],
       srcImage: "/images/services/mocup-branding.webp",
-      image: <Services3 />,
+      image: (
+        <Services3 alt={`${t("home.services.3.title")}picture`} loading="lazy" decoding="async" />
+      ),
     },
     {
       title: t("home.services.4.title@@Web & App Development"),
@@ -74,7 +84,9 @@ export default component$(() => {
         t("home.services.4.list.4@@Mobile App Development"),
       ],
       srcImage: "/images/services/crm-auto.webp",
-      image: <Services4 />,
+      image: (
+        <Services4 alt={`${t("home.services.4.title")}picture`} loading="lazy" decoding="async" />
+      ),
     },
     {
       title: t("home.services.5.title@@Launch & Optimization"),
@@ -89,7 +101,9 @@ export default component$(() => {
         t("home.services.5.list.4@@Continuous Improvement"),
       ],
       srcImage: "/images/services/spa.webp",
-      image: <Services5 />,
+      image: (
+        <Services5 alt={`${t("home.services.5.title")}picture`} loading="lazy" decoding="async" />
+      ),
     },
   ];
   return (
@@ -118,7 +132,7 @@ export default component$(() => {
                     "@context": "https://schema.org",
                     "@type": "Service",
                     serviceType: title,
-                    url: "https://obriym.com/services",
+                    url: "https://obriym.com/#services",
                     description: `${description} Our services include ${list.join(", ")} for businesses in Italy and across Europe.`,
                     provider: {
                       "@type": "Organization",
