@@ -20,7 +20,6 @@ export const onGet: RequestHandler = ev => {
 
   const sitemap = createSitemap([
     ...routesWithLang.map(route => {
-      console.log(`Processing route: ${route}`);
       if (route === "/") {
         return {
           loc: "",

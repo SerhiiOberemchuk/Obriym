@@ -3,7 +3,7 @@ import { inlineTranslate } from "qwik-speak";
 import { QModel } from "~/integrations/react/model/ModelGLB";
 import { ViewportContext } from "~/routes/[...lang]/layout";
 import styles from "./st-styles.css?inline";
-import ImgHeroSl from "~/assets/images/hero_slides.png?w=233&h=124&jsx";
+import ImgHeroSl from "~/assets/images/hero_slides.png?w=234&h=124&jsx";
 
 export default component$(() => {
   useStylesScoped$(styles);
@@ -66,7 +66,13 @@ export default component$(() => {
           <span class="H1_extra_light grey_dark" aria-hidden={true}>
             {t("home.stitle.3span@@products")}.
           </span>
-          <ImgHeroSl class="notebook tablet" alt="desc" aria-hidden={true} />
+          <ImgHeroSl
+            class="notebook tablet"
+            alt="desc"
+            width={234}
+            height={124}
+            aria-hidden={true}
+          />
 
           <span class="from_sp1" aria-hidden={true}>
             {t("home.stitle.4span@@From")}
@@ -76,7 +82,13 @@ export default component$(() => {
             {t("home.stitle.5span@@concept to launch")}
           </span>
         </h1>
-        <ImgHeroSl class="notebook mobile" alt="Image notebook" aria-hidden={true} />
+        <ImgHeroSl
+          class="notebook mobile"
+          alt="Image notebook"
+          width={180}
+          height={96}
+          aria-hidden={true}
+        />
       </div>
     </section>
   );
