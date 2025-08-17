@@ -3,7 +3,16 @@ body {
   flex-direction: column;
   min-height: 100vh;
   line-height: 1.5;
-  font-family: var(--font-family), sans-serif;
+
+  font-family:
+    var(--font-family),
+    sans-serif,
+    system-ui,
+    -apple-system,
+    "PJS Fallback",
+    "Segoe UI",
+    Roboto,
+    Arial;
   background-color: var(--background-page);
   color: var(--black);
 }
