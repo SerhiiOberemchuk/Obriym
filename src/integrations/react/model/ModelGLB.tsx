@@ -2,7 +2,7 @@
 
 import { qwikify$ } from "@qwik.dev/react";
 import { useGLTF, useAnimations, Center } from "@react-three/drei";
-import { useRef, useEffect, Suspense } from "react";
+import { useRef, useEffect, Suspense, useState } from "react";
 import { Group } from "three";
 import { Canvas } from "@react-three/fiber";
 
@@ -12,6 +12,7 @@ export type Model = {
 
 function ModelCopy({ model }: Model) {
   const group = useRef<Group>(null);
+
   const { scene, animations } = useGLTF(`/models/${model}.glb`);
   const { actions } = useAnimations(animations, group);
 
@@ -39,6 +40,8 @@ function SceneCopy({
   height: number;
 } & Model) {
   let scale;
+  useGLTF.preload(`/models/${model}.glb`);
+  const [antialias, setantialias] = useState(false);
   switch (model) {
     case "puff":
       scale = 0.7;
@@ -56,12 +59,15 @@ function SceneCopy({
       scale = 0.5;
       break;
   }
+  useEffect(() => {
+    setantialias(true);
+  });
   return (
     <Canvas
       style={{ width, height }}
       className={styleCanvas}
-      gl={{ antialias: true }}
-      dpr={[1, 2]}
+      gl={{ antialias }}
+      // dpr={[1, 2]}
       key={model}
       aria-hidden={true}
       aria-label={`3d model ${model}`}
