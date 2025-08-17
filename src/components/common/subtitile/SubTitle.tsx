@@ -1,4 +1,14 @@
-import { component$, Slot, useContext, useStore, useStylesScoped$, useTask$ } from "@qwik.dev/core";
+import {
+  $,
+  component$,
+  Slot,
+  useContext,
+  useOnWindow,
+  useSignal,
+  useStore,
+  useStylesScoped$,
+  useTask$,
+} from "@qwik.dev/core";
 
 import styles from "./subt-styles.css?inline";
 import { Model, QModel } from "~/integrations/react/model/ModelGLB";
@@ -7,6 +17,7 @@ import { ViewportContext } from "~/routes/[...lang]/layout";
 type Props = { section: "services" | "projects" | "how-it-work"; classes?: string };
 
 export default component$<Props>(({ section, classes }) => {
+  const isModel = useSignal<boolean>(false);
   useStylesScoped$(styles);
   const viePort = useContext(ViewportContext);
   const { sizeCanvas } = useStore<{ sizeCanvas: { width: number; height: number } }>({
@@ -31,10 +42,20 @@ export default component$<Props>(({ section, classes }) => {
         break;
     }
   });
+  useOnWindow(
+    "DOMContentLoaded",
+    $(() => (isModel.value = true)),
+  );
   return (
     <div class={["c_box_title", classes]}>
       {/* <Image width={sizeCanvas.width} height={sizeCanvas.height} section={section} /> */}
-      <QModel model={model} width={sizeCanvas.width} height={sizeCanvas.height} />
+      {isModel.value ? (
+        <QModel model={model} width={sizeCanvas.width} height={sizeCanvas.height} />
+      ) : (
+        <div
+          style={{ height: sizeCanvas.height, width: sizeCanvas.width, background: "red" }}
+        ></div>
+      )}
       <h2 class="H3_uppercase grey_dark">
         <Slot />
       </h2>
