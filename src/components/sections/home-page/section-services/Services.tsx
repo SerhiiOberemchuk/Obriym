@@ -5,10 +5,16 @@ import Card from "./card/Card";
 import SubTitle from "~/components/common/subtitile/SubTitle";
 import { ServicesCardProps } from "~/types/services-card.type";
 import IconO from "~/assets/images/O.svg?jsx";
+import Services1 from "~/assets/images/services/opaum.webp?w=706&h=296&jsx";
+import Services2 from "~/assets/images/services/ai.webp?w=706&h=296&jsx";
+import Services3 from "~/assets/images/services/mocup-branding.webp?w=706&h=296&jsx";
+import Services4 from "~/assets/images/services/crm-auto.webp?w=706&h=296&jsx";
+import Services5 from "~/assets/images/services/spa.webp?w=706&h=296&jsx";
 
 export default component$(() => {
   useStylesScoped$(styles);
   const t = inlineTranslate();
+
   const cards: ServicesCardProps[] = [
     {
       title: t("home.services.1.title@@Research & Strategy"),
@@ -23,6 +29,13 @@ export default component$(() => {
         t("home.services.1.list.4@@UX Audits"),
       ],
       srcImage: "/images/services/opaum.webp",
+      image: (
+        <Services1
+          alt={`${t("home.services.1.title@@Research & Strategy")}picture`}
+          loading="lazy"
+          decoding="async"
+        />
+      ),
     },
     {
       title: t("home.services.2.title@@UX UI Design"),
@@ -37,6 +50,9 @@ export default component$(() => {
         t("home.services.2.list.4@@Design Systems"),
       ],
       srcImage: "/images/services/ai.webp",
+      image: (
+        <Services2 alt={`${t("home.services.2.title")}picture`} loading="lazy" decoding="async" />
+      ),
     },
     {
       title: t("home.services.3.title@@Branding"),
@@ -51,6 +67,9 @@ export default component$(() => {
         t("home.services.3.list.4@@Brand Positioning"),
       ],
       srcImage: "/images/services/mocup-branding.webp",
+      image: (
+        <Services3 alt={`${t("home.services.3.title")}picture`} loading="lazy" decoding="async" />
+      ),
     },
     {
       title: t("home.services.4.title@@Web & App Development"),
@@ -65,6 +84,9 @@ export default component$(() => {
         t("home.services.4.list.4@@Mobile App Development"),
       ],
       srcImage: "/images/services/crm-auto.webp",
+      image: (
+        <Services4 alt={`${t("home.services.4.title")}picture`} loading="lazy" decoding="async" />
+      ),
     },
     {
       title: t("home.services.5.title@@Launch & Optimization"),
@@ -79,6 +101,9 @@ export default component$(() => {
         t("home.services.5.list.4@@Continuous Improvement"),
       ],
       srcImage: "/images/services/spa.webp",
+      image: (
+        <Services5 alt={`${t("home.services.5.title")}picture`} loading="lazy" decoding="async" />
+      ),
     },
   ];
   return (
@@ -90,16 +115,18 @@ export default component$(() => {
         <div class="ins_wrapper">
           <IconO class="icon_o" aria-hidden="true" focusable="false" />
           <ul class="list">
-            {cards.map(({ title, description, list, srcImage }, index) => (
+            {cards.map(({ title, description, list, srcImage, image }, index) => (
               <li key={index} class="li_item" data-num={index}>
-                <Card title={title} description={description} list={list} srcImage={srcImage} />
+                <Card title={title} description={description} list={list}>
+                  <figure class="image_wrapper">{image}</figure>
+                </Card>
                 <script
                   type="application/ld+json"
                   dangerouslySetInnerHTML={JSON.stringify({
                     "@context": "https://schema.org",
                     "@type": "Service",
                     serviceType: title,
-                    url: "https://obriym.com/services",
+                    url: "https://obriym.com/#services",
                     description: `${description} Our services include ${list.join(", ")} for businesses in Italy and across Europe.`,
                     provider: {
                       "@type": "Organization",

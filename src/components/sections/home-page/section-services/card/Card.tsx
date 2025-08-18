@@ -1,8 +1,8 @@
-import { component$, useStylesScoped$ } from "@qwik.dev/core";
+import { component$, Slot, useStylesScoped$ } from "@qwik.dev/core";
 import styles from "./card-tyles.css?inline";
 import { ServicesCardProps } from "~/types/services-card.type";
 
-export default component$<ServicesCardProps>(({ title, description, list, srcImage }) => {
+export default component$<ServicesCardProps>(({ title, description, list }) => {
   useStylesScoped$(styles);
 
   return (
@@ -18,15 +18,7 @@ export default component$<ServicesCardProps>(({ title, description, list, srcIma
           ))}
         </ol>
       </header>
-      <figure class="image_wrapper">
-        <img
-          src={srcImage}
-          alt={`${title} service illustration`}
-          width={704}
-          height={296}
-          loading="lazy"
-        />
-      </figure>
+      <Slot />
     </article>
   );
 });

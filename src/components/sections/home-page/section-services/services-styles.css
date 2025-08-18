@@ -30,7 +30,16 @@
   border-radius: 2rem;
   position: sticky;
 }
-
+/* .image_wrapper {
+  display: flex;
+} */
+.image_wrapper img {
+  inline-size: 100%;
+  max-inline-size: 44rem;
+  aspect-ratio: 1.4;
+  object-fit: cover;
+  border-radius: 1.5rem;
+}
 .li_item[data-num="0"] {
   background-color: var(--blue);
   top: calc(0 * var(--top-sticky-card-md));
@@ -74,6 +83,9 @@
   }
 }
 @media (width >= 48rem) {
+  .image_wrapper img {
+    aspect-ratio: 1.7;
+  }
   .icon_o {
     display: block;
     margin-bottom: auto;
@@ -105,5 +117,8 @@
   }
   .list {
     height: calc(var(--servise-card-height-t) * 5 + var(--top-sticky-card-t) * 7);
+  }
+  .image_wrapper img {
+    aspect-ratio: 2.4;
   }
 }
