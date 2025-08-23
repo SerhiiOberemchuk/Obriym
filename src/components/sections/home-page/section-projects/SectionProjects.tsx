@@ -1,15 +1,12 @@
-import { component$, useContext, useSignal, useStyles$, useVisibleTask$ } from "@qwik.dev/core";
+import { $, component$, useOnWindow, useSignal, useStylesScoped$, useTask$ } from "@qwik.dev/core";
 import styles from "./sp-styles.css?inline";
 import SubTitle from "~/components/common/subtitile/SubTitle";
 import { inlineTranslate, useSpeakLocale } from "qwik-speak";
 import { useFetchProjects } from "~/routes/[...lang]";
-
-import { Carousel } from "@qwik-ui/headless";
-import { ViewportContext } from "~/routes/[...lang]/layout";
-// import { ProjectsSchema } from "./ProjectsSchema";
+import { Project } from "~/types/project.type";
 
 export default component$(() => {
-  useStyles$(styles);
+  useStylesScoped$(styles);
 
   const t = inlineTranslate();
 
@@ -20,8 +17,8 @@ export default component$(() => {
           {t("home.sectionProject.title@@projects")}
         </SubTitle>
 
-        <CarouselComponent classC="carousel_projects_top" autoPlayIntervalMs={5000} />
-        <CarouselComponent autoPlayIntervalMs={5000} reversSlider={true} />
+        <CarouselComponent classC="carousel_projects_top" howToRenderArray="pair" />
+        <CarouselComponent howToRenderArray="unmatched" />
       </div>
       {/* <ProjectsSchema projects={projects.value} /> */}
     </section>
@@ -29,67 +26,78 @@ export default component$(() => {
 });
 type PropsCarousel = {
   classC?: string;
-  autoPlayIntervalMs?: number;
-  reversSlider?: boolean;
-  startIndex?: number;
+  direction?: "rtl" | "ltr";
+  howToRenderArray?: "origin" | "pair" | "unmatched";
 };
 const CarouselComponent = component$<PropsCarousel>(
-  ({ classC, autoPlayIntervalMs, startIndex, reversSlider }) => {
-    const isPlaying = useSignal<boolean>(false);
-    const slidesPerView = useSignal<number>(2);
+  ({ classC, direction = "ltr", howToRenderArray = "origin" }) => {
+    const sliderRef = useSignal<HTMLUListElement>();
+    const projectsToRender = useSignal<Project[]>([]);
+    useStylesScoped$(styles);
     const { lang } = useSpeakLocale();
     const t = inlineTranslate();
     const projects = useFetchProjects();
 
-    const devise = useContext(ViewportContext);
-    useVisibleTask$(({ track }) => {
-      track(() => devise.value);
-      slidesPerView.value = devise.value === "desktop" ? 2 : 1;
-      isPlaying.value = true;
-    });
-    const projectsToRender = () => {
-      if (!projects.value.data) {
-        return [];
+    useTask$(({ track }) => {
+      const data = track(() => projects.value.data);
+      if (!data) return;
+      if (howToRenderArray === "origin") {
+        projectsToRender.value = data;
       }
-      const proj = reversSlider ? [...projects.value.data].reverse() : [...projects.value.data];
-      return proj;
-    };
+      if (howToRenderArray === "pair") {
+        projectsToRender.value = data?.filter((_, i) => i % 2 === 0);
+      }
+      if (howToRenderArray === "unmatched") {
+        projectsToRender.value = data?.filter((_, i) => i % 2 !== 0);
+      }
+    });
+
+    useOnWindow(
+      "DOMContentLoaded",
+      $(async () => {
+        if (!sliderRef.value) return;
+        const emblaCarousel = (await import("embla-carousel")).default;
+        const autoPlay = (await import("embla-carousel-autoplay")).default;
+        emblaCarousel(
+          sliderRef.value,
+          { loop: true, direction, align: "start", axis: "x", dragFree: true },
+          [autoPlay({ delay: 8000, stopOnInteraction: false })],
+        );
+      }),
+    );
 
     return (
-      <Carousel.Root
-        id={`${Math.random()}`}
-        class={classC}
-        orientation="horizontal"
-        slidesPerView={slidesPerView.value}
-        gap={20}
-        startIndex={startIndex}
-        autoPlayIntervalMs={autoPlayIntervalMs}
-        bind:autoplay={isPlaying}
-      >
-        <Carousel.Scroller class="carousel_animation_projects">
-          {projects.value.data ? (
-            projectsToRender().map(item => {
-              const title =
-                lang === "en-EU" ? item.titleEN : lang === "it-IT" ? item.titleIT : item.title;
-              const description =
-                lang === "en-EU"
-                  ? item.descriptionEN
-                  : lang === "it-IT"
-                    ? item.descriptionIT
-                    : item.description;
-              return (
-                <Carousel.Slide key={item.slug}>
-                  <article>
-                    <h3 class="visually_hidden">{title}</h3>
-                    <a
-                      href={item.website_url}
-                      target="_blank"
-                      aria-label={`link to project ${item.titleEN}`}
-                      class="link_project"
-                      rel="noopener noreferrer"
-                    >
-                      <figure>
-                        <div class="image_wrapper_project">
+      <div class={["projects_caru", classC]}>
+        <div class="projects_caru_viewport" ref={sliderRef}>
+          <ul class="projects_caru_container">
+            {projectsToRender.value?.length ? (
+              projectsToRender.value.map(item => {
+                const title =
+                  lang === "en-EU" ? item.titleEN : lang === "it-IT" ? item.titleIT : item.title;
+                const description =
+                  lang === "en-EU"
+                    ? item.descriptionEN
+                    : lang === "it-IT"
+                      ? item.descriptionIT
+                      : item.description;
+                const feautures =
+                  lang === "en-EU"
+                    ? item.featuresEN
+                    : lang === "it-IT"
+                      ? item.featuresIT
+                      : item.features;
+                return (
+                  <li key={item.slug} class="projects_caru_slide">
+                    <article>
+                      <h3 class="sr-only">{title}</h3>
+                      <a
+                        href={item.website_url}
+                        target="_blank"
+                        aria-label={`link to project ${item.titleEN}`}
+                        class="link_project"
+                        rel="noopener noreferrer"
+                      >
+                        <figure>
                           <img
                             loading="lazy"
                             class="image_project"
@@ -99,42 +107,44 @@ const CarouselComponent = component$<PropsCarousel>(
                             height={330}
                             decoding="async"
                           />
-                        </div>
-                        <figcaption>{title}</figcaption>
-                      </figure>
-                    </a>
-                    <p class="visually_hidden" itemProp="description">
-                      {description}
-                    </p>
-                    <ul class="list_technologies">
-                      {item.technologies.map((item, index) => (
-                        <li key={index}>{<span class="helper_text grey_dark">{item}</span>}</li>
-                      ))}
-                    </ul>
-                    {/* <script
-                      type="application/ld+json"
-                      dangerouslySetInnerHTML={JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "CreativeWork",
-                        name: title,
-                        url: item.website_url,
-                        description: description,
-                        image: item.image_src,
-                        inLanguage: lang,
-                        keywords: item.technologies.join(", "),
-                      })}
-                    ></script> */}
-                  </article>
-                </Carousel.Slide>
-              );
-            })
-          ) : (
-            <div>
-              <p>{t("home.sectionProject.error@@error to fetch projects")}</p>
-            </div>
-          )}
-        </Carousel.Scroller>
-      </Carousel.Root>
+                          <figcaption>{title}</figcaption>
+                        </figure>
+                      </a>
+                      <p class="sr-only" itemProp="description">
+                        {description}
+                      </p>
+                      <ul class="list_technologies">
+                        {feautures.map((item, index) => (
+                          <li key={index} class="item_features helper_text grey_dark">
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                      <script
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={JSON.stringify({
+                          "@context": "https://schema.org",
+                          "@type": "CreativeWork",
+                          name: title,
+                          url: item.website_url,
+                          description: description,
+                          image: item.image_src,
+                          inLanguage: lang,
+                          keywords: item.technologies.join(", "),
+                        })}
+                      ></script>
+                    </article>
+                  </li>
+                );
+              })
+            ) : (
+              <div>
+                <p>{t("home.sectionProject.error@@error to fetch projects")}</p>
+              </div>
+            )}
+          </ul>
+        </div>
+      </div>
     );
   },
 );

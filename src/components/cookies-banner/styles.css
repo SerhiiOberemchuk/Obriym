@@ -94,6 +94,10 @@
 .switch input:checked + .slider {
   background-color: var(--blue);
 }
+.switch input:disabled + .slider {
+  cursor: default;
+  background-color: var(--blue-light);
+}
 
 .switch input:checked + .slider:before {
   transform: translateX(24px);

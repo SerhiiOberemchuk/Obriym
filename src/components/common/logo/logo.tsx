@@ -1,6 +1,5 @@
 import { component$ } from "@qwik.dev/core";
 import LogoSVG from "/public/logo.svg?jsx";
-// import { Link } from "@qwik.dev/router";
 import "./style.css";
 import { inlineTranslate, localizePath } from "qwik-speak";
 

@@ -12,9 +12,19 @@ export const config: SpeakConfig = {
     { lang: "en-EU", currency: "EUR", timeZone: "Europe/Rome" },
   ],
   // Translations available in the whole app
-  assets: ["app", "footer", "logo", "navigation", "home", "faq"],
+  assets: ["app", "footer", "logo", "navigation", "home"],
   // Translations with dynamic keys available in the whole app
-  runtimeAssets: ["runtime", "errors", "services", "budget", "alert", "team", "cookies", "privacy"],
+  runtimeAssets: [
+    "runtime",
+    "errors",
+    "services",
+    "budget",
+    "alert",
+    "team",
+    "cookies",
+    "privacy",
+    "faq",
+  ],
 
   domainBasedRouting: { prefix: "always" },
 };
