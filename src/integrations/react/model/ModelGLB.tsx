@@ -2,13 +2,21 @@
 
 import { qwikify$ } from "@qwik.dev/react";
 import { useGLTF, useAnimations, Center } from "@react-three/drei";
-import { useRef, useEffect, Suspense, useState } from "react";
+import { useRef, useEffect, Suspense } from "react";
 import { Group } from "three";
 import { Canvas } from "@react-three/fiber";
 
 export type Model = {
-  model: "organicball" | "spring" | "spring1" | "gordian" | "puff" | "pipe" | "cube" | "torus";
+  model: "spring" | "spring1" | "gordian" | "puff" | "pipe" | "cube" | "torus" | "greenball";
 };
+useGLTF.preload("/models/torus.glb");
+useGLTF.preload("/models/pipe.glb");
+useGLTF.preload("/models/cube.glb");
+useGLTF.preload("/models/spring.glb");
+useGLTF.preload("/models/spring1.glb");
+useGLTF.preload("/models/puff.glb");
+useGLTF.preload("/models/greenball.glb");
+useGLTF.preload("/models/gordian.glb");
 
 function ModelCopy({ model }: Model) {
   const group = useRef<Group>(null);
@@ -40,8 +48,7 @@ function SceneCopy({
   height: number;
 } & Model) {
   let scale;
-  useGLTF.preload(`/models/${model}.glb`);
-  const [antialias, setantialias] = useState(false);
+
   switch (model) {
     case "puff":
       scale = 0.7;
@@ -52,27 +59,25 @@ function SceneCopy({
     case "spring1":
       scale = 1.3;
       break;
-    case "organicball":
-      scale = 3;
+    case "greenball":
+      scale = 0.8;
       break;
     default:
       scale = 0.5;
       break;
   }
-  useEffect(() => {
-    setantialias(true);
-  });
+
   return (
     <Canvas
       style={{ width, height }}
       className={styleCanvas}
-      gl={{ antialias }}
+      // gl={{ antialias }}
       // dpr={[1, 2]}
-      key={model}
+      key={`canvas-${model}`}
       aria-hidden={true}
       aria-label={`3d model ${model}`}
     >
-      <directionalLight position={[0, 0, 2]} intensity={5} />
+      <directionalLight position={[0, 0, 2]} intensity={2} />
       <Suspense fallback={null}>
         <Center position={[0, 0, 0]} scale={scale}>
           <ModelCopy model={model} />

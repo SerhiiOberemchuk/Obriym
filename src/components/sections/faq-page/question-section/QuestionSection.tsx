@@ -49,11 +49,7 @@ export default component$<{ groupe: Groupes }>(({ groupe }) => {
               itemType="https://schema.org/Question"
             >
               <details class="question_details">
-                <summary
-                  class="question_summary"
-                  aria-controls={`${item.id}-answer`}
-                  aria-expanded="false"
-                >
+                <summary class="question_summary" aria-controls={`${item.id}-answer`}>
                   <h3 class="H6 grey" itemProp="name">
                     {item.q}
                   </h3>
