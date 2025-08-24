@@ -34,7 +34,7 @@ export default component$(() => {
           {/* <IconGreen aria-hidden="true" /> */}
           <div class="c_title_icon">
             <QModel
-              model="spring1"
+              model="spring"
               key={"spring1-contact"}
               width={sizeModel.sizes.width}
               height={sizeModel.sizes.height}

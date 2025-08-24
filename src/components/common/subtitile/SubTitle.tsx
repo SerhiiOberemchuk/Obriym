@@ -37,6 +37,8 @@ export default component$<Props>(({ section, classes }) => {
     <div class={["c_box_title", classes]}>
       <QModel
         key={section}
+        // client:signal={hydrateReact}
+        // client:idle
         model={model}
         width={sizes.sizeCanvas.width}
         height={sizes.sizeCanvas.height}

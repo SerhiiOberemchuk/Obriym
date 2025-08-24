@@ -7,13 +7,12 @@ import { Group } from "three";
 import { Canvas } from "@react-three/fiber";
 
 export type Model = {
-  model: "spring" | "spring1" | "gordian" | "puff" | "pipe" | "cube" | "torus" | "greenball";
+  model: "spring" | "gordian" | "puff" | "pipe" | "cube" | "torus" | "greenball";
 };
 useGLTF.preload("/models/torus.glb");
 useGLTF.preload("/models/pipe.glb");
 useGLTF.preload("/models/cube.glb");
 useGLTF.preload("/models/spring.glb");
-useGLTF.preload("/models/spring1.glb");
 useGLTF.preload("/models/puff.glb");
 useGLTF.preload("/models/greenball.glb");
 useGLTF.preload("/models/gordian.glb");
@@ -47,25 +46,18 @@ function SceneCopy({
   width: number;
   height: number;
 } & Model) {
-  let scale;
-
-  switch (model) {
-    case "puff":
-      scale = 0.7;
-      break;
-    case "spring":
-      scale = 1.3;
-      break;
-    case "spring1":
-      scale = 1.3;
-      break;
-    case "greenball":
-      scale = 0.8;
-      break;
-    default:
-      scale = 0.5;
-      break;
-  }
+  const scale = () => {
+    switch (model) {
+      case "puff":
+        return 0.7;
+      case "spring":
+        return 1.3;
+      case "greenball":
+        return 0.8;
+      default:
+        return 0.5;
+    }
+  };
 
   return (
     <Canvas
@@ -73,13 +65,13 @@ function SceneCopy({
       className={styleCanvas}
       // gl={{ antialias }}
       // dpr={[1, 2]}
-      key={`canvas-${model}`}
+      key={Math.random()}
       aria-hidden={true}
       aria-label={`3d model ${model}`}
     >
       <directionalLight position={[0, 0, 2]} intensity={2} />
       <Suspense fallback={null}>
-        <Center position={[0, 0, 0]} scale={scale}>
+        <Center position={[0, 0, 0]} scale={scale()}>
           <ModelCopy model={model} />
         </Center>
       </Suspense>
@@ -87,4 +79,4 @@ function SceneCopy({
   );
 }
 
-export const QModel = qwikify$(SceneCopy, { eagerness: "visible", clientOnly: true });
+export const QModel = qwikify$(SceneCopy, { eagerness: "idle", clientOnly: true });
