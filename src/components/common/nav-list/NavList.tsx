@@ -56,9 +56,9 @@ export default component$<Props>(({ place, onClick }) => {
       <ul data-place={place} class="nav_list glass-card">
         {place === "header" && (
           <li id="home-link">
-            <a href={homePath} aria-label={t("navigation.linkHome@@Link to home page")}>
+            <Link href={homePath} aria-label={t("navigation.linkHome@@Link to home page")}>
               <IconHome class="icon_home" />
-            </a>
+            </Link>
           </li>
         )}
         {navListItems.map(item => {
