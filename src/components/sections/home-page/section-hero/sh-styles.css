@@ -8,6 +8,10 @@
   column-gap: 0.625rem;
   row-gap: 0.25rem;
   justify-content: center;
-  max-width: 66rem;
+  max-width: 55rem;
   margin-inline: auto;
+  text-align: center;
+}
+:lang(uk-UA) .title {
+  max-width: 60rem;
 }
