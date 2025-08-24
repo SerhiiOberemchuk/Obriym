@@ -1,6 +1,6 @@
 import { component$, useContext, useStore, useStylesScoped$, useTask$ } from "@qwik.dev/core";
 import { inlineTranslate } from "qwik-speak";
-import { QModel } from "~/integrations/react/model/ModelGLB";
+// import { QModel } from "~/integrations/react/model/ModelGLB";
 import { ViewportContext } from "~/routes/[...lang]/layout";
 import styles from "./st-styles.css?inline";
 import ImgHeroSl from "~/assets/images/hero_slides.png?w=234&h=124&jsx";
@@ -50,24 +50,24 @@ export default component$(() => {
           </span>
           <span class="icon_span" aria-hidden={true}>
             {t("home.stitle.1span@@Complete")}
-            <div class="icon_title" aria-hidden={true}>
+            {/* <div class="icon_title" aria-hidden={true}>
               <QModel
                 model="puff"
                 key={"puff-title"}
                 width={sizeModel.puff.width}
                 height={sizeModel.puff.height}
               />
-            </div>
+            </div> */}
           </span>
           <span class="H1_extra_light grey_dark">{t("home.stitle.2span@@digital")}</span>
-          <div class="spring_model" aria-hidden={true}>
+          {/* <div class="spring_model" aria-hidden={true}>
             <QModel
               key={"spring-title"}
               model="spring"
               width={sizeModel.spring.width}
               height={sizeModel.spring.height}
             />
-          </div>
+          </div> */}
 
           <span class="H1_extra_light grey_dark" aria-hidden={true}>
             {t("home.stitle.3span@@products")}.
