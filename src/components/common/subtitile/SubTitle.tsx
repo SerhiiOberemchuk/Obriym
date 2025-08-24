@@ -1,48 +1,19 @@
 import { component$, Slot, useStylesScoped$ } from "@qwik.dev/core";
-
+import PinkDark from "~/assets/images/pink_dark.png?w=100&h=100&jsx";
+import Pink from "~/assets/images/pink.png?w=100&h=100&jsx";
+import Shape from "~/assets/images/shape.png?w=100&h=100&quality=100&jsx";
 import styles from "./subt-styles.css?inline";
-// import { Model, QModel } from "~/integrations/react/model/ModelGLB";
-// import { ViewportContext } from "~/routes/[...lang]/layout";
 
 type Props = { section?: "services" | "projects" | "how-it-work"; classes?: string };
 
-export default component$<Props>(({ classes }) => {
+export default component$<Props>(({ section, classes }) => {
   useStylesScoped$(styles);
-  // const viePort = useContext(ViewportContext);
-  // const sizes = useStore<{ sizeCanvas: { width: number; height: number } }>({
-  //   sizeCanvas: { width: 32, height: 32 },
-  // });
-
-  // const model: Model["model"] =
-  //   section === "services" ? "torus" : section === "projects" ? "pipe" : "cube";
-  // useTask$(({ track }) => {
-  //   track(() => viePort.value);
-  //   switch (viePort.value) {
-  //     case "tablet":
-  //       sizes.sizeCanvas.width = 64;
-  //       sizes.sizeCanvas.height = 64;
-  //       break;
-  //     case "desktop":
-  //       sizes.sizeCanvas.width = 100;
-  //       sizes.sizeCanvas.height = 100;
-  //       break;
-  //     default:
-  //       sizes.sizeCanvas.width = 32;
-  //       sizes.sizeCanvas.height = 32;
-  //       break;
-  //   }
-  // });
 
   return (
     <div class={["c_box_title", classes]}>
-      {/* <QModel
-        key={section}
-        // client:signal={hydrateReact}
-        // client:idle
-        model={model}
-        width={sizes.sizeCanvas.width}
-        height={sizes.sizeCanvas.height}
-      /> */}
+      {section === "services" && <PinkDark class="c_title_icon" aria-hidden="true" />}
+      {section === "how-it-work" && <Pink class="c_title_icon" aria-hidden="true" />}
+      {section === "projects" && <Shape class="c_title_icon" aria-hidden="true" />}
 
       <h2 class="H3_uppercase grey_dark">
         <Slot />
