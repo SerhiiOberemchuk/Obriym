@@ -21,7 +21,7 @@ useGLTF.preload("/models/gordian.glb");
 function ModelCopy({ model }: Model) {
   const group = useRef<Group>(null);
 
-  const { scene, animations } = useGLTF(`/models/${model}.glb`);
+  const { scene, animations } = useGLTF(`/models/${model}.glb`, true);
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ function ModelCopy({ model }: Model) {
 
   return (
     <group ref={group} scale={[1.5, 1.5, 1]}>
-      <primitive object={scene} />
+      <primitive object={scene.clone()} />
     </group>
   );
 }
