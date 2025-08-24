@@ -33,7 +33,12 @@ export default component$(() => {
         <div class="c_box_title">
           {/* <IconGreen aria-hidden="true" /> */}
           <div class="c_title_icon">
-            <QModel model="spring1" width={sizeModel.sizes.width} height={sizeModel.sizes.height} />
+            <QModel
+              model="spring1"
+              key={"spring1-contact"}
+              width={sizeModel.sizes.width}
+              height={sizeModel.sizes.height}
+            />
           </div>
 
           <h2 class="H3_uppercase grey_dark">{t("home.contact-section.title@@get a contact")}</h2>
