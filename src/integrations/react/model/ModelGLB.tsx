@@ -9,13 +9,13 @@ import { Canvas } from "@react-three/fiber";
 export type Model = {
   model: "spring" | "gordian" | "puff" | "pipe" | "cube" | "torus" | "greenball";
 };
-useGLTF.preload("/models/torus.glb");
-useGLTF.preload("/models/pipe.glb");
-useGLTF.preload("/models/cube.glb");
-useGLTF.preload("/models/spring.glb");
-useGLTF.preload("/models/puff.glb");
-useGLTF.preload("/models/greenball.glb");
-useGLTF.preload("/models/gordian.glb");
+// useGLTF.preload("/models/torus.glb");
+// useGLTF.preload("/models/pipe.glb");
+// useGLTF.preload("/models/cube.glb");
+// useGLTF.preload("/models/spring.glb");
+// useGLTF.preload("/models/puff.glb");
+// useGLTF.preload("/models/greenball.glb");
+// useGLTF.preload("/models/gordian.glb");
 
 function ModelCopy({ model }: Model) {
   const group = useRef<Group>(null);
