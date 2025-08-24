@@ -1,8 +1,8 @@
 /** @jsxImportSource react */
 
 import { qwikify$ } from "@qwik.dev/react";
-import { useGLTF, useAnimations, Center } from "@react-three/drei";
-import { useRef, useEffect, Suspense } from "react";
+import { useGLTF, Center } from "@react-three/drei";
+import { useRef, Suspense } from "react";
 import { Group } from "three";
 import { Canvas } from "@react-three/fiber";
 
@@ -20,14 +20,14 @@ export type Model = {
 function ModelCopy({ model }: Model) {
   const group = useRef<Group>(null);
 
-  const { scene, animations } = useGLTF(`/models/${model}.glb`, true);
-  const { actions } = useAnimations(animations, group);
+  const { scene } = useGLTF(`/models/${model}.glb`, true);
+  // const { actions } = useAnimations(animations, group);
 
-  useEffect(() => {
-    if (animations.length > 0) {
-      actions[animations[0].name]?.play();
-    }
-  }, [animations, actions]);
+  // useEffect(() => {
+  //   if (animations.length > 0) {
+  //     actions[animations[0].name]?.play();
+  //   }
+  // }, [animations, actions]);
 
   return (
     <group ref={group} scale={[1.5, 1.5, 1]}>
