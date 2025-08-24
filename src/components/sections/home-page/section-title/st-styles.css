@@ -101,4 +101,9 @@
     width: 4rem;
     height: 4rem;
   }
+  :lang(uk-UA) .icon_title {
+    left: 14px;
+    width: 4rem;
+    height: 4rem;
+  }
 }

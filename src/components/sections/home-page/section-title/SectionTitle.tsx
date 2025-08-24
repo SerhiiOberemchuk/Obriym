@@ -1,10 +1,9 @@
 import { component$, useStylesScoped$ } from "@qwik.dev/core";
 import { inlineTranslate } from "qwik-speak";
-// import { QModel } from "~/integrations/react/model/ModelGLB";
 import styles from "./st-styles.css?inline";
-import ImgHeroSl from "~/assets/images/hero_slides.png?w=234&h=124&quality=100&jsx";
+import ImgHeroSl from "~/assets/images/hero_slides.png?w=234&h=124&jsx";
 import TitleAbstract from "~/assets/images/element-title.png?h=64&w=64&quality=100&jsx";
-import IconGreen from "~/assets/images/green.png?quality=100&w=100&h=100&jsx";
+import IconGreen from "~/assets/images/green.png?w=100&h=100&jsx";
 
 export default component$(() => {
   useStylesScoped$(styles);
