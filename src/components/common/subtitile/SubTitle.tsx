@@ -1,6 +1,6 @@
 import { component$, Slot, useStylesScoped$ } from "@qwik.dev/core";
-import PinkDark from "~/assets/images/pink_dark.png?w=100&h=100&quality=100&jsx";
-import Pink from "~/assets/images/pink.png?w=100&h=100&quality=100&jsx";
+import PinkDark from "~/assets/images/pink_dark.png?w=100&h=100&jsx";
+import Pink from "~/assets/images/pink.png?w=100&h=100&jsx";
 import Shape from "~/assets/images/shape.png?w=100&h=100&quality=100&jsx";
 import styles from "./subt-styles.css?inline";
 
