@@ -87,4 +87,4 @@ function SceneCopy({
   );
 }
 
-export const QModel = qwikify$(SceneCopy, { eagerness: "visible" });
+export const QModel = qwikify$(SceneCopy, { eagerness: "visible", clientOnly: true });

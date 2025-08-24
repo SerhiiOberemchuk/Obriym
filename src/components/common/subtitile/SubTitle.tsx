@@ -35,13 +35,7 @@ export default component$<Props>(({ section, classes }) => {
 
   return (
     <div class={["c_box_title", classes]}>
-      <QModel
-        client:visible
-        // key={`${loc.url.pathname}:${section}`}
-        model={model}
-        width={sizes.sizeCanvas.width}
-        height={sizes.sizeCanvas.height}
-      />
+      <QModel model={model} width={sizes.sizeCanvas.width} height={sizes.sizeCanvas.height} />
 
       <h2 class="H3_uppercase grey_dark">
         <Slot />
