@@ -20,7 +20,6 @@ export default component$(() => {
         <CarouselComponent classC="carousel_projects_top" howToRenderArray="pair" />
         <CarouselComponent howToRenderArray="unmatched" />
       </div>
-      {/* <ProjectsSchema projects={projects.value} /> */}
     </section>
   );
 });
@@ -110,6 +109,13 @@ const CarouselComponent = component$<PropsCarousel>(
                       <p class="sr-only" itemProp="description">
                         {description}
                       </p>
+                      <ul class="sr-only">
+                        {item.technologies.map((tech, ind) => (
+                          <li key={ind}>
+                            <h3>{tech}</h3>
+                          </li>
+                        ))}
+                      </ul>
                       <ul class="list_technologies">
                         {feautures.map((item, index) => (
                           <li key={index} class="item_features helper_text grey_dark">
