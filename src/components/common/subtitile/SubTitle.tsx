@@ -36,8 +36,9 @@ export default component$<Props>(({ section, classes }) => {
   return (
     <div class={["c_box_title", classes]}>
       <QModel
-        client:visible
-        // key={`${loc.url.pathname}:${section}`}
+        key={section}
+        // client:signal={hydrateReact}
+        // client:idle
         model={model}
         width={sizes.sizeCanvas.width}
         height={sizes.sizeCanvas.height}

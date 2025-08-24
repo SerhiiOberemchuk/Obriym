@@ -30,7 +30,7 @@ export default component$(() => {
         <h3 class="f_box_title" aria-label="Company motto">
           <span class="body_big grey">{t("footer.text.webuild1@@We build end-to-end")}</span>
           <span class="body_big grey"> {t("footer.text.webuild2@@digital products")}</span>
-          <QModel model="greenball" width={48} height={48} />
+          <QModel key={"footer"} model="greenball" width={48} height={48} />
         </h3>
         <div class="nav_wrapper">
           <button

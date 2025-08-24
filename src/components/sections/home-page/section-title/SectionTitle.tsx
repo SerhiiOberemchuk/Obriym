@@ -51,12 +51,18 @@ export default component$(() => {
           <span class="icon_span" aria-hidden={true}>
             {t("home.stitle.1span@@Complete")}
             <div class="icon_title" aria-hidden={true}>
-              <QModel model="puff" width={sizeModel.puff.width} height={sizeModel.puff.height} />
+              <QModel
+                model="puff"
+                key={"puff-title"}
+                width={sizeModel.puff.width}
+                height={sizeModel.puff.height}
+              />
             </div>
           </span>
           <span class="H1_extra_light grey_dark">{t("home.stitle.2span@@digital")}</span>
           <div class="spring_model" aria-hidden={true}>
             <QModel
+              key={"spring-title"}
               model="spring"
               width={sizeModel.spring.width}
               height={sizeModel.spring.height}

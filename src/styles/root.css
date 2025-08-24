@@ -28,3 +28,6 @@
   --container-pad-inl-mob: 1rem;
   --container-pad-inl-tab: 2.5rem;
 }
+:lang(uk-UA) {
+  --font-family: "Manrope", sans-serif;
+}
