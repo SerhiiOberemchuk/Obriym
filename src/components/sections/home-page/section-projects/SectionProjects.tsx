@@ -1,4 +1,4 @@
-import { $, component$, useOnWindow, useSignal, useStylesScoped$, useTask$ } from "@qwik.dev/core";
+import { component$, useSignal, useStylesScoped$, useTask$, useVisibleTask$ } from "@qwik.dev/core";
 import styles from "./sp-styles.css?inline";
 import SubTitle from "~/components/common/subtitile/SubTitle";
 import { inlineTranslate, useSpeakLocale } from "qwik-speak";
@@ -52,19 +52,16 @@ const CarouselComponent = component$<PropsCarousel>(
       }
     });
 
-    useOnWindow(
-      "DOMContentLoaded",
-      $(async () => {
-        if (!sliderRef.value) return;
-        const emblaCarousel = (await import("embla-carousel")).default;
-        const autoPlay = (await import("embla-carousel-autoplay")).default;
-        emblaCarousel(
-          sliderRef.value,
-          { loop: true, direction, align: "start", axis: "x", dragFree: true },
-          [autoPlay({ delay: 8000, stopOnInteraction: false })],
-        );
-      }),
-    );
+    useVisibleTask$(async () => {
+      if (!sliderRef.value) return;
+      const emblaCarousel = (await import("embla-carousel")).default;
+      const autoPlay = (await import("embla-carousel-autoplay")).default;
+      emblaCarousel(
+        sliderRef.value,
+        { loop: true, direction, align: "start", axis: "x", dragFree: true },
+        [autoPlay({ delay: 8000, stopOnInteraction: false })],
+      );
+    });
 
     return (
       <div class={["projects_caru", classC]}>
