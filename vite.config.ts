@@ -9,7 +9,6 @@ import { qwikSpeakInline } from "qwik-speak/inline";
 import { visualizer } from "rollup-plugin-visualizer";
 import tsconfigPaths from "vite-tsconfig-paths";
 import pkg from "./package.json";
-import { qwikReact } from "@qwik.dev/react/vite";
 import { partytownVite } from "@qwik.dev/partytown/utils";
 import { join } from "path";
 type PkgDep = Record<string, string>;
@@ -40,7 +39,7 @@ export default defineConfig(({ command, mode }): UserConfig => {
         assetsPath: "i18n",
       }),
       tsconfigPaths(),
-      qwikReact(),
+     
       partytownVite({ dest: join(__dirname, "dist", "~partytown") }),
     ],
     // This tells Vite which dependencies to pre-build in dev mode.
