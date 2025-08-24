@@ -11,9 +11,9 @@ export default component$<Props>(({ section, classes }) => {
 
   return (
     <div class={["c_box_title", classes]}>
-      {section === "services" && <PinkDark />}
-      {section === "how-it-work" && <Pink />}
-      {section === "projects" && <Shape />}
+      {section === "services" && <PinkDark class="c_title_icon" aria-hidden="true" />}
+      {section === "how-it-work" && <Pink class="c_title_icon" aria-hidden="true" />}
+      {section === "projects" && <Shape class="c_title_icon" aria-hidden="true" />}
       {/* <QModel
         key={section}
         // client:signal={hydrateReact}
