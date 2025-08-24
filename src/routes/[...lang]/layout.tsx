@@ -5,8 +5,8 @@ import {
   useContextProvider,
   type Signal,
   createContextId,
-  useVisibleTask$,
   $,
+  useOnWindow,
 } from "@qwik.dev/core";
 import { routeLoader$ } from "@qwik.dev/router";
 import NavList from "~/components/common/nav-list/NavList";
@@ -44,18 +44,19 @@ export default component$(() => {
     else if (width >= 768) viewportCategory.value = "tablet";
     else viewportCategory.value = "mobile";
   });
-  // eslint-disable-next-line qwik/no-use-visible-task
-  useVisibleTask$(() => {
-    updateViewport();
-  });
-  // useOnWindow("resize", updateViewport);
+  useOnWindow(
+    "DOMContentLoaded",
+    $(() => {
+      updateViewport();
+    }),
+  );
 
-  // eslint-disable-next-line qwik/no-use-visible-task
-  useVisibleTask$(({ cleanup }) => {
-    updateViewport();
-    window.addEventListener("resize", updateViewport);
-    cleanup(() => window.removeEventListener("resize", updateViewport));
-  });
+  useOnWindow(
+    "resize",
+    $(() => {
+      updateViewport();
+    }),
+  );
   const isVisible = useSignal<boolean>(false);
   const cookiesContextFunctions: CookiesBannerContextType = {
     isVisible,

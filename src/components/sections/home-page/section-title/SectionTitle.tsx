@@ -1,45 +1,15 @@
-import { component$, useContext, useStore, useStylesScoped$, useTask$ } from "@qwik.dev/core";
+import { component$, useStylesScoped$ } from "@qwik.dev/core";
 import { inlineTranslate } from "qwik-speak";
 // import { QModel } from "~/integrations/react/model/ModelGLB";
-import { ViewportContext } from "~/routes/[...lang]/layout";
 import styles from "./st-styles.css?inline";
-import ImgHeroSl from "~/assets/images/hero_slides.png?w=234&h=124&jsx";
+import ImgHeroSl from "~/assets/images/hero_slides.png?w=234&h=124&quality=100&jsx";
+import TitleAbstract from "~/assets/images/element-title.png?h=64&w=64&quality=100&jsx";
+import IconGreen from "~/assets/images/green.png?quality=100&w=100&h=100&jsx";
 
 export default component$(() => {
   useStylesScoped$(styles);
-  const sizeModel = useStore<{
-    puff: { width: number; height: number };
-    spring: { width: number; height: number };
-  }>({
-    puff: { width: 20, height: 20 },
-    spring: { width: 44, height: 44 },
-  });
-  const t = inlineTranslate();
 
-  const vieport = useContext(ViewportContext);
-  useTask$(({ track }) => {
-    track(() => vieport.value);
-    switch (vieport.value) {
-      case "tablet":
-        sizeModel.puff.height = 42;
-        sizeModel.puff.width = 42;
-        sizeModel.spring.height = 72;
-        sizeModel.spring.width = 72;
-        break;
-      case "desktop":
-        sizeModel.puff.height = 60;
-        sizeModel.puff.width = 60;
-        sizeModel.spring.height = 124;
-        sizeModel.spring.width = 124;
-        break;
-      default:
-        sizeModel.puff.width = 20;
-        sizeModel.puff.height = 20;
-        sizeModel.spring.height = 44;
-        sizeModel.spring.width = 44;
-        break;
-    }
-  });
+  const t = inlineTranslate();
 
   return (
     <section class="st_section">
@@ -50,24 +20,10 @@ export default component$(() => {
           </span>
           <span class="icon_span" aria-hidden={true}>
             {t("home.stitle.1span@@Complete")}
-            {/* <div class="icon_title" aria-hidden={true}>
-              <QModel
-                model="puff"
-                key={"puff-title"}
-                width={sizeModel.puff.width}
-                height={sizeModel.puff.height}
-              />
-            </div> */}
+            <TitleAbstract class="icon_title" aria-hidden={true} />
           </span>
           <span class="H1_extra_light grey_dark">{t("home.stitle.2span@@digital")}</span>
-          {/* <div class="spring_model" aria-hidden={true}>
-            <QModel
-              key={"spring-title"}
-              model="spring"
-              width={sizeModel.spring.width}
-              height={sizeModel.spring.height}
-            />
-          </div> */}
+          <IconGreen class="spring_model" aria-hidden={true}></IconGreen>
 
           <span class="H1_extra_light grey_dark" aria-hidden={true}>
             {t("home.stitle.3span@@products")}.
