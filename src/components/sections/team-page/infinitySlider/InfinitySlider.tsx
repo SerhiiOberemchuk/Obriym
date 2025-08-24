@@ -41,11 +41,9 @@ export default component$(({ items }: InfinitySliderProps) => {
   const t = inlineTranslate();
   const viewportCategory = useContext(ViewportContext);
   const viewportWidth = useContext(ViewportWidthContext);
-  // for modal
   const isOpen = useSignal(false);
   const selectedItem = useSignal<TeamMemberType | null>(null);
 
-  // for slider
   const itemsOriginalSignal = useSignal<TeamMemberType[]>(items);
   const currentMegaIndex = useSignal(2);
   const itemsSignal = useSignal<TeamMemberType[]>(items);
@@ -56,9 +54,7 @@ export default component$(({ items }: InfinitySliderProps) => {
   const isAnimating = useSignal(false);
   const isReady = useSignal(false);
 
-  // chahge array
   const baseItems = useComputed$(() => {
-    // void viewportWidth.value;
     const items = itemsSignal.value;
     if (items.length === 0) return [];
     if (viewportCategory.value === "mobile") {
@@ -68,20 +64,14 @@ export default component$(({ items }: InfinitySliderProps) => {
     }
     if (viewportCategory.value === "tablet") {
       const cloneCount = 2;
-
-      // from end
       const clonesFromEnd = items.slice(-cloneCount);
-
-      // from start
       const clonesFromStart = items.slice(0, cloneCount);
 
       return [...clonesFromEnd, ...items, ...clonesFromStart];
     }
-
-    return items; // without cloning for  desktop
+    return items;
   });
 
-  //move track to first position
   useTask$(({ track }) => {
     track(() => viewportCategory.value);
     track(() => viewportWidth.value);
@@ -102,7 +92,6 @@ export default component$(({ items }: InfinitySliderProps) => {
           trackR.style.transform = "translate3d(0, 0, 0)";
         }
 
-        // Возвращаем transition
         trackR.style.transition = "transform 0.4s ease";
 
         isReady.value = true;
@@ -110,13 +99,6 @@ export default component$(({ items }: InfinitySliderProps) => {
     });
   });
 
-  // add it if we need
-  // // eslint-disable-next-line qwik/no-use-visible-task
-  // useVisibleTask$(() => {
-  //   isVisible.value = true;
-  // });
-
-  //for mobile
   useTask$(({ cleanup, track }) => {
     track(() => isOpen.value);
     track(() => isReady.value);
@@ -134,7 +116,6 @@ export default component$(({ items }: InfinitySliderProps) => {
       return;
     const trackR = trackRef.value;
     if (!trackR) return;
-    // from first real slide
     let currentIndex = 1;
     const cloneCount = 1; //pro side
     const realSlidesCount = itemsOriginalSignal.value.length;
