@@ -98,5 +98,7 @@
   .icon_title {
     left: 18px;
     top: 40px;
+    width: 4rem;
+    height: 4rem;
   }
 }
