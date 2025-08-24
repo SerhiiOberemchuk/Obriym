@@ -2,6 +2,7 @@ import { component$ } from "@qwik.dev/core";
 import LogoSVG from "/public/logo.svg?jsx";
 import "./style.css";
 import { inlineTranslate, localizePath } from "qwik-speak";
+import { Link } from "@qwik.dev/router";
 
 type Props = {
   place: "footer" | "header";
@@ -13,13 +14,13 @@ export default component$<Props>(props => {
   const getPath = localizePath();
   const [homePath] = getPath(["/"]);
   return (
-    <a
+    <Link
       href={homePath}
       class="logo"
       data-place={props.place}
       aria-label={t("logo.link@@Logo Obriym Agency link to homepage")}
     >
       <LogoSVG alt={t("logo.name@@Logo Obriym Agency")} />
-    </a>
+    </Link>
   );
 });
