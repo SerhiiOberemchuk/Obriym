@@ -19,7 +19,8 @@
   position: absolute;
   left: 5px;
   top: 11px;
-
+  width: 1.25rem;
+  height: 1.25rem;
   z-index: -1;
 }
 
@@ -40,6 +41,9 @@
 }
 .spring_model {
   width: 2.75rem;
+}
+:lang(uk-UA) .icon_title {
+  left: 3px;
 }
 @media (width >= 48rem) {
   .st_section {
@@ -67,6 +71,13 @@
   .icon_title {
     left: 8px;
     top: 18px;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+  :lang(uk-UA) .icon_title {
+    left: 4px;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 }
 

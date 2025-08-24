@@ -14,14 +14,6 @@ export default component$<Props>(({ section, classes }) => {
       {section === "services" && <PinkDark class="c_title_icon" aria-hidden="true" />}
       {section === "how-it-work" && <Pink class="c_title_icon" aria-hidden="true" />}
       {section === "projects" && <Shape class="c_title_icon" aria-hidden="true" />}
-      {/* <QModel
-        key={section}
-        // client:signal={hydrateReact}
-        // client:idle
-        model={model}
-        width={sizes.sizeCanvas.width}
-        height={sizes.sizeCanvas.height}
-      /> */}
 
       <h2 class="H3_uppercase grey_dark">
         <Slot />
