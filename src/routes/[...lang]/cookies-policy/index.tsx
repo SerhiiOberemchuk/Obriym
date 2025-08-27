@@ -54,14 +54,14 @@ export const head: DocumentHead = () => {
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://obriym.com/cookies-policy" },
-      { property: "og:image", content: "https://obriym.com/images/cookies/og-image.png" },
+      { property: "og:image", content: "https://obriym.com/images/cookies/og-image.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Cookies Policy | Obriym" },
       {
         name: "twitter:description",
         content: "Learn about our cookies policy at Obriym Web Agency.",
       },
-      { name: "twitter:image", content: "https://obriym.com/images/cookies/og-image.png" },
+      { name: "twitter:image", content: "https://obriym.com/images/cookies/og-image.jpg" },
       { name: "robots", content: "index, follow" },
     ],
     links: [
