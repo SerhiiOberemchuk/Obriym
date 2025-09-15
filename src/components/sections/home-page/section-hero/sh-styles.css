@@ -1,6 +1,6 @@
 .sh_section {
   padding-top: 13.75rem;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .title {
   display: flex;
@@ -14,4 +14,23 @@
 }
 :lang(uk-UA) .title {
   max-width: 60rem;
+}
+
+.fly_word {
+  animation-name: tra;
+  animation-timeline: view(block 70% 10%);
+  animation-fill-mode: both;
+  animation-duration: 1ms;
+  animation-timing-function: linear;
+}
+
+@keyframes tra {
+  from {
+    transform: translateX(var(--rundomX)) translateY(var(--rundomY));
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
 }

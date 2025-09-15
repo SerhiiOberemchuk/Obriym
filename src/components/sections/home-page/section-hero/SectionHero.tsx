@@ -1,11 +1,13 @@
 import { component$, useStylesScoped$ } from "@qwik.dev/core";
 import { inlineTranslate } from "qwik-speak";
 import styles from "./sh-styles.css?inline";
-
 export default component$(() => {
   useStylesScoped$(styles);
   const t = inlineTranslate();
+  const rundomX = () => Math.floor(Math.random() * 301) - 150;
+  const rundomY = () => Math.floor(Math.random() * 101) - 100;
 
+  // Animation with GSAP
   // useVisibleTask$(async ({ cleanup }) => {
   //   const gsap = (await import("gsap")).default;
   //   const { ScrollTrigger } = await import("gsap/ScrollTrigger");
@@ -71,7 +73,11 @@ export default component$(() => {
           )
             .split(" ")
             .map((item, key) => (
-              <span class="fly_word" key={key}>
+              <span
+                class="fly_word"
+                style={`--rundomX:${rundomX()}px; --rundomY:${rundomY()}px`}
+                key={key}
+              >
                 {item}
               </span>
             ))}
