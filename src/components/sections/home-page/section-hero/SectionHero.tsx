@@ -1,11 +1,13 @@
 import { component$, useStylesScoped$ } from "@qwik.dev/core";
 import { inlineTranslate } from "qwik-speak";
 import styles from "./sh-styles.css?inline";
-
 export default component$(() => {
   useStylesScoped$(styles);
   const t = inlineTranslate();
+  const rundomX = () => Math.floor(Math.random() * 301) - 150;
+  const rundomY = () => Math.floor(Math.random() * 101) - 100;
 
+  // Animation with GSAP
   // useVisibleTask$(async ({ cleanup }) => {
   //   const gsap = (await import("gsap")).default;
   //   const { ScrollTrigger } = await import("gsap/ScrollTrigger");
@@ -58,24 +60,28 @@ export default component$(() => {
   return (
     <section class="sh_section" id="about">
       <div class="container">
-        <h2 class="body_big grey title triggertitle">
+        {/* <h2 class="body_big grey title triggertitle">
           {t(
             "home.shsection@@{{name}} — from first spark to full launch.<br> From insight to execution.<br> We plan, design, develop, and launch products that make a real impact.",
             { name: "OBRIYM" },
           )}
-        </h2>
-        {/* <h2 class="body_big grey title triggertitle">
+        </h2> */}
+        <h2 class="body_big grey title triggertitle">
           {t(
             "home.shsection@@{{name}} — from first spark to full launch.<br> From insight to execution.<br> We plan, design, develop, and launch products that make a real impact.",
             { name: "OBRIYM" },
           )
             .split(" ")
             .map((item, key) => (
-              <span class="fly_word" key={key}>
+              <span
+                class="fly_word"
+                style={`--rundomX:${rundomX()}px; --rundomY:${rundomY()}px`}
+                key={key}
+              >
                 {item}
               </span>
             ))}
-        </h2> */}
+        </h2>
       </div>
     </section>
   );
