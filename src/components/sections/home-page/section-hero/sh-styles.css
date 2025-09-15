@@ -1,6 +1,5 @@
 .sh_section {
   padding-top: 13.75rem;
-  /* overflow: hidden; */
 }
 .title {
   display: flex;
@@ -18,7 +17,7 @@
 
 .fly_word {
   animation-name: tra;
-  animation-timeline: view(block 70% 10%);
+  animation-timeline: view(block 60% 10%);
   animation-fill-mode: both;
   animation-duration: 1ms;
   animation-timing-function: linear;
@@ -26,7 +25,7 @@
 
 @keyframes tra {
   from {
-    transform: translateX(var(--rundomX)) translateY(var(--rundomY));
+    transform: translateY(var(--rundomY));
     opacity: 0;
   }
   to {
