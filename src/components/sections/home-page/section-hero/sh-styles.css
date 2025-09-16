@@ -23,13 +23,15 @@
   animation-timing-function: linear;
 }
 
-@keyframes tra {
-  from {
-    transform: translateY(var(--rundomY));
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0) translateX(0);
-    opacity: 1;
+@supports (animation-timeline: view()) {
+  @keyframes tra {
+    from {
+      transform: translateY(var(--rundomY));
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0) translateX(0);
+      opacity: 1;
+    }
   }
 }
