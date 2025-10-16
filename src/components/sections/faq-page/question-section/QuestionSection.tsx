@@ -16,16 +16,6 @@ export default component$<{ groupe: Groupes }>(({ groupe }) => {
     a: t(`faq.items.${id}.a`),
   }));
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: items.map(i => ({
-      "@type": "Question",
-      name: i.q,
-      acceptedAnswer: { "@type": "Answer", text: i.a },
-    })),
-  };
-
   return (
     <section class="section" itemScope itemType="https://schema.org/FAQPage">
       <div class="container">
@@ -73,8 +63,6 @@ export default component$<{ groupe: Groupes }>(({ groupe }) => {
           ))}
         </ul>
       </div>
-
-      <script type="application/ld+json" dangerouslySetInnerHTML={JSON.stringify(faqJsonLd)} />
     </section>
   );
 });
