@@ -17,7 +17,7 @@ export default component$<{ groupe: Groupes }>(({ groupe }) => {
   }));
 
   return (
-    <section class="section" itemScope itemType="https://schema.org/FAQPage">
+    <section class="section">
       <div class="container">
         <div class="subtitle_wrapper">
           {groupe === "process" && <IconPinkBall aria-hidden="true" />}
