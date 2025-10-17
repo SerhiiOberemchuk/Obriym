@@ -16,7 +16,7 @@ export const useFetchProjects = routeLoader$(async ({ cacheControl }) => {
   cacheControl({
     public: true,
     maxAge: 60 * 60,
-    sMaxAge: 60 * 60,
+    sMaxAge: 60 * 60 * 24,
     staleWhileRevalidate: 60,
   });
   try {
