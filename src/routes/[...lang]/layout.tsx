@@ -7,6 +7,7 @@ import {
   createContextId,
   $,
   useOnWindow,
+  useVisibleTask$,
 } from "@qwik.dev/core";
 import { routeLoader$ } from "@qwik.dev/router";
 import NavList from "~/components/common/nav-list/NavList";
@@ -44,12 +45,9 @@ export default component$(() => {
     else if (width >= 768) viewportCategory.value = "tablet";
     else viewportCategory.value = "mobile";
   });
-  useOnWindow(
-    "DOMContentLoaded",
-    $(() => {
-      updateViewport();
-    }),
-  );
+  useVisibleTask$(() => {
+    updateViewport();
+  });
 
   useOnWindow(
     "resize",

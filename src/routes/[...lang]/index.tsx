@@ -1,13 +1,13 @@
 import { component$ } from "@qwik.dev/core";
 import { DocumentHead, routeLoader$ } from "@qwik.dev/router"; //
 import { inlineTranslate } from "qwik-speak";
-import SectionContact from "~/components/sections/home-page/section-contact/SectionContact";
+import SectionContact from "~/components/pages/HomePage/section-contact/SectionContact";
 
-import SectionHero from "~/components/sections/home-page/section-hero/SectionHero";
-import SectionHowItWork from "~/components/sections/home-page/section-hiw/SectionHowItWork";
-import SectionProjects from "~/components/sections/home-page/section-projects/SectionProjects";
-import Services from "~/components/sections/home-page/section-services/Services";
-import SectionTitle from "~/components/sections/home-page/section-title/SectionTitle";
+import SectionHero from "~/components/pages/HomePage/section-hero/SectionHero";
+import SectionHowItWork from "~/components/pages/HomePage/section-hiw/SectionHowItWork";
+import SectionProjects from "~/components/pages/HomePage/section-projects/SectionProjects";
+import Services from "~/components/pages/HomePage/section-services/Services";
+import SectionTitle from "~/components/pages/HomePage/section-title/SectionTitle";
 import { Project } from "~/types/project.type";
 import SchemaSeoScripts from "~/utils/SchemaSeoScripts";
 
