@@ -2,11 +2,11 @@ import { component$ } from "@qwik.dev/core";
 import { DocumentHead } from "@qwik.dev/router";
 import { inlineTranslate } from "qwik-speak";
 
-import HeroSection from "~/components/sections/team-page/hero-section/HeroSection";
+import HeroSection from "~/components/pages/TeamPage/hero-section/HeroSection";
 
-import StepsSection from "~/components/sections/team-page/steps-section/StepsSection";
+import StepsSection from "~/components/pages/TeamPage/steps-section/StepsSection";
 
-import SectionContact from "~/components/sections/home-page/section-contact/SectionContact";
+import SectionContact from "~/components/pages/HomePage/section-contact/SectionContact";
 
 export default component$(() => {
   return (

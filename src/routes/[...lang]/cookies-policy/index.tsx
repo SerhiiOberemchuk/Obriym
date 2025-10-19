@@ -1,7 +1,7 @@
 import { component$ } from "@qwik.dev/core";
 import { DocumentHead } from "@qwik.dev/router";
 import { inlineTranslate } from "qwik-speak";
-import CookiesSection from "~/components/sections/cookies-page/CookiesSection";
+import CookiesSection from "~/components/pages/CoociesPage/CookiesSection";
 
 export default component$(() => {
   return (

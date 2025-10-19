@@ -1,10 +1,10 @@
 import { component$ } from "@qwik.dev/core";
 
-import SectionTitle from "../sections/faq-page/title-section/SectionTitle";
-import LinksTitle from "../sections/faq-page/links-section/LinksTitle";
-import QuestionSection from "../sections/faq-page/question-section/QuestionSection";
+import SectionTitle from "./FAQ/sections/title-section/SectionTitle";
+import QuestionSection from "./FAQ/sections/question-section/QuestionSection";
 import { inlineTranslate } from "qwik-speak";
-import { faqStructure, QA } from "../sections/faq-page/question-section/utils";
+import { faqStructure, QA } from "./FAQ/sections/question-section/utils";
+import LinksTitle from "./FAQ/sections/links-section/LinksTitle";
 
 export default component$(() => {
   const t = inlineTranslate();
