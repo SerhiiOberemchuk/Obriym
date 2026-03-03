@@ -1,4 +1,4 @@
-import {
+﻿import {
   $,
   component$,
   useContext,
@@ -6,13 +6,13 @@ import {
   useStore,
   useStylesScoped$,
   useVisibleTask$,
-} from "@qwik.dev/core";
+} from "@builder.io/qwik";
 import styles from "./styles.css?inline";
 import { COOKIES_LOCAL_STORAGE, CookiesTypes } from "~/types/cookies.type";
 import { disableAnalitics, loadAnalytics } from "~/utils/loadGoogleAnalitics";
 import { CookiesBannerContext } from "./coocies-banner-context";
 import { inlineTranslate, localizePath } from "qwik-speak";
-import { Link } from "@qwik.dev/router";
+import { Link } from "@builder.io/qwik-city";
 
 export default component$(() => {
   useStylesScoped$(styles);
@@ -141,3 +141,4 @@ export default component$(() => {
     </>
   );
 });
+

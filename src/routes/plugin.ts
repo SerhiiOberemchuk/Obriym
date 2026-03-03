@@ -1,4 +1,4 @@
-import type { RequestHandler } from "@qwik.dev/router";
+﻿import type { RequestHandler } from "@builder.io/qwik-city";
 import { setSpeakContext, validateLocale } from "qwik-speak";
 
 import { config } from "../speak-config";
@@ -32,3 +32,4 @@ export const onRequest: RequestHandler = ({ params, error, locale }) => {
   //   throw redirect(302, getPath('/page', 'en-US')); // Let the server know the language to use
   // }
 };
+

@@ -1,4 +1,4 @@
-import { component$ } from "@qwik.dev/core";
+import { component$ } from "@builder.io/qwik";
 import { useSpeakLocale } from "qwik-speak";
 
 import { howToWorkSchemaEN } from "~/seo/schemas/howToWork/howToSchema.en";
@@ -31,6 +31,81 @@ export default component$(() => {
 
       break;
   }
+
+  const schemaWebSite = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "OBRIYM",
+    alternateName: "OBRIYM Web Agency",
+    url: "https://obriym.com/",
+    inLanguage: lang,
+    publisher: {
+      "@type": "Organization",
+      name: "OBRIYM",
+      url: "https://obriym.com/",
+    },
+  };
+
+  const schemaServices = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Website and Web App Development",
+    serviceType: "Full-cycle web development and UX UI design services",
+    provider: {
+      "@type": "Organization",
+      name: "OBRIYM Web Agency",
+      url: "https://obriym.com/",
+    },
+    areaServed: "Europe",
+    availableLanguage: ["English", "Italian", "Ukrainian"],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Digital services",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Website development",
+            description: "Corporate websites, landing pages and marketing websites.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "E-commerce development",
+            description: "Online store development and integrations.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Web application development",
+            description: "Custom web apps for internal tools and client products.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "UX UI design",
+            description: "User research, wireframes, interfaces, and design systems.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "SEO optimization",
+            description: "Technical SEO setup and performance-first implementation.",
+          },
+        },
+      ],
+    },
+  };
+
   return (
     <>
       <script
@@ -45,6 +120,16 @@ export default component$(() => {
         dangerouslySetInnerHTML={JSON.stringify(schemaOrganization)}
       ></script>
       <script
+        id="schema-website"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={JSON.stringify(schemaWebSite)}
+      ></script>
+      <script
+        id="schema-services"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={JSON.stringify(schemaServices)}
+      ></script>
+      <script
         id="schema-siteNavigation"
         type="application/ld+json"
         dangerouslySetInnerHTML={JSON.stringify({
@@ -55,7 +140,7 @@ export default component$(() => {
               "@type": "SiteNavigationElement",
               position: 1,
               name: "Services",
-              url: "https://obriym.com/#services",
+              url: "https://obriym.com/services/",
             },
             {
               "@type": "SiteNavigationElement",
@@ -99,3 +184,4 @@ export default component$(() => {
     </>
   );
 });
+

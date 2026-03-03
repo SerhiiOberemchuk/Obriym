@@ -1,15 +1,15 @@
-/**
+﻿/**
  * This is the base config for vite.
  * When building, the adapter config is used which loads this file and extends it.
  */
 import { defineConfig, type UserConfig } from "vite";
-import { qwikVite } from "@qwik.dev/core/optimizer";
-import { qwikRouter } from "@qwik.dev/router/vite";
+import { qwikVite } from "@builder.io/qwik/optimizer";
+import { qwikCity } from "@builder.io/qwik-city/vite";
 import { qwikSpeakInline } from "qwik-speak/inline";
 import { visualizer } from "rollup-plugin-visualizer";
 import tsconfigPaths from "vite-tsconfig-paths";
 import pkg from "./package.json";
-import { partytownVite } from "@qwik.dev/partytown/utils";
+import { partytownVite } from "@builder.io/partytown/utils";
 import { join } from "path";
 type PkgDep = Record<string, string>;
 const { dependencies = {}, devDependencies = {} } = pkg as any as {
@@ -25,7 +25,7 @@ errorOnDuplicatesPkgDeps(devDependencies, dependencies);
 export default defineConfig(({ command, mode }): UserConfig => {
   return {
     plugins: [
-      qwikRouter(),
+      qwikCity(),
       qwikVite(),
       visualizer({
         filename: "dist/stats.html",
@@ -92,7 +92,7 @@ function errorOnDuplicatesPkgDeps(devDependencies: PkgDep, dependencies: PkgDep)
   // include any known qwik packages
   const qwikPkg = Object.keys(dependencies).filter(value => /qwik/i.test(value));
   // any errors for missing "qwik-city-plan"
-  // [PLUGIN_ERROR]: Invalid module "@qwik-router-config" is not a valid package
+  // [PLUGIN_ERROR]: Invalid module "@qwik-city-plan" is not a valid package
   msg = `Move qwik packages ${qwikPkg.join(", ")} to devDependencies`;
   if (qwikPkg.length > 0) {
     throw new Error(msg);
@@ -108,3 +108,4 @@ function errorOnDuplicatesPkgDeps(devDependencies: PkgDep, dependencies: PkgDep)
     throw new Error(msg);
   }
 }
+

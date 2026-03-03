@@ -21,6 +21,18 @@
   width: 100%;
   margin-bottom: auto;
 }
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1rem;
+  color: var(--black);
+  text-decoration: underline;
+  text-underline-offset: 0.15rem;
+}
+
+.card-link:hover {
+  color: var(--grey-dark);
+}
 .item {
   display: flex;
   gap: 0.25rem;

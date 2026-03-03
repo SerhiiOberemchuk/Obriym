@@ -1,4 +1,4 @@
-import { component$, useStylesScoped$, useVisibleTask$ } from "@qwik.dev/core";
+﻿import { component$, useStylesScoped$, useVisibleTask$ } from "@builder.io/qwik";
 import styles from "./hiw-styles.css?inline";
 import SubTitle from "~/components/common/subtitile/SubTitle";
 import { StepHowItWork } from "~/types/step-how-it-eork.type";
@@ -50,7 +50,7 @@ export default component$(() => {
   const steps: StepHowItWork[] = [
     {
       step: t("home.sectionHIW.steps.step1.step@@I step"),
-      title: t("home.sectionHIW.steps.step1.title@@Let’s Talk"),
+      title: t("home.sectionHIW.steps.step1.title@@LetвЂ™s Talk"),
       text: t(
         "home.sectionHIW.steps.step1.text@@We begin with an in-depth consultation to understand your business objectives and challenges.",
       ),
@@ -59,14 +59,14 @@ export default component$(() => {
       step: t("home.sectionHIW.steps.step2.step@@II step"),
       title: t("home.sectionHIW.steps.step2.title@@get the plan"),
       text: t(
-        "home.sectionHIW.steps.step2.text@@You receive a tailored proposal outlining the scope, timeline, and budget — fully transparent.",
+        "home.sectionHIW.steps.step2.text@@You receive a tailored proposal outlining the scope, timeline, and budget вЂ” fully transparent.",
       ),
     },
     {
       step: t("home.sectionHIW.steps.step3.step@@III step"),
       title: t("home.sectionHIW.steps.step3.title@@Make It Real"),
       text: t(
-        "home.sectionHIW.steps.step3.text@@Design, develop, deliver. Step by step — we’ll keep you in the loop every step of the way.",
+        "home.sectionHIW.steps.step3.text@@Design, develop, deliver. Step by step вЂ” weвЂ™ll keep you in the loop every step of the way.",
       ),
     },
   ];
@@ -110,3 +110,4 @@ export default component$(() => {
     </section>
   );
 });
+

@@ -1,4 +1,4 @@
-import { component$, useStylesScoped$ } from "@qwik.dev/core";
+﻿import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import { inlineTranslate } from "qwik-speak";
 import styles from "./styles_content.css?inline";
 
@@ -98,3 +98,4 @@ export default component$(() => {
     </div>
   );
 });
+

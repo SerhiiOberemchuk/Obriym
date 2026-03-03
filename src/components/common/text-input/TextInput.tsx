@@ -1,4 +1,4 @@
-import { component$, useStylesScoped$ } from "@qwik.dev/core";
+﻿import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import styles from "./text-input_styles.css?inline";
 import { TextInputProps } from "~/types/contact-form.type";
 import FormError from "~/components/common/form-error/form_error";
@@ -33,3 +33,4 @@ export const TextInput = component$(
     );
   },
 );
+

@@ -2,26 +2,46 @@ import { component$ } from "@builder.io/qwik";
 import { DocumentHead } from "@builder.io/qwik-city";
 import { inlineTranslate } from "qwik-speak";
 
-import FaqPage from "~/components/pages/FaqPage";
+import ServicesHubPage from "~/components/pages/ServicesPage/ServicesHubPage";
+import { SERVICE_PAGES } from "./service-pages.data";
 import {
   OG_IMAGE,
   canonicalFromPathname,
   hreflangLinksForPath,
   ogLocaleFromPathname,
   pathWithoutLocaleFromPathname,
-} from "../services/seo-utils";
+} from "./seo-utils";
 
 export default component$(() => {
-  return <FaqPage />;
+  const itemListElement = SERVICE_PAGES.map((service, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: service.navLabel,
+    url: `https://obriym.com/services/${service.slug}/`,
+  }));
+
+  return (
+    <>
+      <ServicesHubPage services={SERVICE_PAGES} />
+      <script
+        type="application/ld+json"
+        id="services-hub-schema"
+        dangerouslySetInnerHTML={JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "OBRIYM service pages",
+          itemListElement,
+        })}
+      />
+    </>
+  );
 });
 
 export const head: DocumentHead = ({ url }) => {
   const t = inlineTranslate();
-  const title = t("faq.head.title@@FAQ - services, SEO, timelines and pricing | {{name}}", {
-    name: "OBRIYM",
-  });
+  const title = t("services.hub.head.title@@Service pages for websites and web apps | OBRIYM");
   const description = t(
-    "faq.head.title.desc@@Answers about SEO-ready websites and web apps, timelines, multilingual support, e-commerce, analytics, GDPR, security and maintenance.",
+    "services.hub.head.description@@Explore dedicated service pages: website development, e-commerce, web app development, UX UI design, technical SEO, branding and product strategy.",
   );
   const canonical = canonicalFromPathname(url.pathname);
   const pathWithoutLocale = pathWithoutLocaleFromPathname(url.pathname);
@@ -32,6 +52,11 @@ export const head: DocumentHead = ({ url }) => {
     meta: [
       { name: "description", content: description },
       { name: "robots", content: "index, follow, max-snippet:-1, max-image-preview:large" },
+      {
+        name: "keywords",
+        content:
+          "website development services, ecommerce development, web app development, UX UI design services, technical SEO services, branding services, product strategy",
+      },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "OBRIYM" },
       { property: "og:locale", content: ogLocale },

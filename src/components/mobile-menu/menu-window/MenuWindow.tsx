@@ -1,4 +1,4 @@
-import { component$, useContext } from "@qwik.dev/core";
+﻿import { component$, useContext } from "@builder.io/qwik";
 import "./mw-styles.css";
 import NavList from "~/components/common/nav-list/NavList";
 import { ChangeLocale } from "~/components/change-locale/change-locale";
@@ -21,3 +21,4 @@ export default component$(() => {
     </>
   );
 });
+

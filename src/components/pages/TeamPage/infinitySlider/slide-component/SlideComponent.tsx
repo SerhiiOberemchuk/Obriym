@@ -1,4 +1,4 @@
-import { component$, useStylesScoped$, QRL } from "@qwik.dev/core";
+﻿import { component$, useStylesScoped$, QRL } from "@builder.io/qwik";
 import { inlineTranslate } from "qwik-speak";
 import styles from "./styles_slide.css?inline";
 import type { TeamMemberType } from "~/types/team-member.type";
@@ -35,3 +35,4 @@ export default component$(
     );
   },
 );
+

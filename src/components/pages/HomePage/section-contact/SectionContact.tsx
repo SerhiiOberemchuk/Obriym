@@ -1,4 +1,4 @@
-import { component$, useStylesScoped$ } from "@qwik.dev/core";
+﻿import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import { inlineTranslate } from "qwik-speak";
 import ContentContact from "./content-contact/ContentContact";
 import InputsContact from "./inputs-contact/InputsContact";
@@ -35,3 +35,4 @@ export default component$(() => {
     </section>
   );
 });
+

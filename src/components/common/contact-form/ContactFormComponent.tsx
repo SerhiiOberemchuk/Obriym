@@ -1,4 +1,4 @@
-import { component$, useStylesScoped$, useSignal, useTask$, useContext } from "@qwik.dev/core";
+﻿import { component$, useStylesScoped$, useSignal, useTask$, useContext } from "@builder.io/qwik";
 import { Modal, usePopover } from "@qwik-ui/headless";
 import { inlineTranslate } from "qwik-speak";
 import { reset, useForm, valiForm$ } from "@modular-forms/qwik";
@@ -225,3 +225,4 @@ export default component$(({ modal }: ContactFormComponentProps) => {
     </div>
   );
 });
+
