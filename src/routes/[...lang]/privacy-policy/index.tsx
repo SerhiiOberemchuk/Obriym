@@ -1,7 +1,15 @@
-﻿import { component$ } from "@builder.io/qwik";
+import { component$ } from "@builder.io/qwik";
 import { DocumentHead } from "@builder.io/qwik-city";
 import { inlineTranslate } from "qwik-speak";
+
 import PrivacyPage from "~/components/pages/PrivacyPage";
+import {
+  OG_IMAGE,
+  canonicalFromPathname,
+  hreflangLinksForPath,
+  ogLocaleFromPathname,
+  pathWithoutLocaleFromPathname,
+} from "../services/seo-utils";
 
 export default component$(() => {
   return (
@@ -17,7 +25,7 @@ export default component$(() => {
           description:
             "Privacy Policy of Obriym Web Agency. Learn how we collect, use, and protect your personal data.",
           dateModified: "2025-07-21",
-          url: "https://obriym.com/privacy-policy",
+          url: "https://obriym.com/privacy-policy/",
           publisher: {
             "@type": "Organization",
             name: "Obriym Web Agency",
@@ -30,42 +38,35 @@ export default component$(() => {
   );
 });
 
-export const head: DocumentHead = () => {
+export const head: DocumentHead = ({ url }) => {
   const t = inlineTranslate();
+  const title = t("app.head.privacy.title@@Privacy Policy | Obriym");
+  const description = t(
+    "app.head.privacy.description@@Read the Privacy Policy of Obriym Web Agency. Learn how we collect, use, and protect your personal data.",
+  );
+  const canonical = canonicalFromPathname(url.pathname);
+  const pathWithoutLocale = pathWithoutLocaleFromPathname(url.pathname);
+  const ogLocale = ogLocaleFromPathname(url.pathname);
 
   return {
-    title: t("app.head.privacy.title@@Privacy Policy | Obriym"),
+    title,
     meta: [
-      {
-        name: "description",
-        content: t(
-          "app.head.privacy.description@@Read the Privacy Policy of Obriym Web Agency. Learn how we collect, use, and protect your personal data.",
-        ),
-      },
-      { property: "og:title", content: "Privacy Policy | Obriym" },
-      {
-        property: "og:description",
-        content: "Our Privacy Policy explains how we collect, use, and protect your personal data.",
-      },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://obriym.com/privacy-policy" },
-      { property: "og:image", content: "https://obriym.com/images/privacy/og-image.jpg" },
+      { property: "og:site_name", content: "OBRIYM" },
+      { property: "og:locale", content: ogLocale },
+      { property: "og:url", content: canonical },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Privacy Policy | Obriym" },
-      {
-        name: "twitter:description",
-        content: "Learn about our Privacy Policy at Obriym Web Agency.",
-      },
-      { name: "twitter:image", content: "https://obriym.com/images/privacy/og-image.jpg" },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
+      { name: "twitter:image", content: OG_IMAGE },
       { name: "robots", content: "index, follow" },
     ],
-    links: [
-      { rel: "alternate", hreflang: "en", href: "https://obriym.com/privacy-policy" },
-      { rel: "alternate", hreflang: "uk-UA", href: "https://obriym.com/uk-UA/privacy-policy" },
-      { rel: "alternate", hreflang: "it-IT", href: "https://obriym.com/it-IT/privacy-policy" },
-      { rel: "alternate", hreflang: "x-default", href: "https://obriym.com/privacy-policy" },
-      { rel: "canonical", href: "https://obriym.com/privacy-policy" },
-    ],
+    links: [{ rel: "canonical", href: canonical }, ...hreflangLinksForPath(pathWithoutLocale)],
   };
 };
-

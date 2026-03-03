@@ -1,7 +1,15 @@
-﻿import { component$ } from "@builder.io/qwik";
+import { component$ } from "@builder.io/qwik";
 import { DocumentHead } from "@builder.io/qwik-city";
 import { inlineTranslate } from "qwik-speak";
+
 import CookiesSection from "~/components/pages/CoociesPage/CookiesSection";
+import {
+  OG_IMAGE,
+  canonicalFromPathname,
+  hreflangLinksForPath,
+  ogLocaleFromPathname,
+  pathWithoutLocaleFromPathname,
+} from "../services/seo-utils";
 
 export default component$(() => {
   return (
@@ -17,7 +25,7 @@ export default component$(() => {
           description:
             "Cookies Policy of Obriym Web Agency. Learn what cookies we use and how to manage them.",
           dateModified: "2025-07-21",
-          url: "https://obriym.com/cookies-policy",
+          url: "https://obriym.com/cookies-policy/",
           publisher: {
             "@type": "Organization",
             name: "Obriym Web Agency",
@@ -35,61 +43,35 @@ export default component$(() => {
   );
 });
 
-export const head: DocumentHead = () => {
+export const head: DocumentHead = ({ url }) => {
   const t = inlineTranslate();
+  const title = t("app.head.cookies.title@@Cookies Policy | Obriym");
+  const description = t(
+    "app.head.cookies.description@@Read the cookies policy of Obriym Web Agency. Learn what cookies we use, why we use them, and how you can manage your preferences.",
+  );
+  const canonical = canonicalFromPathname(url.pathname);
+  const pathWithoutLocale = pathWithoutLocaleFromPathname(url.pathname);
+  const ogLocale = ogLocaleFromPathname(url.pathname);
 
   return {
-    title: t("app.head.cookies.title@@Cookies Policy | Obriym"),
+    title,
     meta: [
-      {
-        name: "description",
-        content: t(
-          "app.head.cookies.description@@Read the cookies policy of Obriym Web Agency. Learn what cookies we use, why we use them, and how you can manage your preferences.",
-        ),
-      },
-      { property: "og:title", content: "Cookies Policy | Obriym" },
-      {
-        property: "og:description",
-        content: "Our cookies policy explains how we use cookies to improve your experience.",
-      },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://obriym.com/cookies-policy" },
-      { property: "og:image", content: "https://obriym.com/images/cookies/og-image.jpg" },
+      { property: "og:site_name", content: "OBRIYM" },
+      { property: "og:locale", content: ogLocale },
+      { property: "og:url", content: canonical },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Cookies Policy | Obriym" },
-      {
-        name: "twitter:description",
-        content: "Learn about our cookies policy at Obriym Web Agency.",
-      },
-      { name: "twitter:image", content: "https://obriym.com/images/cookies/og-image.jpg" },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: description },
+      { name: "twitter:image", content: OG_IMAGE },
       { name: "robots", content: "index, follow" },
     ],
-    links: [
-      {
-        rel: "alternate",
-        hreflang: "en",
-        href: "https://obriym.com/cookies-policy",
-      },
-      {
-        rel: "alternate",
-        hreflang: "uk-UA",
-        href: "https://obriym.com/uk-UA/cookies-policy",
-      },
-      {
-        rel: "alternate",
-        hreflang: "it-IT",
-        href: "https://obriym.com/it-IT/cookies-policy",
-      },
-      {
-        rel: "alternate",
-        hreflang: "x-default",
-        href: "https://obriym.com/cookies-policy",
-      },
-      {
-        rel: "canonical",
-        href: "https://obriym.com/cookies-policy",
-      },
-    ],
+    links: [{ rel: "canonical", href: canonical }, ...hreflangLinksForPath(pathWithoutLocale)],
   };
 };
-

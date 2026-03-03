@@ -9,12 +9,13 @@ export const RouterHead = component$(() => {
   const loc = useLocation();
   const customCanonical = head.links.find(link => link.rel === "canonical");
   const linksWithoutCanonical = head.links.filter(link => link.rel !== "canonical");
+  const fallbackCanonical = `${loc.url.origin}${loc.url.pathname}`;
 
   return (
     <>
       <title>{head.title}</title>
 
-      <link rel="canonical" href={customCanonical?.href ?? loc.url.href} />
+      <link rel="canonical" href={customCanonical?.href ?? fallbackCanonical} />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
