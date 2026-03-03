@@ -1,4 +1,4 @@
-import { component$, useStylesScoped$ } from "@qwik.dev/core";
+﻿import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import styles from "./styles-links.css?inline";
 
 import { inlineTranslate } from "qwik-speak";
@@ -13,7 +13,7 @@ export default component$(() => {
   }));
   return (
     <section class="links_section">
-      <nav aria-label="Питання FAQ" class="faq_toc">
+      <nav aria-label="РџРёС‚Р°РЅРЅСЏ FAQ" class="faq_toc">
         <ListItems array={items.filter((_, i) => i % 2 !== 0)} />
         <ListItems array={items.filter((_, i) => i % 2 !== 0)} />
       </nav>
@@ -22,7 +22,7 @@ export default component$(() => {
         <TitleAnimated />
         <TitleAnimated />
       </div>
-      <nav aria-label="Питання FAQ" class="faq_toc">
+      <nav aria-label="РџРёС‚Р°РЅРЅСЏ FAQ" class="faq_toc">
         <ListItems array={items.filter((_, i) => i % 2 === 0)} />
         <ListItems array={items.filter((_, i) => i % 2 === 0)} />
       </nav>
@@ -33,7 +33,7 @@ export default component$(() => {
 const TitleAnimated = component$(() => {
   const t = inlineTranslate();
   useStylesScoped$(styles);
-  return <h2 class="H2_light grey title">{t("faq.h2@@OBRIYM — веб-агенція повного циклу.")}</h2>;
+  return <h2 class="H2_light grey title">{t("faq.h2@@OBRIYM вЂ” РІРµР±-Р°РіРµРЅС†С–СЏ РїРѕРІРЅРѕРіРѕ С†РёРєР»Сѓ.")}</h2>;
 });
 
 const ListItems = component$<{ array: Omit<QA, "a">[] }>(({ array }) => {
@@ -51,3 +51,4 @@ const ListItems = component$<{ array: Omit<QA, "a">[] }>(({ array }) => {
     </ul>
   );
 });
+

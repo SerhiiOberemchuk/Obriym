@@ -1,5 +1,5 @@
-import { RequestHandler } from "@qwik.dev/router";
-import { routes } from "@qwik-router-config";
+﻿import { RequestHandler } from "@builder.io/qwik-city";
+import { routes } from "@qwik-city-plan";
 import { createSitemap } from "./create-sitemap";
 const speackRoute = ["", "/uk-UA", "/it-IT"];
 
@@ -40,3 +40,4 @@ export const onGet: RequestHandler = ev => {
 
   ev.send(response);
 };
+

@@ -1,4 +1,4 @@
-import { $, component$, createContextId, Signal, useContext, useStyles$ } from "@qwik.dev/core";
+﻿import { $, component$, createContextId, Signal, useContext, useStyles$ } from "@builder.io/qwik";
 import styles from "./lw-styles.css?inline";
 import { inlineTranslate } from "qwik-speak";
 import { Modal } from "@qwik-ui/headless";
@@ -27,7 +27,7 @@ export default component$(({ place }: { place: "mob-menu" | "header" }) => {
         onClick$={handleLetsWorkButton}
         class="btn_body lw_button"
       >
-        {t("app.btnLetsWork@@Let’s work")}
+        {t("app.btnLetsWork@@LetвЂ™s work")}
       </button>
       <Modal.Panel class="lw_panel" data-place={place}>
         <ContactFormComponent modal />
@@ -35,3 +35,4 @@ export default component$(({ place }: { place: "mob-menu" | "header" }) => {
     </Modal.Root>
   );
 });
+

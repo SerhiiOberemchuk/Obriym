@@ -1,4 +1,4 @@
-/**
+﻿/**
  * WHAT IS THIS FILE?
  *
  * SSR entry point, in all cases the application is rendered outside the browser, this
@@ -10,9 +10,9 @@
  * - npm run build
  *
  */
-import { RenderOptions, renderToStream, type RenderToStreamOptions } from "@qwik.dev/core/server";
+import { RenderOptions, renderToStream, type RenderToStreamOptions } from "@builder.io/qwik/server";
 import Root from "./root";
-import { isDev } from "@qwik.dev/core";
+import { isDev } from "@builder.io/qwik";
 import { config } from "./speak-config";
 
 export function extractBase({ serverData }: RenderOptions): string {
@@ -37,3 +37,4 @@ export default function (opts: RenderToStreamOptions) {
     },
   });
 }
+

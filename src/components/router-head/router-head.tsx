@@ -1,5 +1,5 @@
-import { component$ } from "@qwik.dev/core";
-import { useDocumentHead, useLocation } from "@qwik.dev/router";
+import { component$ } from "@builder.io/qwik";
+import { useDocumentHead, useLocation } from "@builder.io/qwik-city";
 
 /**
  * The RouterHead component is placed inside of the document `<head>` element.
@@ -7,12 +7,14 @@ import { useDocumentHead, useLocation } from "@qwik.dev/router";
 export const RouterHead = component$(() => {
   const head = useDocumentHead();
   const loc = useLocation();
+  const customCanonical = head.links.find(link => link.rel === "canonical");
+  const linksWithoutCanonical = head.links.filter(link => link.rel !== "canonical");
 
   return (
     <>
       <title>{head.title}</title>
 
-      <link rel="canonical" href={loc.url.href} />
+      <link rel="canonical" href={customCanonical?.href ?? loc.url.href} />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
@@ -20,7 +22,7 @@ export const RouterHead = component$(() => {
         <meta key={m.key} {...m} />
       ))}
 
-      {head.links.map(l => (
+      {linksWithoutCanonical.map(l => (
         <link key={l.key} {...l} />
       ))}
 
@@ -42,3 +44,4 @@ export const RouterHead = component$(() => {
     </>
   );
 });
+

@@ -1,5 +1,5 @@
-import { component$ } from "@qwik.dev/core";
-import { DocumentHead, routeLoader$ } from "@qwik.dev/router"; //
+import { component$ } from "@builder.io/qwik";
+import { DocumentHead, routeLoader$ } from "@builder.io/qwik-city"; //
 import { inlineTranslate } from "qwik-speak";
 import SectionContact from "~/components/pages/HomePage/section-contact/SectionContact";
 
@@ -53,14 +53,39 @@ export const SITE = "https://obriym.com";
 
 export const OG_IMAGE = `${SITE}/og-image.jpg`;
 
+const HOME_KEYWORDS_BY_LOCALE: Record<"en-EU" | "uk-UA" | "it-IT", string> = {
+  "en-EU":
+    "web development agency, website development, ecommerce development, web app development, landing page development, corporate website development, UX UI design agency, SEO website development, website redesign, custom website development",
+  "uk-UA":
+    "створення сайтів, розробка сайту, веб студія, веб розробка, розробка інтернет магазину, створення лендінгу, UX UI дизайн, SEO оптимізований сайт, корпоративний сайт, веб застосунок",
+  "it-IT":
+    "agenzia web, sviluppo siti web, realizzazione siti web, sviluppo ecommerce, sviluppo web app, creazione landing page, design UX UI, sito ottimizzato SEO, sito aziendale, sviluppo sito su misura",
+};
+
+const detectLocaleFromPath = (pathname: string): "en-EU" | "uk-UA" | "it-IT" => {
+  if (pathname.startsWith("/uk-UA")) return "uk-UA";
+  if (pathname.startsWith("/it-IT")) return "it-IT";
+  return "en-EU";
+};
+
 export const head: DocumentHead = ({ url }) => {
   const t = inlineTranslate();
-  const title = t("app.head.home.title@@Full-cycle web agency — fast SEO sites & apps | {{name}}", {
+  const locale = detectLocaleFromPath(url.pathname);
+  const title = t("app.head.home.title@@Full-cycle web agency - fast SEO sites and apps | {{name}}", {
     name: "OBRIYM",
   });
   const description = t("app.head.home.description@@Localized routing");
-  const path = url.pathname.replace(/^\/(uk-UA|en-EU|it-IT)(?=\/|$)/, "") || "/";
-  const canonical = `${SITE}${path}`;
+  const keywords = HOME_KEYWORDS_BY_LOCALE[locale];
+  const ogLocale = locale === "uk-UA" ? "uk_UA" : locale === "it-IT" ? "it_IT" : "en_GB";
+  const canonicalPathFromLocale = url.pathname.replace(/^\/en-EU(?=\/|$)/, "");
+  const canonicalPath =
+    canonicalPathFromLocale === "" || canonicalPathFromLocale === "/"
+      ? "/"
+      : canonicalPathFromLocale.endsWith("/")
+        ? canonicalPathFromLocale
+        : `${canonicalPathFromLocale}/`;
+  const canonical = `${SITE}${canonicalPath}`;
+
   return {
     title,
     meta: [
@@ -68,8 +93,15 @@ export const head: DocumentHead = ({ url }) => {
         name: "description",
         content: description,
       },
+      { name: "keywords", content: keywords },
+      { name: "robots", content: "index, follow, max-snippet:-1, max-image-preview:large" },
+      { name: "author", content: "OBRIYM" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "OBRIYM" },
+      { property: "og:locale", content: ogLocale },
+      { property: "og:locale:alternate", content: "en_GB" },
+      { property: "og:locale:alternate", content: "uk_UA" },
+      { property: "og:locale:alternate", content: "it_IT" },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:url", content: canonical },
@@ -81,5 +113,13 @@ export const head: DocumentHead = ({ url }) => {
       { name: "twitter:description", content: description },
       { name: "twitter:image", content: OG_IMAGE },
     ],
+    links: [
+      { rel: "canonical", href: canonical },
+      { rel: "alternate", hreflang: "en-EU", href: `${SITE}/` },
+      { rel: "alternate", hreflang: "uk-UA", href: `${SITE}/uk-UA/` },
+      { rel: "alternate", hreflang: "it-IT", href: `${SITE}/it-IT/` },
+      { rel: "alternate", hreflang: "x-default", href: `${SITE}/` },
+    ],
   };
 };
+

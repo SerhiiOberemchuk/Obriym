@@ -1,8 +1,9 @@
-import { component$, Slot, useStylesScoped$ } from "@qwik.dev/core";
+import { component$, Slot, useStylesScoped$ } from "@builder.io/qwik";
+import { Link } from "@builder.io/qwik-city";
 import styles from "./card-tyles.css?inline";
 import { ServicesCardProps } from "~/types/services-card.type";
 
-export default component$<ServicesCardProps>(({ title, description, list }) => {
+export default component$<ServicesCardProps>(({ title, description, list, href, linkLabel }) => {
   useStylesScoped$(styles);
 
   return (
@@ -17,6 +18,15 @@ export default component$<ServicesCardProps>(({ title, description, list }) => {
             </li>
           ))}
         </ol>
+        {href && (
+          <Link
+            href={href}
+            class="card-link btn_body"
+            aria-label={`${linkLabel ?? "Open service page"}: ${title}`}
+          >
+            {linkLabel ?? "Open service page"}
+          </Link>
+        )}
       </header>
       <Slot />
     </article>

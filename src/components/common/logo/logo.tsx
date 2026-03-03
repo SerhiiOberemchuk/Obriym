@@ -1,8 +1,8 @@
-import { component$ } from "@qwik.dev/core";
+﻿import { component$ } from "@builder.io/qwik";
 import LogoSVG from "/public/logo.svg?jsx";
 import "./style.css";
 import { inlineTranslate, localizePath } from "qwik-speak";
-import { Link } from "@qwik.dev/router";
+import { Link } from "@builder.io/qwik-city";
 
 type Props = {
   place: "footer" | "header";
@@ -20,7 +20,8 @@ export default component$<Props>(props => {
       data-place={props.place}
       aria-label={t("logo.link@@Logo Obriym Agency link to homepage")}
     >
-      <LogoSVG alt={t("logo.name@@Logo Obriym Agency")} />
+      <LogoSVG role="img" aria-label={t("logo.name@@Logo Obriym Agency")} />
     </Link>
   );
 });
+

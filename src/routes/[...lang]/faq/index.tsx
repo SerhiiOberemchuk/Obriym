@@ -1,5 +1,5 @@
-import { component$ } from "@qwik.dev/core";
-import { DocumentHead } from "@qwik.dev/router";
+﻿import { component$ } from "@builder.io/qwik";
+import { DocumentHead } from "@builder.io/qwik-city";
 import { inlineTranslate } from "qwik-speak";
 import FaqPage from "~/components/pages/FaqPage";
 
@@ -8,10 +8,10 @@ export default component$(() => {
 });
 export const head: DocumentHead = () => {
   const t = inlineTranslate();
-  const title = t("faq.head.title@@FAQ — services, SEO, timelines & pricing | {{name}}");
+  const title = t("faq.head.title@@FAQ вЂ” services, SEO, timelines & pricing | {{name}}");
 
   const description = t(
-    "faq.head.title.desc@@Answers about fast SEO-ready websites and web apps, 2–4 week timelines, multilingual, e-commerce, analytics, GDPR, security and maintenance.",
+    "faq.head.title.desc@@Answers about fast SEO-ready websites and web apps, 2вЂ“4 week timelines, multilingual, e-commerce, analytics, GDPR, security and maintenance.",
   );
   // const path = url.pathname.replace(/^\/(uk-UA|en-EU|it-IT)(?=\/|$)/, "") || "/";
   // const canonical = `${SITE}${path}`;
@@ -37,3 +37,4 @@ export const head: DocumentHead = () => {
     ],
   };
 };
+

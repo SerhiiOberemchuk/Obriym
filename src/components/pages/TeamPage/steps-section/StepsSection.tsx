@@ -1,4 +1,4 @@
-import { component$, useStylesScoped$ } from "@qwik.dev/core";
+﻿import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import { inlineTranslate } from "qwik-speak";
 
 import styles from "./styles_steps.css?inline";
@@ -25,7 +25,7 @@ export default component$(() => {
               src="/images/pink.png"
               class="team_steps_image"
               aria-hidden="true"
-              alt="team_steps_image"
+              alt=""
             />
             <h2 class="H3_uppercase" id="team-title">
               {t("team.title@@Our Team")}
@@ -43,3 +43,4 @@ export default component$(() => {
     </section>
   );
 });
+

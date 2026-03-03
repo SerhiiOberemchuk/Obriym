@@ -1,5 +1,5 @@
-import { component$ } from "@qwik.dev/core";
-import { DocumentHead } from "@qwik.dev/router";
+﻿import { component$ } from "@builder.io/qwik";
+import { DocumentHead } from "@builder.io/qwik-city";
 import { inlineTranslate } from "qwik-speak";
 import PrivacyPage from "~/components/pages/PrivacyPage";
 
@@ -68,3 +68,4 @@ export const head: DocumentHead = () => {
     ],
   };
 };
+
