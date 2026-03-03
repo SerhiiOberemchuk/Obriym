@@ -1,4 +1,4 @@
-﻿import { component$, useStylesScoped$ } from "@builder.io/qwik";
+import { component$, useStylesScoped$ } from "@qwik.dev/core";
 import { inlineTranslate } from "qwik-speak";
 import styles from "./sh-styles.css?inline";
 export default component$(() => {
@@ -62,13 +62,13 @@ export default component$(() => {
       <div class="container">
         {/* <h2 class="body_big grey title triggertitle">
           {t(
-            "home.shsection@@{{name}} вЂ” from first spark to full launch.<br> From insight to execution.<br> We plan, design, develop, and launch products that make a real impact.",
+            "home.shsection@@{{name}} — from first spark to full launch.<br> From insight to execution.<br> We plan, design, develop, and launch products that make a real impact.",
             { name: "OBRIYM" },
           )}
         </h2> */}
         <h2 class="body_big grey title triggertitle">
           {t(
-            "home.shsection@@{{name}} вЂ” from first spark to full launch.<br> From insight to execution.<br> We plan, design, develop, and launch products that make a real impact.",
+            "home.shsection@@{{name}} — from first spark to full launch.<br> From insight to execution.<br> We plan, design, develop, and launch products that make a real impact.",
             { name: "OBRIYM" },
           )
             .split(" ")
@@ -86,4 +86,3 @@ export default component$(() => {
     </section>
   );
 });
-

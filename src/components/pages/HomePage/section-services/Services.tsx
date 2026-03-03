@@ -1,7 +1,5 @@
-import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { Link } from "@builder.io/qwik-city";
-import { inlineTranslate, localizePath } from "qwik-speak";
-
+import { component$, useStylesScoped$ } from "@qwik.dev/core";
+import { inlineTranslate } from "qwik-speak";
 import styles from "./services-styles.css?inline";
 import Card from "./card/Card";
 import SubTitle from "~/components/common/subtitile/SubTitle";
@@ -16,18 +14,6 @@ import Services5 from "~/assets/images/services/spa.webp?w=706&h=296&jsx";
 export default component$(() => {
   useStylesScoped$(styles);
   const t = inlineTranslate();
-  const getPath = localizePath();
-
-  const [servicesHubPath] = getPath(["/services/"]);
-  const [productStrategyPath] = getPath(["/services/product-strategy/"]);
-  const [uxDesignPath] = getPath(["/services/ux-ui-design/"]);
-  const [brandingPath] = getPath(["/services/branding/"]);
-  const [webAppPath] = getPath(["/services/web-app-development/"]);
-  const [technicalSeoPath] = getPath(["/services/technical-seo/"]);
-  const [websiteDevelopmentPath] = getPath(["/services/website-development/"]);
-  const [ecommercePath] = getPath(["/services/ecommerce-development/"]);
-
-  const openServicePageLabel = t("home.services.card.link@@Open dedicated page");
 
   const cards: ServicesCardProps[] = [
     {
@@ -42,8 +28,6 @@ export default component$(() => {
         t("home.services.1.list.3@@Product Strategy"),
         t("home.services.1.list.4@@UX Audits"),
       ],
-      href: productStrategyPath,
-      linkLabel: openServicePageLabel,
       srcImage: "/images/services/opaum.webp",
       image: (
         <Services1
@@ -65,8 +49,6 @@ export default component$(() => {
         t("home.services.2.list.3@@UX Flows"),
         t("home.services.2.list.4@@Design Systems"),
       ],
-      href: uxDesignPath,
-      linkLabel: openServicePageLabel,
       srcImage: "/images/services/ai.webp",
       image: (
         <Services2 alt={`${t("home.services.2.title")}picture`} loading="lazy" decoding="async" />
@@ -84,8 +66,6 @@ export default component$(() => {
         t("home.services.3.list.3@@Tone of Voice"),
         t("home.services.3.list.4@@Brand Positioning"),
       ],
-      href: brandingPath,
-      linkLabel: openServicePageLabel,
       srcImage: "/images/services/mocup-branding.webp",
       image: (
         <Services3 alt={`${t("home.services.3.title")}picture`} loading="lazy" decoding="async" />
@@ -103,8 +83,6 @@ export default component$(() => {
         t("home.services.4.list.3@@Webflow / WordPress / Custom"),
         t("home.services.4.list.4@@Mobile App Development"),
       ],
-      href: webAppPath,
-      linkLabel: openServicePageLabel,
       srcImage: "/images/services/crm-auto.webp",
       image: (
         <Services4 alt={`${t("home.services.4.title")}picture`} loading="lazy" decoding="async" />
@@ -122,42 +100,24 @@ export default component$(() => {
         t("home.services.5.list.3@@Analytics Setup"),
         t("home.services.5.list.4@@Continuous Improvement"),
       ],
-      href: technicalSeoPath,
-      linkLabel: openServicePageLabel,
       srcImage: "/images/services/spa.webp",
       image: (
         <Services5 alt={`${t("home.services.5.title")}picture`} loading="lazy" decoding="async" />
       ),
     },
   ];
-
-  const serviceIntentLinks = [
-    { path: websiteDevelopmentPath, label: t("home.services.link.website@@Website Development") },
-    { path: ecommercePath, label: t("home.services.link.ecommerce@@E-commerce Development") },
-    { path: webAppPath, label: t("home.services.link.webapp@@Web App Development") },
-    { path: uxDesignPath, label: t("home.services.link.uxui@@UX UI Design") },
-    { path: technicalSeoPath, label: t("home.services.link.seo@@Technical SEO") },
-  ];
-
   return (
-    <section class="section" id="services" aria-label={t("home.services.title@@services")}> 
+    <section class="section" id="services" aria-label={t("home.services.title@@services")}>
       <div class="container">
         <SubTitle classes="title" section="services">
           {t("home.services.title@@services")}
         </SubTitle>
-
-        <div class="services_actions">
-          <Link href={servicesHubPath} class="services_hub_link btn_body">
-            {t("home.services.hub@@Explore all specialized service pages")}
-          </Link>
-        </div>
-
         <div class="ins_wrapper">
           <IconO class="icon_o" aria-hidden="true" focusable="false" />
           <ul class="list">
-            {cards.map(({ title, description, list, href, linkLabel, srcImage, image }, index) => (
+            {cards.map(({ title, description, list, srcImage, image }, index) => (
               <li key={index} class="li_item" data-num={index}>
-                <Card title={title} description={description} list={list} href={href} linkLabel={linkLabel}>
+                <Card title={title} description={description} list={list}>
                   <figure class="image_wrapper">{image}</figure>
                 </Card>
                 <script
@@ -166,7 +126,7 @@ export default component$(() => {
                     "@context": "https://schema.org",
                     "@type": "Service",
                     serviceType: title,
-                    url: "https://obriym.com/services/",
+                    url: "https://obriym.com/#services",
                     description: `${description} Our services include ${list.join(", ")} for businesses in Italy and across Europe.`,
                     provider: {
                       "@type": "Organization",
@@ -194,21 +154,6 @@ export default component$(() => {
                     },
                   })}
                 />
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div class="seo_links" aria-label={t("home.services.intent.aria@@Popular service intents")}> 
-          <p class="btn_header seo_links_title">
-            {t("home.services.intent.title@@Popular requests for website projects")}
-          </p>
-          <ul class="seo_links_list">
-            {serviceIntentLinks.map(({ path, label }) => (
-              <li key={path}>
-                <Link href={path} class="btn_body seo_link_item">
-                  {label}
-                </Link>
               </li>
             ))}
           </ul>

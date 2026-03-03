@@ -1,4 +1,4 @@
-﻿import { server$ } from "@builder.io/qwik-city";
+import { server$ } from "@qwik.dev/router";
 import type { LoadTranslationFn, Translation, TranslationFn } from "qwik-speak";
 
 /**
@@ -17,4 +17,3 @@ const loadTranslation$: LoadTranslationFn = server$(
 export const translationFn: TranslationFn = {
   loadTranslation$: loadTranslation$,
 };
-

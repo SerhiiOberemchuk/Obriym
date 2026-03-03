@@ -1,4 +1,4 @@
-﻿import { component$, useStylesScoped$ } from "@builder.io/qwik";
+import { component$, useStylesScoped$ } from "@qwik.dev/core";
 import { inlineTranslate } from "qwik-speak";
 import styles from "./st-styles.css?inline";
 // import ImgHeroSl from "~/assets/images/hero_slides.png?w=234&h=124&jsx";
@@ -15,7 +15,7 @@ export default component$(() => {
       <div class="container">
         <h1 class="H2_light black title">
           <span class="sr-only">
-            {t("home.h1@@Full-cycle web agency вЂ” developing fast SEO websites and web apps")}
+            {t("home.h1@@Full-cycle web agency — developing fast SEO websites and web apps")}
           </span>
           <span class="icon_span" aria-hidden={true}>
             {t("home.stitle.1span@@Complete")}
@@ -70,4 +70,3 @@ export default component$(() => {
     </section>
   );
 });
-

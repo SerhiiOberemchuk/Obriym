@@ -1,4 +1,4 @@
-﻿import {
+import {
   component$,
   Slot,
   useSignal,
@@ -8,8 +8,8 @@
   $,
   useOnWindow,
   useVisibleTask$,
-} from "@builder.io/qwik";
-import { routeLoader$ } from "@builder.io/qwik-city";
+} from "@qwik.dev/core";
+import { routeLoader$ } from "@qwik.dev/router";
 import NavList from "~/components/common/nav-list/NavList";
 import Popover from "~/components/common/popover/Popover";
 import {
@@ -81,4 +81,3 @@ export default component$(() => {
     </>
   );
 });
-

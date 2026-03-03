@@ -1,4 +1,4 @@
-﻿import { component$, useSignal, useStylesScoped$, useTask$, useVisibleTask$ } from "@builder.io/qwik";
+import { component$, useSignal, useStylesScoped$, useTask$, useVisibleTask$ } from "@qwik.dev/core";
 import styles from "./sp-styles.css?inline";
 import SubTitle from "~/components/common/subtitile/SubTitle";
 import { inlineTranslate, useSpeakLocale } from "qwik-speak";
@@ -145,4 +145,3 @@ const CarouselComponent = component$<PropsCarousel>(
     );
   },
 );
-

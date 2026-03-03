@@ -1,4 +1,4 @@
-﻿import { component$, useStylesScoped$ } from "@builder.io/qwik";
+import { component$, useStylesScoped$ } from "@qwik.dev/core";
 import IconBlue from "~/assets/images/faq-page/faq-puff.png?w=116&h=106&quality=100&jsx";
 
 import styles from "./title-styles.css?inline";
@@ -21,4 +21,3 @@ export default component$(() => {
     </section>
   );
 });
-

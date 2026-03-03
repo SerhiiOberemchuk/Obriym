@@ -1,5 +1,5 @@
-﻿import type { PartytownConfig } from "@builder.io/partytown/integration";
-import { partytownSnippet } from "@builder.io/partytown/integration";
+import type { PartytownConfig } from "@qwik.dev/partytown/integration";
+import { partytownSnippet } from "@qwik.dev/partytown/integration";
 
 /**
  * Props for `<QwikPartytown/>`, which extends the Partytown Config.
@@ -17,4 +17,3 @@ import { partytownSnippet } from "@builder.io/partytown/integration";
 export const QwikPartytown = (props: PartytownConfig): any => {
   return <script dangerouslySetInnerHTML={partytownSnippet(props)} />;
 };
-

@@ -1,40 +1,22 @@
-import { RequestHandler } from "@builder.io/qwik-city";
-import { routes } from "@qwik-city-plan";
+import { RequestHandler } from "@qwik.dev/router";
+import { routes } from "@qwik-router-config";
 import { createSitemap } from "./create-sitemap";
-import { SERVICE_PAGES } from "../[...lang]/services/service-pages.data";
-
-const sitemapLocales = ["", "/uk-UA", "/it-IT"] as const;
-
-const ensureLeadingSlash = (route: string) => (route.startsWith("/") ? route : `/${route}`);
-
-const ensureTrailingSlash = (route: string) => (route.endsWith("/") ? route : `${route}/`);
-
-const normalizeRoute = (route: string) => ensureTrailingSlash(ensureLeadingSlash(route));
-
-const isIndexableRoute = (route: string) =>
-  !route.startsWith("dynamic") && !route.includes("[") && !route.includes("]");
+const speackRoute = ["", "/uk-UA", "/it-IT"];
 
 export const onGet: RequestHandler = ev => {
-  const staticRoutes = sitemapLocales.flatMap(localePrefix =>
-    routes
+  const filteredRoutes = speackRoute.map(lang => {
+    return routes
       .map(([route]) => {
-        let localizedRoute = route.replace("[...lang]", localePrefix);
+        let dynamicRoute = route.replace("[...lang]", lang);
 
-        if (localizedRoute === localePrefix) {
-          localizedRoute = `${localizedRoute}/`;
+        if (dynamicRoute === lang) {
+          dynamicRoute = dynamicRoute + "/";
         }
-
-        return localizedRoute;
+        return dynamicRoute;
       })
-      .filter(isIndexableRoute)
-      .map(normalizeRoute),
-  );
-
-  const serviceRoutes = sitemapLocales.flatMap(localePrefix =>
-    SERVICE_PAGES.map(service => normalizeRoute(`${localePrefix}/services/${service.slug}/`)),
-  );
-
-  const routesWithLang = [...new Set([...staticRoutes, ...serviceRoutes])];
+      .filter(route => !route.startsWith("dynamic"));
+  });
+  const routesWithLang = [...new Set(filteredRoutes.flat())];
 
   const sitemap = createSitemap([
     ...routesWithLang.map(route => {
@@ -43,12 +25,11 @@ export const onGet: RequestHandler = ev => {
           loc: "",
           priority: 1,
         };
-      }
-
-      return {
-        loc: route,
-        priority: route.includes("/services/") ? 0.8 : 0.9,
-      };
+      } else
+        return {
+          loc: route,
+          priority: 0.9,
+        };
     }),
   ]);
 

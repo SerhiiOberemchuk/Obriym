@@ -1,4 +1,4 @@
-﻿import { $, component$, Slot, useContextProvider, useSignal } from "@builder.io/qwik";
+import { $, component$, Slot, useContextProvider, useSignal } from "@qwik.dev/core";
 import { ModalLetsWork } from "~/components/lets-work/LetsWork";
 import { MobileMenuContext } from "~/components/mobile-menu/MobileMenu";
 
@@ -13,4 +13,3 @@ export default component$(() => {
 
   return <Slot />;
 });
-

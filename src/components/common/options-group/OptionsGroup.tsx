@@ -1,4 +1,4 @@
-﻿import { component$, useStylesScoped$ } from "@builder.io/qwik";
+import { component$, useStylesScoped$ } from "@qwik.dev/core";
 import { inlineTranslate } from "qwik-speak";
 import styles from "./options-group_styles.css?inline";
 import { OptionsGroupProps } from "~/types/contact-form.type";
@@ -46,4 +46,3 @@ export const OptionsGroup = component$(
     );
   },
 );
-

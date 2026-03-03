@@ -1,7 +1,6 @@
 export interface SitemapEntry {
   loc: string;
   priority: number;
-  lastmod?: string;
 }
 
 export function createSitemap(entries: SitemapEntry[]) {
@@ -14,7 +13,7 @@ ${entries
     entry => `
     <url>
         <loc>${baseUrl}${entry.loc}</loc>
-        ${entry.lastmod ? `<lastmod>${entry.lastmod}</lastmod>` : ""}
+        <lastmod>${new Date().toISOString().split("T")[0]}</lastmod>
         <priority>${entry.priority}</priority>
     </url>`,
   )

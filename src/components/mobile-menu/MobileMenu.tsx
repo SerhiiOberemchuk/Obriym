@@ -1,4 +1,4 @@
-﻿import { component$, createContextId, QRL, Signal, useContext } from "@builder.io/qwik";
+import { component$, createContextId, QRL, Signal, useContext } from "@qwik.dev/core";
 import "./mb-styles.css";
 import MenuWindow from "./menu-window/MenuWindow";
 import { ViewportContext } from "~/routes/[...lang]/layout";
@@ -34,4 +34,3 @@ export default component$(() => {
     </>
   );
 });
-

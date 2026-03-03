@@ -1,4 +1,4 @@
-﻿import { component$, useContext, useStylesScoped$ } from "@builder.io/qwik";
+import { component$, useContext, useStylesScoped$ } from "@qwik.dev/core";
 import Logo from "~/components/common/logo/logo";
 import { inlineTranslate, localizePath } from "qwik-speak";
 import styles from "./styles_footer.css?inline";
@@ -6,7 +6,7 @@ import NavList from "~/components/common/nav-list/NavList";
 import FollowUs from "./follow-us/FollowUs";
 import IconCookies from "~/assets/icons/cookies-icon.svg?w=38&h=38&jsx";
 // import GreenBall from "~/assets/images/green-ball.png?h=48&w=48&quality=100&jsx";
-import { Link } from "@builder.io/qwik-city";
+import { Link } from "@qwik.dev/router";
 import { CookiesBannerContext } from "~/components/cookies-banner/coocies-banner-context";
 
 export default component$(() => {
@@ -42,7 +42,7 @@ export default component$(() => {
           >
             <IconCookies />
           </button>
-          <p class="btn_header grey f_copyright">Copyright В©Obriym{currentYear}</p>
+          <p class="btn_header grey f_copyright">Copyright ©Obriym{currentYear}</p>
           <nav aria-label="Legal information">
             <ul class="privacy_list">
               <li class="btn_header">
@@ -59,4 +59,3 @@ export default component$(() => {
     </footer>
   );
 });
-
