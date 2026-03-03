@@ -1,5 +1,5 @@
-﻿import { component$, isDev } from "@builder.io/qwik";
-import { QwikCityProvider, RouterOutlet } from "@builder.io/qwik-city";
+import { component$, isDev } from "@qwik.dev/core";
+import { QwikRouterProvider, RouterOutlet } from "@qwik.dev/router";
 import { RouterHead } from "./components/router-head/router-head";
 
 import "./styles/global.css";
@@ -17,7 +17,7 @@ export default component$(() => {
    */
   useQwikSpeak({ config, translationFn });
   return (
-    <QwikCityProvider>
+    <QwikRouterProvider>
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,7 +28,6 @@ export default component$(() => {
       <body>
         <RouterOutlet />
       </body>
-    </QwikCityProvider>
+    </QwikRouterProvider>
   );
 });
-

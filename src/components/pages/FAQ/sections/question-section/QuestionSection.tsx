@@ -1,4 +1,4 @@
-﻿import { component$, useStylesScoped$ } from "@builder.io/qwik";
+import { component$, useStylesScoped$ } from "@qwik.dev/core";
 import { inlineTranslate } from "qwik-speak";
 import IconPinkBall from "~/assets/images/faq-page/faq-balloons.png?w=100&h=100&jsx";
 import IconYell from "~/assets/images/faq-page/faq-yel-pink.png?w=100&h=100&jsx";
@@ -24,7 +24,7 @@ export default component$<{ groupe: Groupes }>(({ groupe }) => {
           {groupe === "pricing_quality_seo" && <IconYell aria-hidden="true" />}
           {groupe === "postlaunch_support" && <IconGreen aria-hidden="true" />}
           <h2 class="H3_uppercase grey_dark">
-            {t(`faq.question.section.${groupe}@@РџСЂРѕС†РµСЃ СЂРѕР·СЂРѕР±РєРё`)}
+            {t(`faq.question.section.${groupe}@@Процес розробки`)}
           </h2>
         </div>
 
@@ -66,4 +66,3 @@ export default component$<{ groupe: Groupes }>(({ groupe }) => {
     </section>
   );
 });
-

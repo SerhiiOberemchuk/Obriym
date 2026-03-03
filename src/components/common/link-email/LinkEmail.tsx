@@ -1,4 +1,4 @@
-﻿import { component$ } from "@builder.io/qwik";
+import { component$ } from "@qwik.dev/core";
 
 import "./link_styles.css";
 import IconEmail from "~/assets/icons/icon_email.svg?w=24&h24&jsx";
@@ -17,4 +17,3 @@ export default component$<Props>(({ place }) => {
     </a>
   );
 });
-

@@ -1,4 +1,4 @@
-﻿import { JSXChildren } from "@builder.io/qwik";
+import { JSXChildren } from "@qwik.dev/core";
 
 export type ServicesCardProps = {
   title: string;
@@ -6,7 +6,4 @@ export type ServicesCardProps = {
   list: string[];
   srcImage?: string;
   image?: JSXChildren;
-  href?: string;
-  linkLabel?: string;
 };
-

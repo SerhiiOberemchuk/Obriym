@@ -1,5 +1,5 @@
-﻿import { component$, QRL, useStylesScoped$ } from "@builder.io/qwik";
-import { Link, useLocation } from "@builder.io/qwik-city";
+import { component$, QRL, useStylesScoped$ } from "@qwik.dev/core";
+import { Link, useLocation } from "@qwik.dev/router";
 import { inlineTranslate, localizePath } from "qwik-speak";
 import styles from "./nav-list.css?inline";
 import IconHome from "~/assets/icons/icon-home.svg?h=38&w=39&jsx";
@@ -81,4 +81,3 @@ export default component$<Props>(({ place, onClick }) => {
     </nav>
   );
 });
-

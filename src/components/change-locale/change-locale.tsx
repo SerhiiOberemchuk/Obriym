@@ -1,5 +1,5 @@
-﻿import { $, component$, useOnDocument, useSignal, useStylesScoped$ } from "@builder.io/qwik";
-import { useLocation } from "@builder.io/qwik-city";
+import { $, component$, useOnDocument, useSignal, useStylesScoped$ } from "@qwik.dev/core";
+import { useLocation } from "@qwik.dev/router";
 import {
   useSpeakLocale,
   useSpeakConfig,
@@ -53,7 +53,7 @@ export const ChangeLocale = component$(({ place }: { place: "mob-menu" | "header
       >
         <span class="cl_btn_m">{dn(locale.lang.slice(0, 2), { type: "language" })}</span>
         <span class="cl_btn_t">
-          {locale.lang === "uk-UA" ? "РЈРєСЂ" : locale.lang === "it-IT" ? "It" : "Eng"}
+          {locale.lang === "uk-UA" ? "Укр" : locale.lang === "it-IT" ? "It" : "Eng"}
         </span>
         <IconArrow />
       </button>
@@ -74,7 +74,7 @@ export const ChangeLocale = component$(({ place }: { place: "mob-menu" | "header
             >
               <span>
                 {value.lang === "uk-UA"
-                  ? "РЈРєСЂР°С—РЅСЃСЊРєР°"
+                  ? "Українська"
                   : value.lang === "it-IT"
                     ? "Italiano"
                     : "English"}
@@ -87,4 +87,3 @@ export const ChangeLocale = component$(({ place }: { place: "mob-menu" | "header
     </div>
   );
 });
-

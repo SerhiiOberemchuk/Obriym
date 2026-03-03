@@ -1,4 +1,4 @@
-﻿import { component$, useStylesScoped$ } from "@builder.io/qwik";
+import { component$, useStylesScoped$ } from "@qwik.dev/core";
 import styles from "./styles.css?inline";
 import { inlineTranslate } from "qwik-speak";
 export default component$(() => {
@@ -85,4 +85,3 @@ export default component$(() => {
     </section>
   );
 });
-

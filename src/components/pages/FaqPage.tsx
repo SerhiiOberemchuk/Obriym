@@ -1,4 +1,4 @@
-﻿import { component$ } from "@builder.io/qwik";
+import { component$ } from "@qwik.dev/core";
 
 import SectionTitle from "./FAQ/sections/title-section/SectionTitle";
 import QuestionSection from "./FAQ/sections/question-section/QuestionSection";
@@ -36,4 +36,3 @@ export default component$(() => {
     </>
   );
 });
-

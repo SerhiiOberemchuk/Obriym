@@ -1,4 +1,4 @@
-﻿import { component$, Slot, Signal } from "@builder.io/qwik";
+import { component$, Slot, Signal } from "@qwik.dev/core";
 import { Modal } from "@qwik-ui/headless";
 
 import IconClose from "~/assets/icons/icon_close.svg?w-24&h-24&jsx";
@@ -22,4 +22,3 @@ export default component$(({ show }: ModalWrapperProps) => {
     </Modal.Root>
   );
 });
-
