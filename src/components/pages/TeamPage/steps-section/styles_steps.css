@@ -16,7 +16,7 @@
 /* carousel */
 
 .inf_carousel_wrp {
-  padding: 0 16px;
+  /* padding: 0 16px; */
   width: 100%;
   max-width: 120rem;
   margin: 0 auto;
@@ -39,7 +39,7 @@
   .inf_carousel_wrp {
     position: absolute;
     top: 0;
-    padding-left: 40px;
+    /* padding-left: 40px; */
     padding-right: 0;
   }
 }
@@ -56,8 +56,8 @@
     position: static; /*  absolute */
   }
   .inf_carousel_wrp {
-    padding-left: 40px;
-    padding-right: 40px;
+    /* padding-left: 40px;
+    padding-right: 40px; */
   }
   .team_steps_image {
     width: 100px;

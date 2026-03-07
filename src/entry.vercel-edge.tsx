@@ -7,10 +7,10 @@
  * - https://qwik.dev/docs/deployments/vercel-edge/
  *
  */
-import qwikRouterConfig from "@qwik-router-config";
-import { createQwikRouter } from "@qwik.dev/router/middleware/vercel-edge";
+import qwikCityPlan from "@qwik-city-plan";
+import { createQwikCity } from "@builder.io/qwik-city/middleware/vercel-edge";
 import render from "./entry.ssr";
 
 // Removed empty interface declaration as it is redundant.
 
-export default createQwikRouter({ render, qwikRouterConfig });
+export default createQwikCity({ render, qwikCityPlan });

@@ -1,4 +1,4 @@
-import { component$, useStylesScoped$, useSignal, useTask$, useContext } from "@qwik.dev/core";
+import { component$, useStylesScoped$, useSignal, useTask$, useContext } from "@builder.io/qwik";
 import { Modal, usePopover } from "@qwik-ui/headless";
 import { inlineTranslate } from "qwik-speak";
 import { reset, useForm, valiForm$ } from "@modular-forms/qwik";
@@ -39,23 +39,26 @@ export default component$(({ modal }: ContactFormComponentProps) => {
     validate: valiForm$(ContactSchema),
   });
 
-  useTask$(({ track }) => {
+  useTask$(async ({ track }) => {
     // if (!isBrowser) return;
     track(() => contactForm.response);
 
     const result = contactForm.response;
     if (result.status === "success") {
       message.value = "success";
-      // await popoverSuccess.hidePopover();
-      popoverSuccess.showPopover();
       if (modal) {
         isModalLetsWork.value = false;
       }
+      await popoverFail.hidePopover();
+      await popoverSuccess.showPopover();
+      setTimeout(() => {
+        popoverSuccess.hidePopover();
+      }, 3000);
       reset(contactForm);
     } else if (result.status === "error") {
       message.value = "failed";
-      // await popoverFail.hidePopover();
-      popoverFail.showPopover();
+      await popoverSuccess.hidePopover();
+      await popoverFail.showPopover();
     }
   });
 

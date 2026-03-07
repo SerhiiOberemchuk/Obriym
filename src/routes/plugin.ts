@@ -1,4 +1,4 @@
-import type { RequestHandler } from "@qwik.dev/router";
+import type { RequestHandler } from "@builder.io/qwik-city";
 import { setSpeakContext, validateLocale } from "qwik-speak";
 
 import { config } from "../speak-config";

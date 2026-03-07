@@ -6,3 +6,13 @@ declare module "*.css?inline" {
   const content: string;
   export default content;
 }
+
+declare global {
+  namespace QwikJSX {
+    interface IntrinsicElements {
+      "model-viewer": any;
+    }
+  }
+}
+
+export {};

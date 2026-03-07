@@ -10,9 +10,9 @@
  * - npm run build
  *
  */
-import { RenderOptions, renderToStream, type RenderToStreamOptions } from "@qwik.dev/core/server";
+import { RenderOptions, renderToStream, type RenderToStreamOptions } from "@builder.io/qwik/server";
 import Root from "./root";
-import { isDev } from "@qwik.dev/core";
+import { isDev } from "@builder.io/qwik";
 import { config } from "./speak-config";
 
 export function extractBase({ serverData }: RenderOptions): string {

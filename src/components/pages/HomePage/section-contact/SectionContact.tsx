@@ -1,9 +1,10 @@
-import { component$, useStylesScoped$ } from "@qwik.dev/core";
+import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import { inlineTranslate } from "qwik-speak";
 import ContentContact from "./content-contact/ContentContact";
 import InputsContact from "./inputs-contact/InputsContact";
 
 import styles from "./styles_contact.css?inline";
+import AnimatedElement from "~/components/common/animated-ball/AnimatedElement";
 // import IconGreen from "~/assets/images/green.png?w=100&h=100&quality=100&jsx";
 
 export default component$(() => {
@@ -16,7 +17,8 @@ export default component$(() => {
         <div class="c_box_title">
           <div class="c_title_icon">
             {/* <IconGreen aria-hidden="true" /> */}
-            <img src="/images/green.png" alt="" aria-hidden="true" />
+            {/* <img src="/images/green.png" alt="" aria-hidden="true" /> */}
+            <AnimatedElement preset="spring" width={64} height={64} />
           </div>
 
           <h2 class="H3_uppercase grey_dark">{t("home.contact-section.title@@get a contact")}</h2>

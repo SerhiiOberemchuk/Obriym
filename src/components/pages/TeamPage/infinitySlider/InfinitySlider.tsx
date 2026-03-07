@@ -1,12 +1,16 @@
 import {
+  $,
   component$,
+  noSerialize,
+  useComputed$,
+  useContext,
   useSignal,
   useStylesScoped$,
-  $,
-  useComputed$,
   useTask$,
-  useContext,
-} from "@qwik.dev/core";
+  useVisibleTask$,
+  type NoSerialize,
+} from "@builder.io/qwik";
+import type { EmblaCarouselType } from "embla-carousel";
 import { inlineTranslate } from "qwik-speak";
 import styles from "./styles_slider.css?inline";
 
@@ -14,7 +18,7 @@ import IconLeft from "~/assets/icons/icon_left.svg?w=24&h=24&jsx";
 import IconRight from "~/assets/icons/icon_right.svg?w=24&h=24&jsx";
 import SlideComponent from "./slide-component/SlideComponent";
 import ModalWrapper from "~/components/common/modal-component/ModalComponent";
-import { TeamMemberType } from "~/types/team-member.type";
+import type { TeamMemberType } from "~/types/team-member.type";
 import { imageMap } from "~/const/team";
 import { ViewportContext, ViewportWidthContext } from "~/routes/[...lang]/layout";
 
@@ -22,203 +26,116 @@ interface InfinitySliderProps {
   items: TeamMemberType[];
 }
 
-export function getSlideWidthWithGap(track: HTMLElement | null): number {
-  if (!track) return 0;
-
-  const rootStyles = getComputedStyle(document.documentElement);
-  const slides = parseFloat(rootStyles.getPropertyValue("--slides-inf-per-view")) || 1;
-  const gap = parseFloat(rootStyles.getPropertyValue("--inf-gap")) || 0;
-  const padding = parseFloat(rootStyles.getPropertyValue("--inf-container-padding")) || 0;
-
-  const totalGap = gap * (slides - 1);
-  const slideWidth = (track.offsetWidth - totalGap - 1 * padding) / slides;
-
-  return slideWidth + gap;
-}
+type AutoplayController = {
+  play: () => void;
+  stop: () => void;
+  reset: () => void;
+};
 
 export default component$(({ items }: InfinitySliderProps) => {
   useStylesScoped$(styles);
   const t = inlineTranslate();
   const viewportCategory = useContext(ViewportContext);
   const viewportWidth = useContext(ViewportWidthContext);
+
+  const viewportRef = useSignal<HTMLDivElement>();
+  const emblaApi = useSignal<NoSerialize<EmblaCarouselType>>();
+  const autoplay = useSignal<NoSerialize<AutoplayController>>();
+  const activeIndex = useSignal(0);
+  const isPaused = useSignal(false);
   const isOpen = useSignal(false);
   const selectedItem = useSignal<TeamMemberType | null>(null);
 
-  const itemsOriginalSignal = useSignal<TeamMemberType[]>(items);
-  const currentMegaIndex = useSignal(2);
-  const itemsSignal = useSignal<TeamMemberType[]>(items);
-  const trackRef = useSignal<HTMLElement | undefined>();
-  const isPaused = useSignal(false);
-  const activeIndex = useSignal(0);
+  const canUseSlider = useComputed$(() => items.length > 1);
+  const isMobile = useComputed$(() => viewportCategory.value === "mobile");
 
-  const isAnimating = useSignal(false);
-  const isReady = useSignal(false);
-
-  const baseItems = useComputed$(() => {
-    const items = itemsSignal.value;
-    if (items.length === 0) return [];
-    if (viewportCategory.value === "mobile") {
-      const last = items[items.length - 1];
-      const first = items[0];
-      return [last, ...items, first];
-    }
-    if (viewportCategory.value === "tablet") {
-      const cloneCount = 2;
-      const clonesFromEnd = items.slice(-cloneCount);
-      const clonesFromStart = items.slice(0, cloneCount);
-
-      return [...clonesFromEnd, ...items, ...clonesFromStart];
-    }
-    return items;
-  });
-
-  useTask$(({ track }) => {
-    track(() => viewportCategory.value);
-    track(() => viewportWidth.value);
-    const trackR = trackRef.value;
-    if (!trackR || baseItems.value.length === 0) return;
-    trackR.style.transition = "none";
-
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        const slideWidthWithGap = Math.round(getSlideWidthWithGap(trackR));
-
-        if (viewportCategory.value === "mobile") {
-          trackR.style.transform = `translate3d(-${slideWidthWithGap}px, 0, 0)`;
-        } else if (viewportCategory.value === "tablet") {
-          const cloneCount = 2;
-          trackR.style.transform = `translate3d(-${slideWidthWithGap * cloneCount}px, 0, 0)`;
-        } else {
-          trackR.style.transform = "translate3d(0, 0, 0)";
-        }
-
-        trackR.style.transition = "transform 0.4s ease";
-
-        isReady.value = true;
-      });
-    });
-  });
-
-  useTask$(({ cleanup, track }) => {
-    track(() => isOpen.value);
-    track(() => isReady.value);
-    track(() => isPaused.value);
-    track(() => viewportCategory.value);
-    track(() => viewportWidth.value);
-
-    if (
-      isOpen.value ||
-      !isReady.value ||
-      isPaused.value ||
-      viewportCategory.value !== "mobile"
-      //|| isAnimating.value
-    )
-      return;
-    const trackR = trackRef.value;
-    if (!trackR) return;
-    let currentIndex = 1;
-    const cloneCount = 1; //pro side
-    const realSlidesCount = itemsOriginalSignal.value.length;
-    const totalSlides = baseItems.value.length;
-    const slideWidthWithGap = Math.round(getSlideWidthWithGap(trackR));
-
-    const interval = setInterval(() => {
-      isAnimating.value = true;
-
-      currentIndex++;
-
-      trackR.style.transition = "transform 0.4s ease";
-      trackR.style.transform = `translate3d(-${slideWidthWithGap * currentIndex}px, 0, 0)`;
-
-      const onTransitionEnd = () => {
-        trackR.removeEventListener("transitionend", onTransitionEnd);
-
-        activeIndex.value = (currentIndex - cloneCount + realSlidesCount) % realSlidesCount;
-        if (currentIndex >= totalSlides - 1) {
-          currentIndex = 1;
-          trackR.style.transition = "none";
-          trackR.style.transform = `translate3d(-${slideWidthWithGap * currentIndex}px, 0, 0)`;
-        }
-        isAnimating.value = false;
-      };
-
-      trackR.addEventListener("transitionend", onTransitionEnd);
-    }, 3000);
-
-    cleanup(() => clearInterval(interval));
-  });
-
-  //Next
-  const nextSlide = $(() => {
-    // console.log("in next");
-    if (!isReady.value || isAnimating.value) return;
-    const track = trackRef.value;
-    if (!track) return;
-
-    const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
-    isAnimating.value = true;
-
-    currentMegaIndex.value += 1;
-
-    track.style.transition = "transform 0.4s ease";
-    track.style.transform = `translate3d(-${slideWidthWithGap * currentMegaIndex.value}px, 0, 0)`;
-
-    const onTransitionEnd = () => {
-      track.removeEventListener("transitionend", onTransitionEnd);
-
-      if (currentMegaIndex.value === baseItems.value.length - 2) {
-        currentMegaIndex.value = 2;
-        track.style.transition = "none";
-        track.style.transform = `translate3d(-${slideWidthWithGap * currentMegaIndex.value}px, 0, 0)`;
-      }
-
-      isAnimating.value = false;
-    };
-
-    track.addEventListener("transitionend", onTransitionEnd);
-  });
-
-  // Previous slide
-  const prevSlide = $(() => {
-    if (!isReady.value || isAnimating.value) return;
-
-    const track = trackRef.value;
-    if (!track) return;
-
-    const slideWidthWithGap = Math.round(getSlideWidthWithGap(track));
-    isAnimating.value = true;
-
-    currentMegaIndex.value -= 1;
-
-    track.style.transition = "transform 0.4s ease";
-    track.style.transform = `translate3d(-${slideWidthWithGap * currentMegaIndex.value}px, 0, 0)`;
-
-    const onTransitionEnd = () => {
-      track.removeEventListener("transitionend", onTransitionEnd);
-
-      // if we are at the first ind clonedslide, go to the last real slide
-      if (currentMegaIndex.value === 1) {
-        currentMegaIndex.value = baseItems.value.length - 3;
-
-        track.style.transition = "none";
-        track.style.transform = `translate3d(-${slideWidthWithGap * currentMegaIndex.value}px, 0, 0)`;
-      }
-
-      isAnimating.value = false;
-    };
-
-    track.addEventListener("transitionend", onTransitionEnd);
-  });
-
-  //for modal
   const openModal = $((item: TeamMemberType) => {
     selectedItem.value = item;
     isOpen.value = true;
   });
+
+  const nextSlide = $(() => {
+    emblaApi.value?.scrollNext();
+    autoplay.value?.reset();
+  });
+
+  const prevSlide = $(() => {
+    emblaApi.value?.scrollPrev();
+    autoplay.value?.reset();
+  });
+
+  const goToSlide = $((index: number) => {
+    emblaApi.value?.scrollTo(index);
+    autoplay.value?.reset();
+  });
+
   useTask$(({ track }) => {
     const open = track(() => isOpen.value);
     if (!open) {
       selectedItem.value = null;
+    }
+  });
+
+  useVisibleTask$(async ({ cleanup, track }) => {
+    track(() => viewportCategory.value);
+    track(() => viewportWidth.value);
+
+    if (!viewportRef.value || !canUseSlider.value) return;
+
+    const emblaCarousel = (await import("embla-carousel")).default;
+    const autoPlayFactory = (await import("embla-carousel-autoplay")).default;
+
+    const autoplayPlugin = autoPlayFactory({
+      delay: 3000,
+      stopOnInteraction: false,
+      stopOnMouseEnter: false,
+      stopOnFocusIn: false,
+      playOnInit: false,
+    });
+
+    const api = emblaCarousel(
+      viewportRef.value,
+      {
+        loop: true,
+        align: "start",
+        axis: "x",
+        dragFree: true,
+      },
+      [autoplayPlugin],
+    );
+
+    emblaApi.value = noSerialize(api);
+    autoplay.value = noSerialize(autoplayPlugin as AutoplayController);
+    activeIndex.value = api.selectedScrollSnap();
+
+    const onSelect = () => {
+      activeIndex.value = api.selectedScrollSnap();
+    };
+
+    api.on("select", onSelect);
+    api.on("reInit", onSelect);
+
+    cleanup(() => {
+      autoplayPlugin.stop();
+      api.destroy();
+      emblaApi.value = undefined;
+      autoplay.value = undefined;
+    });
+  });
+
+  useTask$(({ track }) => {
+    track(() => isMobile.value);
+    track(() => isPaused.value);
+    track(() => isOpen.value);
+    track(() => emblaApi.value);
+
+    const controller = autoplay.value;
+    if (!controller) return;
+
+    if (isMobile.value && !isPaused.value && !isOpen.value) {
+      controller.play();
+    } else {
+      controller.stop();
     }
   });
 
@@ -230,8 +147,14 @@ export default component$(({ items }: InfinitySliderProps) => {
   });
 
   return (
-    <div class="inf_carousel-container">
-      {/* BUTTONS viewportCategory.value === "tablet"*/}
+    <div
+      class="inf_carousel-container"
+      onMouseEnter$={() => (isPaused.value = true)}
+      onMouseLeave$={() => (isPaused.value = false)}
+      onTouchStart$={() => (isPaused.value = true)}
+      onTouchEnd$={() => (isPaused.value = false)}
+      onTouchCancel$={() => (isPaused.value = false)}
+    >
       <div class="inf_btn_controls">
         <button onClick$={prevSlide} aria-label={t("team.aria.slider.button_prev@@Previous slide")}>
           <IconLeft />
@@ -240,50 +163,43 @@ export default component$(({ items }: InfinitySliderProps) => {
           <IconRight />
         </button>
       </div>
-      {/* SLIDER */}
-      <div
-        class="inf_carousel-track"
-        role="region"
-        ref={trackRef}
-        onMouseEnter$={() => (isPaused.value = true)}
-        onMouseLeave$={() => (isPaused.value = false)}
-        onTouchStart$={() => (isPaused.value = true)}
-        onTouchEnd$={() => (isPaused.value = false)}
-        onTouchCancel$={() => (isPaused.value = false)}
-      >
-        {baseItems.value.map((item, i) => (
-          <div
-            class={`inf_carousel-slide ${!isReady.value ? "invisible" : ""}`}
-            key={`slide-${item.id}-${i}`}
-            role="group"
-            aria-labelledby={`name-${item.id}`}
-            aria-describedby={`role-${item.id}`}
-          >
-            <SlideComponent item={item} onOpen$={$(() => openModal(item))} />
-          </div>
-        ))}
-      </div>
-      {/* DOTS */}
-      {isReady.value && (
-        <div
-          class="inf_carousel-dots"
-          aria-label={t("team.aria.slider.dots_btn@@Slide navigation")}
-        >
-          {itemsOriginalSignal.value.map((_, i) => (
+
+      <div class="inf_carousel-viewport" ref={viewportRef} role="region">
+        <div class="inf_carousel-track">
+          {items.map(item => (
             <div
-              key={`dot-${i}`}
-              aria-current={i === activeIndex.value ? "true" : undefined}
-              aria-label={t("team.aria.slider.dots_current@@Slide {{current}} of {{total}}", {
-                current: i + 1,
-                total: itemsOriginalSignal.value.length,
-              })}
-              class={`inf_dot-wrapper ${i === activeIndex.value ? "active" : ""}`}
+              class="inf_carousel-slide"
+              key={`slide-${item.id}`}
+              role="group"
+              aria-labelledby={`name-${item.id}`}
+              aria-describedby={`role-${item.id}`}
             >
-              <div class={`inf_dot ${i === activeIndex.value ? "active" : ""}`} />
+              <SlideComponent item={item} onOpen$={$(() => openModal(item))} />
             </div>
           ))}
         </div>
+      </div>
+
+      {canUseSlider.value && (
+        <div class="inf_carousel-dots" aria-label={t("team.aria.slider.dots_btn@@Slide navigation")}>
+          {items.map((_, i) => (
+            <button
+              key={`dot-${i}`}
+              type="button"
+              onClick$={$(() => goToSlide(i))}
+              aria-current={i === activeIndex.value ? "true" : undefined}
+              aria-label={t("team.aria.slider.dots_current@@Slide {{current}} of {{total}}", {
+                current: i + 1,
+                total: items.length,
+              })}
+              class={`inf_dot-wrapper ${i === activeIndex.value ? "active" : ""}`}
+            >
+              <span class={`inf_dot ${i === activeIndex.value ? "active" : ""}`} />
+            </button>
+          ))}
+        </div>
       )}
+
       <ModalWrapper show={isOpen}>
         {selectedItem.value && (
           <div class="modal-scrollable-content">
@@ -298,7 +214,6 @@ export default component$(({ items }: InfinitySliderProps) => {
                 {selectedItem.value && imageMap[selectedItem.value.imageKey]()}
               </div>
               <div class="modal-content">
-                {/* title */}
                 <div class="modal-title-block">
                   <h2 class=" body_big" id={`modal-title-${selectedItem.value.id}`}>
                     {t(`team.member.${selectedItem.value.slug}.name@@${selectedItem.value.name}`)}
@@ -308,7 +223,6 @@ export default component$(({ items }: InfinitySliderProps) => {
                     {selectedItem.value.role}
                   </p>
                 </div>
-                {/* text-block*/}
                 <div class="modal-text-block" id={`modal-desc-${selectedItem.value.id}`}>
                   <p class="btn_body grey">
                     {t(

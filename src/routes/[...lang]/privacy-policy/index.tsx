@@ -1,7 +1,8 @@
-import { component$ } from "@qwik.dev/core";
-import { DocumentHead } from "@qwik.dev/router";
+import { component$ } from "@builder.io/qwik";
+import { DocumentHead } from "@builder.io/qwik-city";
 import { inlineTranslate } from "qwik-speak";
 import PrivacyPage from "~/components/pages/PrivacyPage";
+import { getAlternateLinks, getCanonicalUrl } from "~/utils/seo";
 
 export default component$(() => {
   return (
@@ -30,8 +31,9 @@ export default component$(() => {
   );
 });
 
-export const head: DocumentHead = () => {
+export const head: DocumentHead = ({ url }) => {
   const t = inlineTranslate();
+  const canonical = getCanonicalUrl(url.pathname);
 
   return {
     title: t("app.head.privacy.title@@Privacy Policy | Obriym"),
@@ -48,7 +50,7 @@ export const head: DocumentHead = () => {
         content: "Our Privacy Policy explains how we collect, use, and protect your personal data.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://obriym.com/privacy-policy" },
+      { property: "og:url", content: canonical },
       { property: "og:image", content: "https://obriym.com/images/privacy/og-image.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Privacy Policy | Obriym" },
@@ -59,12 +61,6 @@ export const head: DocumentHead = () => {
       { name: "twitter:image", content: "https://obriym.com/images/privacy/og-image.jpg" },
       { name: "robots", content: "index, follow" },
     ],
-    links: [
-      { rel: "alternate", hreflang: "en", href: "https://obriym.com/privacy-policy" },
-      { rel: "alternate", hreflang: "uk-UA", href: "https://obriym.com/uk-UA/privacy-policy" },
-      { rel: "alternate", hreflang: "it-IT", href: "https://obriym.com/it-IT/privacy-policy" },
-      { rel: "alternate", hreflang: "x-default", href: "https://obriym.com/privacy-policy" },
-      { rel: "canonical", href: "https://obriym.com/privacy-policy" },
-    ],
+    links: getAlternateLinks(url.pathname),
   };
 };

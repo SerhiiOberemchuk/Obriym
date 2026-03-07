@@ -1,10 +1,10 @@
-import { component$, useStylesScoped$ } from "@qwik.dev/core";
+import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import { inlineTranslate } from "qwik-speak";
 
 import styles from "./styles_steps.css?inline";
 import { TEAM_MEMBERS } from "~/const/team";
-// import PinkImg from "~/assets/images/pink.png?w=100&h=100&jsx";
 import InfinitySlider from "../infinitySlider/InfinitySlider";
+// import PinkImg from "~/assets/images/pink.png?w=100&h=100&jsx";
 
 // interface StepsSectionProps {
 //   viewportCategory: "mobile" | "tablet" | "desktop";

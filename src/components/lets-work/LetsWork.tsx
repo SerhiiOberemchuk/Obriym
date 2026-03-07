@@ -1,4 +1,4 @@
-import { $, component$, createContextId, Signal, useContext, useStyles$ } from "@qwik.dev/core";
+import { $, component$, createContextId, Signal, useContext, useStyles$ } from "@builder.io/qwik";
 import styles from "./lw-styles.css?inline";
 import { inlineTranslate } from "qwik-speak";
 import { Modal } from "@qwik-ui/headless";

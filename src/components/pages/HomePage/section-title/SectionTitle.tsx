@@ -1,6 +1,7 @@
-import { component$, useStylesScoped$ } from "@qwik.dev/core";
+import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import { inlineTranslate } from "qwik-speak";
 import styles from "./st-styles.css?inline";
+import AnimatedElement from "~/components/common/animated-ball/AnimatedElement";
 // import ImgHeroSl from "~/assets/images/hero_slides.png?w=234&h=124&jsx";
 // import TitleAbstract from "~/assets/images/element-title.png?h=64&w=64&quality=100&jsx";
 // import IconGreen from "~/assets/images/green.png?w=100&h=100&quality=100&jsx";
@@ -24,7 +25,8 @@ export default component$(() => {
           </span>
           <span class="H1_extra_light grey_dark">{t("home.stitle.2span@@digital")}</span>
           {/* <IconGreen class="spring_model" aria-hidden={true}></IconGreen> */}
-          <img src="/images/green.png" class="spring_model" alt="" aria-hidden={true} />
+          {/* <img src="/images/green.png" class="spring_model" alt="" aria-hidden={true} /> */}
+          <AnimatedElement class="spring_model" preset="spring" width={80} height={80} />
           <span class="H1_extra_light grey_dark" aria-hidden={true}>
             {t("home.stitle.3span@@products")}.
           </span>

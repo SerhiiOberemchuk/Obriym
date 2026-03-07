@@ -1,4 +1,4 @@
-import { component$, Slot, useStylesScoped$ } from "@qwik.dev/core";
+import { component$, Slot, useStylesScoped$ } from "@builder.io/qwik";
 import styles from "./card-tyles.css?inline";
 import { ServicesCardProps } from "~/types/services-card.type";
 

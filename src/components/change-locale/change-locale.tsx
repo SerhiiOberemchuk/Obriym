@@ -1,5 +1,5 @@
-import { $, component$, useOnDocument, useSignal, useStylesScoped$ } from "@qwik.dev/core";
-import { useLocation } from "@qwik.dev/router";
+import { $, component$, useOnDocument, useSignal, useStylesScoped$ } from "@builder.io/qwik";
+import { useLocation } from "@builder.io/qwik-city";
 import {
   useSpeakLocale,
   useSpeakConfig,

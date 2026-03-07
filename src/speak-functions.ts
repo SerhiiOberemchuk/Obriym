@@ -1,4 +1,4 @@
-import { server$ } from "@qwik.dev/router";
+import { server$ } from "@builder.io/qwik-city";
 import type { LoadTranslationFn, Translation, TranslationFn } from "qwik-speak";
 
 /**
