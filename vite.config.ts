@@ -29,7 +29,7 @@ export default defineConfig(({ command, mode }): UserConfig => {
       qwikVite(),
       visualizer({
         filename: "dist/stats.html",
-        open: true,
+        open: false,
         gzipSize: true,
         brotliSize: true,
       }),
