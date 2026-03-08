@@ -1,4 +1,4 @@
-import { JSXChildren } from "@qwik.dev/core";
+import { JSXChildren } from "@builder.io/qwik";
 
 export type ServicesCardProps = {
   title: string;

@@ -1,4 +1,4 @@
-import { component$ } from "@qwik.dev/core";
+import { component$ } from "@builder.io/qwik";
 import Logo from "~/components/common/logo/logo";
 import "./h-styles.css";
 import { ChangeLocale } from "~/components/change-locale/change-locale";

@@ -10,7 +10,6 @@ export async function sendEmail(
   },
 ) {
   const resend = new Resend(resendApiKey);
-  console.log("in sendEmail", params.from);
   return resend.emails.send({
     from: params.from,
     to: params.to,

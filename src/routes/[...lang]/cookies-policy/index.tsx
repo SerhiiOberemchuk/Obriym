@@ -1,7 +1,8 @@
-import { component$ } from "@qwik.dev/core";
-import { DocumentHead } from "@qwik.dev/router";
+import { component$ } from "@builder.io/qwik";
+import { DocumentHead } from "@builder.io/qwik-city";
 import { inlineTranslate } from "qwik-speak";
 import CookiesSection from "~/components/pages/CoociesPage/CookiesSection";
+import { getAlternateLinks, getCanonicalUrl } from "~/utils/seo";
 
 export default component$(() => {
   return (
@@ -35,8 +36,9 @@ export default component$(() => {
   );
 });
 
-export const head: DocumentHead = () => {
+export const head: DocumentHead = ({ url }) => {
   const t = inlineTranslate();
+  const canonical = getCanonicalUrl(url.pathname);
 
   return {
     title: t("app.head.cookies.title@@Cookies Policy | Obriym"),
@@ -53,7 +55,7 @@ export const head: DocumentHead = () => {
         content: "Our cookies policy explains how we use cookies to improve your experience.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://obriym.com/cookies-policy" },
+      { property: "og:url", content: canonical },
       { property: "og:image", content: "https://obriym.com/images/cookies/og-image.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Cookies Policy | Obriym" },
@@ -64,31 +66,6 @@ export const head: DocumentHead = () => {
       { name: "twitter:image", content: "https://obriym.com/images/cookies/og-image.jpg" },
       { name: "robots", content: "index, follow" },
     ],
-    links: [
-      {
-        rel: "alternate",
-        hreflang: "en",
-        href: "https://obriym.com/cookies-policy",
-      },
-      {
-        rel: "alternate",
-        hreflang: "uk-UA",
-        href: "https://obriym.com/uk-UA/cookies-policy",
-      },
-      {
-        rel: "alternate",
-        hreflang: "it-IT",
-        href: "https://obriym.com/it-IT/cookies-policy",
-      },
-      {
-        rel: "alternate",
-        hreflang: "x-default",
-        href: "https://obriym.com/cookies-policy",
-      },
-      {
-        rel: "canonical",
-        href: "https://obriym.com/cookies-policy",
-      },
-    ],
+    links: getAlternateLinks(url.pathname),
   };
 };

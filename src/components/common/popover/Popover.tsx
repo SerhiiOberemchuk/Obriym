@@ -1,4 +1,4 @@
-import { component$, useSignal, useStylesScoped$ } from "@qwik.dev/core";
+import { component$, useSignal, useStylesScoped$ } from "@builder.io/qwik";
 import { inlineTranslate } from "qwik-speak";
 import { Popover } from "@qwik-ui/headless";
 

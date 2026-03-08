@@ -1,4 +1,4 @@
-import { createContextId, QRL, useSignal } from "@qwik.dev/core";
+import { createContextId, QRL, useSignal } from "@builder.io/qwik";
 
 export type CookiesBannerContextType = {
   isVisible: ReturnType<typeof useSignal<boolean>>;

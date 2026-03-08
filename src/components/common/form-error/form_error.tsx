@@ -1,4 +1,4 @@
-import { component$, useStylesScoped$ } from "@qwik.dev/core";
+import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import { inlineTranslate } from "qwik-speak";
 import styles from "./form_error.css?inline";
 import IconError from "~/assets/icons/icon_error.svg?w=20&h20&jsx";

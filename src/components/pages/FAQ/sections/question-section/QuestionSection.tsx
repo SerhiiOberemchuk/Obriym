@@ -1,4 +1,4 @@
-import { component$, useStylesScoped$ } from "@qwik.dev/core";
+import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import { inlineTranslate } from "qwik-speak";
 import IconPinkBall from "~/assets/images/faq-page/faq-balloons.png?w=100&h=100&jsx";
 import IconYell from "~/assets/images/faq-page/faq-yel-pink.png?w=100&h=100&jsx";

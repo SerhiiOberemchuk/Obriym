@@ -1,4 +1,4 @@
-import { component$, useStylesScoped$, useVisibleTask$ } from "@qwik.dev/core";
+import { component$, useStylesScoped$, useVisibleTask$ } from "@builder.io/qwik";
 import styles from "./hiw-styles.css?inline";
 import SubTitle from "~/components/common/subtitile/SubTitle";
 import { StepHowItWork } from "~/types/step-how-it-eork.type";

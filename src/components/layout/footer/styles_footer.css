@@ -25,9 +25,10 @@ footer {
   flex-wrap: wrap;
   align-items: center;
 }
-.f_box_title img {
+.footer_ball {
   margin-inline-start: 0.25rem;
   margin-block: auto;
+  flex: 0 0 auto;
 }
 .privacy_list {
   display: flex;

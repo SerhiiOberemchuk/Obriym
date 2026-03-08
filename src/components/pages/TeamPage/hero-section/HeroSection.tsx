@@ -1,4 +1,4 @@
-import { component$, useStylesScoped$ } from "@qwik.dev/core";
+import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import { inlineTranslate } from "qwik-speak";
 // import Abstract_3d from "~/assets/images/abstract_3d.png?w=64&h=64&jsx";
 // import Frame_98 from "~/assets/images/frame_98.png?w=65&h=64&jsx";

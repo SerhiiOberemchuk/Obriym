@@ -4,7 +4,7 @@ import Oberemchuk from "~/assets/images/oberemchuk.png?w=880&h=1192&jsx";
 import Kovchyk from "~/assets/images/ganna_kovchyk.png?w=880&h=1192&jsx";
 import Nazarenko from "~/assets/images/olga_nazarenko.png?w=880&h=1192&jsx";
 import Kiriiaka from "~/assets/images/svitlana_kiriiaka.png?w=880&h=1192&jsx";
-import type { JSX } from "@qwik.dev/core";
+import type { JSX } from "@builder.io/qwik";
 
 export const TEAM_MEMBERS: TeamMemberType[] = [
   {

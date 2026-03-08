@@ -1,8 +1,9 @@
-import { component$, Slot, useStylesScoped$ } from "@qwik.dev/core";
+import { component$, Slot, useStylesScoped$ } from "@builder.io/qwik";
 // import PinkDark from "~/assets/images/pink_dark.png?w=100&h=100&jsx";
 // import Pink from "~/assets/images/pink.png?w=100&h=100&jsx";
 // import Shape from "~/assets/images/shape.png?w=100&h=100&quality=100&jsx";
 import styles from "./subt-styles.css?inline";
+import AnimatedElement from "../animated-ball/AnimatedElement";
 
 type Props = { section?: "services" | "projects" | "how-it-work"; classes?: string };
 
@@ -13,15 +14,18 @@ export default component$<Props>(({ section, classes }) => {
     <div class={["c_box_title", classes]}>
       {section === "services" && (
         // <PinkDark class="c_title_icon" aria-hidden="true" />
-        <img src="/images/pink_dark.png" class="c_title_icon" aria-hidden="true" alt="pink" />
+        // <img src="/images/pink_dark.png" class="c_title_icon" aria-hidden="true" alt="pink" />
+        <AnimatedElement preset="torus" width={64} height={64} />
       )}
       {section === "how-it-work" && (
         // <Pink class="c_title_icon" aria-hidden="true" />
-        <img src="/images/pink.png" class="c_title_icon" aria-hidden="true" alt="pink" />
+        // <img src="/images/pink.png" class="c_title_icon" aria-hidden="true" alt="pink" />
+        <AnimatedElement preset="cube" width={64} height={64} />
       )}
       {section === "projects" && (
         // <Shape class="c_title_icon" aria-hidden="true" />
-        <img src="/images/shape.png" class="c_title_icon" aria-hidden="true" alt="shape" />
+        // <img src="/images/shape.png" class="c_title_icon" aria-hidden="true" alt="shape" />
+        <AnimatedElement preset="pipe" width={64} height={64} />
       )}
 
       <h2 class="H3_uppercase grey_dark">

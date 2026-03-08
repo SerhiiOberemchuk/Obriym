@@ -1,13 +1,13 @@
-import { component$, useContext, useStylesScoped$ } from "@qwik.dev/core";
+import { component$, useContext, useStylesScoped$ } from "@builder.io/qwik";
 import Logo from "~/components/common/logo/logo";
 import { inlineTranslate, localizePath } from "qwik-speak";
 import styles from "./styles_footer.css?inline";
 import NavList from "~/components/common/nav-list/NavList";
 import FollowUs from "./follow-us/FollowUs";
 import IconCookies from "~/assets/icons/cookies-icon.svg?w=38&h=38&jsx";
-// import GreenBall from "~/assets/images/green-ball.png?h=48&w=48&quality=100&jsx";
-import { Link } from "@qwik.dev/router";
+import { Link } from "@builder.io/qwik-city";
 import { CookiesBannerContext } from "~/components/cookies-banner/coocies-banner-context";
+import AnimatedElement from "~/components/common/animated-ball/AnimatedElement";
 
 export default component$(() => {
   const t = inlineTranslate();
@@ -30,8 +30,7 @@ export default component$(() => {
         <h3 class="f_box_title" aria-label="Company motto">
           <span class="body_big grey">{t("footer.text.webuild1@@We build end-to-end")}</span>
           <span class="body_big grey"> {t("footer.text.webuild2@@digital products")}</span>
-          {/* <GreenBall aria-hidden={true} /> */}
-          <img src="/images/green-ball.png" width={48} height={48} alt="green ball" />
+          <AnimatedElement class="footer_ball" width={48} height={48} preset="greenball" />
         </h3>
         <div class="nav_wrapper">
           <button

@@ -4,22 +4,53 @@ import { ContactForm, ContactFormResponse } from "~/types/contact-form.type";
 import { sendEmail } from "~/utils/sendEmail";
 import { getEmailHtmlToUs, getEmailHtmlToUser } from "./emailTemplates";
 
+function getEnvValue(
+  requestEvent: { env?: { get: (key: string) => string | undefined } },
+  key: string,
+) {
+  const fromRequest = requestEvent.env?.get(key);
+  if (fromRequest) return fromRequest;
+  if (typeof process !== "undefined") {
+    return process.env?.[key];
+  }
+  return undefined;
+}
+
 export const useFormAction = formAction$<ContactForm, ContactFormResponse>(
   async (values, requestEvent) => {
     const { services, budget, name, email, message } = values;
-
-    const resendApiKey = requestEvent.env.get("RESEND_API_KEY");
-    const myDomainEmail = requestEvent.env.get("EMAIL_RECEIVER");
-
-    if (!resendApiKey) throw new Error("RESEND_API_KEY is not defined");
-    if (!myDomainEmail) throw new Error("EMAIL_RECEIVER is not defined");
-
-    const emailHtmlToUs = getEmailHtmlToUs({ name, email, services, budget, message });
-    const emailHtmlToUser = getEmailHtmlToUser(name);
     try {
+      const resendApiKey = getEnvValue(requestEvent, "RESEND_API_KEY");
+      const emailReceiver = getEnvValue(requestEvent, "EMAIL_RECEIVER");
+      const emailFrom = getEnvValue(requestEvent, "EMAIL_FROM") || emailReceiver;
+
+      if (!resendApiKey) {
+        return {
+          status: "error",
+          message: "Server email configuration is incomplete: RESEND_API_KEY is missing.",
+        };
+      }
+
+      if (!emailReceiver) {
+        return {
+          status: "error",
+          message: "Server email configuration is incomplete: EMAIL_RECEIVER is missing.",
+        };
+      }
+
+      if (!emailFrom) {
+        return {
+          status: "error",
+          message: "Server email configuration is incomplete: EMAIL_FROM is missing.",
+        };
+      }
+
+      const emailHtmlToUs = getEmailHtmlToUs({ name, email, services, budget, message });
+      const emailHtmlToUser = getEmailHtmlToUser(name);
+
       const resultToUs = await sendEmail(resendApiKey, {
-        from: myDomainEmail,
-        to: myDomainEmail,
+        from: emailFrom,
+        to: emailReceiver,
         subject: "New contact form submission",
         html: emailHtmlToUs,
       });
@@ -32,7 +63,7 @@ export const useFormAction = formAction$<ContactForm, ContactFormResponse>(
       }
 
       await sendEmail(resendApiKey, {
-        from: myDomainEmail,
+        from: emailFrom,
         to: email,
         subject: "Thank you for reaching out!",
         html: emailHtmlToUser,

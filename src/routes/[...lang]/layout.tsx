@@ -8,8 +8,8 @@ import {
   $,
   useOnWindow,
   useVisibleTask$,
-} from "@qwik.dev/core";
-import { routeLoader$ } from "@qwik.dev/router";
+} from "@builder.io/qwik";
+import { routeLoader$ } from "@builder.io/qwik-city";
 import NavList from "~/components/common/nav-list/NavList";
 import Popover from "~/components/common/popover/Popover";
 import {

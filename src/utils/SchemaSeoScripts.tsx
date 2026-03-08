@@ -1,4 +1,4 @@
-import { component$ } from "@qwik.dev/core";
+import { component$ } from "@builder.io/qwik";
 import { useSpeakLocale } from "qwik-speak";
 
 import { howToWorkSchemaEN } from "~/seo/schemas/howToWork/howToSchema.en";
