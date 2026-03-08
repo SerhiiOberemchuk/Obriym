@@ -1,11 +1,12 @@
 import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { Link } from "@builder.io/qwik-city";
+import { Link, useLocation } from "@builder.io/qwik-city";
 import { inlineTranslate, useSpeakLocale } from "qwik-speak";
 import SubTitle from "~/components/common/subtitile/SubTitle";
 import SectionContact from "../HomePage/section-contact/SectionContact";
 import styles from "./projects-page.css?inline";
 import type { Project } from "~/types/project.type";
 import { type ProjectLocale, getLocalizedProject } from "~/utils/projects";
+import { SITE } from "~/utils/seo";
 
 type ProjectsPageProps = {
   projects: Project[];
@@ -16,10 +17,66 @@ export default component$<ProjectsPageProps>(({ projects }) => {
 
   const { lang } = useSpeakLocale();
   const t = inlineTranslate();
+  const loc = useLocation();
   const localizedProjects = projects.map(project => getLocalizedProject(project, lang as ProjectLocale));
+  const canonical = `${SITE}${loc.url.pathname === "/" ? "/" : loc.url.pathname.replace(/\/+$/, "")}`;
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: t("navigation.home@@Home"),
+        item: `${SITE}${lang === "uk-UA" ? "/uk-UA" : lang === "it-IT" ? "/it-IT" : ""}` || SITE,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: t("home.sectionProject.title@@Projects"),
+        item: canonical,
+      },
+    ],
+  };
+  const collectionSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: t("projects.head.title@@Projects | SEO-ready websites and digital products | {{name}}", {
+      name: "OBRIYM",
+    }),
+    description: t(
+      "projects.head.description@@Explore OBRIYM projects: fast SEO-ready websites, multilingual platforms and digital products created for ambitious brands across Europe.",
+    ),
+    url: canonical,
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: localizedProjects.map((project, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: `${SITE}${project.detailPath}`,
+        name: project.localizedTitle,
+      })),
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "OBRIYM",
+      url: SITE,
+    },
+  };
 
   return (
     <>
+      <script
+        id="projects-collection-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={JSON.stringify(collectionSchema)}
+      ></script>
+      <script
+        id="projects-breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={JSON.stringify(breadcrumbSchema)}
+      ></script>
+
       <section class="projects_page_hero">
         <div class="container">
           <SubTitle section="projects" classes="projects_page_subtitle">

@@ -1,10 +1,11 @@
 import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { Link } from "@builder.io/qwik-city";
-import { inlineTranslate } from "qwik-speak";
+import { Link, useLocation } from "@builder.io/qwik-city";
+import { inlineTranslate, useSpeakLocale } from "qwik-speak";
 import SubTitle from "~/components/common/subtitile/SubTitle";
 import SectionContact from "../HomePage/section-contact/SectionContact";
 import styles from "./project-detail-page.css?inline";
 import type { LocalizedProject } from "~/utils/projects";
+import { SITE } from "~/utils/seo";
 
 type ProjectDetailPageProps = {
   project: LocalizedProject;
@@ -14,9 +15,77 @@ type ProjectDetailPageProps = {
 export default component$<ProjectDetailPageProps>(({ project, relatedProjects }) => {
   useStylesScoped$(styles);
   const t = inlineTranslate();
+  const loc = useLocation();
+  const { lang } = useSpeakLocale();
+  const homePath = `${SITE}${lang === "uk-UA" ? "/uk-UA" : lang === "it-IT" ? "/it-IT" : ""}` || SITE;
+  const projectsPath = `${SITE}${project.detailPath.replace(`/${project.slug}`, "") || "/projects"}`;
+  const canonical = `${SITE}${loc.url.pathname === "/" ? "/" : loc.url.pathname.replace(/\/+$/, "")}`;
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: t("navigation.home@@Home"),
+        item: homePath,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: t("home.sectionProject.title@@Projects"),
+        item: projectsPath,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: project.localizedTitle,
+        item: canonical,
+      },
+    ],
+  };
+  const creativeWorkSchema = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.localizedTitle,
+    description: project.localizedDescription,
+    url: canonical,
+    image: project.image_src,
+    dateModified: project.updated_at,
+    datePublished: project.created_at,
+    keywords: project.technologies.join(", "),
+    inLanguage: project.locale,
+    genre: project.localizedCategory,
+    about: project.localizedFeatures,
+    creator: {
+      "@type": "Organization",
+      name: "OBRIYM",
+      url: SITE,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "OBRIYM",
+      url: SITE,
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": canonical,
+    },
+  };
 
   return (
     <>
+      <script
+        id="project-creativework-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={JSON.stringify(creativeWorkSchema)}
+      ></script>
+      <script
+        id="project-breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={JSON.stringify(breadcrumbSchema)}
+      ></script>
+
       <section class="project_detail_hero">
         <div class="container">
           <SubTitle section="projects" classes="project_detail_subtitle">
@@ -79,7 +148,7 @@ export default component$<ProjectDetailPageProps>(({ project, relatedProjects })
       <section class="project_detail_content">
         <div class="container project_detail_content_grid">
           <article class="project_story_card">
-            <h2 class="H5 black">{t("projects.detail.overview@@Overview")}</h2>
+            <h2 class="H5 black">{t("projects.detail.overview.title@@Overview")}</h2>
             <p class="btn_body grey">
               {project.localizedDescription}
             </p>
