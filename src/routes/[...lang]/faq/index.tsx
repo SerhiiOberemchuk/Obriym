@@ -10,9 +10,13 @@ export default component$(() => {
 
 export const head: DocumentHead = ({ url }) => {
   const t = inlineTranslate();
-  const title = t("faq.head.title@@FAQ | website development, SEO, timelines & pricing | {{name}}", {
-    name: "OBRIYM",
-  });
+
+  const title = t(
+    "faq.head.title@@FAQ | website development, SEO, timelines & pricing | {{name}}",
+    {
+      name: "OBRIYM",
+    },
+  );
   const description = t(
     "faq.head.title.desc@@Answers about website development, fast SEO-ready builds, 2-4 week timelines, multilingual projects, e-commerce, analytics, GDPR, security and maintenance.",
   );
