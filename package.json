@@ -8,8 +8,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "qwik build",
-    "build.client": "vite build",
+    "build": "node ./scripts/generate-sitemap.mjs && qwik build",
+    "build.client": "node ./scripts/generate-sitemap.mjs && vite build",
     "build.preview": "vite build --ssr src/entry.preview.tsx",
     "build.server": "qwik check-client src dist && vite build -c adapters/vercel-edge/vite.config.ts",
     "build.types": "tsc --incremental --noEmit",
@@ -20,6 +20,7 @@
     "fmt": "prettier --write .",
     "fmt.check": "prettier --check .",
     "format": "prettier --write .",
+    "generate.sitemap": "node ./scripts/generate-sitemap.mjs",
     "lint": "eslint \"src/**/*.ts*\"",
     "preview": "qwik build preview && vite preview --open",
     "start": "vite --open --mode ssr",
