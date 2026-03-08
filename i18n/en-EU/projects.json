@@ -1,0 +1,43 @@
+{
+  "projects": {
+    "head": {
+      "description": "Explore OBRIYM projects: fast SEO-ready websites, multilingual platforms and digital products created for ambitious brands across Europe.",
+      "title": "Projects | SEO-ready websites and digital products | {{name}}"
+    },
+    "page": {
+      "button": "View project",
+      "features": {
+        "aria": "Project features"
+      },
+      "lead": "A closer look at websites and digital products we designed and built for ambitious brands across Europe.",
+      "list": {
+        "aria": "Projects list"
+      },
+      "subtitle": "Selected work",
+      "title": "Projects shaped for growth, speed and real-world launch."
+    },
+    "detail": {
+      "back": "Back to projects",
+      "client": "Client",
+      "features": "What shaped the project",
+      "head": {
+        "suffix": "Project case by {{name}}"
+      },
+      "notFound": {
+        "back": "Back to projects",
+        "heading": "Project not found",
+        "text": "The requested case page does not exist or is currently unavailable.",
+        "title": "Project not found | {{name}}"
+      },
+      "overview": {
+        "text": "This project focused on a clear product story, a fast browsing experience and a launch-ready interface that could support growth without adding unnecessary complexity.",
+        "title": "Overview"
+      },
+      "related": "More selected projects",
+      "stack": "Technologies",
+      "subtitle": "Project case",
+      "website": "Visit live website",
+      "year": "Year"
+    }
+  }
+}

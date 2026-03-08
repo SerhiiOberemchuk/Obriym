@@ -39,6 +39,8 @@
     },
     "sectionProject": {
       "error": "Sorry, we couldn’t load the projects. Please try again later.",
+      "lead": "Selected case studies from launches focused on speed, clarity and measurable product value.",
+      "showAll": "Show all projects",
       "title": "Our Projects"
     },
     "services": {

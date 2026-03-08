@@ -1,10 +1,13 @@
 import { component$ } from "@builder.io/qwik";
-import { DocumentHead } from "@builder.io/qwik-city";
+import { DocumentHead, useLocation } from "@builder.io/qwik-city";
 import { inlineTranslate } from "qwik-speak";
 import CookiesSection from "~/components/pages/CoociesPage/CookiesSection";
 import { getAlternateLinks, getCanonicalUrl } from "~/utils/seo";
 
 export default component$(() => {
+  const loc = useLocation();
+  const canonical = getCanonicalUrl(loc.url.pathname);
+
   return (
     <>
       <CookiesSection />
@@ -18,7 +21,7 @@ export default component$(() => {
           description:
             "Cookies Policy of Obriym Web Agency. Learn what cookies we use and how to manage them.",
           dateModified: "2025-07-21",
-          url: "https://obriym.com/cookies-policy",
+          url: canonical,
           publisher: {
             "@type": "Organization",
             name: "Obriym Web Agency",
@@ -49,6 +52,7 @@ export const head: DocumentHead = ({ url }) => {
           "app.head.cookies.description@@Read the cookies policy of Obriym Web Agency. Learn what cookies we use, why we use them, and how you can manage your preferences.",
         ),
       },
+      { name: "robots", content: "index, follow" },
       { property: "og:title", content: "Cookies Policy | Obriym" },
       {
         property: "og:description",

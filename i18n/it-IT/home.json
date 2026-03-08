@@ -39,6 +39,8 @@
     },
     "sectionProject": {
       "error": "Spiacenti, non è stato possibile caricare i progetti. Riprova più tardi.",
+      "lead": "Una selezione di case study costruiti per velocità, chiarezza e valore concreto del prodotto.",
+      "showAll": "Scopri tutti i progetti",
       "title": "I nostri progetti"
     },
     "services": {
