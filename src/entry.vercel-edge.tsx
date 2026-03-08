@@ -7,10 +7,15 @@
  * - https://qwik.dev/docs/deployments/vercel-edge/
  *
  */
+import {
+  createQwikCity,
+  type PlatformVercel,
+} from "@builder.io/qwik-city/middleware/vercel-edge";
 import qwikCityPlan from "@qwik-city-plan";
-import { createQwikCity } from "@builder.io/qwik-city/middleware/vercel-edge";
 import render from "./entry.ssr";
 
-// Removed empty interface declaration as it is redundant.
+declare global {
+  type QwikCityPlatform = PlatformVercel;
+}
 
 export default createQwikCity({ render, qwikCityPlan });
