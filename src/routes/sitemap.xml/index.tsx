@@ -29,6 +29,11 @@ const ROUTE_LASTMOD: Partial<Record<string, string>> = {
   "/cookies-policy": "2025-07-21",
 };
 
+const escapeXmlComment = (value: unknown) =>
+  String(value)
+    .replace(/--/g, "__")
+    .replace(/[^\x09\x0A\x0D\x20-\x7E]/g, "?");
+
 export const onGet: RequestHandler = async ev => {
   console.info("[sitemap] Request started", {
     pathname: ev.url.pathname,
@@ -150,7 +155,26 @@ export const onGet: RequestHandler = async ev => {
     console.error("[sitemap] Generated an empty sitemap.xml response.");
   }
 
-  const xml = createSitemap(sitemapEntries);
+  const debugComment = [
+    "sitemap-debug",
+    `pathname=${ev.url.pathname}`,
+    `routePlanIsArray=${Array.isArray(routes)}`,
+    `routePlanLength=${Array.isArray(routes) ? routes.length : -1}`,
+    `discoveredRoutes=${discoveredRoutes.length}`,
+    `normalizedRoutes=${normalizedRoutes.length}`,
+    `localizedEntries=${localizedEntries.length}`,
+    `projectEntries=${projectEntries.length}`,
+    `totalEntries=${sitemapEntries.length}`,
+    `normalizedPreview=${normalizedRoutes.slice(0, 10).join(",") || "none"}`,
+    `projectPreview=${projectEntries
+      .slice(0, 5)
+      .map(entry => entry.loc)
+      .join(",") || "none"}`,
+  ]
+    .map(escapeXmlComment)
+    .join(" | ");
+
+  const xml = `<!-- ${debugComment} -->\n${createSitemap(sitemapEntries)}`;
 
   console.info("[sitemap] Final sitemap state", {
     totalEntries: sitemapEntries.length,
@@ -160,7 +184,12 @@ export const onGet: RequestHandler = async ev => {
 
   const response = new Response(xml, {
     status: 200,
-    headers: { "Content-Type": "text/xml" },
+    headers: {
+      "Content-Type": "text/xml",
+      "X-Sitemap-Debug-Entries": String(sitemapEntries.length),
+      "X-Sitemap-Debug-Static": String(localizedEntries.length),
+      "X-Sitemap-Debug-Projects": String(projectEntries.length),
+    },
   });
 
   ev.send(response);
