@@ -2,8 +2,6 @@
  * This is the base config for vite.
  * When building, the adapter config is used which loads this file and extends it.
  */
-import { copyFile, readFile } from "node:fs/promises";
-import { resolve } from "node:path";
 import { defineConfig, type UserConfig } from "vite";
 import { qwikVite } from "@builder.io/qwik/optimizer";
 import { qwikCity } from "@builder.io/qwik-city/vite";
@@ -23,13 +21,7 @@ errorOnDuplicatesPkgDeps(devDependencies, dependencies);
  */
 export default defineConfig(({ command, mode }): UserConfig => {
   return {
-    plugins: [
-      serveStaticSitemap(),
-      qwikCity(),
-      qwikVite(),
-      tsconfigPaths({ root: "." }),
-      copyStaticSitemap(),
-    ],
+    plugins: [qwikCity(), qwikVite(), tsconfigPaths({ root: "." })],
     // This tells Vite which dependencies to pre-build in dev mode.
     optimizeDeps: {
       // Put problematic deps that break bundling here, mostly those with binaries.
@@ -68,68 +60,6 @@ export default defineConfig(({ command, mode }): UserConfig => {
     },
   };
 });
-
-function copyStaticSitemap() {
-  let outDir = "dist";
-  let isSsrBuild = false;
-
-  return {
-    name: "copy-static-sitemap",
-    apply: "build" as const,
-    configResolved(config: UserConfig & { build: { outDir?: string; ssr?: boolean | string } }) {
-      outDir = config.build.outDir || "dist";
-      isSsrBuild = Boolean(config.build.ssr);
-    },
-    async closeBundle() {
-      if (isSsrBuild) {
-        return;
-      }
-
-      const sourcePath = resolve(process.cwd(), "public", "sitemap.xml");
-      const targetPath = resolve(process.cwd(), outDir, "sitemap.xml");
-
-      try {
-        await copyFile(sourcePath, targetPath);
-        console.info("[sitemap:static] copied manual sitemap", {
-          from: sourcePath,
-          to: targetPath,
-        });
-      } catch (error) {
-        console.error("[sitemap:static] failed to copy manual sitemap", error);
-      }
-    },
-  };
-}
-
-function serveStaticSitemap() {
-  const sourcePath = resolve(process.cwd(), "public", "sitemap.xml");
-
-  const serve = async (req: { url?: string }, res: any, next: (error?: unknown) => void) => {
-    if (!req.url || !req.url.startsWith("/sitemap.xml")) {
-      return next();
-    }
-
-    try {
-      const xml = await readFile(sourcePath, "utf8");
-      res.statusCode = 200;
-      res.setHeader("Content-Type", "application/xml; charset=utf-8");
-      res.setHeader("Cache-Control", "public, max-age=0");
-      res.end(xml);
-    } catch (error) {
-      next(error);
-    }
-  };
-
-  return {
-    name: "serve-static-sitemap",
-    configureServer(server: { middlewares: { use: (fn: typeof serve) => void } }) {
-      server.middlewares.use(serve);
-    },
-    configurePreviewServer(server: { middlewares: { use: (fn: typeof serve) => void } }) {
-      server.middlewares.use(serve);
-    },
-  };
-}
 
 // *** utils ***
 
