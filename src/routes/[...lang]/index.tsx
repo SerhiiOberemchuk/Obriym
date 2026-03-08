@@ -9,31 +9,34 @@ import Services from "~/components/pages/HomePage/section-services/Services";
 import SectionTitle from "~/components/pages/HomePage/section-title/SectionTitle";
 import { Project } from "~/types/project.type";
 import SchemaSeoScripts from "~/utils/SchemaSeoScripts";
+import { fetchProjects } from "~/utils/projects";
 import { DEFAULT_OG_IMAGE, getAlternateLinks, getCanonicalUrl } from "~/utils/seo";
 
 export const useLocalLoader = routeLoader$(({ locale }) => locale);
 export const useFetchProjects = routeLoader$(async ({ cacheControl }) => {
-  cacheControl({
-    public: true,
-    maxAge: 60 * 60,
-    sMaxAge: 60 * 60 * 24,
-    staleWhileRevalidate: 60,
-  });
-
   try {
-    const url = import.meta.env.PUBLIC_URL_PROJECTS;
-    const response = await fetch(`${url}/api/projects`, {
-      headers: { accept: "application/json" },
+    const projects = await fetchProjects();
+
+    cacheControl({
+      public: true,
+      maxAge: 60 * 60,
+      sMaxAge: 60 * 60 * 24,
+      staleWhileRevalidate: 60,
     });
-    const projects = await response.json();
 
     return {
       status: true as boolean,
       message: "successful fetch" as string,
-      data: projects.data as Project[],
+      data: projects as Project[],
     };
   } catch (error) {
-    return { status: false as boolean, message: `error : ${error}` };
+    cacheControl({
+      noCache: true,
+      noStore: true,
+      maxAge: 0,
+    });
+
+    return { status: false as boolean, message: `error : ${error}`, data: [] as Project[] };
   }
 });
 
@@ -53,16 +56,19 @@ export default component$(() => {
 
 export const head: DocumentHead = ({ url }) => {
   const t = inlineTranslate();
-  const title = t("app.head.home.title@@Full-cycle web agency - fast SEO sites & apps | {{name}}", {
+  const title = t("app.head.home.title@@Full-cycle web agency for fast SEO websites & web apps | {{name}}", {
     name: "OBRIYM",
   });
-  const description = t("app.head.home.description@@Localized routing");
+  const description = t(
+    "app.head.home.description@@OBRIYM is a full-cycle web agency building fast SEO-ready websites, multilingual platforms and web apps for ambitious brands across Europe.",
+  );
   const canonical = getCanonicalUrl(url.pathname);
 
   return {
     title,
     meta: [
       { name: "description", content: description },
+      { name: "robots", content: "index, follow" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "OBRIYM" },
       { property: "og:title", content: title },

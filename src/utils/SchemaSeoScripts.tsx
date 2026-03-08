@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { useSpeakLocale } from "qwik-speak";
+import { inlineTranslate, useSpeakLocale } from "qwik-speak";
 
 import { howToWorkSchemaEN } from "~/seo/schemas/howToWork/howToSchema.en";
 import { howToWorkSchemaIT } from "~/seo/schemas/howToWork/howToSchema.it";
@@ -7,12 +7,16 @@ import { howToWorkSchemaUA } from "~/seo/schemas/howToWork/howToSchema.ua";
 import { organizationSchemaEN } from "~/seo/schemas/organization/organization.en";
 import { organizationSchemaIT } from "~/seo/schemas/organization/organization.it";
 import { organizationSchemaUA } from "~/seo/schemas/organization/organization.ua";
+import { SITE, getLocalePrefixFromLang } from "./seo";
 
 export default component$(() => {
   let schemaHOW;
   let schemaOrganization;
 
   const { lang } = useSpeakLocale();
+  const t = inlineTranslate();
+  const localePrefix = getLocalePrefixFromLang(lang);
+  const localizedHref = (path: string) => `${SITE}${`${localePrefix}${path}`.replace(/\/{2,}/g, "/")}`;
 
   switch (lang) {
     case "uk-UA":
@@ -54,44 +58,44 @@ export default component$(() => {
             {
               "@type": "SiteNavigationElement",
               position: 1,
-              name: "Services",
-              url: "https://obriym.com/#services",
+              name: t("navigation.services@@Services"),
+              url: localizedHref("/#services"),
             },
             {
               "@type": "SiteNavigationElement",
               position: 2,
-              name: "Portfolio",
-              url: "https://obriym.com/#portfolio",
+              name: t("home.sectionProject.title@@Projects"),
+              url: localizedHref("/projects"),
             },
             {
               "@type": "SiteNavigationElement",
               position: 3,
-              name: "Team",
-              url: "https://obriym.com/team/",
+              name: t("navigation.team@@Team"),
+              url: localizedHref("/team"),
             },
             {
               "@type": "SiteNavigationElement",
               position: 4,
-              name: "About",
-              url: "https://obriym.com/#about",
+              name: t("navigation.about@@About"),
+              url: localizedHref("/#about"),
             },
             {
               "@type": "SiteNavigationElement",
               position: 5,
-              name: "Contact",
-              url: "https://obriym.com/#contact",
+              name: t("navigation.contact@@Contact"),
+              url: localizedHref("/#contact"),
             },
             {
               "@type": "SiteNavigationElement",
               position: 6,
-              name: "Cookies policy",
-              url: "https://obriym.com/cookies-policy/",
+              name: t("cookies.title@@Cookies Policy"),
+              url: localizedHref("/cookies-policy"),
             },
             {
               "@type": "SiteNavigationElement",
               position: 7,
-              name: "Privacy policy",
-              url: "https://obriym.com/privacy-policy/",
+              name: t("privacy.title@@Privacy Policy"),
+              url: localizedHref("/privacy-policy"),
             },
           ],
         })}

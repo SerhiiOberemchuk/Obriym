@@ -1,14 +1,19 @@
 import { component$, useSignal, useStylesScoped$, useTask$, useVisibleTask$ } from "@builder.io/qwik";
+import { Link } from "@builder.io/qwik-city";
 import styles from "./sp-styles.css?inline";
 import SubTitle from "~/components/common/subtitile/SubTitle";
 import { inlineTranslate, useSpeakLocale } from "qwik-speak";
 import { useFetchProjects } from "~/routes/[...lang]";
-import { Project } from "~/types/project.type";
+import type { Project } from "~/types/project.type";
+import { type ProjectLocale, getLocalizedProject } from "~/utils/projects";
+import { getLocalePrefixFromLang } from "~/utils/seo";
 
 export default component$(() => {
   useStylesScoped$(styles);
 
   const t = inlineTranslate();
+  const { lang } = useSpeakLocale();
+  const localePrefix = getLocalePrefixFromLang(lang);
 
   return (
     <section class="section" id="portfolio">
@@ -16,6 +21,17 @@ export default component$(() => {
         <SubTitle section="projects" classes="subtitle_project">
           {t("home.sectionProject.title@@projects")}
         </SubTitle>
+
+        <div class="projects_section_head">
+          <p class="btn_body grey projects_section_copy">
+            {t(
+              "home.sectionProject.lead@@Selected case studies from launches focused on speed, clarity and measurable product value.",
+            )}
+          </p>
+          <Link href={`${localePrefix}/projects`.replace(/\/{2,}/g, "/")} class="btn_body black projects_show_all">
+            {t("home.sectionProject.showAll@@Show all projects")}
+          </Link>
+        </div>
 
         <CarouselComponent classC="carousel_projects_top" howToRenderArray="pair" />
         <CarouselComponent howToRenderArray="unmatched" />
@@ -68,30 +84,18 @@ const CarouselComponent = component$<PropsCarousel>(
           <ul class="projects_caru_container">
             {projectsToRender.value?.length ? (
               projectsToRender.value.map(item => {
-                const title =
-                  lang === "en-EU" ? item.titleEN : lang === "it-IT" ? item.titleIT : item.title;
-                const description =
-                  lang === "en-EU"
-                    ? item.descriptionEN
-                    : lang === "it-IT"
-                      ? item.descriptionIT
-                      : item.description;
-                const feautures =
-                  lang === "en-EU"
-                    ? item.featuresEN
-                    : lang === "it-IT"
-                      ? item.featuresIT
-                      : item.features;
+                const localizedProject = getLocalizedProject(item, lang as ProjectLocale);
+                const title = localizedProject.localizedTitle;
+                const description = localizedProject.localizedDescription;
+                const feautures = localizedProject.localizedFeatures;
                 return (
                   <li key={item.slug} class="projects_caru_slide">
                     <article>
                       <h3 class="sr-only">{title}</h3>
-                      <a
-                        href={item.website_url}
-                        target="_blank"
+                      <Link
+                        href={localizedProject.detailPath}
                         aria-label={`link to project ${item.titleEN}`}
                         class="link_project"
-                        rel="noopener noreferrer"
                       >
                         <figure>
                           <img
@@ -105,7 +109,7 @@ const CarouselComponent = component$<PropsCarousel>(
                           />
                           <figcaption>{title}</figcaption>
                         </figure>
-                      </a>
+                      </Link>
                       <p class="sr-only" itemProp="description">
                         {description}
                       </p>
@@ -123,7 +127,7 @@ const CarouselComponent = component$<PropsCarousel>(
                           "@context": "https://schema.org",
                           "@type": "CreativeWork",
                           name: title,
-                          url: item.website_url,
+                          url: `https://obriym.com${localizedProject.detailPath}`,
                           description: description,
                           image: item.image_src,
                           inLanguage: lang,

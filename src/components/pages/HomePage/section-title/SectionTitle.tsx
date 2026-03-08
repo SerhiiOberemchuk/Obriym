@@ -21,7 +21,7 @@ export default component$(() => {
           <span class="icon_span" aria-hidden={true}>
             {t("home.stitle.1span@@Complete")}
             {/* <TitleAbstract class="icon_title" aria-hidden={true} /> */}
-            <img src="/images/element-title.png" class="icon_title" aria-hidden={true} alt="r" />
+            <img src="/images/element-title.png" class="icon_title" aria-hidden={true} alt="" />
           </span>
           <span class="H1_extra_light grey_dark">{t("home.stitle.2span@@digital")}</span>
           {/* <IconGreen class="spring_model" aria-hidden={true}></IconGreen> */}
@@ -40,7 +40,7 @@ export default component$(() => {
           <img
             src="/images/hero_slides.png"
             class="notebook tablet"
-            alt="desc"
+            alt=""
             width={234}
             height={124}
             aria-hidden={true}
@@ -63,7 +63,7 @@ export default component$(() => {
         <img
           src="/images/hero_slides.png"
           class="notebook mobile"
-          alt="Image notebook"
+          alt=""
           width={180}
           height={96}
           aria-hidden={true}

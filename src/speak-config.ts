@@ -24,6 +24,7 @@ export const config: SpeakConfig = {
     "cookies",
     "privacy",
     "faq",
+    "projects",
   ],
 
   domainBasedRouting: { prefix: "always" },

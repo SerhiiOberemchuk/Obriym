@@ -1,10 +1,13 @@
 import { component$ } from "@builder.io/qwik";
-import { DocumentHead } from "@builder.io/qwik-city";
+import { DocumentHead, useLocation } from "@builder.io/qwik-city";
 import { inlineTranslate } from "qwik-speak";
 import PrivacyPage from "~/components/pages/PrivacyPage";
 import { getAlternateLinks, getCanonicalUrl } from "~/utils/seo";
 
 export default component$(() => {
+  const loc = useLocation();
+  const canonical = getCanonicalUrl(loc.url.pathname);
+
   return (
     <>
       <PrivacyPage />
@@ -18,7 +21,7 @@ export default component$(() => {
           description:
             "Privacy Policy of Obriym Web Agency. Learn how we collect, use, and protect your personal data.",
           dateModified: "2025-07-21",
-          url: "https://obriym.com/privacy-policy",
+          url: canonical,
           publisher: {
             "@type": "Organization",
             name: "Obriym Web Agency",
@@ -44,6 +47,7 @@ export const head: DocumentHead = ({ url }) => {
           "app.head.privacy.description@@Read the Privacy Policy of Obriym Web Agency. Learn how we collect, use, and protect your personal data.",
         ),
       },
+      { name: "robots", content: "index, follow" },
       { property: "og:title", content: "Privacy Policy | Obriym" },
       {
         property: "og:description",

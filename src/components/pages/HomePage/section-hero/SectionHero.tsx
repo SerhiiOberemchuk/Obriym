@@ -68,7 +68,7 @@ export default component$(() => {
         </h2> */}
         <h2 class="body_big grey title triggertitle">
           {t(
-            "home.shsection@@{{name}} — from first spark to full launch.<br> From insight to execution.<br> We plan, design, develop, and launch products that make a real impact.",
+            "home.shsection@@{{name}} — from first spark to full launch. From insight to execution. We plan, design, develop, and launch products that make a real impact.",
             { name: "OBRIYM" },
           )
             .split(" ")

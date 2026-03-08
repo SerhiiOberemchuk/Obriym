@@ -9,13 +9,22 @@ export default component$(() => {
   useStylesScoped$(styles);
 
   return (
-    <section class="team_hero_section" aria-labelledby="team-hero-title">
+    <section
+      class="team_hero_section"
+      aria-labelledby="team-hero-title"
+      aria-describedby="team-hero-description"
+    >
       {/* <div class="container "> */}
       <div>
         <h1 class="H2_light  team_hero_title" id="team-hero-title">
           <span class="team_hero_line1">
             {/* <Abstract_3d class="team_hero_line1_icon" aria-hidden="true" />{" "} */}
-            <img src="/images/abstract_3d.png" class="team_hero_line1_icon" alt="abstract_3d" />
+            <img
+              src="/images/abstract_3d.png"
+              class="team_hero_line1_icon"
+              alt=""
+              aria-hidden={true}
+            />
             {t("team.hero.title.line1@@Our team")}
           </span>
           <span class="H1_extra_light gray_dark ">
@@ -25,10 +34,15 @@ export default component$(() => {
           <span class="team_hero_line2">
             {t("team.hero.title.line3@@product we have")}
             {/* <Frame_98 class="team_hero_line2_icon" /> */}
-            <img src="/images/frame_98.png" alt="frame_98" class="team_hero_line2_icon" />
+            <img src="/images/frame_98.png" alt="" aria-hidden={true} class="team_hero_line2_icon" />
           </span>
           {t("team.hero.title.line4@@created together")}
         </h1>
+        <p class="sr-only" id="team-hero-description">
+          {t(
+            "team.hero.description@@Meet the OBRIYM team of strategists, designers and developers building fast SEO-ready websites and web apps for international brands.",
+          )}
+        </p>
       </div>
     </section>
   );

@@ -18,9 +18,11 @@ export default component$(() => {
 
 export const head: DocumentHead = ({ url }) => {
   const t = inlineTranslate();
-  const title = t("app.head.team.title@@Team | {{name}}", { name: "Obriym" });
+  const title = t("app.head.team.title@@Our team | web designers, developers & strategists | {{name}}", {
+    name: "OBRIYM",
+  });
   const description = t(
-    "app.head.team.description@@Meet the Obriym team building fast SEO-ready websites and web apps for international brands.",
+    "app.head.team.description@@Meet the OBRIYM team of strategists, designers and developers creating fast SEO-ready websites and web apps for international brands.",
   );
   const canonical = getCanonicalUrl(url.pathname);
 
@@ -28,6 +30,7 @@ export const head: DocumentHead = ({ url }) => {
     title,
     meta: [
       { name: "description", content: description },
+      { name: "robots", content: "index, follow" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "OBRIYM" },
       { property: "og:title", content: title },
