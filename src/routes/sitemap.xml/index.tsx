@@ -30,6 +30,17 @@ const ROUTE_LASTMOD: Partial<Record<string, string>> = {
 };
 
 export const onGet: RequestHandler = async ev => {
+  console.info("[sitemap] Request started", {
+    pathname: ev.url.pathname,
+    method: ev.request.method,
+  });
+
+  console.info("[sitemap] Route plan raw state", {
+    isArray: Array.isArray(routes),
+    length: Array.isArray(routes) ? routes.length : -1,
+    preview: Array.isArray(routes) ? routes.slice(0, 10) : routes,
+  });
+
   const discoveredRoutes = Array.isArray(routes)
     ? routes
         .map(route => route?.[2])
@@ -38,6 +49,11 @@ export const onGet: RequestHandler = async ev => {
             typeof routePath === "string" && routePath !== "/sitemap.xml" && !routePath.includes("[slug]"),
         )
     : [];
+
+  console.info("[sitemap] Discovered static routes", {
+    count: discoveredRoutes.length,
+    routes: discoveredRoutes,
+  });
 
   if (discoveredRoutes.length === 0) {
     console.error(
@@ -52,6 +68,11 @@ export const onGet: RequestHandler = async ev => {
       ),
     ),
   ];
+
+  console.info("[sitemap] Normalized routes", {
+    count: normalizedRoutes.length,
+    routes: normalizedRoutes,
+  });
 
   const buildAlternates = (basePath: string) => [
     ...SEO_LOCALES.map(locale => ({
@@ -74,6 +95,11 @@ export const onGet: RequestHandler = async ev => {
     })),
   );
 
+  console.info("[sitemap] Localized static entries built", {
+    count: localizedEntries.length,
+    preview: localizedEntries.slice(0, 12).map(entry => entry.loc),
+  });
+
   let projectEntries: Array<{
     loc: string;
     priority: number;
@@ -84,6 +110,11 @@ export const onGet: RequestHandler = async ev => {
 
   try {
     const projects = await fetchProjects();
+    console.info("[sitemap] Projects API success", {
+      count: projects.length,
+      slugs: projects.slice(0, 20).map(project => project.slug),
+    });
+
     projectEntries = projects.flatMap(project => {
       const basePath = `/projects/${project.slug}`;
 
@@ -100,6 +131,11 @@ export const onGet: RequestHandler = async ev => {
     projectEntries = [];
   }
 
+  console.info("[sitemap] Project entries built", {
+    count: projectEntries.length,
+    preview: projectEntries.slice(0, 12).map(entry => entry.loc),
+  });
+
   const sitemapEntries = [...localizedEntries, ...projectEntries];
 
   if (localizedEntries.length === 0) {
@@ -114,7 +150,15 @@ export const onGet: RequestHandler = async ev => {
     console.error("[sitemap] Generated an empty sitemap.xml response.");
   }
 
-  const response = new Response(createSitemap(sitemapEntries), {
+  const xml = createSitemap(sitemapEntries);
+
+  console.info("[sitemap] Final sitemap state", {
+    totalEntries: sitemapEntries.length,
+    xmlLength: xml.length,
+    xmlPreview: xml.slice(0, 500),
+  });
+
+  const response = new Response(xml, {
     status: 200,
     headers: { "Content-Type": "text/xml" },
   });
