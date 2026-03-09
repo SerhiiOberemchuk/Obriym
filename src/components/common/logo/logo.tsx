@@ -1,8 +1,8 @@
 import { component$ } from "@builder.io/qwik";
-import LogoSVG from "/public/logo.svg?jsx";
-import "./style.css";
-import { inlineTranslate, localizePath } from "qwik-speak";
 import { Link } from "@builder.io/qwik-city";
+import LogoSVG from "/public/logo.svg?jsx";
+import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
+import "./style.css";
 
 type Props = {
   place: "footer" | "header";
@@ -11,8 +11,9 @@ type Props = {
 
 export default component$<Props>(props => {
   const t = inlineTranslate();
+  const { lang } = useSpeakLocale();
   const getPath = localizePath();
-  const [homePath] = getPath(["/"]);
+  const homePath = getPath("/", lang);
   return (
     <Link
       href={homePath}

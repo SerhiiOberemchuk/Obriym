@@ -11,7 +11,7 @@ import styles from "./styles.css?inline";
 import { COOKIES_LOCAL_STORAGE, CookiesTypes } from "~/types/cookies.type";
 import { disableAnalitics, loadAnalytics } from "~/utils/loadGoogleAnalitics";
 import { CookiesBannerContext } from "./coocies-banner-context";
-import { inlineTranslate, localizePath } from "qwik-speak";
+import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
 import { Link } from "@builder.io/qwik-city";
 
 export default component$(() => {
@@ -23,8 +23,9 @@ export default component$(() => {
     requiredCookies: true,
     analyticsCookies: false,
   });
+  const { lang } = useSpeakLocale();
   const getPath = localizePath();
-  const [cookiesPath] = getPath(["/cookies-policy/"]);
+  const cookiesPath = getPath("/cookies-policy/", lang);
   const { isVisible } = useContext(CookiesBannerContext);
 
   useVisibleTask$(() => {
