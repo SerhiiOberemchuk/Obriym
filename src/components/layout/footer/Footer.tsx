@@ -1,22 +1,23 @@
 import { component$, useContext, useStylesScoped$ } from "@builder.io/qwik";
+import { Link } from "@builder.io/qwik-city";
 import Logo from "~/components/common/logo/logo";
-import { inlineTranslate, localizePath } from "qwik-speak";
+import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
 import styles from "./styles_footer.css?inline";
 import NavList from "~/components/common/nav-list/NavList";
 import FollowUs from "./follow-us/FollowUs";
 import IconCookies from "~/assets/icons/cookies-icon.svg?w=38&h=38&jsx";
-import { Link } from "@builder.io/qwik-city";
 import { CookiesBannerContext } from "~/components/cookies-banner/coocies-banner-context";
 import AnimatedElement from "~/components/common/animated-ball/AnimatedElement";
 
 export default component$(() => {
   const t = inlineTranslate();
+  const { lang } = useSpeakLocale();
+  const getPath = localizePath();
   useStylesScoped$(styles);
   const currentYear = new Date().getFullYear();
-  const getPath = localizePath();
   const cookiesBanner = useContext(CookiesBannerContext);
-  const [privacyPath] = getPath(["/privacy-policy/"]);
-  const [cookiesPath] = getPath(["/cookies-policy/"]);
+  const privacyPath = getPath("/privacy-policy/", lang);
+  const cookiesPath = getPath("/cookies-policy/", lang);
   return (
     <footer>
       <div class="container f_container" id="contact">
