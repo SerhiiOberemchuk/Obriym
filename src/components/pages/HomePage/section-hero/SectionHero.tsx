@@ -4,8 +4,10 @@ import styles from "./sh-styles.css?inline";
 export default component$(() => {
   useStylesScoped$(styles);
   const t = inlineTranslate();
-  const rundomX = () => Math.floor(Math.random() * 301) - 150;
-  const rundomY = () => Math.floor(Math.random() * 101) - 100;
+  const getSeed = (word: string, index: number) =>
+    [...`${index}:${word}`].reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  const getOffsetX = (word: string, index: number) => (getSeed(word, index) % 301) - 150;
+  const getOffsetY = (word: string, index: number) => (getSeed(word, index) % 201) - 100;
 
   // Animation with GSAP
   // useVisibleTask$(async ({ cleanup }) => {
@@ -75,7 +77,7 @@ export default component$(() => {
             .map((item, key) => (
               <span
                 class="fly_word"
-                style={`--rundomX:${rundomX()}px; --rundomY:${rundomY()}px`}
+                style={`--rundomX:${getOffsetX(item, key)}px; --rundomY:${getOffsetY(item, key)}px`}
                 key={key}
               >
                 {item}

@@ -1,6 +1,6 @@
 import { component$, QRL, useStylesScoped$ } from "@builder.io/qwik";
 import { Link, useLocation } from "@builder.io/qwik-city";
-import { inlineTranslate, localizePath } from "qwik-speak";
+import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
 import styles from "./nav-list.css?inline";
 import IconHome from "~/assets/icons/icon-home.svg?h=38&w=39&jsx";
 
@@ -14,30 +14,25 @@ type Props = {
 export default component$<Props>(({ place, onClick }) => {
   const t = inlineTranslate();
   const location = useLocation();
+  const locale = useSpeakLocale();
   const getPath = localizePath();
   useStylesScoped$(styles);
   const currentPath = location.url.pathname;
-  const lang =
-    currentPath === "/uk-UA" || currentPath.startsWith("/uk-UA/")
-      ? "uk-UA"
-      : currentPath === "/it-IT" || currentPath.startsWith("/it-IT/")
-        ? "it-IT"
-        : "en-EU";
-  const tr = (key: string) => t(key, undefined, lang) as string;
+  const lang = locale.lang;
   const teamPath = getPath("/team/", lang);
   const faqPath = getPath("/faq/", lang);
   const homePath = getPath("/", lang);
 
   const baseListItems: NavListItem[] = [
-    { link: "services", label: tr("navigation.services@@Services"), path: `${homePath}#services` },
+    { link: "services", label: t("navigation.services@@Services"), path: `${homePath}#services` },
     {
       link: "portfolio",
-      label: tr("navigation.portfolio@@Portfolio"),
+      label: t("navigation.portfolio@@Portfolio"),
       path: `${homePath}#portfolio`,
     },
-    { link: "team", label: tr("navigation.team@@Team"), path: teamPath },
-    { link: "about", label: tr("navigation.about@@About"), path: `${homePath}#about` },
-    { link: "contact", label: tr("navigation.contact@@Contact"), path: `${currentPath}#contact` },
+    { link: "team", label: t("navigation.team@@Team"), path: teamPath },
+    { link: "about", label: t("navigation.about@@About"), path: `${homePath}#about` },
+    { link: "contact", label: t("navigation.contact@@Contact"), path: `${currentPath}#contact` },
     { link: "faq", label: "FAQ", path: faqPath },
   ];
 
@@ -56,18 +51,12 @@ export default component$<Props>(({ place, onClick }) => {
       id="main-navigation"
       data-place={place}
       class="navigation"
-      aria-label={tr("navigation.navTitle@@Main navigation")}
+      aria-label={t("navigation.navTitle@@Main navigation")}
     >
       <ul data-place={place} class="nav_list glass-card">
         {place === "header" && (
           <li id="home-link">
-            <Link
-              href={homePath}
-              onClick$={() => {
-                console.log(lang);
-              }}
-              aria-label={tr("navigation.linkHome@@Link to home page")}
-            >
+            <Link href={homePath} aria-label={t("navigation.linkHome@@Link to home page")}>
               <IconHome class="icon_home" />
             </Link>
           </li>
@@ -77,11 +66,10 @@ export default component$<Props>(({ place, onClick }) => {
             <li key={item.link}>
               <Link
                 href={item.path}
-                aria-label={`${tr("navigation.linkLabel@@Link to section")} ${item.label}`}
+                aria-label={`${t("navigation.linkLabel@@Link to section")} ${item.label}`}
                 class="btn_body"
                 onClick$={() => {
                   onClick?.();
-                  console.log(lang);
                 }}
               >
                 <span data-place={place} class="page_link">

@@ -18,6 +18,7 @@ export default component$(() => {
   const cookiesBanner = useContext(CookiesBannerContext);
   const privacyPath = getPath("/privacy-policy/", lang);
   const cookiesPath = getPath("/cookies-policy/", lang);
+
   return (
     <footer>
       <div class="container f_container" id="contact">
@@ -42,7 +43,7 @@ export default component$(() => {
           >
             <IconCookies />
           </button>
-          <p class="btn_header grey f_copyright">Copyright ©Obriym{currentYear}</p>
+          <p class="btn_header grey f_copyright">Copyright {"\u00A9"}Obriym{currentYear}</p>
           <nav aria-label="Legal information">
             <ul class="privacy_list">
               <li class="btn_header">

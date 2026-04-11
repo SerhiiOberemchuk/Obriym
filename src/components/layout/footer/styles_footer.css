@@ -111,7 +111,7 @@ footer {
   .f_container {
     grid-template-columns: 1fr 12rem 17rem;
   }
-  .f_container :nth-child(1) > {
+  .f_container > :nth-child(1) {
     grid-column: 1 / 2;
     margin-bottom: auto;
   }

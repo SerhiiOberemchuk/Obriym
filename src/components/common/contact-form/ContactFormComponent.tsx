@@ -180,7 +180,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                 {(field, props) => (
                   <div class="ic_form_fieldset_wrp" ref={anchorRef}>
                     <label class="sr-only" for="message-textarea">
-                      label={t("app.form.message.sr-label@@Your message")}
+                      {t("app.form.message.sr-label@@Your message")}
                     </label>
                     <textarea
                       value={field.value}

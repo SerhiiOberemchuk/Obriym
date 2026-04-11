@@ -1,5 +1,5 @@
 import { component$, useSignal, useStylesScoped$ } from "@builder.io/qwik";
-import { inlineTranslate } from "qwik-speak";
+import { useSpeak, useSpeakContext } from "qwik-speak";
 import { Popover } from "@qwik-ui/headless";
 
 import styles from "./popover_styles.css?inline";
@@ -11,7 +11,10 @@ export enum PopoverId {
 }
 
 export default component$(() => {
-  const t = inlineTranslate();
+  useSpeak({ runtimeAssets: ["alert"] });
+  const {
+    translation: { alert },
+  } = useSpeakContext();
   useStylesScoped$(styles);
   const anchor = useSignal<HTMLElement | undefined>(undefined);
   const IconSuccess = ALERT_MESSAGE["success"].icon;
@@ -30,9 +33,9 @@ export default component$(() => {
           >
             <IconSuccess />
 
-            <p>{t(`alert.${"success"}.title@@ALERT_MESSAGE[type].title`)}</p>
+            <p>{alert.success.title}</p>
 
-            <p>{t(`alert.${"success"}.message@@ALERT_MESSAGE[type].message`)}</p>
+            <p>{alert.success.message}</p>
           </div>
         </Popover.Panel>
       </Popover.Root>
@@ -47,9 +50,9 @@ export default component$(() => {
           >
             <IconError />
 
-            <p>{t(`alert.${"failed"}.title@@ALERT_MESSAGE[type].title`)}</p>
+            <p>{alert.failed.title}</p>
 
-            <p>{t(`alert.${"failed"}.message@@ALERT_MESSAGE[type].message`)}</p>
+            <p>{alert.failed.message}</p>
           </div>
         </Popover.Panel>
       </Popover.Root>

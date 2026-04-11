@@ -1,6 +1,6 @@
 {
   "app": {
-    "btnLetsWork": "Let’s work",
+    "btnLetsWork": "Lavoriamo insieme",
     "changeLocale": "Cambia lingua",
     "form": {
       "additional": {
@@ -53,25 +53,29 @@
         "title": "Cookies Policy | Obriym"
       },
       "home": {
-        "description": "Obriym è un'agenzia web full-service. Creiamo siti moderni, design animato e soluzioni SEO complete. Dal concept al lancio.",
-        "title": "Agenzia web full-service — siti SEO veloci & web app | {{name}}"
+        "description": "Obriym è un'agenzia web full-service. Creiamo siti moderni, design animato e soluzioni SEO complete, dal concept al lancio.",
+        "title": "Agenzia web full-service - siti SEO veloci & web app | {{name}}"
       },
       "privacy": {
         "description": "Leggi l'informativa sulla privacy dell'agenzia web Obriym. Scopri come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali.",
         "title": "Privacy Policy | Obriym"
+      },
+      "team": {
+        "description": "Scopri il team OBRIYM: strategist, designer e sviluppatori che realizzano siti e web app veloci e SEO-ready per brand internazionali.",
+        "title": "Il nostro team | designer, sviluppatori e strategist | {{name}}"
       }
     },
     "header": {
-      "buttonChLang": "Button to change locale"
+      "buttonChLang": "Pulsante per cambiare lingua"
     },
     "logo": {
-      "link": "Logo Obriym Agency link to homepage"
+      "link": "Logo Obriym Agency, link alla homepage"
     },
     "nav": {
       "home": "Home",
-      "page": "Page"
+      "page": "Pagina"
     },
-    "title": "{{name}} italiano demo"
+    "title": "{{name}} demo italiano"
   },
   "dates": "Date",
   "numbers": "Numeri"

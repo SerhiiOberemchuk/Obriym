@@ -30,7 +30,12 @@ export default component$(() => {
 
   useVisibleTask$(() => {
     const isLocalCookies = localStorage.getItem(COOKIES_LOCAL_STORAGE);
-    if (isLocalCookies) {
+    if (!isLocalCookies) {
+      isVisible.value = true;
+      return;
+    }
+
+    try {
       const cookiesLocal: CookiesTypes = JSON.parse(isLocalCookies);
       cookiesData.cookiesAccepted = cookiesLocal.cookiesAccepted;
       cookiesData.requiredCookies = cookiesLocal.requiredCookies;
@@ -38,7 +43,9 @@ export default component$(() => {
       if (cookiesLocal.analyticsCookies) {
         loadAnalytics();
       }
-    } else {
+    } catch (error) {
+      console.error("Failed to parse saved cookie settings", error);
+      localStorage.removeItem(COOKIES_LOCAL_STORAGE);
       isVisible.value = true;
     }
   });
