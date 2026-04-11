@@ -1,6 +1,6 @@
 {
   "app": {
-    "btnLetsWork": "Let’s work",
+    "btnLetsWork": "Let's work",
     "changeLocale": "Change locale",
     "form": {
       "additional": {
@@ -40,10 +40,10 @@
         "sr-label": "Services offered"
       },
       "sr-only": {
-        "title": " Please fill out the following form to send us your request."
+        "title": "Please fill out the following form to send us your request."
       },
       "title": {
-        "modal": "Let's start you project",
+        "modal": "Let's start your project",
         "not-modal": "Contact Form"
       }
     },
@@ -53,12 +53,16 @@
         "title": "Cookies Policy | Obriym"
       },
       "home": {
-        "description": "Obriym is a full-cycle web agency. We design and develop modern websites, animations, and SEO-ready solutions — from idea to launch.",
-        "title": "Full-cycle web agency — fast SEO sites & apps | {{name}}"
+        "description": "Obriym is a full-cycle web agency. We design and develop modern websites, animations, and SEO-ready solutions - from idea to launch.",
+        "title": "Full-cycle web agency - fast SEO sites & apps | {{name}}"
       },
       "privacy": {
         "description": "Read the Privacy Policy of Obriym Web Agency. Learn how we collect, use, and protect your personal data.",
         "title": "Privacy Policy | Obriym"
+      },
+      "team": {
+        "description": "Meet the OBRIYM team of strategists, designers and developers creating fast SEO-ready websites and web apps for international brands.",
+        "title": "Our team | web designers, developers & strategists | {{name}}"
       }
     },
     "header": {

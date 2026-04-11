@@ -18,7 +18,7 @@ export const head: DocumentHead = ({ url }) => {
     },
   );
   const description = t(
-    "faq.head.title.desc@@Answers about website development, fast SEO-ready builds, 2-4 week timelines, multilingual projects, e-commerce, analytics, GDPR, security and maintenance.",
+    "faq.head.desc@@Answers about website development, fast SEO-ready builds, 2-4 week timelines, multilingual projects, e-commerce, analytics, GDPR, security and maintenance.",
   );
   const canonical = getCanonicalUrl(url.pathname);
 

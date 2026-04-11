@@ -11,7 +11,7 @@ import {
   type NoSerialize,
 } from "@builder.io/qwik";
 import type { EmblaCarouselType } from "embla-carousel";
-import { inlineTranslate } from "qwik-speak";
+import { inlineTranslate, useSpeak, useSpeakContext } from "qwik-speak";
 import styles from "./styles_slider.css?inline";
 
 import IconLeft from "~/assets/icons/icon_left.svg?w=24&h=24&jsx";
@@ -34,6 +34,10 @@ type AutoplayController = {
 
 export default component$(({ items }: InfinitySliderProps) => {
   useStylesScoped$(styles);
+  useSpeak({ runtimeAssets: ["team"] });
+  const {
+    translation: { team },
+  } = useSpeakContext();
   const t = inlineTranslate();
   const viewportCategory = useContext(ViewportContext);
   const viewportWidth = useContext(ViewportWidthContext);
@@ -48,6 +52,7 @@ export default component$(({ items }: InfinitySliderProps) => {
 
   const canUseSlider = useComputed$(() => items.length > 1);
   const isMobile = useComputed$(() => viewportCategory.value === "mobile");
+  const selectedMember = selectedItem.value ? team.member[selectedItem.value.slug] : null;
 
   const openModal = $((item: TeamMemberType) => {
     selectedItem.value = item;
@@ -139,11 +144,8 @@ export default component$(({ items }: InfinitySliderProps) => {
     }
   });
 
-  const memberName = t(
-    `team.member.${selectedItem?.value?.slug}.name@@${selectedItem?.value?.name}`,
-  );
   const linkedinLabel = t("team.aria.linkedin@@LinkedIn profile of {{name}}", {
-    name: memberName,
+    name: selectedMember?.name ?? "",
   });
 
   return (
@@ -201,7 +203,7 @@ export default component$(({ items }: InfinitySliderProps) => {
       )}
 
       <ModalWrapper show={isOpen}>
-        {selectedItem.value && (
+        {selectedItem.value && selectedMember && (
           <div class="modal-scrollable-content">
             <div
               class="modal-wrapper"
@@ -210,13 +212,11 @@ export default component$(({ items }: InfinitySliderProps) => {
               aria-labelledby={`modal-title-${selectedItem.value.id}`}
               aria-describedby={`modal-desc-${selectedItem.value.id}`}
             >
-              <div class="modal-img-wrp">
-                {selectedItem.value && imageMap[selectedItem.value.imageKey]()}
-              </div>
+              <div class="modal-img-wrp">{imageMap[selectedItem.value.imageKey]()}</div>
               <div class="modal-content">
                 <div class="modal-title-block">
                   <h2 class=" body_big" id={`modal-title-${selectedItem.value.id}`}>
-                    {t(`team.member.${selectedItem.value.slug}.name@@${selectedItem.value.name}`)}
+                    {selectedMember.name}
                   </h2>
 
                   <p class="H6 grey" id={`slide-role-${selectedItem.value.id}`}>
@@ -224,16 +224,8 @@ export default component$(({ items }: InfinitySliderProps) => {
                   </p>
                 </div>
                 <div class="modal-text-block" id={`modal-desc-${selectedItem.value.id}`}>
-                  <p class="btn_body grey">
-                    {t(
-                      `team.member.${selectedItem.value.slug}.description1@@${selectedItem.value.description1}`,
-                    )}
-                  </p>
-                  <p class="btn_body grey">
-                    {t(
-                      `team.member.${selectedItem.value.slug}.description2@@${selectedItem.value.description2}`,
-                    )}
-                  </p>
+                  <p class="btn_body grey">{selectedMember.description1}</p>
+                  <p class="btn_body grey">{selectedMember.description2}</p>
 
                   <a
                     class="btn-linkedin btn_body"

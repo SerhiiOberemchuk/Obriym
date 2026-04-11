@@ -1,5 +1,5 @@
 import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { inlineTranslate } from "qwik-speak";
+import { useSpeak, useSpeakContext } from "qwik-speak";
 import IconPinkBall from "~/assets/images/faq-page/faq-balloons.png?w=100&h=100&jsx";
 import IconYell from "~/assets/images/faq-page/faq-yel-pink.png?w=100&h=100&jsx";
 import IconGreen from "~/assets/images/faq-page/faq-green.png?w=100&h=100&jsx";
@@ -9,11 +9,15 @@ import { faqStructure, Groupes, QA } from "./utils";
 
 export default component$<{ groupe: Groupes }>(({ groupe }) => {
   useStylesScoped$(styles);
-  const t = inlineTranslate();
+  useSpeak({ runtimeAssets: ["faq"] });
+  const {
+    translation: { faq },
+  } = useSpeakContext();
+
   const items: QA[] = faqStructure[groupe].map(id => ({
     id,
-    q: t(`faq.items.${id}.q`),
-    a: t(`faq.items.${id}.a`),
+    q: faq.items[id].q,
+    a: faq.items[id].a,
   }));
 
   return (
@@ -23,9 +27,7 @@ export default component$<{ groupe: Groupes }>(({ groupe }) => {
           {groupe === "process" && <IconPinkBall aria-hidden="true" />}
           {groupe === "pricing_quality_seo" && <IconYell aria-hidden="true" />}
           {groupe === "postlaunch_support" && <IconGreen aria-hidden="true" />}
-          <h2 class="H3_uppercase grey_dark">
-            {t(`faq.question.section.${groupe}@@Процес розробки`)}
-          </h2>
+          <h2 class="H3_uppercase grey_dark">{faq.question.section[groupe]}</h2>
         </div>
 
         <ul class="qustion_wrapper">

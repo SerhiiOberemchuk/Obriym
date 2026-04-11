@@ -1,11 +1,12 @@
 import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { inlineTranslate } from "qwik-speak";
+import { useSpeak, useSpeakContext } from "qwik-speak";
 import styles from "./options-group_styles.css?inline";
 import { OptionsGroupProps } from "~/types/contact-form.type";
 
 export const OptionsGroup = component$(
   ({ name, type, options, label, value, onInput$, onBlur$ }: OptionsGroupProps) => {
-    const t = inlineTranslate();
+    useSpeak({ runtimeAssets: ["services", "budget"] });
+    const { translation } = useSpeakContext();
     useStylesScoped$(styles);
 
     const isCheckbox = type === "checkbox";
@@ -17,10 +18,17 @@ export const OptionsGroup = component$(
           {label}
         </span>
 
-        {Object.entries(options).map(([key, label]) => {
+        {Object.entries(options).map(([key, option]) => {
           const isSelected = isCheckbox
             ? Array.isArray(value) && value.includes(key)
             : value === key;
+          const optionLabel =
+            name === "services"
+              ? translation.services[key]
+              : name === "budget"
+                ? translation.budget[key]
+                : option;
+
           return (
             <label key={key} class={`ic_form_option ${isSelected ? "selected" : ""}`}>
               <input
@@ -31,14 +39,9 @@ export const OptionsGroup = component$(
                 value={key}
                 checked={isSelected}
                 class="visually-hidden"
-                // aria-checked={isSelected}
-                aria-label={t(`${name}.${key}@@${label}`)}
+                aria-label={optionLabel}
               />
-              <span class="grey_dark btn_body ic_form_label">
-                {t(`${name}.${key}@@${label}`)}
-
-                {/* {label} */}
-              </span>
+              <span class="grey_dark btn_body ic_form_label">{optionLabel}</span>
             </label>
           );
         })}
