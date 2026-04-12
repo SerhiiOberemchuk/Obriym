@@ -2,7 +2,7 @@ import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import styles from "./styles-links.css?inline";
 
 import { inlineTranslate } from "qwik-speak";
-import { ids, QA } from "../question-section/utils";
+import { getFaqLink, ids, QA } from "../question-section/utils";
 
 export default component$(() => {
   useStylesScoped$(styles);
@@ -10,7 +10,7 @@ export default component$(() => {
 
   const items: Omit<QA, "a">[] = ids.map(id => ({
     id,
-    q: t(`faq.items.${id}.link`),
+    q: getFaqLink(t, id),
   }));
 
   return (

@@ -2,18 +2,17 @@ import { component$, useSignal, useStylesScoped$, useTask$, useVisibleTask$ } fr
 import { Link } from "@builder.io/qwik-city";
 import styles from "./sp-styles.css?inline";
 import SubTitle from "~/components/common/subtitile/SubTitle";
-import { inlineTranslate, useSpeakLocale } from "qwik-speak";
+import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
 import { useFetchProjects } from "~/routes/[...lang]";
 import type { Project } from "~/types/project.type";
 import { type ProjectLocale, getLocalizedProject } from "~/utils/projects";
-import { getLocalePrefixFromLang } from "~/utils/seo";
 
 export default component$(() => {
   useStylesScoped$(styles);
 
   const t = inlineTranslate();
   const { lang } = useSpeakLocale();
-  const localePrefix = getLocalePrefixFromLang(lang);
+  const getPath = localizePath();
 
   return (
     <section class="section" id="portfolio">
@@ -28,7 +27,7 @@ export default component$(() => {
               "home.sectionProject.lead@@Selected case studies from launches focused on speed, clarity and measurable product value.",
             )}
           </p>
-          <Link href={`${localePrefix}/projects`.replace(/\/{2,}/g, "/")} class="btn_body black projects_show_all">
+          <Link href={getPath("/projects/", lang)} class="btn_body black projects_show_all">
             {t("home.sectionProject.showAll@@Show all projects")}
           </Link>
         </div>
@@ -50,6 +49,7 @@ const CarouselComponent = component$<PropsCarousel>(
     const projectsToRender = useSignal<Project[]>([]);
     useStylesScoped$(styles);
     const { lang } = useSpeakLocale();
+    const getPath = localizePath();
     const t = inlineTranslate();
     const projects = useFetchProjects();
 
@@ -94,7 +94,7 @@ const CarouselComponent = component$<PropsCarousel>(
                     <article>
                       <h3 class="sr-only">{title}</h3>
                       <Link
-                        href={localizedProject.detailPath}
+                        href={getPath(localizedProject.detailPath, lang)}
                         aria-label={`link to project ${item.titleEN}`}
                         class="link_project"
                       >
@@ -128,7 +128,7 @@ const CarouselComponent = component$<PropsCarousel>(
                           "@context": "https://schema.org",
                           "@type": "CreativeWork",
                           name: title,
-                          url: `https://obriym.com${localizedProject.detailPath}`,
+                          url: `https://obriym.com${getPath(localizedProject.detailPath, lang)}`,
                           description: description,
                           image: item.image_src,
                           inLanguage: lang,

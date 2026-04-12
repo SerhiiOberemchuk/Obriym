@@ -5,7 +5,7 @@ import IconYell from "~/assets/images/faq-page/faq-yel-pink.png?w=100&h=100&jsx"
 import IconGreen from "~/assets/images/faq-page/faq-green.png?w=100&h=100&jsx";
 import styles from "./quest-styles.css?inline";
 import IconClose from "~/assets/icons/icon_close.svg?w=56&h=56&jsx";
-import { faqStructure, Groupes, QA } from "./utils";
+import { faqStructure, getFaqAnswer, getFaqQuestion, getFaqSectionTitle, Groupes, QA } from "./utils";
 
 export default component$<{ groupe: Groupes }>(({ groupe }) => {
   useStylesScoped$(styles);
@@ -13,8 +13,8 @@ export default component$<{ groupe: Groupes }>(({ groupe }) => {
 
   const items: QA[] = faqStructure[groupe].map(id => ({
     id,
-    q: t(`faq.items.${id}.q`),
-    a: t(`faq.items.${id}.a`),
+    q: getFaqQuestion(t, id),
+    a: getFaqAnswer(t, id),
   }));
 
   return (
@@ -24,7 +24,7 @@ export default component$<{ groupe: Groupes }>(({ groupe }) => {
           {groupe === "process" && <IconPinkBall aria-hidden="true" />}
           {groupe === "pricing_quality_seo" && <IconYell aria-hidden="true" />}
           {groupe === "postlaunch_support" && <IconGreen aria-hidden="true" />}
-          <h2 class="H3_uppercase grey_dark">{t(`faq.question.section.${groupe}`)}</h2>
+          <h2 class="H3_uppercase grey_dark">{getFaqSectionTitle(t, groupe)}</h2>
         </div>
 
         <ul class="qustion_wrapper">

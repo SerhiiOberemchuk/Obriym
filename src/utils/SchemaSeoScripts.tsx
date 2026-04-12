@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { inlineTranslate, useSpeakLocale } from "qwik-speak";
+import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
 
 import { howToWorkSchemaEN } from "~/seo/schemas/howToWork/howToSchema.en";
 import { howToWorkSchemaIT } from "~/seo/schemas/howToWork/howToSchema.it";
@@ -7,7 +7,7 @@ import { howToWorkSchemaUA } from "~/seo/schemas/howToWork/howToSchema.ua";
 import { organizationSchemaEN } from "~/seo/schemas/organization/organization.en";
 import { organizationSchemaIT } from "~/seo/schemas/organization/organization.it";
 import { organizationSchemaUA } from "~/seo/schemas/organization/organization.ua";
-import { SITE, getLocalePrefixFromLang } from "./seo";
+import { SITE } from "./seo";
 
 export default component$(() => {
   let schemaHOW;
@@ -15,8 +15,8 @@ export default component$(() => {
 
   const { lang } = useSpeakLocale();
   const t = inlineTranslate();
-  const localePrefix = getLocalePrefixFromLang(lang);
-  const localizedHref = (path: string) => `${SITE}${`${localePrefix}${path}`.replace(/\/{2,}/g, "/")}`;
+  const getPath = localizePath();
+  const localizedHref = (path: string) => `${SITE}${getPath(path, lang)}`;
 
   switch (lang) {
     case "uk-UA":
