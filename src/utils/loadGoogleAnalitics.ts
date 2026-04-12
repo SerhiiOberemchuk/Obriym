@@ -1,29 +1,34 @@
+import Clarity from "@microsoft/clarity";
+import { gtag, install } from "ga-gtag";
+
+const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || "G-VH4ZJDDVDG";
+const CLARITY_PROJECT_ID =
+  import.meta.env.PUBLIC_CLARITY_MICROSOFT_PROJECT_ID || import.meta.env.CLATITY_MICROSOFT_PROJECT_ID;
+
+let isClarityInitialized = false;
+
 export const loadAnalytics = () => {
-  if (document.getElementById("gtag-script")) return;
+  install(GA_MEASUREMENT_ID, { send_page_view: true });
+  gtag("consent", "update", { ad_storage: "granted", analytics_storage: "granted" });
 
-  const script1 = document.createElement("script");
-  script1.id = "ga-script";
-  script1.async = true;
-  script1.setAttribute("type", "text/partytown");
-  script1.src = "https://www.googletagmanager.com/gtag/js?id=G-VH4ZJDDVDG";
-  document.head.appendChild(script1);
+  if (CLARITY_PROJECT_ID && !isClarityInitialized) {
+    Clarity.init(CLARITY_PROJECT_ID);
+    isClarityInitialized = true;
+  }
 
-  const script2 = document.createElement("script");
-  script2.id = "gtag-script";
-  script2.setAttribute("type", "text/partytown");
-  script2.innerHTML = `
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-VH4ZJDDVDG');
-  `;
-  document.head.appendChild(script2);
+  if (isClarityInitialized) {
+    Clarity.consent(true);
+  }
 
-  console.log("Google Analytics loaded dynamically");
+  console.log("Analytics enabled");
 };
 
 export const disableAnalitics = () => {
-  document.getElementById("ga-script")?.remove();
-  document.getElementById("gtag-script")?.remove();
-  console.log("Google Analytics disabled");
+  gtag("consent", "update", { ad_storage: "denied", analytics_storage: "denied" });
+
+  if (isClarityInitialized) {
+    Clarity.consent(false);
+  }
+
+  console.log("Analytics disabled");
 };

@@ -55,15 +55,14 @@ export const head: DocumentHead = ({ url }) => {
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: canonical },
-      { property: "og:image", content: "https://obriym.com/images/privacy/og-image.jpg" },
+      { property: "og:image", content: "https://obriym.com/images/privacy/og-image.png" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Privacy Policy | Obriym" },
       {
         name: "twitter:description",
         content: "Learn about our Privacy Policy at Obriym Web Agency.",
       },
-      { name: "twitter:image", content: "https://obriym.com/images/privacy/og-image.jpg" },
-      { name: "robots", content: "index, follow" },
+      { name: "twitter:image", content: "https://obriym.com/images/privacy/og-image.png" },
     ],
     links: getAlternateLinks(url.pathname),
   };

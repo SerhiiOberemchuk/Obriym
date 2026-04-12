@@ -75,5 +75,58 @@
     "title": "{{name}} demo"
   },
   "dates": "Dates",
-  "numbers": "Numbers"
+  "numbers": "Numbers",
+  "seo": {
+    "webdev": {
+      "h1": "Web Development Services for Fast, SEO-Ready Business Websites",
+      "lead": "We design and develop high-performance websites and web apps focused on search visibility, conversion growth and stable Core Web Vitals.",
+      "h2": {
+        "stack": "What we build",
+        "result": "Business outcomes"
+      },
+      "p1": "Corporate websites with multilingual structure and technical SEO.",
+      "p2": "High-converting landing pages for paid and organic traffic.",
+      "p3": "Web apps and portals with clean architecture and scalable delivery.",
+      "result": "Our process is aimed at ranking growth, lower acquisition cost and stronger lead quality by combining technical SEO, content structure and UX clarity.",
+      "cta": "Discuss your project",
+      "head": {
+        "title": "Web Development Services | SEO-ready websites and web apps | {{name}}",
+        "description": "Web development agency delivering fast SEO-ready websites and web apps with technical SEO, multilingual support and strong Core Web Vitals."
+      }
+    },
+    "optimization": {
+      "h1": "SEO Optimization Services for Sustainable Organic Growth",
+      "lead": "We improve rankings and lead quality through technical SEO, structured content architecture and measurable on-page optimization.",
+      "h2": {
+        "scope": "Scope of work",
+        "analytics": "Reporting and analytics"
+      },
+      "p1": "Technical audits: indexability, canonicals, sitemap, robots and schema.",
+      "p2": "On-page improvements: title, metadata, heading hierarchy and internal linking.",
+      "p3": "Performance optimization for stronger Core Web Vitals.",
+      "analytics": "We align Search Console, GA4 and conversion tracking to connect rankings with real pipeline impact.",
+      "cta": "Request SEO audit",
+      "head": {
+        "title": "SEO Optimization Services | Technical and On-page SEO | {{name}}",
+        "description": "Technical and on-page SEO services focused on indexability, Core Web Vitals, metadata quality and conversion-oriented organic traffic."
+      }
+    },
+    "ecom": {
+      "h1": "E-commerce Development Services for Growth-Focused Stores",
+      "lead": "We build ecommerce experiences on Shopify and custom stacks with high performance, SEO-ready category structure and conversion-driven UX.",
+      "h2": {
+        "delivery": "What we deliver",
+        "value": "Why it matters"
+      },
+      "p1": "Product and category SEO architecture with scalable URL strategy.",
+      "p2": "Checkout, payments and analytics integrations for clean attribution.",
+      "p3": "Performance-first storefronts with optimized media and low JS overhead.",
+      "value": "A technically strong ecommerce stack improves crawlability, product discoverability and conversion consistency across paid and organic channels.",
+      "cta": "Plan ecommerce build",
+      "head": {
+        "title": "E-commerce Development Services | Shopify and custom storefronts | {{name}}",
+        "description": "E-commerce development for Shopify and custom storefronts with technical SEO, optimized checkout flows and Core Web Vitals performance."
+      }
+    }
+  }
 }

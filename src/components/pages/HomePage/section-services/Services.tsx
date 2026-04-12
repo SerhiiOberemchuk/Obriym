@@ -142,7 +142,7 @@ export default component$(() => {
                     image: srcImage,
                     areaServed: [
                       { "@type": "Country", name: "Italy" },
-                      { "@type": "Country", name: "Ukraine" },
+                      { "@type": "Country", name: "e" },
                       { "@type": "Country", name: "European Union" },
                     ],
                     offers: {

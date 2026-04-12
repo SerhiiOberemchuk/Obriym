@@ -1,6 +1,6 @@
 import * as v from "valibot";
 import type { QRL } from "@builder.io/qwik";
-import { ContactSchema } from "~/schemas/contactSchema";
+import { ContactSchema } from "../schemas/contactSchema";
 
 export type ContactForm = v.InferInput<typeof ContactSchema>;
 

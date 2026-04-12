@@ -1,0 +1,124 @@
+{
+  "seo": {
+    "webdev": {
+      "h1": "Servizi di sviluppo web per siti aziendali veloci e SEO-ready",
+      "lead": "Progettiamo e sviluppiamo siti web e web app ad alte prestazioni, orientati alla visibilità organica, alla crescita delle conversioni e a Core Web Vitals stabili.",
+      "intro2": "Lavoriamo con aziende di servizi, team B2B e startup di prodotto che cercano consegne prevedibili, responsabilità chiara e impatto misurabile sul business.",
+      "h2": {
+        "stack": "Cosa realizziamo",
+        "result": "Risultati di business",
+        "faq": "Domande frequenti"
+      },
+      "p1": "Siti corporate con struttura multilingua e SEO tecnica.",
+      "p2": "Landing page ad alta conversione per traffico paid e organico.",
+      "p3": "Web app e portali con architettura pulita e sviluppo scalabile.",
+      "result": "Il nostro processo punta a crescita del ranking, riduzione del costo di acquisizione e lead di qualità grazie a SEO tecnica, struttura contenuti e UX chiara.",
+      "result1": "Discovery allineata agli obiettivi di business e ai cluster di intenti di ricerca.",
+      "result2": "Implementazione tecnica ottimizzata per crawlability e indicizzazione.",
+      "result3": "Struttura dei contenuti progettata per convertire, non solo per attrarre traffico.",
+      "faq1": {
+        "q": "Quanto dura in media un progetto?",
+        "a": "In genere 2-6 settimane, in base a integrazioni, disponibilità dei contenuti e tempi di approvazione."
+      },
+      "faq2": {
+        "q": "Supportate siti multilingua?",
+        "a": "Sì, implementiamo routing localizzato, hreflang e architettura contenuti per la visibilità internazionale."
+      },
+      "faq3": {
+        "q": "Potete migliorare un sito esistente senza rifarlo da zero?",
+        "a": "Sì, partiamo da un audit tecnico e poi scegliamo tra miglioramenti mirati o rebuild completo in base al ROI."
+      },
+      "links": {
+        "title": "Pagine correlate:",
+        "projects": "Progetti",
+        "faq": "FAQ",
+        "team": "Team"
+      },
+      "cta": "Parliamo del tuo progetto",
+      "head": {
+        "title": "Servizi di sviluppo web | Siti e web app SEO-ready | {{name}}",
+        "description": "Agenzia di sviluppo web che realizza siti e web app veloci, SEO-ready, con supporto multilingua e Core Web Vitals solidi."
+      }
+    },
+    "optimization": {
+      "h1": "Servizi di ottimizzazione SEO per crescita organica sostenibile",
+      "lead": "Miglioriamo ranking e qualità dei lead con SEO tecnica, architettura dei contenuti e ottimizzazione on-page misurabile.",
+      "intro2": "Il nostro approccio è orientato all'esecuzione: priorità per impatto, implementazione delle modifiche e validazione in Search Console e analytics.",
+      "h2": {
+        "scope": "Ambito del lavoro",
+        "analytics": "Reportistica e analytics",
+        "faq": "Domande frequenti"
+      },
+      "p1": "Audit tecnici: indicizzazione, canonical, sitemap, robots e schema.",
+      "p2": "Ottimizzazioni on-page: title, metadata, gerarchia heading e linking interno.",
+      "p3": "Ottimizzazione performance per Core Web Vitals più forti.",
+      "analytics": "Allineiamo Search Console, GA4 e tracciamento conversioni per collegare ranking e impatto reale sul business.",
+      "r1": "Monitoraggio della copertura indice e risoluzione dei problemi di crawling.",
+      "r2": "Tracking KPI a livello di landing page per lead e conversioni.",
+      "r3": "Roadmap mensile con backlog di implementazione prioritizzato.",
+      "faq1": {
+        "q": "Quando arrivano i primi risultati SEO?",
+        "a": "I primi segnali arrivano spesso in 4-8 settimane, mentre una crescita più solida richiede in media 3-6 mesi."
+      },
+      "faq2": {
+        "q": "Fornite solo strategia o anche implementazione?",
+        "a": "Entrambe: audit, prioritizzazione, implementazione e validazione post-rilascio."
+      },
+      "faq3": {
+        "q": "Si può fare SEO senza cambiare design?",
+        "a": "In molti casi sì: SEO tecnica, metadata e struttura contenuti; proponiamo cambi UX solo quando necessari."
+      },
+      "links": {
+        "title": "Pagine correlate:",
+        "webdev": "Sviluppo Web",
+        "projects": "Progetti",
+        "faq": "FAQ"
+      },
+      "cta": "Richiedi audit SEO",
+      "head": {
+        "title": "Servizi di ottimizzazione SEO | SEO tecnica e on-page SEO | {{name}}",
+        "description": "Servizi SEO tecnici e on-page focalizzati su indicizzazione, Core Web Vitals, qualità dei metadata e traffico organico orientato alla conversione."
+      }
+    },
+    "ecom": {
+      "h1": "Servizi di sviluppo e-commerce per store orientati alla crescita",
+      "lead": "Realizziamo esperienze ecommerce su Shopify e stack custom con alte performance, struttura categorie SEO-ready e UX orientata alla conversione.",
+      "intro2": "Il focus è la crescita di lungo periodo: migliore discoverability dei prodotti, checkout più lineare e analytics affidabili per scalare.",
+      "h2": {
+        "delivery": "Cosa consegniamo",
+        "value": "Perché conta",
+        "faq": "Domande frequenti"
+      },
+      "p1": "Architettura SEO per prodotti e categorie con strategia URL scalabile.",
+      "p2": "Integrazioni checkout, pagamenti e analytics per attribuzione pulita.",
+      "p3": "Storefront performance-first con media ottimizzati e basso overhead JS.",
+      "value": "Uno stack ecommerce solido migliora crawlability, discoverability dei prodotti e coerenza di conversione tra canali paid e organici.",
+      "r1": "Tassonomia SEO-first per categorie e filtri scalabili.",
+      "r2": "Percorso utente orientato alla conversione da prodotto a checkout.",
+      "r3": "Setup di tracking ricavi per attribuzione e analisi dei canali.",
+      "faq1": {
+        "q": "Lavorate solo con Shopify?",
+        "a": "No, lavoriamo sia con Shopify sia con storefront custom quando logica di business o integrazioni richiedono maggiore flessibilità."
+      },
+      "faq2": {
+        "q": "Potete migrare il nostro store attuale?",
+        "a": "Sì, migriamo catalogo, contenuti e segnali SEO principali mantenendo logica URL e redirect coerenti."
+      },
+      "faq3": {
+        "q": "Ottimizzate insieme SEO e advertising?",
+        "a": "Sì, allineiamo SEO tecnica e conversion tracking per far lavorare insieme canali organici e paid."
+      },
+      "links": {
+        "title": "Pagine correlate:",
+        "projects": "Progetti",
+        "seo": "Ottimizzazione SEO",
+        "faq": "FAQ"
+      },
+      "cta": "Pianifica il tuo ecommerce",
+      "head": {
+        "title": "Servizi di sviluppo e-commerce | Shopify e storefront custom | {{name}}",
+        "description": "Sviluppo e-commerce su Shopify e storefront custom con SEO tecnica, checkout ottimizzato e performance Core Web Vitals."
+      }
+    }
+  }
+}

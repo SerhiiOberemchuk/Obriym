@@ -11,7 +11,7 @@ import {
   type NoSerialize,
 } from "@builder.io/qwik";
 import type { EmblaCarouselType } from "embla-carousel";
-import { inlineTranslate, useSpeak, useSpeakContext } from "qwik-speak";
+import { inlineTranslate, useSpeakContext } from "qwik-speak";
 import styles from "./styles_slider.css?inline";
 
 import IconLeft from "~/assets/icons/icon_left.svg?w=24&h=24&jsx";
@@ -34,10 +34,7 @@ type AutoplayController = {
 
 export default component$(({ items }: InfinitySliderProps) => {
   useStylesScoped$(styles);
-  useSpeak({ runtimeAssets: ["team"] });
-  const {
-    translation: { team },
-  } = useSpeakContext();
+  const { translation } = useSpeakContext();
   const t = inlineTranslate();
   const viewportCategory = useContext(ViewportContext);
   const viewportWidth = useContext(ViewportWidthContext);
@@ -49,10 +46,11 @@ export default component$(({ items }: InfinitySliderProps) => {
   const isPaused = useSignal(false);
   const isOpen = useSignal(false);
   const selectedItem = useSignal<TeamMemberType | null>(null);
+  const team = translation?.team;
 
   const canUseSlider = useComputed$(() => items.length > 1);
   const isMobile = useComputed$(() => viewportCategory.value === "mobile");
-  const selectedMember = selectedItem.value ? team.member[selectedItem.value.slug] : null;
+  const selectedMember = selectedItem.value ? team?.member?.[selectedItem.value.slug] : null;
 
   const openModal = $((item: TeamMemberType) => {
     selectedItem.value = item;
@@ -81,6 +79,7 @@ export default component$(({ items }: InfinitySliderProps) => {
     }
   });
 
+  // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(async ({ cleanup, track }) => {
     track(() => viewportCategory.value);
     track(() => viewportWidth.value);

@@ -10,8 +10,8 @@ export const MobileMenuContext = createContextId<{
 
 export default component$(() => {
   const { toggleMenu, isOpen } = useContext(MobileMenuContext);
-  const isMobile = useContext(ViewportContext).value;
-  if (isMobile !== "mobile") {
+  const viewport = useContext(ViewportContext).value;
+  if (viewport !== "mobile") {
     return;
   }
   return (

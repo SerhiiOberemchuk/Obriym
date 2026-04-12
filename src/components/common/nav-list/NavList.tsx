@@ -21,6 +21,9 @@ export default component$<Props>(({ place, onClick }) => {
   const lang = locale.lang;
   const teamPath = getPath("/team/", lang);
   const faqPath = getPath("/faq/", lang);
+  const webDevelopmentPath = getPath("/web-development/", lang);
+  const seoOptimizationPath = getPath("/seo-optimization/", lang);
+  const ecommerceDevelopmentPath = getPath("/ecommerce-development/", lang);
   const homePath = getPath("/", lang);
 
   const baseListItems: NavListItem[] = [
@@ -34,11 +37,35 @@ export default component$<Props>(({ place, onClick }) => {
     { link: "about", label: t("navigation.about@@About"), path: `${homePath}#about` },
     { link: "contact", label: t("navigation.contact@@Contact"), path: `${currentPath}#contact` },
     { link: "faq", label: "FAQ", path: faqPath },
+    {
+      link: "web-development",
+      label: t("navigation.webDevelopment@@Web Development"),
+      path: webDevelopmentPath,
+    },
+    {
+      link: "seo-optimization",
+      label: t("navigation.seoOptimization@@SEO Optimization"),
+      path: seoOptimizationPath,
+    },
+    {
+      link: "ecommerce-development",
+      label: t("navigation.ecommerceDevelopment@@E-commerce Development"),
+      path: ecommerceDevelopmentPath,
+    },
   ];
 
   const navListItems = baseListItems.filter(({ link }) => {
-    if (place === "mobilemenu" || place === "header") {
-      return link !== "team" && link !== "faq";
+    if (place === "header") {
+      return (
+        link !== "team" &&
+        link !== "faq" &&
+        link !== "web-development" &&
+        link !== "seo-optimization" &&
+        link !== "ecommerce-development"
+      );
+    }
+    if (place === "mobilemenu") {
+      return link !== "contact";
     }
     if (place === "footer") {
       return link !== "contact";

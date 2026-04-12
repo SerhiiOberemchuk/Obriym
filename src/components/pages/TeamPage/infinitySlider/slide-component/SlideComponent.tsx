@@ -1,5 +1,5 @@
 import { component$, useStylesScoped$, QRL } from "@builder.io/qwik";
-import { useSpeak, useSpeakContext, inlineTranslate } from "qwik-speak";
+import { useSpeakContext, inlineTranslate } from "qwik-speak";
 import styles from "./styles_slide.css?inline";
 import type { TeamMemberType } from "~/types/team-member.type";
 import IconPlus from "~/assets/icons/icon_plus.svg?w=24&h=24&jsx";
@@ -7,14 +7,11 @@ import { imageMap } from "~/const/team";
 
 export default component$(
   ({ item, onOpen$ }: { item: TeamMemberType; onOpen$: QRL<() => void> }) => {
-    useSpeak({ runtimeAssets: ["team"] });
-    const {
-      translation: { team },
-    } = useSpeakContext();
+    const { translation } = useSpeakContext();
     const t = inlineTranslate();
     useStylesScoped$(styles);
 
-    const memberName = team.member[item.slug].name;
+    const memberName = translation?.team?.member?.[item.slug]?.name ?? item.name;
     const plusLabel = t("team.aria.slider.plus_btn@@More about {{name}}", {
       name: memberName,
     });

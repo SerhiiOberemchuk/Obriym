@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://obriym.com/dynamic-sitemap.xml

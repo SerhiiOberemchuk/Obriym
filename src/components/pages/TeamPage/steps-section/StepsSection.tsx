@@ -4,7 +4,7 @@ import { inlineTranslate } from "qwik-speak";
 import styles from "./styles_steps.css?inline";
 import { TEAM_MEMBERS } from "~/const/team";
 import InfinitySlider from "../infinitySlider/InfinitySlider";
-// import PinkImg from "~/assets/images/pink.png?w=100&h=100&jsx";
+import PinkImg from "~/assets/images/pink.png?jsx";
 
 // interface StepsSectionProps {
 //   viewportCategory: "mobile" | "tablet" | "desktop";
@@ -20,13 +20,7 @@ export default component$(() => {
       <div class=" team_steps_container_wrp">
         <div class="container ">
           <div class="team_steps_title">
-            {/* <PinkImg class="team_steps_image" aria-hidden="true" /> */}
-            <img
-              src="/images/pink.png"
-              class="team_steps_image"
-              aria-hidden="true"
-              alt="team_steps_image"
-            />
+            <PinkImg class="team_steps_image" aria-hidden={true} />
             <h2 class="H3_uppercase" id="team-title">
               {t("team.title@@Our Team")}
             </h2>

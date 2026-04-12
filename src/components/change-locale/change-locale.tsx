@@ -55,7 +55,9 @@ export const ChangeLocale = component$(({ place }: { place: "mob-menu" | "header
         aria-controls="language-list"
       >
         <span class="cl_btn_m">{dn(locale.lang.slice(0, 2), { type: "language" })}</span>
-        <span class="cl_btn_t">{locale.lang === "uk-UA" ? "Ukr" : locale.lang === "it-IT" ? "It" : "Eng"}</span>
+        <span class="cl_btn_t">
+          {locale.lang === "uk-UA" ? "Ukr" : locale.lang === "it-IT" ? "It" : "Eng"}
+        </span>
         <IconArrow />
       </button>
 
@@ -75,7 +77,7 @@ export const ChangeLocale = component$(({ place }: { place: "mob-menu" | "header
             >
               <span>
                 {value.lang === "uk-UA"
-                  ? "Ukrainska"
+                  ? "Українська"
                   : value.lang === "it-IT"
                     ? "Italiano"
                     : "English"}

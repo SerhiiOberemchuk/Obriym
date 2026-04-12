@@ -78,5 +78,58 @@
     "title": "{{name}} demo italiano"
   },
   "dates": "Date",
-  "numbers": "Numeri"
+  "numbers": "Numeri",
+  "seo": {
+    "webdev": {
+      "h1": "Servizi di sviluppo web per siti aziendali veloci e SEO-ready",
+      "lead": "Progettiamo e sviluppiamo siti web e web app ad alte prestazioni, orientati alla visibilità organica, alla crescita delle conversioni e a Core Web Vitals stabili.",
+      "h2": {
+        "stack": "Cosa realizziamo",
+        "result": "Risultati di business"
+      },
+      "p1": "Siti corporate con struttura multilingua e SEO tecnica.",
+      "p2": "Landing page ad alta conversione per traffico paid e organico.",
+      "p3": "Web app e portali con architettura pulita e sviluppo scalabile.",
+      "result": "Il nostro processo punta a crescita del ranking, riduzione del costo di acquisizione e lead di qualità grazie a SEO tecnica, struttura contenuti e UX chiara.",
+      "cta": "Parliamo del tuo progetto",
+      "head": {
+        "title": "Servizi di sviluppo web | Siti e web app SEO-ready | {{name}}",
+        "description": "Agenzia di sviluppo web che realizza siti e web app veloci, SEO-ready, con supporto multilingua e Core Web Vitals solidi."
+      }
+    },
+    "optimization": {
+      "h1": "Servizi di ottimizzazione SEO per crescita organica sostenibile",
+      "lead": "Miglioriamo ranking e qualità dei lead con SEO tecnica, architettura dei contenuti e ottimizzazione on-page misurabile.",
+      "h2": {
+        "scope": "Ambito del lavoro",
+        "analytics": "Reportistica e analytics"
+      },
+      "p1": "Audit tecnici: indicizzazione, canonical, sitemap, robots e schema.",
+      "p2": "Ottimizzazioni on-page: title, metadata, gerarchia heading e linking interno.",
+      "p3": "Ottimizzazione performance per Core Web Vitals più forti.",
+      "analytics": "Allineiamo Search Console, GA4 e tracciamento conversioni per collegare ranking e impatto reale sul business.",
+      "cta": "Richiedi audit SEO",
+      "head": {
+        "title": "Servizi di ottimizzazione SEO | SEO tecnica e on-page | {{name}}",
+        "description": "Servizi SEO tecnici e on-page focalizzati su indicizzazione, Core Web Vitals, qualità dei metadata e traffico organico orientato alla conversione."
+      }
+    },
+    "ecom": {
+      "h1": "Servizi di sviluppo e-commerce per store orientati alla crescita",
+      "lead": "Realizziamo esperienze ecommerce su Shopify e stack custom con alte performance, struttura categorie SEO-ready e UX orientata alla conversione.",
+      "h2": {
+        "delivery": "Cosa consegniamo",
+        "value": "Perché conta"
+      },
+      "p1": "Architettura SEO per prodotti e categorie con strategia URL scalabile.",
+      "p2": "Integrazioni checkout, pagamenti e analytics per attribuzione pulita.",
+      "p3": "Storefront performance-first con media ottimizzati e basso overhead JS.",
+      "value": "Uno stack ecommerce solido migliora crawlability, discoverability dei prodotti e coerenza di conversione tra canali paid e organici.",
+      "cta": "Pianifica il tuo ecommerce",
+      "head": {
+        "title": "Servizi di sviluppo e-commerce | Shopify e storefront custom | {{name}}",
+        "description": "Sviluppo e-commerce su Shopify e storefront custom con SEO tecnica, checkout ottimizzato e performance Core Web Vitals."
+      }
+    }
+  }
 }

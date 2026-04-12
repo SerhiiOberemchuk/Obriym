@@ -5,7 +5,7 @@ import { reset, useForm, valiForm$ } from "@modular-forms/qwik";
 import styles from "./contact-form_styles.css?inline";
 import "./ic-form-modal-btn.css";
 
-import { ContactSchema } from "~/schemas/contactSchema";
+import { ContactSchema } from "../../../schemas/contactSchema";
 import { ContactForm, ContactFormResponse } from "~/types/contact-form.type";
 import { AlertType } from "~/types/alert.type";
 

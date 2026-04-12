@@ -8,12 +8,13 @@ export const RouterHead = component$(() => {
   const head = useDocumentHead();
   const loc = useLocation();
   const hasCanonical = head.links.some(link => link.rel === "canonical");
+  const fallbackCanonical = `${loc.url.origin}${loc.url.pathname}`;
 
   return (
     <>
       <title>{head.title}</title>
 
-      {!hasCanonical && <link rel="canonical" href={loc.url.href} />}
+      {!hasCanonical && <link rel="canonical" href={fallbackCanonical} />}
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
