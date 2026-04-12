@@ -1,5 +1,4 @@
 import type { Project } from "~/types/project.type";
-import { DEFAULT_LOCALE_PREFIX, getLocalePrefixFromLang } from "./seo";
 
 export type ProjectLocale = "en-EU" | "uk-UA" | "it-IT";
 
@@ -38,7 +37,6 @@ export const getLocalizedProject = (
   project: Project,
   lang: ProjectLocale = "en-EU",
 ): LocalizedProject => {
-  const localePrefix = getLocalePrefixFromLang(lang);
   const localizedTitle = lang === "it-IT" ? project.titleIT : lang === "uk-UA" ? project.title : project.titleEN;
   const localizedDescription =
     lang === "it-IT"
@@ -60,7 +58,7 @@ export const getLocalizedProject = (
     localizedCategory,
     localizedClient,
     localizedFeatures,
-    detailPath: `${localePrefix || DEFAULT_LOCALE_PREFIX}/projects/${project.slug}`.replace(/\/{2,}/g, "/"),
+    detailPath: `/projects/${project.slug}`,
   };
 };
 

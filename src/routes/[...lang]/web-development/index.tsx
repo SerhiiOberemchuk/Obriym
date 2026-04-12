@@ -1,12 +1,12 @@
 import { component$ } from "@builder.io/qwik";
 import { DocumentHead, Link } from "@builder.io/qwik-city";
-import { inlineTranslate, useSpeakLocale } from "qwik-speak";
-import { DEFAULT_OG_IMAGE, getAlternateLinks, getCanonicalUrl, getLocalePrefixFromLang } from "~/utils/seo";
+import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
+import { DEFAULT_OG_IMAGE, getAlternateLinks, getCanonicalUrl } from "~/utils/seo";
 
 export default component$(() => {
   const t = inlineTranslate();
   const { lang } = useSpeakLocale();
-  const localePrefix = getLocalePrefixFromLang(lang);
+  const getPath = localizePath();
 
   return (
     <section style={{ padding: "7rem 0 5rem" }}>
@@ -80,17 +80,17 @@ export default component$(() => {
 
         <p class="btn_body grey" style={{ marginTop: "1.2rem", maxWidth: "920px" }}>
           {t("seo.webdev.links.title@@Related pages:")}{" "}
-          <Link href={`${localePrefix}/projects`.replace(/\/{2,}/g, "/")}>
+          <Link href={getPath("/projects/", lang)}>
             {t("seo.webdev.links.projects@@Projects")}
           </Link>
           {" | "}
-          <Link href={`${localePrefix}/faq`.replace(/\/{2,}/g, "/")}>{t("seo.webdev.links.faq@@FAQ")}</Link>
+          <Link href={getPath("/faq/", lang)}>{t("seo.webdev.links.faq@@FAQ")}</Link>
           {" | "}
-          <Link href={`${localePrefix}/team`.replace(/\/{2,}/g, "/")}>{t("seo.webdev.links.team@@Team")}</Link>
+          <Link href={getPath("/team/", lang)}>{t("seo.webdev.links.team@@Team")}</Link>
         </p>
 
         <Link
-          href={`${localePrefix}/#contact`.replace(/\/{2,}/g, "/")}
+          href={`${getPath("/", lang)}#contact`}
           class="btn_body black"
           style={{
             display: "inline-flex",

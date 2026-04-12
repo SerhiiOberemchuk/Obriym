@@ -1,6 +1,6 @@
 import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import { Link, useLocation } from "@builder.io/qwik-city";
-import { inlineTranslate, useSpeakLocale } from "qwik-speak";
+import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
 import SubTitle from "~/components/common/subtitile/SubTitle";
 import SectionContact from "../HomePage/section-contact/SectionContact";
 import styles from "./project-detail-page.css?inline";
@@ -17,8 +17,11 @@ export default component$<ProjectDetailPageProps>(({ project, relatedProjects })
   const t = inlineTranslate();
   const loc = useLocation();
   const { lang } = useSpeakLocale();
-  const homePath = `${SITE}${lang === "uk-UA" ? "/uk-UA" : lang === "it-IT" ? "/it-IT" : ""}` || SITE;
-  const projectsPath = `${SITE}${project.detailPath.replace(`/${project.slug}`, "") || "/projects"}`;
+  const getPath = localizePath();
+  const localizedHomePath = getPath("/", lang);
+  const localizedProjectsPath = getPath("/projects/", lang);
+  const homePath = `${SITE}${localizedHomePath}`;
+  const projectsPath = `${SITE}${localizedProjectsPath}`;
   const canonical = `${SITE}${loc.url.pathname === "/" ? "/" : loc.url.pathname.replace(/\/+$/, "")}`;
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -92,7 +95,7 @@ export default component$<ProjectDetailPageProps>(({ project, relatedProjects })
             {t("projects.detail.subtitle@@Project case")}
           </SubTitle>
 
-          <Link href={project.detailPath.replace(`/${project.slug}`, "") || "/projects"} class="project_back btn_body grey_dark">
+          <Link href={localizedProjectsPath} class="project_back btn_body grey_dark">
             {t("projects.detail.back@@Back to projects")}
           </Link>
 
@@ -182,7 +185,7 @@ export default component$<ProjectDetailPageProps>(({ project, relatedProjects })
               {relatedProjects.map(related => (
                 <li key={related.slug}>
                   <article class="project_related_card">
-                    <Link href={related.detailPath} class="project_related_link">
+                    <Link href={getPath(related.detailPath, lang)} class="project_related_link">
                       <img
                         src={related.image_src}
                         alt={related.localizedTitle}

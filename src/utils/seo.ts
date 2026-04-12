@@ -1,26 +1,25 @@
 import type { DocumentLink } from "@builder.io/qwik-city";
+import { config } from "~/speak-config";
 
 export const SITE = "https://obriym.com";
 export const DEFAULT_OG_IMAGE = `${SITE}/og-image.jpg`;
 
 export const DEFAULT_LOCALE_PREFIX = "";
-export const LOCALE_PREFIXES = ["", "/uk-UA", "/it-IT"] as const;
+const toPrefix = (lang: string) => (lang === config.defaultLocale.lang ? DEFAULT_LOCALE_PREFIX : `/${lang}`);
 
-export const SEO_LOCALES = [
-  { hreflang: "en", prefix: DEFAULT_LOCALE_PREFIX },
-  { hreflang: "uk-UA", prefix: "/uk-UA" },
-  { hreflang: "it-IT", prefix: "/it-IT" },
-] as const;
-
-type LocalePrefix = (typeof LOCALE_PREFIXES)[number];
-
-const LOCALE_PREFIX_PATTERN = /^\/(uk-UA|it-IT|en-EU)(?=\/|$)/;
+const localeSegmentPattern = config.supportedLocales.map(({ lang }) => lang).join("|");
+const LOCALE_PREFIX_PATTERN = new RegExp(`^\\/(${localeSegmentPattern})(?=\\/|$)`);
 const normalizePath = (pathname: string) => (pathname === "/" ? "/" : pathname.replace(/\/+$/, ""));
+
+export const SEO_LOCALES = config.supportedLocales.map(({ lang }) => ({
+  hreflang: lang,
+  prefix: toPrefix(lang),
+}));
 
 export const getPathWithoutLocale = (pathname: string) =>
   normalizePath(pathname).replace(LOCALE_PREFIX_PATTERN, "") || "/";
 
-export const getLocalizedPath = (pathname: string, prefix: LocalePrefix) => {
+export const getLocalizedPath = (pathname: string, prefix: string) => {
   const pathWithoutLocale = getPathWithoutLocale(pathname);
 
   if (pathWithoutLocale === "/") {
@@ -28,12 +27,6 @@ export const getLocalizedPath = (pathname: string, prefix: LocalePrefix) => {
   }
 
   return `${prefix}${pathWithoutLocale}`.replace(/\/{2,}/g, "/");
-};
-
-export const getLocalePrefixFromLang = (lang?: string): LocalePrefix => {
-  if (lang === "uk-UA") return "/uk-UA";
-  if (lang === "it-IT") return "/it-IT";
-  return DEFAULT_LOCALE_PREFIX;
 };
 
 export const getCanonicalUrl = (pathname: string) => {

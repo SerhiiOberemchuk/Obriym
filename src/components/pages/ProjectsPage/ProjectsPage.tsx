@@ -1,6 +1,6 @@
 import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import { Link, useLocation } from "@builder.io/qwik-city";
-import { inlineTranslate, useSpeakLocale } from "qwik-speak";
+import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
 import SubTitle from "~/components/common/subtitile/SubTitle";
 import SectionContact from "../HomePage/section-contact/SectionContact";
 import styles from "./projects-page.css?inline";
@@ -16,6 +16,7 @@ export default component$<ProjectsPageProps>(({ projects }) => {
   useStylesScoped$(styles);
 
   const { lang } = useSpeakLocale();
+  const getPath = localizePath();
   const t = inlineTranslate();
   const loc = useLocation();
   const localizedProjects = projects.map(project => getLocalizedProject(project, lang as ProjectLocale));
@@ -28,7 +29,7 @@ export default component$<ProjectsPageProps>(({ projects }) => {
         "@type": "ListItem",
         position: 1,
         name: t("navigation.home@@Home"),
-        item: `${SITE}${lang === "uk-UA" ? "/uk-UA" : lang === "it-IT" ? "/it-IT" : ""}` || SITE,
+        item: `${SITE}${getPath("/", lang)}`,
       },
       {
         "@type": "ListItem",
@@ -53,7 +54,7 @@ export default component$<ProjectsPageProps>(({ projects }) => {
       itemListElement: localizedProjects.map((project, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        url: `${SITE}${project.detailPath}`,
+        url: `${SITE}${getPath(project.detailPath, lang)}`,
         name: project.localizedTitle,
       })),
     },
@@ -102,7 +103,7 @@ export default component$<ProjectsPageProps>(({ projects }) => {
             {localizedProjects.map(project => (
               <li key={project.slug}>
                 <article class="project_card">
-                  <Link href={project.detailPath} class="project_card_link">
+                  <Link href={getPath(project.detailPath, lang)} class="project_card_link">
                     <img
                       src={project.image_src}
                       alt={`${project.localizedTitle} - ${project.localizedDescription}`}
@@ -133,7 +134,7 @@ export default component$<ProjectsPageProps>(({ projects }) => {
                       ))}
                     </ul>
 
-                    <Link href={project.detailPath} class="project_card_cta btn_body black">
+                    <Link href={getPath(project.detailPath, lang)} class="project_card_cta btn_body black">
                       {t("projects.page.button@@View project")}
                     </Link>
                   </div>

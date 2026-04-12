@@ -1,10 +1,10 @@
 import { component$ } from "@builder.io/qwik";
 import { DocumentHead, Link, routeLoader$ } from "@builder.io/qwik-city";
-import { inlineTranslate, useSpeakLocale } from "qwik-speak";
+import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
 import ProjectDetailPage from "~/components/pages/ProjectsPage/ProjectDetailPage";
 import type { Project } from "~/types/project.type";
 import { type ProjectLocale, fetchProjects, findProjectBySlug, getLocalizedProject } from "~/utils/projects";
-import { getAlternateLinks, getCanonicalUrl, getLocalePrefixFromLang } from "~/utils/seo";
+import { getAlternateLinks, getCanonicalUrl } from "~/utils/seo";
 
 export const useProjectLoader = routeLoader$(async ({ cacheControl, params, locale, status }) => {
   try {
@@ -61,6 +61,7 @@ export default component$(() => {
   const projectData = useProjectLoader();
   const t = inlineTranslate();
   const { lang } = useSpeakLocale();
+  const getPath = localizePath();
 
   if (!projectData.value.project) {
     return (
@@ -73,7 +74,7 @@ export default component$(() => {
             )}
           </p>
           <Link
-            href={`${getLocalePrefixFromLang(lang)}/projects`.replace(/\/{2,}/g, "/")}
+            href={getPath("/projects/", lang)}
             class="btn_body black"
             style={{
               display: "inline-flex",
