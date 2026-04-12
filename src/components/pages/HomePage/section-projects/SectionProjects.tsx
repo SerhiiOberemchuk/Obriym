@@ -67,6 +67,7 @@ const CarouselComponent = component$<PropsCarousel>(
       }
     });
 
+    // eslint-disable-next-line qwik/no-use-visible-task
     useVisibleTask$(async () => {
       if (!sliderRef.value) return;
       const emblaCarousel = (await import("embla-carousel")).default;

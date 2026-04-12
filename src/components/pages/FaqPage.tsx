@@ -2,23 +2,22 @@ import { component$ } from "@builder.io/qwik";
 
 import SectionTitle from "./FAQ/sections/title-section/SectionTitle";
 import QuestionSection from "./FAQ/sections/question-section/QuestionSection";
-import { useSpeak, useSpeakContext } from "qwik-speak";
+import { inlineTranslate } from "qwik-speak";
 import { faqStructure, QA } from "./FAQ/sections/question-section/utils";
 import LinksTitle from "./FAQ/sections/links-section/LinksTitle";
 
 export default component$(() => {
-  useSpeak({ runtimeAssets: ["faq"] });
-  const {
-    translation: { faq },
-  } = useSpeakContext();
+  const t = inlineTranslate();
 
-  const items: QA[] = Object.values(faqStructure)
+  const items = Object.values(faqStructure)
     .flat()
-    .map(id => ({
-      id,
-      q: faq.items[id].q,
-      a: faq.items[id].a,
-    }));
+    .reduce<QA[]>((acc, id) => {
+      const q = t(`faq.items.${id}.q`);
+      const a = t(`faq.items.${id}.a`);
+      if (!q || !a) return acc;
+      acc.push({ id, q, a });
+      return acc;
+    }, []);
 
   const faqJsonLd = {
     "@context": "https://schema.org",

@@ -28,6 +28,7 @@ export default component$(() => {
   const cookiesPath = getPath("/cookies-policy/", lang);
   const { isVisible } = useContext(CookiesBannerContext);
 
+  // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(() => {
     const isLocalCookies = localStorage.getItem(COOKIES_LOCAL_STORAGE);
     if (!isLocalCookies) {

@@ -23,7 +23,7 @@ import LetsWork from "~/components/lets-work/LetsWork";
 import MobileMenu from "~/components/mobile-menu/MobileMenu";
 
 export const ViewportContext =
-  createContextId<Signal<"mobile" | "tablet" | "desktop">>("app.viewport");
+  createContextId<Signal<"mobile" | "tablet" | "desktop" | null>>("app.viewport");
 export const ViewportWidthContext = createContextId<Signal<number>>("viewport.width");
 
 export const useContactFormLoader = routeLoader$(() => ({
@@ -45,6 +45,7 @@ export default component$(() => {
     else if (width >= 768) viewportCategory.value = "tablet";
     else viewportCategory.value = "mobile";
   });
+  // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(() => {
     updateViewport();
   });

@@ -1,11 +1,10 @@
 import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { useSpeak, useSpeakContext } from "qwik-speak";
+import { useSpeakContext } from "qwik-speak";
 import styles from "./options-group_styles.css?inline";
 import { OptionsGroupProps } from "~/types/contact-form.type";
 
 export const OptionsGroup = component$(
   ({ name, type, options, label, value, onInput$, onBlur$ }: OptionsGroupProps) => {
-    useSpeak({ runtimeAssets: ["services", "budget"] });
     const { translation } = useSpeakContext();
     useStylesScoped$(styles);
 
@@ -22,11 +21,13 @@ export const OptionsGroup = component$(
           const isSelected = isCheckbox
             ? Array.isArray(value) && value.includes(key)
             : value === key;
+          const servicesTranslation = translation?.services as Record<string, string> | undefined;
+          const budgetTranslation = translation?.budget as Record<string, string> | undefined;
           const optionLabel =
             name === "services"
-              ? translation.services[key]
+              ? servicesTranslation?.[key] ?? option
               : name === "budget"
-                ? translation.budget[key]
+                ? budgetTranslation?.[key] ?? option
                 : option;
 
           return (

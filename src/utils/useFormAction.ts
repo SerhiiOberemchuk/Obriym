@@ -1,5 +1,5 @@
 import { formAction$, valiForm$ } from "@modular-forms/qwik";
-import { ContactSchema } from "~/schemas/contactSchema";
+import { ContactSchema } from "../schemas/contactSchema";
 import { ContactForm, ContactFormResponse } from "~/types/contact-form.type";
 import { sendEmail } from "~/utils/sendEmail";
 import { getEmailHtmlToUs, getEmailHtmlToUser } from "./emailTemplates";

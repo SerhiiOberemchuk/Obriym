@@ -7,45 +7,55 @@ import { inlineTranslate } from "qwik-speak";
 export default component$(() => {
   useStylesScoped$(styles);
   const t = inlineTranslate();
+  // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(async ({ cleanup }) => {
     const gsap = (await import("gsap")).default;
     const { ScrollTrigger } = await import("gsap/ScrollTrigger");
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.from(".list_steps > :nth-child(1)", {
-      scrollTrigger: {
-        trigger: ".sticky_wrapper",
-        // markers: true,
-        start: "top top",
-        end: "+=800",
-        scrub: true,
-      },
-      rotate: 12,
-      x: "100svw",
-    });
-    gsap.from(".list_steps > :nth-child(2)", {
-      scrollTrigger: {
-        trigger: ".sticky_wrapper",
-        // markers: true,
-        start: "+=800",
-        end: "+=800",
-        scrub: true,
-      },
+    const animations = [
+      gsap.from(".list_steps > :nth-child(1)", {
+        scrollTrigger: {
+          trigger: ".sticky_wrapper",
+          // markers: true,
+          start: "top top",
+          end: "+=800",
+          scrub: true,
+        },
+        rotate: 12,
+        x: "100svw",
+      }),
+      gsap.from(".list_steps > :nth-child(2)", {
+        scrollTrigger: {
+          trigger: ".sticky_wrapper",
+          // markers: true,
+          start: "+=800",
+          end: "+=800",
+          scrub: true,
+        },
 
-      scale: 0,
+        scale: 0,
+      }),
+      gsap.from(".list_steps > :nth-child(3)", {
+        scrollTrigger: {
+          trigger: ".sticky_wrapper",
+          // markers: true,
+          start: "+=1600",
+          end: "+=800",
+          scrub: true,
+        },
+        rotate: -12,
+        x: "-100svw",
+      }),
+    ];
+
+    cleanup(() => {
+      animations.forEach(animation => {
+        animation.scrollTrigger?.kill();
+        animation.kill();
+      });
     });
-    gsap.from(".list_steps > :nth-child(3)", {
-      scrollTrigger: {
-        trigger: ".sticky_wrapper",
-        // markers: true,
-        start: "+=1600",
-        end: "+=800",
-        scrub: true,
-      },
-      rotate: -12,
-      x: "-100svw",
-    });
-    cleanup(() => ScrollTrigger.killAll(true));
+
   });
   const steps: StepHowItWork[] = [
     {
@@ -90,7 +100,7 @@ export default component$(() => {
               <div class="list_wrap">
                 <ul class="list_steps">
                   {steps.map((item, index) => (
-                    <li key={index} class="item" id={`#step${index + 1}`}>
+                    <li key={index} class="item" id={`step${index + 1}`}>
                       <article class="card">
                         <header>
                           <p class="H4 ">{item.step}</p>

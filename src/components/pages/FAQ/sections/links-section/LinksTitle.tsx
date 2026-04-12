@@ -1,33 +1,30 @@
 import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import styles from "./styles-links.css?inline";
 
-import { useSpeak, useSpeakContext } from "qwik-speak";
+import { inlineTranslate } from "qwik-speak";
 import { ids, QA } from "../question-section/utils";
 
 export default component$(() => {
   useStylesScoped$(styles);
-  useSpeak({ runtimeAssets: ["faq"] });
-  const {
-    translation: { faq },
-  } = useSpeakContext();
+  const t = inlineTranslate();
 
   const items: Omit<QA, "a">[] = ids.map(id => ({
     id,
-    q: faq.items[id].link,
+    q: t(`faq.items.${id}.link`),
   }));
 
   return (
     <section class="links_section">
-      <nav aria-label={faq.toc.aria} class="faq_toc">
+      <nav aria-label={t("faq.toc.aria@@FAQ")} class="faq_toc">
         <ListItems array={items.filter((_, i) => i % 2 !== 0)} />
         <ListItems array={items.filter((_, i) => i % 2 !== 0)} />
       </nav>
       <div class="animate_title">
-        <TitleAnimated title={faq.h2} />
-        <TitleAnimated title={faq.h2} />
-        <TitleAnimated title={faq.h2} />
+        <TitleAnimated title={t("faq.h2")} />
+        <TitleAnimated title={t("faq.h2")} />
+        <TitleAnimated title={t("faq.h2")} />
       </div>
-      <nav aria-label={faq.toc.aria} class="faq_toc">
+      <nav aria-label={t("faq.toc.aria@@FAQ")} class="faq_toc">
         <ListItems array={items.filter((_, i) => i % 2 === 0)} />
         <ListItems array={items.filter((_, i) => i % 2 === 0)} />
       </nav>

@@ -58,8 +58,10 @@
   },
   "dependencies": {
     "@google/model-viewer": "^4.1.0",
+    "@microsoft/clarity": "^1.0.2",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
+    "ga-gtag": "^1.2.0",
     "gsap": "^3.14.2",
     "resend": "^6.9.3"
   }

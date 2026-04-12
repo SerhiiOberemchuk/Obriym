@@ -1,4 +1,4 @@
-import { component$, useVisibleTask$ } from "@builder.io/qwik";
+import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 
 const animatedBallPresets = {
   cube: {
@@ -50,15 +50,43 @@ export default component$<AnimatedBallProps>(
     const presetConfig = animatedBallPresets[preset];
     const resolvedModelSrc = presetConfig.modelSrc;
     const resolvedPosterSrc = presetConfig.posterSrc;
+    const modelRef = useSignal<Element>();
 
-    // The web component is registered only in the browser so SSR stays safe.
+    // The web component is registered only when the decorative model is near the viewport.
     // eslint-disable-next-line qwik/no-use-visible-task
-    useVisibleTask$(() => {
-      void import("@google/model-viewer");
+    useVisibleTask$(({ cleanup }) => {
+      const target = modelRef.value;
+      if (!target) return;
+
+      let hasLoaded = false;
+      const loadModelViewer = async () => {
+        if (hasLoaded) return;
+        hasLoaded = true;
+        await import("@google/model-viewer");
+      };
+
+      if (!("IntersectionObserver" in window)) {
+        void loadModelViewer();
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        entries => {
+          if (entries.some(entry => entry.isIntersecting)) {
+            void loadModelViewer();
+            observer.disconnect();
+          }
+        },
+        { rootMargin: "240px" },
+      );
+
+      observer.observe(target);
+      cleanup(() => observer.disconnect());
     });
 
     return (
       <model-viewer
+        ref={modelRef}
         class={className}
         // Model source can come from a named preset or be passed explicitly via props.
         src={resolvedModelSrc}
