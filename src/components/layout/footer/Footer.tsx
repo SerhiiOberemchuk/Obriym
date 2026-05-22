@@ -1,5 +1,4 @@
 import { component$, useContext, useStylesScoped$ } from "@builder.io/qwik";
-import { Link } from "@builder.io/qwik-city";
 import Logo from "~/components/common/logo/logo";
 import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
 import styles from "./styles_footer.css?inline";
@@ -47,11 +46,11 @@ export default component$(() => {
           <nav aria-label="Legal information">
             <ul class="privacy_list">
               <li class="btn_header">
-                <Link href={privacyPath}>Privacy policy</Link>
+                <a href={privacyPath}>Privacy policy</a>
               </li>
               <li class="divider"></li>
               <li class="btn_header">
-                <Link href={cookiesPath}>Cookie policy</Link>
+                <a href={cookiesPath}>Cookie policy</a>
               </li>
             </ul>
           </nav>

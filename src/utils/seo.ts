@@ -6,13 +6,14 @@ export const DEFAULT_OG_IMAGE = `${SITE}/og-image.jpg`;
 
 export const DEFAULT_LOCALE_PREFIX = "";
 const toPrefix = (lang: string) => (lang === config.defaultLocale.lang ? DEFAULT_LOCALE_PREFIX : `/${lang}`);
+const toHreflang = (lang: string) => (lang === config.defaultLocale.lang ? "en" : lang);
 
 const localeSegmentPattern = config.supportedLocales.map(({ lang }) => lang).join("|");
 const LOCALE_PREFIX_PATTERN = new RegExp(`^\\/(${localeSegmentPattern})(?=\\/|$)`);
 const normalizePath = (pathname: string) => (pathname === "/" ? "/" : pathname.replace(/\/+$/, ""));
 
 export const SEO_LOCALES = config.supportedLocales.map(({ lang }) => ({
-  hreflang: lang,
+  hreflang: toHreflang(lang),
   prefix: toPrefix(lang),
 }));
 

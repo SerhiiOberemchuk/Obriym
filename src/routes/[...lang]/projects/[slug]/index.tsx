@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { DocumentHead, Link, routeLoader$ } from "@builder.io/qwik-city";
+import { DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
 import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
 import ProjectDetailPage from "~/components/pages/ProjectsPage/ProjectDetailPage";
 import type { Project } from "~/types/project.type";
@@ -73,7 +73,7 @@ export default component$(() => {
               "projects.detail.notFound.text@@The requested case page does not exist or is currently unavailable.",
             )}
           </p>
-          <Link
+          <a
             href={getPath("/projects/", lang)}
             class="btn_body black"
             style={{
@@ -84,7 +84,7 @@ export default component$(() => {
             }}
           >
             {t("projects.detail.notFound.back@@Back to projects")}
-          </Link>
+          </a>
         </div>
       </section>
     );

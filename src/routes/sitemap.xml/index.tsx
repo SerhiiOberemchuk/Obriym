@@ -27,7 +27,12 @@ const ROUTE_PRIORITY: Record<string, number> = {
   "/cookies-policy": 0.3,
 };
 
-const createLocalizedEntries = (pathname: string, priority: number): SitemapEntry[] => {
+const toDateString = (value: string) => {
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? undefined : date.toISOString().slice(0, 10);
+};
+
+const createLocalizedEntries = (pathname: string, priority: number, lastmod?: string): SitemapEntry[] => {
   const alternates = [
     ...SEO_LOCALES.map(({ hreflang, prefix }) => ({
       hreflang,
@@ -39,6 +44,7 @@ const createLocalizedEntries = (pathname: string, priority: number): SitemapEntr
   return SEO_LOCALES.map(({ prefix }) => ({
     loc: getLocalizedPath(pathname, prefix),
     priority,
+    lastmod,
     alternates,
   }));
 };
@@ -52,7 +58,9 @@ export const onGet: RequestHandler = async ({ cacheControl, headers, send }) => 
 
   try {
     const projects = await fetchProjects();
-    projectEntries = projects.flatMap(project => createLocalizedEntries(`/projects/${project.slug}`, 0.75));
+    projectEntries = projects.flatMap(project =>
+      createLocalizedEntries(`/projects/${project.slug}`, 0.75, toDateString(project.updated_at)),
+    );
   } catch (error) {
     console.error("[dynamic-sitemap] Failed to load projects", error);
   }

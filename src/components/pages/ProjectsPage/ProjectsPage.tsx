@@ -1,5 +1,5 @@
 import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { Link, useLocation } from "@builder.io/qwik-city";
+import { useLocation } from "@builder.io/qwik-city";
 import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
 import SubTitle from "~/components/common/subtitile/SubTitle";
 import SectionContact from "../HomePage/section-contact/SectionContact";
@@ -103,7 +103,7 @@ export default component$<ProjectsPageProps>(({ projects }) => {
             {localizedProjects.map(project => (
               <li key={project.slug}>
                 <article class="project_card">
-                  <Link href={getPath(project.detailPath, lang)} class="project_card_link">
+                  <a href={getPath(project.detailPath, lang)} class="project_card_link">
                     <img
                       src={project.image_src}
                       alt={`${project.localizedTitle} - ${project.localizedDescription}`}
@@ -123,7 +123,7 @@ export default component$<ProjectsPageProps>(({ projects }) => {
                         {project.localizedDescription}
                       </p>
                     </div>
-                  </Link>
+                  </a>
 
                   <div class="project_card_footer">
                     <ul class="project_tags" aria-label={t("projects.page.features.aria@@Project features")}>
@@ -134,9 +134,9 @@ export default component$<ProjectsPageProps>(({ projects }) => {
                       ))}
                     </ul>
 
-                    <Link href={getPath(project.detailPath, lang)} class="project_card_cta btn_body black">
+                    <a href={getPath(project.detailPath, lang)} class="project_card_cta btn_body black">
                       {t("projects.page.button@@View project")}
-                    </Link>
+                    </a>
                   </div>
                 </article>
               </li>

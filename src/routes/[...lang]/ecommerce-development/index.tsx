@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { DocumentHead, Link } from "@builder.io/qwik-city";
+import { DocumentHead } from "@builder.io/qwik-city";
 import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
 import { DEFAULT_OG_IMAGE, getAlternateLinks, getCanonicalUrl } from "~/utils/seo";
 
@@ -80,18 +80,18 @@ export default component$(() => {
 
         <p class="btn_body grey" style={{ marginTop: "1.2rem", maxWidth: "920px" }}>
           {t("seo.ecom.links.title@@Related pages:")}{" "}
-          <Link href={getPath("/projects/", lang)}>
+          <a href={getPath("/projects/", lang)}>
             {t("seo.ecom.links.projects@@Projects")}
-          </Link>
+          </a>
           {" | "}
-          <Link href={getPath("/seo-optimization/", lang)}>
+          <a href={getPath("/seo-optimization/", lang)}>
             {t("seo.ecom.links.seo@@SEO Optimization")}
-          </Link>
+          </a>
           {" | "}
-          <Link href={getPath("/faq/", lang)}>{t("seo.ecom.links.faq@@FAQ")}</Link>
+          <a href={getPath("/faq/", lang)}>{t("seo.ecom.links.faq@@FAQ")}</a>
         </p>
 
-        <Link
+        <a
           href={`${getPath("/", lang)}#contact`}
           class="btn_body black"
           style={{
@@ -103,7 +103,7 @@ export default component$(() => {
           }}
         >
           {t("seo.ecom.cta@@Plan ecommerce build")}
-        </Link>
+        </a>
       </div>
     </section>
   );

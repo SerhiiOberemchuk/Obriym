@@ -27,5 +27,4 @@ export const config: SpeakConfig = {
     "projects",
   ],
 
-  domainBasedRouting: { prefix: "always" },
 };

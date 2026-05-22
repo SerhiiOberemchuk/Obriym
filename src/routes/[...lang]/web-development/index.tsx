@@ -1,5 +1,5 @@
 import { component$ } from "@builder.io/qwik";
-import { DocumentHead, Link } from "@builder.io/qwik-city";
+import { DocumentHead } from "@builder.io/qwik-city";
 import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
 import { DEFAULT_OG_IMAGE, getAlternateLinks, getCanonicalUrl } from "~/utils/seo";
 
@@ -80,16 +80,16 @@ export default component$(() => {
 
         <p class="btn_body grey" style={{ marginTop: "1.2rem", maxWidth: "920px" }}>
           {t("seo.webdev.links.title@@Related pages:")}{" "}
-          <Link href={getPath("/projects/", lang)}>
+          <a href={getPath("/projects/", lang)}>
             {t("seo.webdev.links.projects@@Projects")}
-          </Link>
+          </a>
           {" | "}
-          <Link href={getPath("/faq/", lang)}>{t("seo.webdev.links.faq@@FAQ")}</Link>
+          <a href={getPath("/faq/", lang)}>{t("seo.webdev.links.faq@@FAQ")}</a>
           {" | "}
-          <Link href={getPath("/team/", lang)}>{t("seo.webdev.links.team@@Team")}</Link>
+          <a href={getPath("/team/", lang)}>{t("seo.webdev.links.team@@Team")}</a>
         </p>
 
-        <Link
+        <a
           href={`${getPath("/", lang)}#contact`}
           class="btn_body black"
           style={{
@@ -101,7 +101,7 @@ export default component$(() => {
           }}
         >
           {t("seo.webdev.cta@@Discuss your project")}
-        </Link>
+        </a>
       </div>
     </section>
   );

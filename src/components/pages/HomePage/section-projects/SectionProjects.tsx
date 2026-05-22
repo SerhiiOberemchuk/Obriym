@@ -1,10 +1,8 @@
-import { component$, useSignal, useStylesScoped$, useTask$, useVisibleTask$ } from "@builder.io/qwik";
-import { Link } from "@builder.io/qwik-city";
+import { component$, useSignal, useStylesScoped$, useVisibleTask$ } from "@builder.io/qwik";
 import styles from "./sp-styles.css?inline";
 import SubTitle from "~/components/common/subtitile/SubTitle";
 import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
 import { useFetchProjects } from "~/routes/[...lang]";
-import type { Project } from "~/types/project.type";
 import { type ProjectLocale, getLocalizedProject } from "~/utils/projects";
 
 export default component$(() => {
@@ -27,9 +25,9 @@ export default component$(() => {
               "home.sectionProject.lead@@Selected case studies from launches focused on speed, clarity and measurable product value.",
             )}
           </p>
-          <Link href={getPath("/projects/", lang)} class="btn_body black projects_show_all">
+          <a href={getPath("/projects/", lang)} class="btn_body black projects_show_all">
             {t("home.sectionProject.showAll@@Show all projects")}
-          </Link>
+          </a>
         </div>
 
         <CarouselComponent classC="carousel_projects_top" howToRenderArray="pair" />
@@ -46,45 +44,36 @@ type PropsCarousel = {
 const CarouselComponent = component$<PropsCarousel>(
   ({ classC, direction = "ltr", howToRenderArray = "origin" }) => {
     const sliderRef = useSignal<HTMLUListElement>();
-    const projectsToRender = useSignal<Project[]>([]);
     useStylesScoped$(styles);
     const { lang } = useSpeakLocale();
     const getPath = localizePath();
     const t = inlineTranslate();
     const projects = useFetchProjects();
-
-    useTask$(({ track }) => {
-      const data = track(() => projects.value.data);
-      if (!data) return;
-      if (howToRenderArray === "origin") {
-        projectsToRender.value = data;
-      }
-      if (howToRenderArray === "pair") {
-        projectsToRender.value = data?.filter((_, i) => i % 2 === 0);
-      }
-      if (howToRenderArray === "unmatched") {
-        projectsToRender.value = data?.filter((_, i) => i % 2 !== 0);
-      }
+    const projectsToRender = projects.value.data.filter((_, index) => {
+      if (howToRenderArray === "pair") return index % 2 === 0;
+      if (howToRenderArray === "unmatched") return index % 2 !== 0;
+      return true;
     });
 
     // eslint-disable-next-line qwik/no-use-visible-task
-    useVisibleTask$(async () => {
+    useVisibleTask$(async ({ cleanup }) => {
       if (!sliderRef.value) return;
       const emblaCarousel = (await import("embla-carousel")).default;
       const autoPlay = (await import("embla-carousel-autoplay")).default;
-      emblaCarousel(
+      const carousel = emblaCarousel(
         sliderRef.value,
         { loop: true, direction, align: "start", axis: "x", dragFree: true },
         [autoPlay({ delay: 8000, stopOnInteraction: false })],
       );
+      cleanup(() => carousel.destroy());
     });
 
     return (
       <div class={["projects_caru", classC]}>
         <div class="projects_caru_viewport" ref={sliderRef}>
           <ul class="projects_caru_container">
-            {projectsToRender.value?.length ? (
-              projectsToRender.value.map(item => {
+            {projectsToRender.length ? (
+              projectsToRender.map(item => {
                 const localizedProject = getLocalizedProject(item, lang as ProjectLocale);
                 const title = localizedProject.localizedTitle;
                 const description = localizedProject.localizedDescription;
@@ -93,7 +82,7 @@ const CarouselComponent = component$<PropsCarousel>(
                   <li key={item.slug} class="projects_caru_slide">
                     <article>
                       <h3 class="sr-only">{title}</h3>
-                      <Link
+                      <a
                         href={getPath(localizedProject.detailPath, lang)}
                         aria-label={`link to project ${item.titleEN}`}
                         class="link_project"
@@ -110,7 +99,7 @@ const CarouselComponent = component$<PropsCarousel>(
                           />
                           <figcaption>{title}</figcaption>
                         </figure>
-                      </Link>
+                      </a>
                       <p class="sr-only" itemProp="description">
                         {description}
                       </p>

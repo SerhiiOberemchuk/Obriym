@@ -1,5 +1,5 @@
 import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { Link, useLocation } from "@builder.io/qwik-city";
+import { useLocation } from "@builder.io/qwik-city";
 import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
 import SubTitle from "~/components/common/subtitile/SubTitle";
 import SectionContact from "../HomePage/section-contact/SectionContact";
@@ -95,9 +95,9 @@ export default component$<ProjectDetailPageProps>(({ project, relatedProjects })
             {t("projects.detail.subtitle@@Project case")}
           </SubTitle>
 
-          <Link href={localizedProjectsPath} class="project_back btn_body grey_dark">
+          <a href={localizedProjectsPath} class="project_back btn_body grey_dark">
             {t("projects.detail.back@@Back to projects")}
-          </Link>
+          </a>
 
           <div class="project_detail_head">
             <div class="project_detail_copy">
@@ -185,7 +185,7 @@ export default component$<ProjectDetailPageProps>(({ project, relatedProjects })
               {relatedProjects.map(related => (
                 <li key={related.slug}>
                   <article class="project_related_card">
-                    <Link href={getPath(related.detailPath, lang)} class="project_related_link">
+                    <a href={getPath(related.detailPath, lang)} class="project_related_link">
                       <img
                         src={related.image_src}
                         alt={related.localizedTitle}
@@ -201,7 +201,7 @@ export default component$<ProjectDetailPageProps>(({ project, relatedProjects })
                         </p>
                         <h3 class="H6 black">{related.localizedTitle}</h3>
                       </div>
-                    </Link>
+                    </a>
                   </article>
                 </li>
               ))}
