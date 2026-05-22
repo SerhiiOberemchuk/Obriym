@@ -10,6 +10,7 @@ export type ContactFormResponse = {
 
 export type TextInputProps = {
   name: string;
+  idPrefix?: string;
   type: "text" | "email" | "tel" | "password" | "url" | "date";
   label?: string;
   placeholder?: string;
@@ -23,6 +24,7 @@ export type TextInputProps = {
 
 export type OptionsGroupProps = {
   name: string;
+  idPrefix?: string;
   type: "checkbox" | "radio";
   options: Record<string, string>;
   label: string;

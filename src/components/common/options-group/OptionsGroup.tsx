@@ -4,15 +4,32 @@ import styles from "./options-group_styles.css?inline";
 import { OptionsGroupProps } from "~/types/contact-form.type";
 
 export const OptionsGroup = component$(
-  ({ name, type, options, label, value, onInput$, onBlur$ }: OptionsGroupProps) => {
+  ({
+    name,
+    type,
+    options,
+    label,
+    value,
+    error,
+    idPrefix,
+    onInput$,
+    onBlur$,
+  }: OptionsGroupProps) => {
     const { translation } = useSpeakContext();
     useStylesScoped$(styles);
 
     const isCheckbox = type === "checkbox";
     const groupRole = isCheckbox ? "group" : "radiogroup";
-    const groupLabelId = `${name}-group-label`;
+    const groupLabelId = idPrefix ? `${idPrefix}-${name}-group-label` : `${name}-group-label`;
+    const errorId = idPrefix ? `${idPrefix}-${name}-error` : `${name}-error`;
     return (
-      <div class="ic_form_options" role={groupRole} aria-labelledby={groupLabelId}>
+      <div
+        class="ic_form_options"
+        role={groupRole}
+        aria-labelledby={groupLabelId}
+        aria-invalid={!!error}
+        aria-errormessage={error ? errorId : undefined}
+      >
         <span id={groupLabelId} class="sr-only">
           {label}
         </span>
@@ -25,9 +42,9 @@ export const OptionsGroup = component$(
           const budgetTranslation = translation?.budget as Record<string, string> | undefined;
           const optionLabel =
             name === "services"
-              ? servicesTranslation?.[key] ?? option
+              ? (servicesTranslation?.[key] ?? option)
               : name === "budget"
-                ? budgetTranslation?.[key] ?? option
+                ? (budgetTranslation?.[key] ?? option)
                 : option;
 
           return (

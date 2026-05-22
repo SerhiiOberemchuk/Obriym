@@ -4,10 +4,21 @@ import { TextInputProps } from "~/types/contact-form.type";
 import FormError from "~/components/common/form-error/form_error";
 
 export const TextInput = component$(
-  ({ label, type, name, value, placeholder, error, onInput$, onBlur$ }: TextInputProps) => {
+  ({
+    label,
+    type,
+    name,
+    idPrefix,
+    value,
+    placeholder,
+    error,
+    onInput$,
+    onBlur$,
+  }: TextInputProps) => {
     useStylesScoped$(styles);
 
-    const id = `${name}-input`;
+    const id = idPrefix ? `${idPrefix}-${name}-input` : `${name}-input`;
+    const errorId = idPrefix ? `${idPrefix}-${name}-error` : `${name}-error`;
     return (
       <div class={`ic_form_fieldset_wrp ${error ? "has-error" : ""}`}>
         {
@@ -26,9 +37,9 @@ export const TextInput = component$(
           class={`btn_body grey_dark ic_form_input ${error ? "border-red" : ""}`}
           placeholder={placeholder}
           aria-invalid={!!error}
-          aria-errormessage={error ? `${name}-error` : undefined}
+          aria-errormessage={error ? errorId : undefined}
         />
-        <FormError error={error} id={`${name}-error`} />
+        <FormError error={error} id={errorId} />
       </div>
     );
   },

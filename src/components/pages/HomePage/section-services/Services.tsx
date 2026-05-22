@@ -1,4 +1,4 @@
-import { component$, useStylesScoped$ } from "@builder.io/qwik";
+﻿import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import { inlineTranslate } from "qwik-speak";
 import styles from "./services-styles.css?inline";
 import Card from "./card/Card";
@@ -31,7 +31,7 @@ export default component$(() => {
       srcImage: "/images/services/opaum.webp",
       image: (
         <Services1
-          alt={`${t("home.services.1.title@@Research & Strategy")}picture`}
+          alt={`${t("home.services.1.title@@Research & Strategy")} service preview`}
           loading="lazy"
           decoding="async"
         />
@@ -51,7 +51,11 @@ export default component$(() => {
       ],
       srcImage: "/images/services/ai.webp",
       image: (
-        <Services2 alt={`${t("home.services.2.title")}picture`} loading="lazy" decoding="async" />
+        <Services2
+          alt={`${t("home.services.2.title@@UX UI Design")} service preview`}
+          loading="lazy"
+          decoding="async"
+        />
       ),
     },
     {
@@ -68,7 +72,11 @@ export default component$(() => {
       ],
       srcImage: "/images/services/mocup-branding.webp",
       image: (
-        <Services3 alt={`${t("home.services.3.title")}picture`} loading="lazy" decoding="async" />
+        <Services3
+          alt={`${t("home.services.3.title@@Branding")} service preview`}
+          loading="lazy"
+          decoding="async"
+        />
       ),
     },
     {
@@ -85,7 +93,11 @@ export default component$(() => {
       ],
       srcImage: "/images/services/crm-auto.webp",
       image: (
-        <Services4 alt={`${t("home.services.4.title")}picture`} loading="lazy" decoding="async" />
+        <Services4
+          alt={`${t("home.services.4.title@@Web & App Development")} service preview`}
+          loading="lazy"
+          decoding="async"
+        />
       ),
     },
     {
@@ -102,14 +114,18 @@ export default component$(() => {
       ],
       srcImage: "/images/services/spa.webp",
       image: (
-        <Services5 alt={`${t("home.services.5.title")}picture`} loading="lazy" decoding="async" />
+        <Services5
+          alt={`${t("home.services.5.title@@Launch & Optimization")} service preview`}
+          loading="lazy"
+          decoding="async"
+        />
       ),
     },
   ];
   return (
-    <section class="section" id="services" aria-label={t("home.services.title@@services")}>
+    <section class="section" id="services" aria-labelledby="services-title">
       <div class="container">
-        <SubTitle classes="title" section="services">
+        <SubTitle classes="title" section="services" titleId="services-title">
           {t("home.services.title@@services")}
         </SubTitle>
         <div class="ins_wrapper">
@@ -139,11 +155,10 @@ export default component$(() => {
                         "https://www.linkedin.com/company/obriym",
                       ],
                     },
-                    image: srcImage,
+                    image: `https://obriym.com${srcImage}`,
                     areaServed: [
                       { "@type": "Country", name: "Italy" },
-                      { "@type": "Country", name: "e" },
-                      { "@type": "Country", name: "European Union" },
+                      { "@type": "Place", name: "Europe" },
                     ],
                     offers: {
                       "@type": "Offer",

@@ -1,3 +1,5 @@
+﻿import { SITE } from "~/utils/seo";
+
 export interface SitemapEntry {
   loc: string;
   priority: number;
@@ -9,8 +11,7 @@ export interface SitemapEntry {
 }
 
 export function createSitemap(entries: SitemapEntry[]) {
-  const baseUrl = "https://obriym.com";
-  const toAbsoluteUrl = (path: string) => `${baseUrl}${path.startsWith("/") ? "" : "/"}${path}`;
+  const toAbsoluteUrl = (path: string) => `${SITE}${path.startsWith("/") ? "" : "/"}${path}`;
   const escapeXml = (value: string) =>
     value
       .replace(/&/g, "&amp;")
@@ -21,8 +22,9 @@ export function createSitemap(entries: SitemapEntry[]) {
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-${entries.map(
-  entry => `
+${entries
+  .map(
+    entry => `
     <url>
         <loc>${escapeXml(toAbsoluteUrl(entry.loc))}</loc>
         ${(entry.alternates ?? [])
@@ -34,6 +36,7 @@ ${entries.map(
         ${entry.lastmod ? `<lastmod>${escapeXml(entry.lastmod)}</lastmod>` : ""}
         <priority>${entry.priority}</priority>
     </url>`,
-).join("")}
+  )
+  .join("")}
 </urlset>`.trim();
 }

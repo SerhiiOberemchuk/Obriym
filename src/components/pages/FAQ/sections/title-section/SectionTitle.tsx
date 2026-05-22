@@ -16,7 +16,7 @@ export default component$(() => {
           <IconBlue class="icon" aria-hidden={true} />
         </div>
         <h1 class="body_big grey title">{t("faq.h1")}</h1>
-        <h2 class=" btn_body grey faq_subtitle">{t("faq.lead")}</h2>
+        <p class=" btn_body grey faq_subtitle">{t("faq.lead")}</p>
       </div>
     </section>
   );

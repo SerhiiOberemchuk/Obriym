@@ -1,4 +1,4 @@
-export const organizationSchemaIT = {
+﻿export const organizationSchemaIT = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "OBRIYM Agenzia Web",

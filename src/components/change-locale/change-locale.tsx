@@ -50,7 +50,7 @@ export const ChangeLocale = component$(({ place }: { place: "mob-menu" | "header
         onClick$={() => (isOpen.value = !isOpen.value)}
         data-open={isOpen.value ? "true" : "false"}
         id="language-switcher"
-        aria-haspopup="listbox"
+        aria-haspopup="menu"
         aria-expanded={isOpen.value ? "true" : "false"}
         aria-controls="language-list"
       >
@@ -67,13 +67,16 @@ export const ChangeLocale = component$(({ place }: { place: "mob-menu" | "header
         aria-labelledby="language-switcher"
         data-open={isOpen.value ? "true" : "false"}
         aria-label="Language selection"
+        role="menu"
       >
         {config.supportedLocales.map(value => (
-          <li class="cl_item" key={value.lang}>
+          <li class="cl_item" key={value.lang} role="none">
             <a
               data-active={value.lang === locale.lang ? "true" : "false"}
               class="cl_link"
               href={getPath(pathname, value.lang)}
+              role="menuitem"
+              aria-current={value.lang === locale.lang ? "true" : undefined}
             >
               <span>
                 {value.lang === "uk-UA"

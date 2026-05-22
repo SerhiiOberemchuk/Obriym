@@ -1,4 +1,4 @@
-import { component$ } from "@builder.io/qwik";
+﻿import { component$ } from "@builder.io/qwik";
 import { DocumentHead, useLocation } from "@builder.io/qwik-city";
 import { inlineTranslate } from "qwik-speak";
 import PrivacyPage from "~/components/pages/PrivacyPage";

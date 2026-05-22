@@ -33,6 +33,10 @@ export default component$(({ modal }: ContactFormComponentProps) => {
   const popoverFail = usePopover(PopoverId.contactFormError);
   const message = useSignal<AlertType>("success");
   const isModalLetsWork = useContext(ModalLetsWork);
+  const formId = modal ? "contact-form-modal" : "contact-form";
+  const titleId = `${formId}-title`;
+  const descriptionId = `${formId}-description`;
+  const messageId = `${formId}-message`;
   const [contactForm, { Form, Field }] = useForm<ContactForm, ContactFormResponse>({
     loader: useContactFormLoader(),
     action: useFormAction(),
@@ -65,20 +69,16 @@ export default component$(({ modal }: ContactFormComponentProps) => {
   return (
     <div class="modal_lw">
       {modal ? (
-        <h2 id="contact-form-title" class="H3_uppercase contact-form-title">
+        <h2 id={titleId} class="H3_uppercase contact-form-title">
           {t("app.form.title.modal@@Let's start you project")}
         </h2>
       ) : (
-        <h2 id="contact-form-title" class="sr-only">
+        <h2 id={titleId} class="sr-only">
           {t("app.form.title.not-modal@@Contact Form")}
         </h2>
       )}
-      <Form
-        class="ic_form"
-        aria-describedby="contact-form-description"
-        aria-labelledby="contact-form-title"
-      >
-        <p id="contact-form-description" class="sr-only">
+      <Form class="ic_form" aria-describedby={descriptionId} aria-labelledby={titleId}>
+        <p id={descriptionId} class="sr-only">
           {t("app.form.sr-only.title@@Please fill out the following form to send us your request.")}
         </p>
 
@@ -100,14 +100,16 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                   onInput$={props.onInput$}
                   onBlur$={props.onBlur$}
                   name="services"
+                  idPrefix={formId}
                   type="checkbox"
                   options={SERVICES_OPTIONS_EN}
                   label={t("app.form.services.sr-label@@Services offered")}
                   value={field.value}
+                  error={field.error}
                 />
               </fieldset>
 
-              <FormError error={field.error} id={`services-error`} />
+              <FormError error={field.error} id={`${formId}-services-error`} />
             </div>
           )}
         </Field>
@@ -121,16 +123,18 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                 </legend>
                 <OptionsGroup
                   name="budget"
+                  idPrefix={formId}
                   type="radio"
                   options={BUDGET_OPTIONS_EN}
                   label={t("app.form.budget.sr-label@@Budget options")}
                   value={field.value}
+                  error={field.error}
                   onInput$={props.onInput$}
                   onBlur$={props.onBlur$}
                 />
               </fieldset>
 
-              <FormError error={field.error} id={`budget-error`} />
+              <FormError error={field.error} id={`${formId}-budget-error`} />
             </div>
           )}
         </Field>
@@ -147,6 +151,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                   {(field, props) => (
                     <TextInput
                       name="name"
+                      idPrefix={formId}
                       type="text"
                       value={field.value}
                       error={field.error}
@@ -164,6 +169,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                   {(field, props) => (
                     <TextInput
                       name="email"
+                      idPrefix={formId}
                       type="email"
                       value={field.value}
                       error={field.error}
@@ -179,7 +185,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
               <Field name="message">
                 {(field, props) => (
                   <div class="ic_form_fieldset_wrp" ref={anchorRef}>
-                    <label class="sr-only" for="message-textarea">
+                    <label class="sr-only" for={messageId}>
                       {t("app.form.message.sr-label@@Your message")}
                     </label>
                     <textarea
@@ -188,8 +194,10 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                       onBlur$={props.onBlur$}
                       name={props.name}
                       role="textbox"
-                      id="message-textarea"
+                      id={messageId}
                       aria-multiline="true"
+                      aria-invalid={!!field.error}
+                      aria-errormessage={field.error ? `${formId}-message-error` : undefined}
                       aria-placeholder={t(
                         "app.form.message.placeholder.not-modal@@Add information",
                       )}
@@ -197,7 +205,7 @@ export default component$(({ modal }: ContactFormComponentProps) => {
                       class={`btn_body grey_dark ic_form_textarea ${field.error ? "border-red" : ""}`}
                     />
 
-                    <FormError error={field.error} id={`message-error`} />
+                    <FormError error={field.error} id={`${formId}-message-error`} />
                   </div>
                 )}
               </Field>

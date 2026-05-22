@@ -1,4 +1,4 @@
-import {
+﻿import {
   $,
   component$,
   useContext,
@@ -12,6 +12,7 @@ import { COOKIES_LOCAL_STORAGE, CookiesTypes } from "~/types/cookies.type";
 import { disableAnalitics, loadAnalytics } from "~/utils/loadGoogleAnalitics";
 import { CookiesBannerContext } from "./coocies-banner-context";
 import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
+import { SITE } from "~/utils/seo";
 
 export default component$(() => {
   useStylesScoped$(styles);
@@ -89,7 +90,7 @@ export default component$(() => {
             <br />
             {t("cookies.banner.description2@@Read more on")}{" "}
             <a href={cookiesPath} target="_blank" rel="noopener noreferrer">
-              https://obriym.com/cookie-policy
+              {`${SITE}${cookiesPath}`}
             </a>
           </p>
 

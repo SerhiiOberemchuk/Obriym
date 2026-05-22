@@ -1,4 +1,4 @@
-export const organizationSchemaEN = {
+﻿export const organizationSchemaEN = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "OBRIYM Web Agency",

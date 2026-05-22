@@ -1,9 +1,10 @@
-import type { RequestHandler } from "@builder.io/qwik-city";
+﻿import type { RequestHandler } from "@builder.io/qwik-city";
+import { SITE } from "~/utils/seo";
 
 const ROBOTS_TXT = `User-agent: *
 Allow: /
 
-Sitemap: https://obriym.com/sitemap.xml`;
+Sitemap: ${SITE}/sitemap.xml`;
 
 export const onGet: RequestHandler = ({ headers, send, cacheControl }) => {
   cacheControl({

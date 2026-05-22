@@ -1,11 +1,12 @@
-import type { DocumentLink } from "@builder.io/qwik-city";
+﻿import type { DocumentLink } from "@builder.io/qwik-city";
 import { config } from "~/speak-config";
 
 export const SITE = "https://obriym.com";
 export const DEFAULT_OG_IMAGE = `${SITE}/og-image.jpg`;
 
 export const DEFAULT_LOCALE_PREFIX = "";
-const toPrefix = (lang: string) => (lang === config.defaultLocale.lang ? DEFAULT_LOCALE_PREFIX : `/${lang}`);
+const toPrefix = (lang: string) =>
+  lang === config.defaultLocale.lang ? DEFAULT_LOCALE_PREFIX : `/${lang}`;
 const toHreflang = (lang: string) => (lang === config.defaultLocale.lang ? "en" : lang);
 
 const localeSegmentPattern = config.supportedLocales.map(({ lang }) => lang).join("|");

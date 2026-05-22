@@ -8,9 +8,7 @@ export default component$(() => {
   useStylesScoped$(styles);
 
   return (
-    // ref={anchorRef}  aria-labelledby="contact-form-title"
     <section class="ic_content_box ">
-      {/* modal={false} */}
       <ContactFormComponent modal={false} />
     </section>
   );

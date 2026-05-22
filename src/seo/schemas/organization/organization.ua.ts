@@ -1,4 +1,4 @@
-export const organizationSchemaUA = {
+﻿export const organizationSchemaUA = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "ОБРІУМ Веб Агенція",

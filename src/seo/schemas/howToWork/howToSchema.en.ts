@@ -1,4 +1,4 @@
-export const howToWorkSchemaEN = {
+﻿export const howToWorkSchemaEN = {
   "@context": "https://schema.org",
   "@type": "HowTo",
   name: "How to build your SEO-friendly website with OBRIYM",

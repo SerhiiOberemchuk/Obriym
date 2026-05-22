@@ -1,4 +1,4 @@
-import { component$, useSignal, useStylesScoped$, useVisibleTask$ } from "@builder.io/qwik";
+﻿import { component$, useSignal, useStylesScoped$, useVisibleTask$ } from "@builder.io/qwik";
 import styles from "./sp-styles.css?inline";
 import SubTitle from "~/components/common/subtitile/SubTitle";
 import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
