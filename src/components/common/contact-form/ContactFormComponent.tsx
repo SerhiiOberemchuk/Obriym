@@ -46,7 +46,6 @@ export default component$(({ modal }: ContactFormComponentProps) => {
   useTask$(async ({ track }) => {
     // if (!isBrowser) return;
     track(() => contactForm.response);
-
     const result = contactForm.response;
     if (result.status === "success") {
       message.value = "success";
