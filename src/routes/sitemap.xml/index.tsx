@@ -1,19 +1,8 @@
 import type { RequestHandler } from "@builder.io/qwik-city";
+import { routes } from "@qwik-city-plan";
 import { fetchProjects } from "~/utils/projects";
 import { SEO_LOCALES, getLocalizedPath } from "~/utils/seo";
 import { createSitemap, type SitemapEntry } from "./create-sitemap";
-
-const STATIC_BASE_ROUTES = [
-  "/",
-  "/team",
-  "/faq",
-  "/privacy-policy",
-  "/cookies-policy",
-  "/projects",
-  "/web-development",
-  "/seo-optimization",
-  "/ecommerce-development",
-] as const;
 
 const ROUTE_PRIORITY: Record<string, number> = {
   "/": 1,
@@ -26,6 +15,46 @@ const ROUTE_PRIORITY: Record<string, number> = {
   "/privacy-policy": 0.3,
   "/cookies-policy": 0.3,
 };
+
+type QwikCityRoute = [routeName: string, loaders: unknown, pathname?: string];
+
+const SITE_ENDPOINTS = new Set(["/robots.txt", "/sitemap.xml"]);
+const DYNAMIC_ROUTE_SEGMENT = /\[[^\]]+\]/;
+const LOCALE_ROUTE_PREFIX = /^\/\[\.\.\.lang\](?=\/|$)/;
+
+const normalizeRoutePath = (pathname: string) => {
+  if (pathname === "/") {
+    return pathname;
+  }
+
+  return pathname.replace(/\/+$/, "") || "/";
+};
+
+const toSitemapPath = (route: QwikCityRoute) => {
+  const routePathname = route[2] ?? `/${route[0]}`;
+  const normalizedPathname = normalizeRoutePath(routePathname);
+
+  if (SITE_ENDPOINTS.has(normalizedPathname)) {
+    return null;
+  }
+
+  const withoutLocale = normalizeRoutePath(normalizedPathname.replace(LOCALE_ROUTE_PREFIX, "") || "/");
+
+  if (DYNAMIC_ROUTE_SEGMENT.test(withoutLocale)) {
+    return null;
+  }
+
+  return withoutLocale;
+};
+
+const getStaticBaseRoutes = () =>
+  Array.from(
+    new Set(
+      (routes as QwikCityRoute[])
+        .map(toSitemapPath)
+        .filter((pathname): pathname is string => pathname !== null),
+    ),
+  ).sort((a, b) => (a === "/" ? -1 : b === "/" ? 1 : a.localeCompare(b)));
 
 const toDateString = (value: string) => {
   const date = new Date(value);
@@ -50,7 +79,7 @@ const createLocalizedEntries = (pathname: string, priority: number, lastmod?: st
 };
 
 export const onGet: RequestHandler = async ({ cacheControl, headers, send }) => {
-  const staticEntries = STATIC_BASE_ROUTES.flatMap(pathname =>
+  const staticEntries = getStaticBaseRoutes().flatMap(pathname =>
     createLocalizedEntries(pathname, ROUTE_PRIORITY[pathname] ?? 0.6),
   );
 
