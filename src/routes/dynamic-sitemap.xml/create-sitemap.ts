@@ -1,4 +1,4 @@
-﻿import { SITE } from "~/utils/seo";
+import { SITE } from "~/utils/seo";
 
 export interface SitemapEntry {
   loc: string;

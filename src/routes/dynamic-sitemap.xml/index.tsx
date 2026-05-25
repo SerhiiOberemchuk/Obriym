@@ -18,7 +18,7 @@ const ROUTE_PRIORITY: Record<string, number> = {
 
 type QwikCityRoute = [routeName: string, loaders: unknown, pathname?: string];
 
-const SITE_ENDPOINTS = new Set(["/robots.txt", "/sitemap.xml"]);
+const SITE_ENDPOINTS = new Set(["/robots.txt", "/sitemap.xml", "/dynamic-sitemap.xml"]);
 const DYNAMIC_ROUTE_SEGMENT = /\[[^\]]+\]/;
 const LOCALE_ROUTE_PREFIX = /^\/\[\.\.\.lang\](?=\/|$)/;
 
