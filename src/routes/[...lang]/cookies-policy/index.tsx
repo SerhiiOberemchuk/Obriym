@@ -2,7 +2,9 @@
 import { DocumentHead, useLocation } from "@builder.io/qwik-city";
 import { inlineTranslate } from "qwik-speak";
 import CookiesSection from "~/components/pages/CoociesPage/CookiesSection";
-import { getAlternateLinks, getCanonicalUrl } from "~/utils/seo";
+import { buildSeoMeta, getAlternateLinks, getCanonicalUrl } from "~/utils/seo";
+
+const COOKIES_OG_IMAGE = "https://obriym.com/images/cookies/og-image.png";
 
 export default component$(() => {
   const loc = useLocation();
@@ -41,34 +43,14 @@ export default component$(() => {
 
 export const head: DocumentHead = ({ url }) => {
   const t = inlineTranslate();
-  const canonical = getCanonicalUrl(url.pathname);
+  const title = t("app.head.cookies.title@@Cookies Policy | Obriym");
+  const description = t(
+    "app.head.cookies.description@@Read the cookies policy of Obriym Web Agency. Learn what cookies we use, why we use them, and how you can manage your preferences.",
+  );
 
   return {
-    title: t("app.head.cookies.title@@Cookies Policy | Obriym"),
-    meta: [
-      {
-        name: "description",
-        content: t(
-          "app.head.cookies.description@@Read the cookies policy of Obriym Web Agency. Learn what cookies we use, why we use them, and how you can manage your preferences.",
-        ),
-      },
-      { name: "robots", content: "index, follow" },
-      { property: "og:title", content: "Cookies Policy | Obriym" },
-      {
-        property: "og:description",
-        content: "Our cookies policy explains how we use cookies to improve your experience.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: canonical },
-      { property: "og:image", content: "https://obriym.com/images/cookies/og-image.png" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Cookies Policy | Obriym" },
-      {
-        name: "twitter:description",
-        content: "Learn about our cookies policy at Obriym Web Agency.",
-      },
-      { name: "twitter:image", content: "https://obriym.com/images/cookies/og-image.png" },
-    ],
+    title,
+    meta: buildSeoMeta({ title, description, pathname: url.pathname, image: COOKIES_OG_IMAGE }),
     links: getAlternateLinks(url.pathname),
   };
 };

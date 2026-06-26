@@ -2,7 +2,9 @@
 import { DocumentHead, useLocation } from "@builder.io/qwik-city";
 import { inlineTranslate } from "qwik-speak";
 import PrivacyPage from "~/components/pages/PrivacyPage";
-import { getAlternateLinks, getCanonicalUrl } from "~/utils/seo";
+import { buildSeoMeta, getAlternateLinks, getCanonicalUrl } from "~/utils/seo";
+
+const PRIVACY_OG_IMAGE = "https://obriym.com/images/privacy/og-image.png";
 
 export default component$(() => {
   const loc = useLocation();
@@ -16,7 +18,7 @@ export default component$(() => {
         id="obriym-policy-schema"
         dangerouslySetInnerHTML={JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "PrivacyPolicy",
+          "@type": "WebPage",
           name: "Privacy Policy",
           description:
             "Privacy Policy of Obriym Web Agency. Learn how we collect, use, and protect your personal data.",
@@ -36,34 +38,14 @@ export default component$(() => {
 
 export const head: DocumentHead = ({ url }) => {
   const t = inlineTranslate();
-  const canonical = getCanonicalUrl(url.pathname);
+  const title = t("app.head.privacy.title@@Privacy Policy | Obriym");
+  const description = t(
+    "app.head.privacy.description@@Read the Privacy Policy of Obriym Web Agency. Learn how we collect, use, and protect your personal data.",
+  );
 
   return {
-    title: t("app.head.privacy.title@@Privacy Policy | Obriym"),
-    meta: [
-      {
-        name: "description",
-        content: t(
-          "app.head.privacy.description@@Read the Privacy Policy of Obriym Web Agency. Learn how we collect, use, and protect your personal data.",
-        ),
-      },
-      { name: "robots", content: "index, follow" },
-      { property: "og:title", content: "Privacy Policy | Obriym" },
-      {
-        property: "og:description",
-        content: "Our Privacy Policy explains how we collect, use, and protect your personal data.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: canonical },
-      { property: "og:image", content: "https://obriym.com/images/privacy/og-image.png" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Privacy Policy | Obriym" },
-      {
-        name: "twitter:description",
-        content: "Learn about our Privacy Policy at Obriym Web Agency.",
-      },
-      { name: "twitter:image", content: "https://obriym.com/images/privacy/og-image.png" },
-    ],
+    title,
+    meta: buildSeoMeta({ title, description, pathname: url.pathname, image: PRIVACY_OG_IMAGE }),
     links: getAlternateLinks(url.pathname),
   };
 };

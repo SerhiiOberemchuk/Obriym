@@ -4,7 +4,7 @@
   name: "ОБРІУМ Веб Агенція",
   legalName: "ОБРІУМ",
   url: "https://obriym.com",
-  logo: "https://obriym.com/images/logo.png",
+  logo: "https://obriym.com/logo.svg",
   description:
     "ОБРІУМ — веб-агенція повного циклу з Італії, яка створює SEO-оптимізовані сайти, UX/UI дизайн та брендинг для бізнесів по всій Європі.",
   contactPoint: [
@@ -24,6 +24,6 @@
   ],
   address: {
     "@type": "PostalAddress",
-    addressCountry: "Італія",
+    addressCountry: "IT",
   },
 };

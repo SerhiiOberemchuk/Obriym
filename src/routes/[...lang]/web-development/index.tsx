@@ -1,7 +1,8 @@
 import { component$ } from "@builder.io/qwik";
 import { DocumentHead } from "@builder.io/qwik-city";
 import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
-import { DEFAULT_OG_IMAGE, getAlternateLinks, getCanonicalUrl } from "~/utils/seo";
+import { buildSeoMeta, getAlternateLinks, getLocaleHomePath } from "~/utils/seo";
+import { buildServicePageScripts } from "~/utils/structuredData";
 
 export default component$(() => {
   const t = inlineTranslate();
@@ -116,24 +117,20 @@ export const head: DocumentHead = ({ url }) => {
   const description = t(
     "seo.webdev.head.description@@Web development agency delivering fast SEO-ready websites and web apps with technical SEO, multilingual support and strong Core Web Vitals.",
   );
-  const canonical = getCanonicalUrl(url.pathname);
 
   return {
     title,
-    meta: [
-      { name: "description", content: description },
-      { name: "robots", content: "index, follow" },
-      { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "OBRIYM" },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:url", content: canonical },
-      { property: "og:image", content: DEFAULT_OG_IMAGE },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: title },
-      { name: "twitter:description", content: description },
-      { name: "twitter:image", content: DEFAULT_OG_IMAGE },
-    ],
+    meta: buildSeoMeta({ title, description, pathname: url.pathname }),
     links: getAlternateLinks(url.pathname),
+    scripts: buildServicePageScripts({
+      homeName: t("breadcrumb.home@@Home"),
+      homePath: getLocaleHomePath(url.pathname),
+      service: {
+        name: t("seo.webdev.schema.name@@Web Development Services"),
+        description,
+        pathname: url.pathname,
+        serviceType: "Web development",
+      },
+    }),
   };
 };

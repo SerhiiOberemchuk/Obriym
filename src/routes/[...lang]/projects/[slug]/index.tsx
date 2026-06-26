@@ -4,7 +4,7 @@ import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
 import ProjectDetailPage from "~/components/pages/ProjectsPage/ProjectDetailPage";
 import type { Project } from "~/types/project.type";
 import { type ProjectLocale, fetchProjects, findProjectBySlug, getLocalizedProject } from "~/utils/projects";
-import { getAlternateLinks, getCanonicalUrl } from "~/utils/seo";
+import { SITE_NAME, buildSeoMeta, getAlternateLinks } from "~/utils/seo";
 
 export const useProjectLoader = routeLoader$(async ({ cacheControl, params, locale, status }) => {
   try {
@@ -101,43 +101,40 @@ export default component$(() => {
 export const head: DocumentHead = ({ resolveValue, url }) => {
   const t = inlineTranslate();
   const data = resolveValue(useProjectLoader);
-  const canonical = getCanonicalUrl(url.pathname);
 
   if (!data.project) {
+    const title = t("projects.detail.notFound.title@@Project not found | {{name}}", {
+      name: SITE_NAME,
+    });
     return {
-      title: t("projects.detail.notFound.title@@Project not found | {{name}}", { name: "OBRIYM" }),
-      meta: [
-        {
-          name: "robots",
-          content: "noindex, nofollow",
-        },
-      ],
+      title,
+      meta: buildSeoMeta({
+        title,
+        description: t(
+          "projects.detail.notFound.text@@The requested case page does not exist or is currently unavailable.",
+        ),
+        pathname: url.pathname,
+        noindex: true,
+      }),
       links: getAlternateLinks(url.pathname),
     };
   }
 
   const title = `${data.project.localizedTitle} | ${t(
     "projects.detail.head.suffix@@Project case by {{name}}",
-    { name: "OBRIYM" },
+    { name: SITE_NAME },
   )}`;
   const description = data.project.localizedDescription;
 
   return {
     title,
-    meta: [
-      { name: "description", content: description },
-      { name: "robots", content: "index, follow" },
-      { property: "og:type", content: "article" },
-      { property: "og:site_name", content: "OBRIYM" },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:url", content: canonical },
-      { property: "og:image", content: data.project.image_src },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: title },
-      { name: "twitter:description", content: description },
-      { name: "twitter:image", content: data.project.image_src },
-    ],
+    meta: buildSeoMeta({
+      title,
+      description,
+      pathname: url.pathname,
+      image: data.project.image_src,
+      type: "article",
+    }),
     links: getAlternateLinks(url.pathname),
   };
 };

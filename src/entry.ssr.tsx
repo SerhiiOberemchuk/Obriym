@@ -7,6 +7,10 @@ import {
 import { config } from "./speak-config";
 import Root from "./root";
 
+/** Maps an app locale (e.g. `en-EU`) to a valid BCP-47 html lang value. */
+const toHtmlLang = (locale: string) =>
+  locale === config.defaultLocale.lang ? "en" : locale;
+
 /**
  * Determine the base URL to use for loading the chunks in the browser.
  * The value set through Qwik 'locale()' in 'plugin.ts' is saved by Qwik in 'serverData.locale' directly.
@@ -26,7 +30,8 @@ export default function (opts: RenderToStreamOptions) {
     ...opts,
     // Use container attributes to set attributes on the html tag.
     containerAttributes: {
-      lang: opts.serverData?.locale || config.defaultLocale.lang,
+      // `en-EU` is not a valid BCP-47 region; expose plain `en` to crawlers.
+      lang: toHtmlLang(opts.serverData?.locale || config.defaultLocale.lang),
       ...opts.containerAttributes,
     },
     serverData: {

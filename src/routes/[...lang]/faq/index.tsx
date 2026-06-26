@@ -2,7 +2,7 @@ import { component$ } from "@builder.io/qwik";
 import { DocumentHead } from "@builder.io/qwik-city";
 import { inlineTranslate } from "qwik-speak";
 import FaqPage from "~/components/pages/FaqPage";
-import { DEFAULT_OG_IMAGE, getAlternateLinks, getCanonicalUrl } from "~/utils/seo";
+import { buildSeoMeta, getAlternateLinks } from "~/utils/seo";
 
 export default component$(() => {
   return <FaqPage />;
@@ -20,26 +20,10 @@ export const head: DocumentHead = ({ url }) => {
   const description = t(
     "faq.head.desc@@Answers about website development, fast SEO-ready builds, 2-4 week timelines, multilingual projects, e-commerce, analytics, GDPR, security and maintenance.",
   );
-  const canonical = getCanonicalUrl(url.pathname);
 
   return {
     title,
-    meta: [
-      { name: "description", content: description },
-      { name: "robots", content: "index, follow" },
-      { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "OBRIYM" },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:url", content: canonical },
-      { property: "og:image", content: DEFAULT_OG_IMAGE },
-      { property: "og:image:width", content: "1200" },
-      { property: "og:image:height", content: "630" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: title },
-      { name: "twitter:description", content: description },
-      { name: "twitter:image", content: DEFAULT_OG_IMAGE },
-    ],
+    meta: buildSeoMeta({ title, description, pathname: url.pathname }),
     links: getAlternateLinks(url.pathname),
   };
 };

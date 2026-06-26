@@ -4,7 +4,7 @@
   name: "OBRIYM Agenzia Web",
   legalName: "OBRIYM",
   url: "https://obriym.com",
-  logo: "https://obriym.com/images/logo.png",
+  logo: "https://obriym.com/logo.svg",
   description:
     "OBRIYM è un'agenzia di sviluppo web full-cycle con sede in Italia, che offre siti web SEO-friendly, design UX/UI e servizi di branding per aziende in tutta Europa.",
   contactPoint: [
@@ -24,6 +24,6 @@
   ],
   address: {
     "@type": "PostalAddress",
-    addressCountry: "Italia",
+    addressCountry: "IT",
   },
 };

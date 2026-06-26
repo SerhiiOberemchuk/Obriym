@@ -2,15 +2,15 @@
   "navigation": {
     "about": "Про нас",
     "contact": "Контакти",
+    "ecommerceDevelopment": "E-commerce розробка",
     "home": "Головна",
     "linkHome": "Посилання на головну сторінку",
     "linkLabel": "Посилання до секції",
     "navTitle": "Головна навігація",
     "portfolio": "Портфоліо",
-    "webDevelopment": "Веброзробка",
     "seoOptimization": "SEO оптимізація",
-    "ecommerceDevelopment": "E-commerce розробка",
     "services": "Послуги",
-    "team": "Команда"
+    "team": "Команда",
+    "webDevelopment": "Веброзробка"
   }
 }

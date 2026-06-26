@@ -1,21 +1,5 @@
 {
   "projects": {
-    "head": {
-      "description": "Explore OBRIYM projects: fast SEO-ready websites, multilingual platforms and digital products created for ambitious brands across Europe.",
-      "title": "Projects | SEO-ready websites and digital products | {{name}}"
-    },
-    "page": {
-      "button": "View project",
-      "features": {
-        "aria": "Project features"
-      },
-      "lead": "A closer look at websites and digital products we designed and built for ambitious brands across Europe.",
-      "list": {
-        "aria": "Projects list"
-      },
-      "subtitle": "Selected work",
-      "title": "Projects shaped for growth, speed and real-world launch."
-    },
     "detail": {
       "back": "Back to projects",
       "client": "Client",
@@ -38,6 +22,22 @@
       "subtitle": "Project case",
       "website": "Visit live website",
       "year": "Year"
+    },
+    "head": {
+      "description": "Explore OBRIYM projects: fast SEO-ready websites, multilingual platforms and digital products created for ambitious brands across Europe.",
+      "title": "Projects | SEO-ready websites and digital products | {{name}}"
+    },
+    "page": {
+      "button": "View project",
+      "features": {
+        "aria": "Project features"
+      },
+      "lead": "A closer look at websites and digital products we designed and built for ambitious brands across Europe.",
+      "list": {
+        "aria": "Projects list"
+      },
+      "subtitle": "Selected work",
+      "title": "Projects shaped for growth, speed and real-world launch."
     }
   }
 }

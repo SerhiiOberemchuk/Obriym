@@ -1,21 +1,5 @@
 {
   "projects": {
-    "head": {
-      "description": "Esplora i progetti di OBRIYM: siti SEO-ready, piattaforme multilingua e prodotti digitali creati per brand ambiziosi in tutta Europa.",
-      "title": "Progetti | Siti SEO-ready e prodotti digitali | {{name}}"
-    },
-    "page": {
-      "button": "Apri il progetto",
-      "features": {
-        "aria": "Caratteristiche del progetto"
-      },
-      "lead": "Uno sguardo più da vicino a siti web e prodotti digitali che abbiamo progettato e realizzato per brand ambiziosi in Europa.",
-      "list": {
-        "aria": "Elenco progetti"
-      },
-      "subtitle": "Lavori selezionati",
-      "title": "Progetti pensati per crescita, velocità e lancio reale."
-    },
     "detail": {
       "back": "Torna ai progetti",
       "client": "Cliente",
@@ -38,6 +22,22 @@
       "subtitle": "Case study del progetto",
       "website": "Visita il sito online",
       "year": "Anno"
+    },
+    "head": {
+      "description": "Esplora i progetti di OBRIYM: siti SEO-ready, piattaforme multilingua e prodotti digitali creati per brand ambiziosi in tutta Europa.",
+      "title": "Progetti | Siti SEO-ready e prodotti digitali | {{name}}"
+    },
+    "page": {
+      "button": "Apri il progetto",
+      "features": {
+        "aria": "Caratteristiche del progetto"
+      },
+      "lead": "Uno sguardo più da vicino a siti web e prodotti digitali che abbiamo progettato e realizzato per brand ambiziosi in Europa.",
+      "list": {
+        "aria": "Elenco progetti"
+      },
+      "subtitle": "Lavori selezionati",
+      "title": "Progetti pensati per crescita, velocità e lancio reale."
     }
   }
 }

@@ -2,15 +2,15 @@
   "navigation": {
     "about": "About",
     "contact": "Contact",
+    "ecommerceDevelopment": "E-commerce Development",
     "home": "Home",
     "linkHome": "Link to home page",
     "linkLabel": "Link to section",
     "navTitle": "Main navigation",
     "portfolio": "Portfolio",
-    "webDevelopment": "Web Development",
     "seoOptimization": "SEO Optimization",
-    "ecommerceDevelopment": "E-commerce Development",
     "services": "Services",
-    "team": "Team"
+    "team": "Team",
+    "webDevelopment": "Web Development"
   }
 }
