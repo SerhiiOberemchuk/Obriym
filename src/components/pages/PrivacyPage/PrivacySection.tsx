@@ -85,12 +85,12 @@ export default component$(() => {
         <p>
           {legal.name}
           <br />
-          {t("footer.legal.taxId@@Tax ID (RNOKPP)")}: {LEGAL_ENTITY.taxId}
+          {t("legal.details.taxId@@Tax ID (RNOKPP)")}: {LEGAL_ENTITY.taxId}
           <br />
-          {t("footer.legal.regRecord@@State registration record No.")} {LEGAL_ENTITY.edrRecord}{" "}
-          {t("footer.legal.regDate@@dated")} {legal.edrDateFormatted}
+          {t("legal.details.regRecord@@State registration record No.")} {LEGAL_ENTITY.edrRecord}{" "}
+          {t("legal.details.regDate@@dated")} {legal.edrDateFormatted}
           <br />
-          {legal.address}, {t("footer.legal.country@@Ukraine")}
+          {legal.address}, {t("legal.details.country@@Ukraine")}
           <br />
           {t("privacy.controller.phone@@Phone")}:{" "}
           <a href={`tel:${LEGAL_ENTITY.phone}`}>{LEGAL_ENTITY.phone}</a>

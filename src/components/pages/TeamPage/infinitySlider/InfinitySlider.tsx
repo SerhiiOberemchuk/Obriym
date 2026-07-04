@@ -11,7 +11,7 @@ import {
   type NoSerialize,
 } from "@builder.io/qwik";
 import type { EmblaCarouselType } from "embla-carousel";
-import { inlineTranslate, useSpeakContext } from "qwik-speak";
+import { inlineTranslate } from "qwik-speak";
 import styles from "./styles_slider.css?inline";
 
 import IconLeft from "~/assets/icons/icon_left.svg?w=24&h=24&jsx";
@@ -34,7 +34,6 @@ type AutoplayController = {
 
 export default component$(({ items }: InfinitySliderProps) => {
   useStylesScoped$(styles);
-  const { translation } = useSpeakContext();
   const t = inlineTranslate();
   const viewportCategory = useContext(ViewportContext);
   const viewportWidth = useContext(ViewportWidthContext);
@@ -46,11 +45,18 @@ export default component$(({ items }: InfinitySliderProps) => {
   const isPaused = useSignal(false);
   const isOpen = useSignal(false);
   const selectedItem = useSignal<TeamMemberType | null>(null);
-  const team = translation?.team;
 
   const canUseSlider = useComputed$(() => items.length > 1);
   const isMobile = useComputed$(() => viewportCategory.value === "mobile");
-  const selectedMember = selectedItem.value ? team?.member?.[selectedItem.value.slug] : null;
+  const selected = selectedItem.value;
+  const selectedMember = selected
+    ? {
+        name: t(`team.member.${selected.slug}.name@@${selected.name}`),
+        role: t(`team.member.${selected.slug}.role@@${selected.role}`),
+        description1: t(`team.member.${selected.slug}.description1@@${selected.description1}`),
+        description2: t(`team.member.${selected.slug}.description2@@${selected.description2}`),
+      }
+    : null;
 
   const openModal = $((item: TeamMemberType) => {
     selectedItem.value = item;
@@ -219,7 +225,7 @@ export default component$(({ items }: InfinitySliderProps) => {
                   </h2>
 
                   <p class="H6 grey" id={`slide-role-${selectedItem.value.id}`}>
-                    {selectedItem.value.role}
+                    {selectedMember.role}
                   </p>
                 </div>
                 <div class="modal-text-block" id={`modal-desc-${selectedItem.value.id}`}>

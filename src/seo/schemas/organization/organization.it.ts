@@ -12,6 +12,12 @@ export const organizationSchemaIT = {
     propertyID: "EDR registration record",
     value: LEGAL_ENTITY.edrRecord,
   },
+  founder: {
+    "@type": "Person",
+    name: "Serhii Oberemchuk",
+    jobTitle: "Founder & CEO",
+    url: "https://obriym.com/it-IT/team/",
+  },
   url: "https://obriym.com",
   logo: "https://obriym.com/logo.svg",
   description:

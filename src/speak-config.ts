@@ -23,6 +23,7 @@ export const config: SpeakConfig = {
     "team",
     "cookies",
     "privacy",
+    "legal",
     "faq",
     "projects",
   ],

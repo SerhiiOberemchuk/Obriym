@@ -1,0 +1,23 @@
+{
+  "legal": {
+    "details": {
+      "address": "Registered address",
+      "country": "Ukraine",
+      "email": "Email",
+      "name": "Legal name",
+      "phone": "Phone",
+      "regDate": "dated",
+      "regRecord": "State registration record No.",
+      "taxId": "Tax ID (RNOKPP)",
+      "title": "Business details:"
+    },
+    "founder": {
+      "linkTeam": "Team page",
+      "text1": "The agency was founded and is legally operated by Serhii Oberemchuk — Founder & CEO of OBRIYM.",
+      "text2": "Learn more about him and the whole team on our",
+      "title": "Who is behind OBRIYM:"
+    },
+    "intro": "OBRIYM (obriym.com) is the trading name of an officially registered business. Below you will find the full legal details of the entity operating this website.",
+    "title": "Legal Information"
+  }
+}

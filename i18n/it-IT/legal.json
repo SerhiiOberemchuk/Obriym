@@ -1,0 +1,23 @@
+{
+  "legal": {
+    "details": {
+      "address": "Sede legale",
+      "country": "Ucraina",
+      "email": "Email",
+      "name": "Denominazione legale",
+      "phone": "Telefono",
+      "regDate": "del",
+      "regRecord": "N. di registrazione statale",
+      "taxId": "Codice fiscale (RNOKPP)",
+      "title": "Dati aziendali:"
+    },
+    "founder": {
+      "linkTeam": "pagina del team",
+      "text1": "L'agenzia è stata fondata ed è legalmente gestita da Serhii Oberemchuk — Founder & CEO di OBRIYM.",
+      "text2": "Scopri di più su di lui e su tutto il team nella nostra",
+      "title": "Chi c'è dietro OBRIYM:"
+    },
+    "intro": "OBRIYM (obriym.com) è il nome commerciale di un'attività ufficialmente registrata. Di seguito trovi i dati legali completi del soggetto che gestisce questo sito.",
+    "title": "Informazioni legali"
+  }
+}

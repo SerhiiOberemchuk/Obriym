@@ -9,5 +9,9 @@ export const getLegalDisplay = (lang: string) => {
       ? `с. ${LEGAL_ENTITY.locality}, ${LEGAL_ENTITY.region}, ${LEGAL_ENTITY.postalCode}`
       : `${LEGAL_ENTITY.localityEn || LEGAL_ENTITY.locality}, ${LEGAL_ENTITY.regionEn || LEGAL_ENTITY.region}, ${LEGAL_ENTITY.postalCode}`,
     edrDateFormatted: LEGAL_ENTITY.edrDate.split("-").reverse().join("."),
+    phoneDisplay: LEGAL_ENTITY.phone.replace(
+      /^(\+380)(\d{2})(\d{3})(\d{2})(\d{2})$/,
+      "$1 $2 $3 $4 $5",
+    ),
   };
 };

@@ -14,6 +14,7 @@ const ROUTE_PRIORITY: Record<string, number> = {
   "/ecommerce-development": 0.9,
   "/privacy-policy": 0.3,
   "/cookies-policy": 0.3,
+  "/legal-information": 0.3,
 };
 
 type QwikCityRoute = [routeName: string, loaders: unknown, pathname?: string];

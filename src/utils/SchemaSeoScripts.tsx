@@ -97,6 +97,12 @@ export default component$(() => {
               name: t("privacy.title@@Privacy Policy"),
               url: localizedHref("/privacy-policy"),
             },
+            {
+              "@type": "SiteNavigationElement",
+              position: 8,
+              name: t("legal.title@@Legal Information"),
+              url: localizedHref("/legal-information"),
+            },
           ],
         })}
       ></script>

@@ -1,5 +1,5 @@
 import { component$, useStylesScoped$, QRL } from "@builder.io/qwik";
-import { useSpeakContext, inlineTranslate } from "qwik-speak";
+import { inlineTranslate } from "qwik-speak";
 import styles from "./styles_slide.css?inline";
 import type { TeamMemberType } from "~/types/team-member.type";
 import IconPlus from "~/assets/icons/icon_plus.svg?w=24&h=24&jsx";
@@ -7,11 +7,11 @@ import { imageMap } from "~/const/team";
 
 export default component$(
   ({ item, onOpen$ }: { item: TeamMemberType; onOpen$: QRL<() => void> }) => {
-    const { translation } = useSpeakContext();
     const t = inlineTranslate();
     useStylesScoped$(styles);
 
-    const memberName = translation?.team?.member?.[item.slug]?.name ?? item.name;
+    const memberName = t(`team.member.${item.slug}.name@@${item.name}`);
+    const memberRole = t(`team.member.${item.slug}.role@@${item.role}`);
     const plusLabel = t("team.aria.slider.plus_btn@@More about {{name}}", {
       name: memberName,
     });
@@ -25,7 +25,7 @@ export default component$(
               {memberName}
             </p>
             <p class="btn_header grey" id={`role-${item.id}`}>
-              {item.role}
+              {memberRole}
             </p>
           </div>
 

@@ -12,6 +12,12 @@ export const organizationSchemaUA = {
     propertyID: "Номер запису в ЄДР",
     value: LEGAL_ENTITY.edrRecord,
   },
+  founder: {
+    "@type": "Person",
+    name: "Сергій Оберемчук",
+    jobTitle: "Засновник і CEO",
+    url: "https://obriym.com/uk-UA/team/",
+  },
   url: "https://obriym.com",
   logo: "https://obriym.com/logo.svg",
   description:

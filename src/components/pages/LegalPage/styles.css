@@ -1,0 +1,29 @@
+.title {
+  text-align: center;
+  padding-block: 5rem;
+}
+.legal_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-bottom: 5rem;
+}
+.team_link {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.legal_details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.legal_row {
+  display: grid;
+  gap: 0.25rem;
+}
+@media (width >= 48rem) {
+  .legal_row {
+    grid-template-columns: 18rem 1fr;
+    gap: 1.5rem;
+  }
+}

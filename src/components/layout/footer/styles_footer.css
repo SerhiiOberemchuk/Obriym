@@ -39,7 +39,7 @@ footer {
   color: var(--grey);
   padding: 0.625rem;
 }
-.privacy_list :nth-child(2) {
+.privacy_list .divider {
   height: 18px;
   width: 2px;
   background-color: var(--grey);
@@ -48,13 +48,6 @@ footer {
 .nav_wrapper {
   border-top: 1px solid var(--grey-light);
   position: relative;
-}
-.f_legal {
-  flex-basis: 100%;
-  padding-top: 0.75rem;
-  font-size: 0.75rem;
-  line-height: 1.5;
-  text-align: center;
 }
 .f_container nav {
   margin-inline: auto;
@@ -70,7 +63,6 @@ footer {
   }
   .nav_wrapper {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
   }
   .f_container {
