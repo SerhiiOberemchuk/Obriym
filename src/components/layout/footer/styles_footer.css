@@ -49,6 +49,13 @@ footer {
   border-top: 1px solid var(--grey-light);
   position: relative;
 }
+.f_legal {
+  flex-basis: 100%;
+  padding-top: 0.75rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-align: center;
+}
 .f_container nav {
   margin-inline: auto;
 }
@@ -63,6 +70,7 @@ footer {
   }
   .nav_wrapper {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
   }
   .f_container {

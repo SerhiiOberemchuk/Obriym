@@ -7,6 +7,8 @@ import FollowUs from "./follow-us/FollowUs";
 import IconCookies from "~/assets/icons/cookies-icon.svg?w=38&h=38&jsx";
 import { CookiesBannerContext } from "~/components/cookies-banner/coocies-banner-context";
 import AnimatedElement from "~/components/common/animated-ball/AnimatedElement";
+import { LEGAL_ENTITY } from "~/types/legal.info";
+import { getLegalDisplay } from "~/utils/legal";
 
 export default component$(() => {
   const t = inlineTranslate();
@@ -17,6 +19,7 @@ export default component$(() => {
   const cookiesBanner = useContext(CookiesBannerContext);
   const privacyPath = getPath("/privacy-policy/", lang);
   const cookiesPath = getPath("/cookies-policy/", lang);
+  const legal = getLegalDisplay(lang);
 
   return (
     <footer>
@@ -54,6 +57,13 @@ export default component$(() => {
               </li>
             </ul>
           </nav>
+          <p class="f_legal grey">
+            {legal.name} {"·"} {t("footer.legal.taxId@@Tax ID (RNOKPP)")}{" "}
+            {LEGAL_ENTITY.taxId} {"·"}{" "}
+            {t("footer.legal.regRecord@@State registration record No.")} {LEGAL_ENTITY.edrRecord}{" "}
+            {t("footer.legal.regDate@@dated")} {legal.edrDateFormatted} {"·"} {legal.address},{" "}
+            {t("footer.legal.country@@Ukraine")}
+          </p>
         </div>
       </div>
     </footer>

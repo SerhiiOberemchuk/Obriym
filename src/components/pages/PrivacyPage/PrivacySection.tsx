@@ -1,9 +1,13 @@
 import { component$, useStylesScoped$ } from "@builder.io/qwik";
 import styles from "./styles.css?inline";
-import { inlineTranslate } from "qwik-speak";
+import { inlineTranslate, useSpeakLocale } from "qwik-speak";
+import { LEGAL_ENTITY } from "~/types/legal.info";
+import { getLegalDisplay } from "~/utils/legal";
 export default component$(() => {
   useStylesScoped$(styles);
   const t = inlineTranslate();
+  const { lang } = useSpeakLocale();
+  const legal = getLegalDisplay(lang);
   return (
     <section>
       <div class="container H6 grey privacy_wrapper">
@@ -74,6 +78,22 @@ export default component$(() => {
           {t(
             "privacy.legal.text@@We process your data based on your consent or our legitimate interests in improving our services.",
           )}
+        </p>
+
+        <h2 class="H3_uppercase black">{t("privacy.controller.title@@Data Controller:")}</h2>
+        <p>{t("privacy.controller.text@@The website obriym.com is operated by:")}</p>
+        <p>
+          {legal.name}
+          <br />
+          {t("footer.legal.taxId@@Tax ID (RNOKPP)")}: {LEGAL_ENTITY.taxId}
+          <br />
+          {t("footer.legal.regRecord@@State registration record No.")} {LEGAL_ENTITY.edrRecord}{" "}
+          {t("footer.legal.regDate@@dated")} {legal.edrDateFormatted}
+          <br />
+          {legal.address}, {t("footer.legal.country@@Ukraine")}
+          <br />
+          {t("privacy.controller.phone@@Phone")}:{" "}
+          <a href={`tel:${LEGAL_ENTITY.phone}`}>{LEGAL_ENTITY.phone}</a>
         </p>
 
         <p>

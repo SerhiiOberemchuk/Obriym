@@ -1,6 +1,12 @@
 {
   "footer": {
     "followUs": "Слідкуйте за нами",
+    "legal": {
+      "country": "Україна",
+      "regDate": "від",
+      "regRecord": "Запис в ЄДР №",
+      "taxId": "РНОКПП"
+    },
     "text": {
       "webuild1": "Ми створюємо end-to-end",
       "webuild2": "цифрові продукти"

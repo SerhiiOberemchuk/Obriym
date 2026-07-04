@@ -1,6 +1,12 @@
 {
   "footer": {
     "followUs": "Follow us on",
+    "legal": {
+      "country": "Ukraine",
+      "regDate": "dated",
+      "regRecord": "State registration record No.",
+      "taxId": "Tax ID (RNOKPP)"
+    },
     "text": {
       "webuild1": "We build end-to-end",
       "webuild2": "digital products"

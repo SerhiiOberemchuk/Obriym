@@ -1,8 +1,17 @@
-﻿export const organizationSchemaUA = {
+﻿import { LEGAL_ENTITY } from "~/types/legal.info";
+
+export const organizationSchemaUA = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "ОБРІУМ Веб Агенція",
-  legalName: "ОБРІУМ",
+  legalName: LEGAL_ENTITY.name,
+  taxID: LEGAL_ENTITY.taxId,
+  foundingDate: LEGAL_ENTITY.edrDate,
+  identifier: {
+    "@type": "PropertyValue",
+    propertyID: "Номер запису в ЄДР",
+    value: LEGAL_ENTITY.edrRecord,
+  },
   url: "https://obriym.com",
   logo: "https://obriym.com/logo.svg",
   description:

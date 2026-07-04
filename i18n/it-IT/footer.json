@@ -1,6 +1,12 @@
 {
   "footer": {
     "followUs": "Seguici",
+    "legal": {
+      "country": "Ucraina",
+      "regDate": "del",
+      "regRecord": "N. di registrazione statale",
+      "taxId": "Codice fiscale (RNOKPP)"
+    },
     "text": {
       "webuild1": "Costruiamo EndToEnd",
       "webuild2": "prodotti digitali"
