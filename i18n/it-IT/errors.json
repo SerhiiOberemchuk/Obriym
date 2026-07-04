@@ -8,7 +8,12 @@
       "required": "Per favore, inserisci la tua email."
     },
     "message": {
+      "max": "Il messaggio è troppo lungo.",
       "required": "Per favore, inserisci una descrizione."
+    },
+    "name": {
+      "max": "Il nome è troppo lungo.",
+      "required": "Per favore, inserisci il tuo nome."
     },
     "services": {
       "required": "Seleziona almeno un servizio.",

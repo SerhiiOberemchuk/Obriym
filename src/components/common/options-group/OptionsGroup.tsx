@@ -1,5 +1,5 @@
 import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { useSpeakContext } from "qwik-speak";
+import { inlineTranslate } from "qwik-speak";
 import styles from "./options-group_styles.css?inline";
 import { OptionsGroupProps } from "~/types/contact-form.type";
 
@@ -15,7 +15,7 @@ export const OptionsGroup = component$(
     onInput$,
     onBlur$,
   }: OptionsGroupProps) => {
-    const { translation } = useSpeakContext();
+    const t = inlineTranslate();
     useStylesScoped$(styles);
 
     const isCheckbox = type === "checkbox";
@@ -38,14 +38,8 @@ export const OptionsGroup = component$(
           const isSelected = isCheckbox
             ? Array.isArray(value) && value.includes(key)
             : value === key;
-          const servicesTranslation = translation?.services as Record<string, string> | undefined;
-          const budgetTranslation = translation?.budget as Record<string, string> | undefined;
           const optionLabel =
-            name === "services"
-              ? (servicesTranslation?.[key] ?? option)
-              : name === "budget"
-                ? (budgetTranslation?.[key] ?? option)
-                : option;
+            name === "services" || name === "budget" ? t(`${name}.${key}@@${option}`) : option;
 
           return (
             <label key={key} class={`ic_form_option ${isSelected ? "selected" : ""}`}>

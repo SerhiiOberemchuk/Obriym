@@ -1,5 +1,5 @@
 import { component$, useSignal, useStylesScoped$ } from "@builder.io/qwik";
-import { useSpeakContext } from "qwik-speak";
+import { inlineTranslate } from "qwik-speak";
 import { Popover } from "@qwik-ui/headless";
 
 import styles from "./popover_styles.css?inline";
@@ -11,12 +11,21 @@ export enum PopoverId {
 }
 
 export default component$(() => {
-  const { translation } = useSpeakContext();
+  const t = inlineTranslate();
   useStylesScoped$(styles);
   const anchor = useSignal<HTMLElement | undefined>(undefined);
   const IconSuccess = ALERT_MESSAGE["success"].icon;
   const IconError = ALERT_MESSAGE["failed"].icon;
-  const alert = translation?.alert ?? ALERT_MESSAGE;
+  const alert = {
+    success: {
+      title: t(`alert.success.title@@${ALERT_MESSAGE.success.title}`),
+      message: t(`alert.success.message@@${ALERT_MESSAGE.success.message}`),
+    },
+    failed: {
+      title: t(`alert.failed.title@@${ALERT_MESSAGE.failed.title}`),
+      message: t(`alert.failed.message@@${ALERT_MESSAGE.failed.message}`),
+    },
+  };
 
   return (
     <div ref={anchor} aria-hidden="true" class="popover_anchor">
