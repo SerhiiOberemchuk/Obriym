@@ -13,6 +13,19 @@ const toHreflang = (lang: string) => (lang === config.defaultLocale.lang ? "en" 
 const localeSegmentPattern = config.supportedLocales.map(({ lang }) => lang).join("|");
 const LOCALE_PREFIX_PATTERN = new RegExp(`^\\/(${localeSegmentPattern})(?=\\/|$)`);
 
+// og:locale expects language_TERRITORY; "EU" is not a valid OG territory,
+// so the default locale maps to the compatibility-safe en_US.
+const OG_LOCALE_BY_LANG: Record<string, string> = {
+  "en-EU": "en_US",
+  "uk-UA": "uk_UA",
+  "it-IT": "it_IT",
+};
+
+const getLangFromPathname = (pathname: string) => {
+  const match = pathname.match(LOCALE_PREFIX_PATTERN);
+  return match ? match[1] : config.defaultLocale.lang;
+};
+
 // The site is served with `trailingSlash: true` (Qwik City default), so every
 // canonical/alternate/sitemap URL must keep the trailing slash to match the
 // actually served URLs and avoid canonical/redirect mismatches.
@@ -93,6 +106,7 @@ export const buildSeoMeta = ({
 }: SeoMetaOptions): DocumentMeta[] => {
   const canonical = getCanonicalUrl(pathname);
   const isDefaultImage = image === DEFAULT_OG_IMAGE;
+  const lang = getLangFromPathname(pathname);
 
   return [
     { name: "description", content: description },
@@ -102,6 +116,10 @@ export const buildSeoMeta = ({
     { property: "og:title", content: title },
     { property: "og:description", content: description },
     { property: "og:url", content: canonical },
+    { property: "og:locale", content: OG_LOCALE_BY_LANG[lang] },
+    ...config.supportedLocales
+      .filter(({ lang: alt }) => alt !== lang)
+      .map(({ lang: alt }) => ({ property: "og:locale:alternate", content: OG_LOCALE_BY_LANG[alt] })),
     { property: "og:image", content: image },
     ...(isDefaultImage
       ? [

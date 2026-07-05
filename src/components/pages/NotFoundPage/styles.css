@@ -1,0 +1,35 @@
+section {
+  padding-block: 7rem 6rem;
+}
+.nf_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+.nf_code {
+  font-size: 6rem;
+  line-height: 1;
+}
+.nf_home {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2.5rem;
+  padding: 0.875rem 2rem;
+  background-color: var(--black);
+  color: var(--white);
+  transition: background-color 0.3s ease-in-out;
+}
+.nf_home:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+@media (width >= 48rem) {
+  section {
+    padding-block: 9rem 8rem;
+  }
+  .nf_code {
+    font-size: 8rem;
+  }
+}

@@ -60,6 +60,10 @@
         "description": "Official business details of OBRIYM web agency: legal name, registration data, tax ID and registered address of the entity operating obriym.com.",
         "title": "Legal Information | Obriym"
       },
+      "notFound": {
+        "description": "The page you are looking for doesn't exist or has been moved.",
+        "title": "Page not found | Obriym"
+      },
       "privacy": {
         "description": "Read the Privacy Policy of Obriym Web Agency. Learn how we collect, use, and protect your personal data.",
         "title": "Privacy Policy | Obriym"
@@ -75,6 +79,11 @@
     "nav": {
       "home": "Home",
       "page": "Page"
+    },
+    "notFound": {
+      "homeLink": "Back to homepage",
+      "text": "The page you are looking for doesn't exist or has been moved.",
+      "title": "Page not found"
     },
     "title": "{{name}} demo"
   },

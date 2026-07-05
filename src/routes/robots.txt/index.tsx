@@ -4,7 +4,7 @@ import { SITE } from "~/utils/seo";
 const ROBOTS_TXT = `User-agent: *
 Allow: /
 
-Sitemap: ${SITE}/dynamic-sitemap.xml`;
+Sitemap: ${SITE}/sitemap.xml`;
 
 export const onGet: RequestHandler = ({ headers, send, cacheControl }) => {
   cacheControl({

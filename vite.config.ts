@@ -22,7 +22,8 @@ errorOnDuplicatesPkgDeps(devDependencies, dependencies);
  */
 export default defineConfig(({ command, mode }): UserConfig => {
   return {
-    plugins: [qwikCity(), qwikVite(), qwikSpeakInline({
+    // `enableRequestRewrite` powers the 404 rewrite in src/routes/plugin.ts.
+    plugins: [qwikCity(), qwikVite({ experimental: ["enableRequestRewrite"] }), qwikSpeakInline({
         supportedLangs: ['en-EU', 'it-IT', 'uk-UA'],
         defaultLang: 'en-EU',
         assetsPath: 'i18n'

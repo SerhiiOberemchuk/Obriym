@@ -11,6 +11,8 @@ export default extendConfig(baseConfig, () => {
       },
       outDir: ".vercel/output/functions/_qwik-city.func",
     },
-    plugins: [vercelEdgeAdapter()],
+    // `sitemapOutFile: null` stops the adapter from emitting an empty static
+    // sitemap.xml (nothing is SSG'd) that would shadow the app's routes.
+    plugins: [vercelEdgeAdapter({ ssg: { include: [], sitemapOutFile: null } })],
   };
 });
