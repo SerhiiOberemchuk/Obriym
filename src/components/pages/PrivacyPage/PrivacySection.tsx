@@ -90,7 +90,7 @@ export default component$(() => {
           {t("legal.details.regRecord@@State registration record No.")} {LEGAL_ENTITY.edrRecord}{" "}
           {t("legal.details.regDate@@dated")} {legal.edrDateFormatted}
           <br />
-          {legal.address}, {t("legal.details.country@@Ukraine")}
+          {t("legal.details.country@@Ukraine")}, {legal.address}
           <br />
           {t("privacy.controller.phone@@Phone")}:{" "}
           <a href={`tel:${LEGAL_ENTITY.phone}`}>{LEGAL_ENTITY.phone}</a>

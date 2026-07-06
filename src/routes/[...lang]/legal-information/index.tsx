@@ -25,7 +25,8 @@ export default component$(() => {
             name: "OBRIYM Web Agency",
             url: SITE,
             logo: `${SITE}/logo.svg`,
-            legalName: LEGAL_ENTITY.nameEn || LEGAL_ENTITY.name,
+            legalName: LEGAL_ENTITY.name,
+            alternateName: LEGAL_ENTITY.nameEn || undefined,
             taxID: LEGAL_ENTITY.taxId,
             foundingDate: LEGAL_ENTITY.edrDate,
             identifier: {
@@ -41,8 +42,9 @@ export default component$(() => {
             },
             address: {
               "@type": "PostalAddress",
-              addressLocality: LEGAL_ENTITY.localityEn || LEGAL_ENTITY.locality,
-              addressRegion: LEGAL_ENTITY.regionEn || LEGAL_ENTITY.region,
+              streetAddress: LEGAL_ENTITY.streetAddress,
+              addressLocality: `село ${LEGAL_ENTITY.locality}`,
+              addressRegion: `${LEGAL_ENTITY.region}, ${LEGAL_ENTITY.district}`,
               postalCode: LEGAL_ENTITY.postalCode,
               addressCountry: "UA",
             },

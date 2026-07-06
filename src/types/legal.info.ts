@@ -13,10 +13,18 @@ export const LEGAL_ENTITY = {
   locality: "Сатиїв",
   /** Romanized city/village for /en pages. Empty → falls back to `locality`. */
   localityEn: "Satyiv",
-  /** Registered region (область), e.g. "Рівненська обл.". */
-  region: "Рівненська обл.",
+  /** Registered district (район), e.g. "Дубенський район". */
+  district: "Дубенський район",
+  /** Romanized district for /en pages. Empty → falls back to `district`. */
+  districtEn: "Dubno district",
+  /** Registered region (область), e.g. "Рівненська область". */
+  region: "Рівненська область",
   /** Romanized region for /en pages. Empty → falls back to `region`. */
   regionEn: "Rivne Oblast",
+  /** Street + building as in the EDR extract, e.g. "вулиця Миру, будинок 2". */
+  streetAddress: "вулиця Миру, будинок 2",
+  /** Romanized street + building for /en pages. Empty → falls back to `streetAddress`. */
+  streetAddressEn: "Myru Street, building 2",
   /** Postal code (optional). */
   postalCode: "35610",
   /** Contact phone in E.164, e.g. "+380…". */

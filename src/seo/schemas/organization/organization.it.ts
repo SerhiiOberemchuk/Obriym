@@ -4,7 +4,8 @@ export const organizationSchemaIT = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "OBRIYM Agenzia Web",
-  legalName: LEGAL_ENTITY.nameEn || LEGAL_ENTITY.name,
+  legalName: LEGAL_ENTITY.name,
+  alternateName: LEGAL_ENTITY.nameEn || undefined,
   taxID: LEGAL_ENTITY.taxId,
   foundingDate: LEGAL_ENTITY.edrDate,
   identifier: {

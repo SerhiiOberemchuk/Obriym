@@ -21,6 +21,11 @@ export default component$(() => {
             "legal.intro@@OBRIYM (obriym.com) is the trading name of an officially registered business. Below you will find the full legal details of the entity operating this website.",
           )}
         </p>
+        <p>
+          {t(
+            "legal.trading@@OBRIYM is the trading name under which ФОП Оберемчук Сергій Олександрович (Individual Entrepreneur Oberemchuk Serhii Oleksandrovych) provides web development, CRM solutions and digital integration services.",
+          )}
+        </p>
 
         <h2 class="H3_uppercase black">{t("legal.founder.title@@Who is behind OBRIYM:")}</h2>
         <p>
@@ -53,7 +58,7 @@ export default component$(() => {
           <div class="legal_row">
             <dt class="black">{t("legal.details.address@@Registered address")}</dt>
             <dd>
-              {legal.address}, {t("legal.details.country@@Ukraine")}
+              {t("legal.details.country@@Ukraine")}, {legal.address}
             </dd>
           </div>
           <div class="legal_row">
