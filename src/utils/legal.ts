@@ -14,7 +14,7 @@ export const getLegalDisplay = (lang: string) => {
     // Full address as in the EDR extract; the country is prepended by the caller (localized).
     address: isUk
       ? `${LEGAL_ENTITY.postalCode}, ${LEGAL_ENTITY.region}, ${LEGAL_ENTITY.district}, село ${LEGAL_ENTITY.locality}, ${LEGAL_ENTITY.streetAddress}`
-      : `${LEGAL_ENTITY.postalCode}, ${LEGAL_ENTITY.regionEn || LEGAL_ENTITY.region}, ${LEGAL_ENTITY.districtEn || LEGAL_ENTITY.district}, ${LEGAL_ENTITY.localityEn || LEGAL_ENTITY.locality} village, ${LEGAL_ENTITY.streetAddressEn || LEGAL_ENTITY.streetAddress}`,
+      : `${LEGAL_ENTITY.postalCode}, ${LEGAL_ENTITY.regionEn || LEGAL_ENTITY.region}, ${LEGAL_ENTITY.districtEn || LEGAL_ENTITY.district}, ${LEGAL_ENTITY.localityEn || LEGAL_ENTITY.locality} Village, ${LEGAL_ENTITY.streetAddressEn || LEGAL_ENTITY.streetAddress}`,
     edrDateFormatted: LEGAL_ENTITY.edrDate.split("-").reverse().join("."),
     phoneDisplay: LEGAL_ENTITY.phone,
   };
