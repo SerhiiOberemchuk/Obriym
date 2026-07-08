@@ -1,4 +1,10 @@
-import { component$, QRL, useStylesScoped$ } from "@builder.io/qwik";
+import {
+  component$,
+  QRL,
+  useStylesScoped$,
+  useSignal,
+  useVisibleTask$,
+} from "@builder.io/qwik";
 import { useLocation } from "@builder.io/qwik-city";
 import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
 import styles from "./nav-list.css?inline";
@@ -19,6 +25,44 @@ export default component$<Props>(({ place, onClick }) => {
   useStylesScoped$(styles);
   const currentPath = location.url.pathname;
   const lang = locale.lang;
+  const navRef = useSignal<HTMLElement>();
+
+  // The floating pill (place="header") is position: fixed at the bottom of the
+  // viewport. As the footer scrolls into view it would sit on top of it, so we
+  // push the pill up to ride just above the footer's top edge (sticky-like).
+  // eslint-disable-next-line qwik/no-use-visible-task
+  useVisibleTask$(({ cleanup }) => {
+    if (place !== "header") return;
+    const nav = navRef.value;
+    const footer = document.querySelector("footer");
+    if (!nav || !footer) return;
+
+    const BASE_GAP = 16; // pill's default distance from the viewport bottom (bottom: 1rem)
+    const CLEAR_GAP = 16; // breathing room kept between the pill and the footer
+    let raf = 0;
+
+    const update = () => {
+      raf = 0;
+      const footerTop = footer.getBoundingClientRect().top;
+      const navBottom = window.innerHeight - BASE_GAP;
+      const shift = navBottom - footerTop + CLEAR_GAP;
+      nav.style.setProperty("--nav-shift", `${Math.max(0, shift)}px`);
+    };
+
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    cleanup(() => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    });
+  });
+
   const teamPath = getPath("/team/", lang);
   const faqPath = getPath("/faq/", lang);
   const webDevelopmentPath = getPath("/web-development/", lang);
@@ -75,6 +119,7 @@ export default component$<Props>(({ place, onClick }) => {
 
   return (
     <nav
+      ref={navRef}
       id="main-navigation"
       data-place={place}
       class="navigation"

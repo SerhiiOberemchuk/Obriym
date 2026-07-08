@@ -7,6 +7,8 @@ import FollowUs from "./follow-us/FollowUs";
 import IconCookies from "~/assets/icons/cookies-icon.svg?w=38&h=38&jsx";
 import { CookiesBannerContext } from "~/components/cookies-banner/coocies-banner-context";
 import AnimatedElement from "~/components/common/animated-ball/AnimatedElement";
+import { LEGAL_ENTITY } from "~/types/legal.info";
+import { getLegalDisplay } from "~/utils/legal";
 
 export default component$(() => {
   const t = inlineTranslate();
@@ -18,6 +20,7 @@ export default component$(() => {
   const privacyPath = getPath("/privacy-policy/", lang);
   const cookiesPath = getPath("/cookies-policy/", lang);
   const legalPath = getPath("/legal-information/", lang);
+  const legal = getLegalDisplay(lang);
 
   return (
     <footer>
@@ -59,6 +62,18 @@ export default component$(() => {
               </li>
             </ul>
           </nav>
+        </div>
+        <div class="f_legal btn_header grey">
+          <p>
+            {LEGAL_ENTITY.name} — {LEGAL_ENTITY.nameEn}
+          </p>
+          <p>
+            {t("legal.details.country@@Ukraine")}, {legal.address}
+            {" · "}
+            <a href={`tel:${LEGAL_ENTITY.phone}`}>{legal.phoneDisplay}</a>
+            {" · "}
+            <a href="mailto:info@obriym.com">info@obriym.com</a>
+          </p>
         </div>
       </div>
     </footer>

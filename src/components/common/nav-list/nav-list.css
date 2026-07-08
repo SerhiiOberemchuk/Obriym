@@ -11,8 +11,9 @@
   position: fixed;
   bottom: 1rem;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(calc(-1 * var(--nav-shift, 0px)));
   z-index: 1000;
+  will-change: transform;
 }
 .nav_list[data-place="header"] {
   border-radius: 50px;
