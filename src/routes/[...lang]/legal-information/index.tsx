@@ -43,7 +43,7 @@ export default component$(() => {
             address: {
               "@type": "PostalAddress",
               streetAddress: LEGAL_ENTITY.streetAddress,
-              addressLocality: `село ${LEGAL_ENTITY.locality}`,
+              addressLocality: ` ${LEGAL_ENTITY.locality}`,
               addressRegion: `${LEGAL_ENTITY.region}, ${LEGAL_ENTITY.district}`,
               postalCode: LEGAL_ENTITY.postalCode,
               addressCountry: "UA",
