@@ -1,8 +1,8 @@
 export const LEGAL_ENTITY = {
   /** Official Ukrainian legal name incl. entity form, e.g. "ФОП Прізвище Ім'я По-батькові". */
-  name: "ФОП Оберемчук Сергій Олександрович",
+  name: "Фізична особа-підприємець Оберемчук Сергій Олександрович",
   /** Romanized display name for /en pages. Empty → falls back to `name`. */
-  nameEn: "Individual Entrepreneur Oberemchuk Serhii Oleksandrovych",
+  nameEn: "Фізична особа-підприємець Оберемчук Сергій Олександрович",
   /** ЄДР registration record number (номер запису в ЄДР). */
   edrRecord: "178752761226",
   /** State registration date (ISO 8601 for JSON-LD `foundingDate`, e.g. "2026-07-03"). */
@@ -10,9 +10,9 @@ export const LEGAL_ENTITY = {
   /** РНОКПП / ІПН (individual taxpayer number). */
   taxId: "3121116950",
   /** Registered city / village. */
-  locality: "Сатиїв",
+  locality: "с. Сатиїв",
   /** Romanized city/village for /en pages. Empty → falls back to `locality`. */
-  localityEn: "Satyiv",
+  localityEn: "с. Сатиїв",
   /** Registered district (район), e.g. "Дубенський район". */
   district: "Дубенський район",
   /** Romanized district for /en pages (matches certified translation). Empty → falls back to `district`. */
@@ -20,11 +20,11 @@ export const LEGAL_ENTITY = {
   /** Registered region (область), e.g. "Рівненська область". */
   region: "Рівненська область",
   /** Romanized region for /en pages (matches certified translation). Empty → falls back to `region`. */
-  regionEn: "Rivne Region",
+  regionEn: "Рівненська область",
   /** Street + building as in the EDR extract, e.g. "вулиця Миру, будинок 2". */
-  streetAddress: "вулиця Миру, будинок 2",
+  streetAddress: "вул. Миру, буд. 2",
   /** Romanized street + building for /en pages (matches certified translation). Empty → falls back to `streetAddress`. */
-  streetAddressEn: "2 Myru Street",
+  streetAddressEn: "вул. Миру, буд. 2",
   /** Postal code (optional). */
   postalCode: "35610",
   /** Contact phone in E.164, e.g. "+380…". */
