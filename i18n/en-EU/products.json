@@ -1,0 +1,180 @@
+{
+  "products": {
+    "common": {
+      "allProducts": "Products",
+      "contact": "Talk to OBRIYM",
+      "ecommerce": "E-commerce development",
+      "learnMore": "Learn more",
+      "openProduct": "Open product",
+      "related": "Related pages",
+      "seo": "SEO optimization",
+      "webdev": "Web development"
+    },
+    "overview": {
+      "eyebrow": "OBRIYM products",
+      "h1": "Digital products that turn busy work into growth",
+      "lead": "We build practical software for sales teams and marketplace sellers — from the first product photo to the next customer order.",
+      "head": {
+        "title": "OBRIYM Products | CRM and free marketplace seller tools",
+        "description": "Explore Obriym CRM for sales and e-commerce operations and Obriym Tools for faster marketplace photos, catalogs and listings."
+      },
+      "crm": {
+        "kicker": "Sales & commerce",
+        "description": "One role-aware workspace for leads, contacts, companies, deals, tasks, products, orders and retention.",
+        "feature1": "CRM pipeline and e-commerce backend together",
+        "feature2": "Next actions, stale-record alerts and team ownership",
+        "feature3": "Widget, REST API and platform integrations"
+      },
+      "tools": {
+        "kicker": "Marketplace productivity",
+        "description": "Free browser tools for resizing marketplace photos, converting supplier catalogs and preparing listings faster.",
+        "feature1": "Image presets for nine selling platforms",
+        "feature2": "Batch processing for up to 50 photos",
+        "feature3": "Standard processing stays in your browser"
+      },
+      "flow": {
+        "title": "One ecosystem for the whole commerce flow",
+        "lead": "Use focused utilities to prepare product data and images, then keep products, stock, orders and customer relationships organized in Obriym CRM.",
+        "step1": {
+          "title": "Prepare",
+          "text": "Resize images and clean supplier data for the marketplace you use."
+        },
+        "step2": {
+          "title": "Publish",
+          "text": "Create consistent listings across the channels where customers find you."
+        },
+        "step3": {
+          "title": "Sell",
+          "text": "Capture leads and orders while keeping customer context connected."
+        },
+        "step4": {
+          "title": "Retain",
+          "text": "Plan next actions, spot stale opportunities and earn repeat business."
+        }
+      },
+      "cta": {
+        "title": "Need a product built around your workflow?",
+        "text": "OBRIYM also designs and develops custom web apps, e-commerce systems and integrations for growing businesses.",
+        "button": "Discuss your idea"
+      }
+    },
+    "crm": {
+      "eyebrow": "Obriym CRM · customer flow workspace",
+      "h1": "CRM and e-commerce in one workspace",
+      "lead": "Manage every step from first lead to loyal customer with shared sales, catalog, order and retention context.",
+      "tag1": "B2B sales",
+      "tag2": "E-commerce operations",
+      "tag3": "Role-aware workspace",
+      "cta": "Start for free",
+      "head": {
+        "title": "Obriym CRM | CRM and e-commerce customer flow workspace",
+        "description": "Manage leads, deals, products, orders, tasks and retention in one role-aware CRM workspace for B2B sales and e-commerce teams."
+      },
+      "why": {
+        "title": "Built around the habits that move revenue",
+        "item1": {
+          "title": "Every next action stays visible",
+          "text": "Planned next steps and stale-record alerts keep leads and deals from disappearing in the pipeline."
+        },
+        "item2": {
+          "title": "A real 360° customer view",
+          "text": "Contacts, activities, products, orders, owners and relationship history live in one connected card."
+        },
+        "item3": {
+          "title": "Sales and catalog context meet",
+          "text": "Add catalog products to deals, track margin context and carry commercial data into the order flow."
+        }
+      },
+      "workflow": {
+        "title": "From lead capture to repeat purchase",
+        "lead": "A single customer flow connects pipeline work with the commercial reality behind every order.",
+        "step1": {
+          "title": "Capture",
+          "text": "Collect leads through the JS widget, REST API or platform adapters."
+        },
+        "step2": {
+          "title": "Qualify",
+          "text": "Score, assign and convert leads into contacts, companies and deals."
+        },
+        "step3": {
+          "title": "Close & fulfil",
+          "text": "Move deals through the pipeline and sync catalog, stock and order data."
+        },
+        "step4": {
+          "title": "Retain",
+          "text": "Track customer health, lifetime value and the next meaningful follow-up."
+        }
+      },
+      "toolsPromo": {
+        "title": "Preparing marketplace content first?",
+        "text": "Use Obriym Tools to resize listing photos and convert supplier data, then manage products and orders in the CRM.",
+        "button": "Explore Obriym Tools"
+      },
+      "faq": {
+        "title": "Questions about Obriym CRM",
+        "item1": {
+          "q": "Is Obriym CRM only for sales teams?",
+          "a": "No. B2B teams can use the CRM pipeline, while online stores add catalog, inventory, orders and storefront sync in the same workspace."
+        },
+        "item2": {
+          "q": "Can we connect an existing website or store?",
+          "a": "Yes. The platform provides a JS lead widget, REST API, universal webhooks and adapters for popular commerce, messaging and payment platforms."
+        }
+      }
+    },
+    "tools": {
+      "eyebrow": "Obriym Tools · marketplace productivity",
+      "h1": "Free tools for marketplace sellers",
+      "lead": "Prepare product photos and supplier price lists in your browser, with ready-made formats for the platforms where you sell.",
+      "cta": "Use the tools for free",
+      "head": {
+        "title": "Obriym Tools | Free tools for marketplace sellers",
+        "description": "Free browser tools for marketplace photo resizing, HEIC conversion, cross-listing and supplier catalog preparation."
+      },
+      "stats": {
+        "platforms": "platforms covered",
+        "batch": "photos per batch",
+        "price": "standard tools",
+        "uploaded": "files uploaded in Standard mode"
+      },
+      "marketplaces": {
+        "title": "Resize a complete listing in one pass",
+        "lead": "Choose a marketplace preset instead of checking dimensions, ratios and upload limits every time.",
+        "resizer": "image resizer",
+        "cardText": "Batch-ready product photos sized for a cleaner, faster listing workflow.",
+        "open": "Open tool"
+      },
+      "more": {
+        "title": "More than image resizing",
+        "item1": {
+          "title": "HEIC to JPG",
+          "text": "Turn iPhone photos into marketplace-ready JPG files without a separate desktop app."
+        },
+        "item2": {
+          "title": "Cross-listing photos",
+          "text": "Prepare one image set for several marketplace formats and reduce repetitive editing."
+        },
+        "item3": {
+          "title": "Supplier catalog converter",
+          "text": "Transform supplier spreadsheets into cleaner product data for listings and commerce systems."
+        }
+      },
+      "crmPromo": {
+        "title": "Ready to organize products, stock and orders?",
+        "text": "Move from listing preparation to day-to-day sales operations with Obriym CRM — the shared workspace for customer flow and commerce.",
+        "button": "Explore Obriym CRM"
+      },
+      "faq": {
+        "title": "Questions about Obriym Tools",
+        "item1": {
+          "q": "Are the marketplace tools really free?",
+          "a": "Yes. Standard photo processing and the core seller utilities are free to use directly in the browser."
+        },
+        "item2": {
+          "q": "Are my product photos uploaded?",
+          "a": "Standard processing stays on your device. A photo is uploaded only if you explicitly choose an HD option that requires it."
+        }
+      }
+    }
+  }
+}

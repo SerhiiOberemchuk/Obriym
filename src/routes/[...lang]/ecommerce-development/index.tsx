@@ -30,9 +30,17 @@ export default component$(() => {
           {t("seo.ecom.h2.delivery@@What we deliver")}
         </h2>
         <ul class="btn_body grey" style={{ marginTop: "1rem" }}>
-          <li>{t("seo.ecom.p1@@Product and category SEO architecture with scalable URL strategy.")}</li>
-          <li>{t("seo.ecom.p2@@Checkout, payments and analytics integrations for clean attribution.")}</li>
-          <li>{t("seo.ecom.p3@@Performance-first storefronts with optimized media and low JS overhead.")}</li>
+          <li>
+            {t("seo.ecom.p1@@Product and category SEO architecture with scalable URL strategy.")}
+          </li>
+          <li>
+            {t("seo.ecom.p2@@Checkout, payments and analytics integrations for clean attribution.")}
+          </li>
+          <li>
+            {t(
+              "seo.ecom.p3@@Performance-first storefronts with optimized media and low JS overhead.",
+            )}
+          </li>
         </ul>
 
         <h2 class="H4 black" style={{ marginTop: "2rem" }}>
@@ -46,7 +54,9 @@ export default component$(() => {
         <ul class="btn_body grey" style={{ marginTop: "1rem" }}>
           <li>{t("seo.ecom.r1@@SEO-first taxonomy for scalable category and filter pages.")}</li>
           <li>{t("seo.ecom.r2@@Conversion-focused product and checkout journey.")}</li>
-          <li>{t("seo.ecom.r3@@Tracking setup for revenue attribution and channel efficiency.")}</li>
+          <li>
+            {t("seo.ecom.r3@@Tracking setup for revenue attribution and channel efficiency.")}
+          </li>
         </ul>
 
         <h2 class="H4 black" style={{ marginTop: "2rem" }}>
@@ -81,15 +91,17 @@ export default component$(() => {
 
         <p class="btn_body grey" style={{ marginTop: "1.2rem", maxWidth: "920px" }}>
           {t("seo.ecom.links.title@@Related pages:")}{" "}
-          <a href={getPath("/projects/", lang)}>
-            {t("seo.ecom.links.projects@@Projects")}
-          </a>
+          <a href={getPath("/projects/", lang)}>{t("seo.ecom.links.projects@@Projects")}</a>
           {" | "}
           <a href={getPath("/seo-optimization/", lang)}>
             {t("seo.ecom.links.seo@@SEO Optimization")}
           </a>
           {" | "}
           <a href={getPath("/faq/", lang)}>{t("seo.ecom.links.faq@@FAQ")}</a>
+          {" | "}
+          <a href={getPath("/products/", lang)}>{t("navigation.products@@Products")}</a>
+          {" | "}
+          <a href={getPath("/products/obriym-crm/", lang)}>Obriym CRM</a>
         </p>
 
         <a

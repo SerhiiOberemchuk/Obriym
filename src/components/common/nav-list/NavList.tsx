@@ -1,10 +1,4 @@
-import {
-  component$,
-  QRL,
-  useStylesScoped$,
-  useSignal,
-  useVisibleTask$,
-} from "@builder.io/qwik";
+import { component$, QRL, useStylesScoped$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { useLocation } from "@builder.io/qwik-city";
 import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
 import styles from "./nav-list.css?inline";
@@ -68,9 +62,15 @@ export default component$<Props>(({ place, onClick }) => {
   const webDevelopmentPath = getPath("/web-development/", lang);
   const seoOptimizationPath = getPath("/seo-optimization/", lang);
   const ecommerceDevelopmentPath = getPath("/ecommerce-development/", lang);
+  const productsPath = getPath("/products/", lang);
   const homePath = getPath("/", lang);
 
   const baseListItems: NavListItem[] = [
+    {
+      link: "products",
+      label: t("navigation.products@@Products"),
+      path: productsPath,
+    },
     { link: "services", label: t("navigation.services@@Services"), path: `${homePath}#services` },
     {
       link: "portfolio",

@@ -30,9 +30,15 @@ export default component$(() => {
           {t("seo.webdev.h2.stack@@What we build")}
         </h2>
         <ul class="btn_body grey" style={{ marginTop: "1rem" }}>
-          <li>{t("seo.webdev.p1@@Corporate websites with multilingual structure and technical SEO.")}</li>
+          <li>
+            {t("seo.webdev.p1@@Corporate websites with multilingual structure and technical SEO.")}
+          </li>
           <li>{t("seo.webdev.p2@@High-converting landing pages for paid and organic traffic.")}</li>
-          <li>{t("seo.webdev.p3@@Web apps and portals with clean architecture and scalable delivery.")}</li>
+          <li>
+            {t(
+              "seo.webdev.p3@@Web apps and portals with clean architecture and scalable delivery.",
+            )}
+          </li>
         </ul>
 
         <h2 class="H4 black" style={{ marginTop: "2rem" }}>
@@ -44,9 +50,19 @@ export default component$(() => {
           )}
         </p>
         <ul class="btn_body grey" style={{ marginTop: "1rem" }}>
-          <li>{t("seo.webdev.result1@@Discovery aligned with business goals and keyword intent clusters.")}</li>
-          <li>{t("seo.webdev.result2@@Technical implementation optimized for crawlability and indexation.")}</li>
-          <li>{t("seo.webdev.result3@@Content structure designed for conversion, not only traffic.")}</li>
+          <li>
+            {t(
+              "seo.webdev.result1@@Discovery aligned with business goals and keyword intent clusters.",
+            )}
+          </li>
+          <li>
+            {t(
+              "seo.webdev.result2@@Technical implementation optimized for crawlability and indexation.",
+            )}
+          </li>
+          <li>
+            {t("seo.webdev.result3@@Content structure designed for conversion, not only traffic.")}
+          </li>
         </ul>
 
         <h2 class="H4 black" style={{ marginTop: "2rem" }}>
@@ -70,7 +86,11 @@ export default component$(() => {
             )}
           </dd>
           <dt style={{ marginTop: "0.8rem" }}>
-            <strong>{t("seo.webdev.faq3.q@@Can you improve an existing website instead of rebuilding it?")}</strong>
+            <strong>
+              {t(
+                "seo.webdev.faq3.q@@Can you improve an existing website instead of rebuilding it?",
+              )}
+            </strong>
           </dt>
           <dd style={{ marginTop: "0.35rem" }}>
             {t(
@@ -81,13 +101,13 @@ export default component$(() => {
 
         <p class="btn_body grey" style={{ marginTop: "1.2rem", maxWidth: "920px" }}>
           {t("seo.webdev.links.title@@Related pages:")}{" "}
-          <a href={getPath("/projects/", lang)}>
-            {t("seo.webdev.links.projects@@Projects")}
-          </a>
+          <a href={getPath("/projects/", lang)}>{t("seo.webdev.links.projects@@Projects")}</a>
           {" | "}
           <a href={getPath("/faq/", lang)}>{t("seo.webdev.links.faq@@FAQ")}</a>
           {" | "}
           <a href={getPath("/team/", lang)}>{t("seo.webdev.links.team@@Team")}</a>
+          {" | "}
+          <a href={getPath("/products/", lang)}>{t("navigation.products@@Products")}</a>
         </p>
 
         <a

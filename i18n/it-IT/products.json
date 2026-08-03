@@ -1,0 +1,180 @@
+{
+  "products": {
+    "common": {
+      "allProducts": "Prodotti",
+      "contact": "Parla con OBRIYM",
+      "ecommerce": "Sviluppo e-commerce",
+      "learnMore": "Scopri di più",
+      "openProduct": "Apri il prodotto",
+      "related": "Pagine correlate",
+      "seo": "Ottimizzazione SEO",
+      "webdev": "Sviluppo web"
+    },
+    "overview": {
+      "eyebrow": "Prodotti OBRIYM",
+      "h1": "Prodotti digitali che trasformano il lavoro ripetitivo in crescita",
+      "lead": "Creiamo software pratici per team commerciali e venditori sui marketplace, dalla prima foto prodotto al successivo ordine del cliente.",
+      "head": {
+        "title": "Prodotti OBRIYM | CRM e strumenti gratuiti per marketplace",
+        "description": "Scopri Obriym CRM per vendite ed e-commerce e Obriym Tools per preparare più velocemente foto, cataloghi e inserzioni."
+      },
+      "crm": {
+        "kicker": "Vendite e commercio",
+        "description": "Un unico workspace con ruoli per lead, contatti, aziende, trattative, attività, prodotti, ordini e retention.",
+        "feature1": "Pipeline CRM e backend e-commerce insieme",
+        "feature2": "Prossime azioni, avvisi di inattività e responsabilità del team",
+        "feature3": "Widget, REST API e integrazioni con le piattaforme"
+      },
+      "tools": {
+        "kicker": "Produttività sui marketplace",
+        "description": "Strumenti gratuiti nel browser per ridimensionare foto, convertire cataloghi fornitori e preparare inserzioni più velocemente.",
+        "feature1": "Preset immagini per nove piattaforme di vendita",
+        "feature2": "Elaborazione batch fino a 50 foto",
+        "feature3": "L'elaborazione standard resta nel browser"
+      },
+      "flow": {
+        "title": "Un ecosistema per l'intero flusso commerciale",
+        "lead": "Prepara dati e immagini dei prodotti con strumenti mirati, poi organizza prodotti, stock, ordini e relazioni cliente in Obriym CRM.",
+        "step1": {
+          "title": "Prepara",
+          "text": "Ridimensiona le immagini e pulisci i dati del fornitore per il marketplace che utilizzi."
+        },
+        "step2": {
+          "title": "Pubblica",
+          "text": "Crea inserzioni coerenti nei canali in cui i clienti ti trovano."
+        },
+        "step3": {
+          "title": "Vendi",
+          "text": "Acquisisci lead e ordini mantenendo collegato il contesto del cliente."
+        },
+        "step4": {
+          "title": "Fidelizza",
+          "text": "Pianifica le prossime azioni, individua gli stalli e genera acquisti ripetuti."
+        }
+      },
+      "cta": {
+        "title": "Ti serve un prodotto costruito sul tuo flusso di lavoro?",
+        "text": "OBRIYM progetta e sviluppa anche web app custom, sistemi e-commerce e integrazioni per aziende in crescita.",
+        "button": "Parliamo della tua idea"
+      }
+    },
+    "crm": {
+      "eyebrow": "Obriym CRM · workspace per il customer flow",
+      "h1": "CRM ed e-commerce in un unico workspace",
+      "lead": "Gestisci ogni passaggio dal primo lead al cliente fedele con un contesto condiviso di vendite, catalogo, ordini e retention.",
+      "tag1": "Vendite B2B",
+      "tag2": "Operazioni e-commerce",
+      "tag3": "Workspace basato sui ruoli",
+      "cta": "Inizia gratis",
+      "head": {
+        "title": "Obriym CRM | CRM ed e-commerce in un unico workspace",
+        "description": "Gestisci lead, trattative, prodotti, ordini, attività e retention in un CRM basato sui ruoli per team B2B ed e-commerce."
+      },
+      "why": {
+        "title": "Costruito sulle abitudini che generano ricavi",
+        "item1": {
+          "title": "La prossima azione è sempre visibile",
+          "text": "Step pianificati e avvisi di inattività impediscono a lead e trattative di perdersi nella pipeline."
+        },
+        "item2": {
+          "title": "Una vera vista cliente a 360°",
+          "text": "Contatti, attività, prodotti, ordini, responsabili e storico della relazione vivono in un'unica scheda."
+        },
+        "item3": {
+          "title": "Vendite e catalogo si incontrano",
+          "text": "Aggiungi prodotti alle trattative, monitora il margine e porta i dati commerciali nel flusso ordini."
+        }
+      },
+      "workflow": {
+        "title": "Dall'acquisizione del lead all'acquisto ripetuto",
+        "lead": "Un unico customer flow collega il lavoro di pipeline alla realtà commerciale di ogni ordine.",
+        "step1": {
+          "title": "Acquisisci",
+          "text": "Raccogli lead tramite widget JS, REST API o adapter di piattaforma."
+        },
+        "step2": {
+          "title": "Qualifica",
+          "text": "Valuta, assegna e converti lead in contatti, aziende e trattative."
+        },
+        "step3": {
+          "title": "Chiudi ed evadi",
+          "text": "Fai avanzare le trattative e sincronizza catalogo, stock e ordini."
+        },
+        "step4": {
+          "title": "Fidelizza",
+          "text": "Monitora salute cliente, lifetime value e il prossimo follow-up utile."
+        }
+      },
+      "toolsPromo": {
+        "title": "Prima devi preparare contenuti per i marketplace?",
+        "text": "Usa Obriym Tools per foto e dati fornitori, poi gestisci prodotti e ordini nel CRM.",
+        "button": "Scopri Obriym Tools"
+      },
+      "faq": {
+        "title": "Domande su Obriym CRM",
+        "item1": {
+          "q": "Obriym CRM è solo per team commerciali?",
+          "a": "No. I team B2B usano la pipeline CRM, mentre gli store online aggiungono catalogo, inventario, ordini e sincronizzazione storefront nello stesso workspace."
+        },
+        "item2": {
+          "q": "Possiamo collegare un sito o uno store esistente?",
+          "a": "Sì. La piattaforma offre widget JS per i lead, REST API, webhook universali e adapter per piattaforme commerce, messaggistica e pagamenti."
+        }
+      }
+    },
+    "tools": {
+      "eyebrow": "Obriym Tools · produttività sui marketplace",
+      "h1": "Strumenti gratuiti per venditori sui marketplace",
+      "lead": "Prepara foto prodotto e listini fornitori nel browser, con formati pronti per le piattaforme su cui vendi.",
+      "cta": "Usa gli strumenti gratis",
+      "head": {
+        "title": "Obriym Tools | Strumenti gratuiti per venditori marketplace",
+        "description": "Strumenti gratuiti nel browser per foto marketplace, conversione HEIC, cross-listing e preparazione cataloghi fornitori."
+      },
+      "stats": {
+        "platforms": "piattaforme supportate",
+        "batch": "foto per batch",
+        "price": "strumenti standard",
+        "uploaded": "file caricati in modalità Standard"
+      },
+      "marketplaces": {
+        "title": "Ridimensiona un'intera inserzione in un passaggio",
+        "lead": "Scegli il preset del marketplace invece di controllare ogni volta dimensioni, proporzioni e limiti di upload.",
+        "resizer": "ridimensionatore immagini",
+        "cardText": "Foto prodotto pronte in batch per un flusso di pubblicazione più pulito e veloce.",
+        "open": "Apri lo strumento"
+      },
+      "more": {
+        "title": "Più del semplice ridimensionamento immagini",
+        "item1": {
+          "title": "HEIC in JPG",
+          "text": "Trasforma le foto iPhone in JPG pronti per i marketplace senza un'app desktop separata."
+        },
+        "item2": {
+          "title": "Foto per il cross-listing",
+          "text": "Prepara un unico set di immagini per più formati marketplace e riduci il lavoro ripetitivo."
+        },
+        "item3": {
+          "title": "Convertitore catalogo fornitori",
+          "text": "Trasforma i fogli dei fornitori in dati prodotto più puliti per inserzioni e sistemi e-commerce."
+        }
+      },
+      "crmPromo": {
+        "title": "Pronto a organizzare prodotti, stock e ordini?",
+        "text": "Passa dalla preparazione delle inserzioni alle operazioni quotidiane con Obriym CRM, il workspace condiviso per customer flow e commercio.",
+        "button": "Scopri Obriym CRM"
+      },
+      "faq": {
+        "title": "Domande su Obriym Tools",
+        "item1": {
+          "q": "Gli strumenti per marketplace sono davvero gratuiti?",
+          "a": "Sì. L'elaborazione foto standard e gli strumenti principali sono gratuiti direttamente nel browser."
+        },
+        "item2": {
+          "q": "Le mie foto prodotto vengono caricate?",
+          "a": "L'elaborazione standard resta sul tuo dispositivo. Una foto viene caricata solo se scegli esplicitamente un'opzione HD che lo richiede."
+        }
+      }
+    }
+  }
+}

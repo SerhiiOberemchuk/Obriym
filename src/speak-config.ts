@@ -26,6 +26,6 @@ export const config: SpeakConfig = {
     "legal",
     "faq",
     "projects",
+    "products",
   ],
-
 };
