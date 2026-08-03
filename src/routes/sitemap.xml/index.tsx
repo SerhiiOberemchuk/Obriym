@@ -12,6 +12,9 @@ const ROUTE_PRIORITY: Record<string, number> = {
   "/web-development": 0.9,
   "/seo-optimization": 0.9,
   "/ecommerce-development": 0.9,
+  "/products": 0.95,
+  "/products/obriym-crm": 0.9,
+  "/products/obriym-tools": 0.9,
   "/privacy-policy": 0.3,
   "/cookies-policy": 0.3,
   "/legal-information": 0.3,
@@ -19,7 +22,12 @@ const ROUTE_PRIORITY: Record<string, number> = {
 
 type QwikCityRoute = [routeName: string, loaders: unknown, pathname?: string];
 
-const SITE_ENDPOINTS = new Set(["/robots.txt", "/sitemap.xml", "/dynamic-sitemap.xml", "/not-found"]);
+const SITE_ENDPOINTS = new Set([
+  "/robots.txt",
+  "/sitemap.xml",
+  "/dynamic-sitemap.xml",
+  "/not-found",
+]);
 const DYNAMIC_ROUTE_SEGMENT = /\[[^\]]+\]/;
 const LOCALE_ROUTE_PREFIX = /^\/\[\.\.\.lang\](?=\/|$)/;
 
@@ -39,7 +47,9 @@ const toSitemapPath = (route: QwikCityRoute) => {
     return null;
   }
 
-  const withoutLocale = normalizeRoutePath(normalizedPathname.replace(LOCALE_ROUTE_PREFIX, "") || "/");
+  const withoutLocale = normalizeRoutePath(
+    normalizedPathname.replace(LOCALE_ROUTE_PREFIX, "") || "/",
+  );
 
   if (SITE_ENDPOINTS.has(withoutLocale) || DYNAMIC_ROUTE_SEGMENT.test(withoutLocale)) {
     return null;
@@ -62,7 +72,11 @@ const toDateString = (value: string) => {
   return Number.isNaN(date.getTime()) ? undefined : date.toISOString().slice(0, 10);
 };
 
-const createLocalizedEntries = (pathname: string, priority: number, lastmod?: string): SitemapEntry[] => {
+const createLocalizedEntries = (
+  pathname: string,
+  priority: number,
+  lastmod?: string,
+): SitemapEntry[] => {
   const alternates = [
     ...SEO_LOCALES.map(({ hreflang, prefix }) => ({
       hreflang,
