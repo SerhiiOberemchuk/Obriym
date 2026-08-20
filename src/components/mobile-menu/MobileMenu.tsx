@@ -1,30 +1,25 @@
-import { component$, createContextId, QRL, Signal, useContext } from "@builder.io/qwik";
-import "./mb-styles.css";
+"use client";
+
 import MenuWindow from "./menu-window/MenuWindow";
-import { ViewportContext } from "~/routes/[...lang]/layout";
+import { useMobileMenu, useViewport } from "~/context/app-context";
 
-export const MobileMenuContext = createContextId<{
-  isOpen: Signal<boolean>;
-  toggleMenu: QRL<() => void>;
-}>("mobile-menu-context");
-
-export default component$(() => {
-  const { toggleMenu, isOpen } = useContext(MobileMenuContext);
-  const viewport = useContext(ViewportContext).value;
+export default function MobileMenu() {
+  const { toggleMenu, isMenuOpen } = useMobileMenu();
+  const viewport = useViewport();
   if (viewport !== "mobile") {
-    return;
+    return null;
   }
   return (
     <>
       <button
-        onClick$={toggleMenu}
-        class="menu_btn"
+        onClick={toggleMenu}
+        className="menu_btn"
         aria-controls="main-navigation"
-        aria-expanded={isOpen.value ? "true" : "false"}
+        aria-expanded={isMenuOpen ? "true" : "false"}
         aria-label="Button to open mobile menu"
       >
-        <span class="btn_body title">Menu</span>
-        <span class="mb_burger">
+        <span className="btn_body title">Menu</span>
+        <span className="mb_burger">
           <span />
           <span />
           <span />
@@ -33,4 +28,4 @@ export default component$(() => {
       <MenuWindow />
     </>
   );
-});
+}

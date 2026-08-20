@@ -22,7 +22,7 @@
       },
       "head": {
         "description": "E-commerce development for Shopify and custom storefronts with technical SEO, optimized checkout flows and Core Web Vitals performance.",
-        "title": "E-commerce Development Services | Shopify and custom storefronts | {{name}}"
+        "title": "E-commerce Development Services | Shopify and custom storefronts | {name}"
       },
       "intro2": "Our focus is long-term store growth: better product discoverability, cleaner checkout flow and analytics you can trust for scaling decisions.",
       "lead": "We build ecommerce experiences on Shopify and custom stacks with high performance, SEO-ready category structure and conversion-driven UX.",
@@ -66,7 +66,7 @@
       },
       "head": {
         "description": "Technical and on-page SEO services focused on indexability, Core Web Vitals, metadata quality and conversion-oriented organic traffic.",
-        "title": "SEO Optimization Services | Technical and On-page SEO | {{name}}"
+        "title": "SEO Optimization Services | Technical and On-page SEO | {name}"
       },
       "intro2": "Our SEO work is execution-first: we prioritize fixes by impact, implement changes and validate the result in Search Console and analytics.",
       "lead": "We improve rankings and lead quality through technical SEO, structured content architecture and measurable on-page optimization.",
@@ -108,7 +108,7 @@
       },
       "head": {
         "description": "Web development agency delivering fast SEO-ready websites and web apps with technical SEO, multilingual support and strong Core Web Vitals.",
-        "title": "Web Development Services | SEO-ready websites and web apps | {{name}}"
+        "title": "Web Development Services | SEO-ready websites and web apps | {name}"
       },
       "intro2": "We work with service companies, B2B teams and product startups that need predictable delivery, clear ownership and measurable business impact.",
       "lead": "We design and develop high-performance websites and web apps focused on search visibility, conversion growth and stable Core Web Vitals.",

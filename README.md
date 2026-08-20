@@ -18,7 +18,7 @@ We combine design, development, animation, SEO, and thoughtful user experience t
 
 ## 🧠 Technologies
 
-- **Front-end**: `React`, `Next.js`, `Qwik`, `Tailwind CSS`, `Framer Motion`
+- **Front-end**: `React`, `Next.js`, `Tailwind CSS`, `Framer Motion`
 - **Back-end**: `Node.js`, `Express`, `MongoDB`, `PostgreSQL`, `Firebase`
 - **DevOps**: `Vercel`, `Render`, `GitHub Actions`
 - **Design Tools**: `Figma`, `Framer`, `Webflow`
@@ -34,46 +34,46 @@ We combine design, development, animation, SEO, and thoughtful user experience t
 | **Olga**              | Lead Designer                  | Creates UI/UX concepts, designs in Figma, and ensures visual quality                         |
 | **Ganna**             | Team Lead / Project Manager    | Oversees the team, manages timelines, handles client communication and internal coordination |
 
-## Vercel Edge
+## 🏗 This site
 
-This starter site is configured to deploy to [Vercel Edge Functions](https://vercel.com/docs/concepts/functions/edge-functions), which means it will be rendered at an edge location near to your users.
+Built with **Next.js 16 (App Router)**, React 19 and TypeScript.
 
-## Installation
+- **i18n**: `next-intl` with three locales — `en-EU` (default, no URL prefix), `it-IT`, `uk-UA`.
+  Messages live in `i18n/<locale>/*.json`; each file nests its own namespace, and
+  `src/i18n/messages.ts` merges them, falling back to the default locale key by key.
+- **Routing**: locale-aware routes under `src/app/[locale]`, with `trailingSlash: true`
+  so every URL matches what the site was indexed on. Localized links go through
+  `Link` from `src/i18n/navigation.ts` — never hand-build a locale prefix.
+- **SEO**: canonical + hreflang, OpenGraph/Twitter and JSON-LD are produced by
+  `src/lib/seo.ts` and `src/lib/structuredData.ts`; `src/app/sitemap.ts` and
+  `src/app/robots.ts` generate `/sitemap.xml` and `/robots.txt`.
+- **Styling**: plain CSS. Component styles are CSS Modules (`*.module.css`);
+  the shared typography, colors and layout primitives are global in `src/styles/`.
+- **Assets**: SVGs are React components via SVGR (configured in `next.config.ts`);
+  raster images go through `next/image`.
+- **Forms**: the contact form uses `react-hook-form` + valibot and submits through the
+  `submitContactForm` server action, which sends mail with Resend.
 
-The adaptor will add a new `vite.config.ts` within the `adapters/` directory, and a new entry file will be created, such as:
-
-```
-└── adapters/
-    └── vercel-edge/
-        └── vite.config.ts
-└── src/
-    └── entry.vercel-edge.tsx
-```
-
-Additionally, within the `package.json`, the `build.server` script will be updated with the Vercel Edge build.
-
-## Production build
-
-To build the application for production, use the `build` command, this command will automatically run `npm run build.server` and `npm run build.client`:
-
-```shell
-npm run build
-```
-
-[Read the full guide here](https://github.com/QwikDev/qwik/blob/main/starters/adapters/vercel-edge/README.md)
-
-## Dev deploy
-
-To deploy the application for development:
+## Local development
 
 ```shell
-npm run deploy
+npm install
+cp .env.local.example .env.local   # fill in the values
+npm run dev
 ```
 
-Notice that you might need a [Vercel account](https://docs.Vercel.com/get-started/) in order to complete this step!
+Useful scripts: `npm run build`, `npm start`, `npm run lint`, `npm run typecheck`, `npm run fmt`.
 
-## Production deploy
+### Environment variables
 
-The project is ready to be deployed to Vercel. However, you will need to create a git repository and push the code to it.
+| Variable              | Purpose                                        |
+| --------------------- | ---------------------------------------------- |
+| `RESEND_API_KEY`      | Resend API key used to send contact-form email |
+| `EMAIL_RECEIVER`      | Inbox that receives contact-form submissions   |
+| `EMAIL_FROM`          | Sender address (defaults to `EMAIL_RECEIVER`)  |
+| `PUBLIC_URL_PROJECTS` | Base URL of the API serving the projects list  |
 
-You can [deploy your site to Vercel](https://vercel.com/docs/concepts/deployments/overview) either via a Git provider integration or through the Vercel CLI.
+## Deployment
+
+The project deploys to Vercel as a standard Next.js app; pushing to the default
+branch triggers a production deploy.

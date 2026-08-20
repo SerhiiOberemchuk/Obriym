@@ -1,6 +1,5 @@
-import { component$ } from "@builder.io/qwik";
 import LegalSection from "./LegalPage/LegalSection";
 
-export default component$(() => {
+export default function LegalPage() {
   return <LegalSection />;
-});
+}

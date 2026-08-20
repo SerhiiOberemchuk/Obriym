@@ -54,7 +54,7 @@
       },
       "home": {
         "description": "Obriym è un'agenzia web full-service. Creiamo siti moderni, design animato e soluzioni SEO complete, dal concept al lancio.",
-        "title": "Agenzia web full-service - siti SEO veloci & web app | {{name}}"
+        "title": "Agenzia web full-service - siti SEO veloci & web app | {name}"
       },
       "legal": {
         "description": "Dati aziendali ufficiali dell'agenzia web OBRIYM: denominazione legale, dati di registrazione, codice fiscale e sede legale del soggetto che gestisce obriym.com.",
@@ -70,7 +70,7 @@
       },
       "team": {
         "description": "Scopri il team OBRIYM: strategist, designer e sviluppatori che realizzano siti e web app veloci e SEO-ready per brand internazionali.",
-        "title": "Il nostro team | designer, sviluppatori e strategist | {{name}}"
+        "title": "Il nostro team | designer, sviluppatori e strategist | {name}"
       }
     },
     "header": {
@@ -88,7 +88,7 @@
       "text": "La pagina che stai cercando non esiste o è stata spostata.",
       "title": "Pagina non trovata"
     },
-    "title": "{{name}} demo italiano"
+    "title": "{name} demo italiano"
   },
   "dates": "Date",
   "numbers": "Numeri"

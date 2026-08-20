@@ -1,240 +1,211 @@
-import {
-  $,
-  component$,
-  noSerialize,
-  useComputed$,
-  useContext,
-  useSignal,
-  useStylesScoped$,
-  useTask$,
-  useVisibleTask$,
-  type NoSerialize,
-} from "@builder.io/qwik";
-import type { EmblaCarouselType } from "embla-carousel";
-import { inlineTranslate } from "qwik-speak";
-import styles from "./styles_slider.css?inline";
+"use client";
 
-import IconLeft from "~/assets/icons/icon_left.svg?w=24&h=24&jsx";
-import IconRight from "~/assets/icons/icon_right.svg?w=24&h=24&jsx";
+import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
+import styles from "./styles_slider.module.css";
+
+import IconLeft from "~/assets/icons/icon_left.svg";
+import IconRight from "~/assets/icons/icon_right.svg";
 import SlideComponent from "./slide-component/SlideComponent";
 import ModalWrapper from "~/components/common/modal-component/ModalComponent";
 import type { TeamMemberType } from "~/types/team-member.type";
 import { imageMap } from "~/const/team";
-import { ViewportContext, ViewportWidthContext } from "~/routes/[...lang]/layout";
+import { useViewport } from "~/context/app-context";
 
 interface InfinitySliderProps {
   items: TeamMemberType[];
 }
 
-type AutoplayController = {
-  play: () => void;
-  stop: () => void;
-  reset: () => void;
-};
+export default function InfinitySlider({ items }: InfinitySliderProps) {
+  const t = useTranslations();
+  const viewportCategory = useViewport();
 
-export default component$(({ items }: InfinitySliderProps) => {
-  useStylesScoped$(styles);
-  const t = inlineTranslate();
-  const viewportCategory = useContext(ViewportContext);
-  const viewportWidth = useContext(ViewportWidthContext);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<TeamMemberType | null>(null);
 
-  const viewportRef = useSignal<HTMLDivElement>();
-  const emblaApi = useSignal<NoSerialize<EmblaCarouselType>>();
-  const autoplay = useSignal<NoSerialize<AutoplayController>>();
-  const activeIndex = useSignal(0);
-  const isPaused = useSignal(false);
-  const isOpen = useSignal(false);
-  const selectedItem = useSignal<TeamMemberType | null>(null);
+  const canUseSlider = items.length > 1;
+  const isMobile = viewportCategory === "mobile";
 
-  const canUseSlider = useComputed$(() => items.length > 1);
-  const isMobile = useComputed$(() => viewportCategory.value === "mobile");
-  const selected = selectedItem.value;
-  const selectedMember = selected
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      loop: true,
+      align: "start",
+      axis: "x",
+      dragFree: true,
+    },
+    [
+      Autoplay({
+        delay: 3000,
+        stopOnInteraction: false,
+        stopOnMouseEnter: false,
+        stopOnFocusIn: false,
+        playOnInit: false,
+      }),
+    ],
+  );
+
+  const selectedMember = selectedItem
     ? {
-        name: t(`team.member.${selected.slug}.name@@${selected.name}`),
-        role: t(`team.member.${selected.slug}.role@@${selected.role}`),
-        description1: t(`team.member.${selected.slug}.description1@@${selected.description1}`),
-        description2: t(`team.member.${selected.slug}.description2@@${selected.description2}`),
+        name: t(`team.member.${selectedItem.slug}.name`),
+        role: t(`team.member.${selectedItem.slug}.role`),
+        description1: t(`team.member.${selectedItem.slug}.description1`),
+        description2: t(`team.member.${selectedItem.slug}.description2`),
       }
     : null;
+  const SelectedImage = selectedItem ? imageMap[selectedItem.imageKey] : null;
 
-  const openModal = $((item: TeamMemberType) => {
-    selectedItem.value = item;
-    isOpen.value = true;
-  });
+  const openModal = (item: TeamMemberType) => {
+    setSelectedItem(item);
+    setIsOpen(true);
+  };
 
-  const nextSlide = $(() => {
-    emblaApi.value?.scrollNext();
-    autoplay.value?.reset();
-  });
-
-  const prevSlide = $(() => {
-    emblaApi.value?.scrollPrev();
-    autoplay.value?.reset();
-  });
-
-  const goToSlide = $((index: number) => {
-    emblaApi.value?.scrollTo(index);
-    autoplay.value?.reset();
-  });
-
-  useTask$(({ track }) => {
-    const open = track(() => isOpen.value);
+  const closeModal = (open: boolean) => {
+    setIsOpen(open);
     if (!open) {
-      selectedItem.value = null;
+      setSelectedItem(null);
     }
-  });
+  };
 
-  // eslint-disable-next-line qwik/no-use-visible-task
-  useVisibleTask$(async ({ cleanup, track }) => {
-    track(() => viewportCategory.value);
-    track(() => viewportWidth.value);
+  const nextSlide = () => {
+    emblaApi?.scrollNext();
+    emblaApi?.plugins().autoplay?.reset();
+  };
 
-    if (!viewportRef.value || !canUseSlider.value) return;
+  const prevSlide = () => {
+    emblaApi?.scrollPrev();
+    emblaApi?.plugins().autoplay?.reset();
+  };
 
-    const emblaCarousel = (await import("embla-carousel")).default;
-    const autoPlayFactory = (await import("embla-carousel-autoplay")).default;
+  const goToSlide = (index: number) => {
+    emblaApi?.scrollTo(index);
+    emblaApi?.plugins().autoplay?.reset();
+  };
 
-    const autoplayPlugin = autoPlayFactory({
-      delay: 3000,
-      stopOnInteraction: false,
-      stopOnMouseEnter: false,
-      stopOnFocusIn: false,
-      playOnInit: false,
-    });
-
-    const api = emblaCarousel(
-      viewportRef.value,
-      {
-        loop: true,
-        align: "start",
-        axis: "x",
-        dragFree: true,
-      },
-      [autoplayPlugin],
-    );
-
-    emblaApi.value = noSerialize(api);
-    autoplay.value = noSerialize(autoplayPlugin as AutoplayController);
-    activeIndex.value = api.selectedScrollSnap();
+  useEffect(() => {
+    if (!emblaApi) return;
 
     const onSelect = () => {
-      activeIndex.value = api.selectedScrollSnap();
+      setActiveIndex(emblaApi.selectedScrollSnap());
     };
 
-    api.on("select", onSelect);
-    api.on("reInit", onSelect);
+    onSelect();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
 
-    cleanup(() => {
-      autoplayPlugin.stop();
-      api.destroy();
-      emblaApi.value = undefined;
-      autoplay.value = undefined;
-    });
-  });
+    return () => {
+      emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
+    };
+  }, [emblaApi]);
 
-  useTask$(({ track }) => {
-    track(() => isMobile.value);
-    track(() => isPaused.value);
-    track(() => isOpen.value);
-    track(() => emblaApi.value);
+  useEffect(() => {
+    const autoplay = emblaApi?.plugins().autoplay;
+    if (!autoplay) return;
 
-    const controller = autoplay.value;
-    if (!controller) return;
-
-    if (isMobile.value && !isPaused.value && !isOpen.value) {
-      controller.play();
+    if (isMobile && !isPaused && !isOpen) {
+      autoplay.play();
     } else {
-      controller.stop();
+      autoplay.stop();
     }
-  });
+  }, [emblaApi, isMobile, isPaused, isOpen]);
 
-  const linkedinLabel = t("team.aria.linkedin@@LinkedIn profile of {{name}}", {
+  const linkedinLabel = t("team.aria.linkedin", {
     name: selectedMember?.name ?? "",
   });
 
   return (
     <div
-      class="inf_carousel-container"
-      onMouseEnter$={() => (isPaused.value = true)}
-      onMouseLeave$={() => (isPaused.value = false)}
-      onTouchStart$={() => (isPaused.value = true)}
-      onTouchEnd$={() => (isPaused.value = false)}
-      onTouchCancel$={() => (isPaused.value = false)}
+      className={styles["inf_carousel-container"]}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => setIsPaused(false)}
+      onTouchCancel={() => setIsPaused(false)}
     >
-      <div class="inf_btn_controls">
-        <button onClick$={prevSlide} aria-label={t("team.aria.slider.button_prev@@Previous slide")}>
-          <IconLeft />
+      <div className={styles.inf_btn_controls}>
+        <button onClick={prevSlide} aria-label={t("team.aria.slider.button_prev")}>
+          <IconLeft width={24} height={24} />
         </button>
-        <button onClick$={nextSlide} aria-label={t("team.aria.slider.button_next@@Next slide")}>
-          <IconRight />
+        <button onClick={nextSlide} aria-label={t("team.aria.slider.button_next")}>
+          <IconRight width={24} height={24} />
         </button>
       </div>
 
-      <div class="inf_carousel-viewport" ref={viewportRef} role="region">
-        <div class="inf_carousel-track">
+      {/* A single slide never scrolls, so embla is left uninitialised then. */}
+      <div
+        className={styles["inf_carousel-viewport"]}
+        ref={canUseSlider ? emblaRef : undefined}
+        role="region"
+      >
+        <div className={styles["inf_carousel-track"]}>
           {items.map(item => (
             <div
-              class="inf_carousel-slide"
+              className={styles["inf_carousel-slide"]}
               key={`slide-${item.id}`}
               role="group"
               aria-labelledby={`name-${item.id}`}
               aria-describedby={`role-${item.id}`}
             >
-              <SlideComponent item={item} onOpen$={$(() => openModal(item))} />
+              <SlideComponent item={item} onOpen={() => openModal(item)} />
             </div>
           ))}
         </div>
       </div>
 
-      {canUseSlider.value && (
-        <div class="inf_carousel-dots" aria-label={t("team.aria.slider.dots_btn@@Slide navigation")}>
+      {canUseSlider && (
+        <div className={styles["inf_carousel-dots"]} aria-label={t("team.aria.slider.dots_btn")}>
           {items.map((_, i) => (
             <button
               key={`dot-${i}`}
               type="button"
-              onClick$={$(() => goToSlide(i))}
-              aria-current={i === activeIndex.value ? "true" : undefined}
-              aria-label={t("team.aria.slider.dots_current@@Slide {{current}} of {{total}}", {
+              onClick={() => goToSlide(i)}
+              aria-current={i === activeIndex ? "true" : undefined}
+              aria-label={t("team.aria.slider.dots_current", {
                 current: i + 1,
                 total: items.length,
               })}
-              class={`inf_dot-wrapper ${i === activeIndex.value ? "active" : ""}`}
+              className={`${styles["inf_dot-wrapper"]} ${i === activeIndex ? styles.active : ""}`}
             >
-              <span class={`inf_dot ${i === activeIndex.value ? "active" : ""}`} />
+              <span className={`${styles.inf_dot} ${i === activeIndex ? styles.active : ""}`} />
             </button>
           ))}
         </div>
       )}
 
-      <ModalWrapper show={isOpen}>
-        {selectedItem.value && selectedMember && (
-          <div class="modal-scrollable-content">
+      <ModalWrapper show={isOpen} onShowChange={closeModal}>
+        {selectedItem && selectedMember && SelectedImage && (
+          <div className={styles["modal-scrollable-content"]}>
             <div
-              class="modal-wrapper"
+              className={styles["modal-wrapper"]}
               role="dialog"
               aria-modal="true"
-              aria-labelledby={`modal-title-${selectedItem.value.id}`}
-              aria-describedby={`modal-desc-${selectedItem.value.id}`}
+              aria-labelledby={`modal-title-${selectedItem.id}`}
+              aria-describedby={`modal-desc-${selectedItem.id}`}
             >
-              <div class="modal-img-wrp">{imageMap[selectedItem.value.imageKey]()}</div>
-              <div class="modal-content">
-                <div class="modal-title-block">
-                  <h2 class=" body_big" id={`modal-title-${selectedItem.value.id}`}>
+              <div className={styles["modal-img-wrp"]}>
+                <SelectedImage />
+              </div>
+              <div className={styles["modal-content"]}>
+                <div className={styles["modal-title-block"]}>
+                  <h2 className="body_big" id={`modal-title-${selectedItem.id}`}>
                     {selectedMember.name}
                   </h2>
 
-                  <p class="H6 grey" id={`slide-role-${selectedItem.value.id}`}>
+                  <p className="H6 grey" id={`slide-role-${selectedItem.id}`}>
                     {selectedMember.role}
                   </p>
                 </div>
-                <div class="modal-text-block" id={`modal-desc-${selectedItem.value.id}`}>
-                  <p class="btn_body grey">{selectedMember.description1}</p>
-                  <p class="btn_body grey">{selectedMember.description2}</p>
+                <div className={styles["modal-text-block"]} id={`modal-desc-${selectedItem.id}`}>
+                  <p className="btn_body grey">{selectedMember.description1}</p>
+                  <p className="btn_body grey">{selectedMember.description2}</p>
 
                   <a
-                    class="btn-linkedin btn_body"
-                    href={selectedItem.value.linkedin}
+                    className={`${styles["btn-linkedin"]} btn_body`}
+                    href={selectedItem.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={linkedinLabel}
@@ -249,4 +220,4 @@ export default component$(({ items }: InfinitySliderProps) => {
       </ModalWrapper>
     </div>
   );
-});
+}

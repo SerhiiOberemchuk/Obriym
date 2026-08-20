@@ -1,13 +1,18 @@
-import { component$ } from "@builder.io/qwik";
+import { useTranslations } from "next-intl";
 
 import SectionTitle from "./FAQ/sections/title-section/SectionTitle";
 import QuestionSection from "./FAQ/sections/question-section/QuestionSection";
-import { inlineTranslate } from "qwik-speak";
-import { faqStructure, getFaqAnswer, getFaqQuestion, QA } from "./FAQ/sections/question-section/utils";
+import {
+  faqStructure,
+  getFaqAnswer,
+  getFaqQuestion,
+  QA,
+} from "./FAQ/sections/question-section/utils";
 import LinksTitle from "./FAQ/sections/links-section/LinksTitle";
+import JsonLd from "~/components/common/json-ld/JsonLd";
 
-export default component$(() => {
-  const t = inlineTranslate();
+export default function FaqPage() {
+  const t = useTranslations();
 
   const items = Object.values(faqStructure)
     .flat()
@@ -36,7 +41,7 @@ export default component$(() => {
       <QuestionSection groupe="process" />
       <QuestionSection groupe="pricing_quality_seo" />
       <QuestionSection groupe="postlaunch_support" />
-      <script type="application/ld+json" dangerouslySetInnerHTML={JSON.stringify(faqJsonLd)} />
+      <JsonLd id="schema-faq" data={faqJsonLd} />
     </>
   );
-});
+}

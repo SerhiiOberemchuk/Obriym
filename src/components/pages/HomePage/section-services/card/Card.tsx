@@ -1,24 +1,26 @@
-import { component$, Slot, useStylesScoped$ } from "@builder.io/qwik";
-import styles from "./card-tyles.css?inline";
+import type { ReactNode } from "react";
+import styles from "./card-tyles.module.css";
 import { ServicesCardProps } from "~/types/services-card.type";
 
-export default component$<ServicesCardProps>(({ title, description, list }) => {
-  useStylesScoped$(styles);
+type Props = ServicesCardProps & {
+  children: ReactNode;
+};
 
+export default function Card({ title, description, list, children }: Props) {
   return (
-    <article class="card">
-      <header class="wrapper_title">
-        <h3 class="title body_big">{title} </h3>
-        <p class="description btn_body">{description}</p>
-        <ol class="list btn_body" aria-label="Key tasks in this phase">
+    <article className={styles.card}>
+      <header className={styles.wrapper_title}>
+        <h3 className={`${styles.title} body_big`}>{title} </h3>
+        <p className={`${styles.description} btn_body`}>{description}</p>
+        <ol className={`${styles.list} btn_body`} aria-label="Key tasks in this phase">
           {list.map((item, index) => (
-            <li key={index} class="item">
+            <li key={index} className={styles.item}>
               {item}
             </li>
           ))}
         </ol>
       </header>
-      <Slot />
+      {children}
     </article>
   );
-});
+}

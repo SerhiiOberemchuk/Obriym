@@ -1,141 +1,144 @@
-﻿import { component$, useSignal, useStylesScoped$, useVisibleTask$ } from "@builder.io/qwik";
-import styles from "./sp-styles.css?inline";
+import { getLocale, getTranslations } from "next-intl/server";
+import { Link } from "~/i18n/navigation";
+import styles from "./sp-styles.module.css";
 import SubTitle from "~/components/common/subtitile/SubTitle";
-import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
-import { useFetchProjects } from "~/routes/[...lang]";
-import { type ProjectLocale, getLocalizedProject } from "~/utils/projects";
+import CarouselViewport from "./CarouselViewport";
+import { canonicalUrl } from "~/lib/seo";
+import { type Locale } from "~/i18n/routing";
+import type { Project } from "~/types/project.type";
+import { fetchProjects, getLocalizedProject } from "~/lib/projects";
 
-export default component$(() => {
-  useStylesScoped$(styles);
+/** Replacement for the Qwik `useFetchProjects` routeLoader: it never throws. */
+const loadProjects = async (): Promise<Project[]> => {
+  try {
+    return await fetchProjects();
+  } catch (error) {
+    console.error(`error : ${error}`);
+    return [];
+  }
+};
 
-  const t = inlineTranslate();
-  const { lang } = useSpeakLocale();
-  const getPath = localizePath();
+export default async function SectionProjects() {
+  const t = await getTranslations();
+  const projects = await loadProjects();
 
   return (
-    <section class="section" id="portfolio">
-      <div class="container">
+    <section className={styles.section} id="portfolio">
+      <div className="container">
+        {/* Literal, not `styles.subtitle_project`: the class was inert under
+            Qwik's scoped CSS and stays inert to keep the layout identical. */}
         <SubTitle section="projects" classes="subtitle_project">
-          {t("home.sectionProject.title@@projects")}
+          {t("home.sectionProject.title")}
         </SubTitle>
 
-        <div class="projects_section_head">
-          <p class="btn_body grey projects_section_copy">
-            {t(
-              "home.sectionProject.lead@@Selected case studies from launches focused on speed, clarity and measurable product value.",
-            )}
+        <div className={styles.projects_section_head}>
+          <p className={`btn_body grey ${styles.projects_section_copy}`}>
+            {t("home.sectionProject.lead")}
           </p>
-          <a href={getPath("/projects/", lang)} class="btn_body black projects_show_all">
-            {t("home.sectionProject.showAll@@Show all projects")}
-          </a>
+          <Link href="/projects/" className={`btn_body black ${styles.projects_show_all}`}>
+            {t("home.sectionProject.showAll")}
+          </Link>
         </div>
 
-        <CarouselComponent classC="carousel_projects_top" howToRenderArray="pair" />
-        <CarouselComponent howToRenderArray="unmatched" />
+        <CarouselComponent
+          projects={projects}
+          classC={styles.carousel_projects_top}
+          howToRenderArray="pair"
+        />
+        <CarouselComponent projects={projects} howToRenderArray="unmatched" />
       </div>
     </section>
   );
-});
+}
 type PropsCarousel = {
+  projects: Project[];
   classC?: string;
   direction?: "rtl" | "ltr";
   howToRenderArray?: "origin" | "pair" | "unmatched";
 };
-const CarouselComponent = component$<PropsCarousel>(
-  ({ classC, direction = "ltr", howToRenderArray = "origin" }) => {
-    const sliderRef = useSignal<HTMLUListElement>();
-    useStylesScoped$(styles);
-    const { lang } = useSpeakLocale();
-    const getPath = localizePath();
-    const t = inlineTranslate();
-    const projects = useFetchProjects();
-    const projectsToRender = projects.value.data.filter((_, index) => {
-      if (howToRenderArray === "pair") return index % 2 === 0;
-      if (howToRenderArray === "unmatched") return index % 2 !== 0;
-      return true;
-    });
+const CarouselComponent = async ({
+  projects,
+  classC,
+  direction = "ltr",
+  howToRenderArray = "origin",
+}: PropsCarousel) => {
+  const t = await getTranslations();
+  const locale = (await getLocale()) as Locale;
+  const projectsToRender = projects.filter((_, index) => {
+    if (howToRenderArray === "pair") return index % 2 === 0;
+    if (howToRenderArray === "unmatched") return index % 2 !== 0;
+    return true;
+  });
 
-    // eslint-disable-next-line qwik/no-use-visible-task
-    useVisibleTask$(async ({ cleanup }) => {
-      if (!sliderRef.value) return;
-      const emblaCarousel = (await import("embla-carousel")).default;
-      const autoPlay = (await import("embla-carousel-autoplay")).default;
-      const carousel = emblaCarousel(
-        sliderRef.value,
-        { loop: true, direction, align: "start", axis: "x", dragFree: true },
-        [autoPlay({ delay: 8000, stopOnInteraction: false })],
-      );
-      cleanup(() => carousel.destroy());
-    });
+  return (
+    <div className={`${styles.projects_caru}${classC ? ` ${classC}` : ""}`}>
+      <CarouselViewport direction={direction}>
+        <ul className={styles.projects_caru_container}>
+          {projectsToRender.length ? (
+            projectsToRender.map(item => {
+              const localizedProject = getLocalizedProject(item, locale);
+              const title = localizedProject.localizedTitle;
+              const description = localizedProject.localizedDescription;
+              const feautures = localizedProject.localizedFeatures;
+              return (
+                <li key={item.slug} className={styles.projects_caru_slide}>
+                  <article>
+                    <h3 className="sr-only">{title}</h3>
+                    <Link
+                      href={localizedProject.detailPath}
+                      aria-label={`link to project ${item.titleEN}`}
+                      className="link_project"
+                    >
+                      <figure>
+                        <img
+                          loading="lazy"
+                          className={styles.image_project}
+                          src={item.image_src}
+                          alt={`Project: ${title} - ${description}`}
+                          width={668}
+                          height={330}
+                          decoding="async"
+                        />
+                        <figcaption>{title}</figcaption>
+                      </figure>
+                    </Link>
+                    <p className="sr-only" itemProp="description">
+                      {description}
+                    </p>
 
-    return (
-      <div class={["projects_caru", classC]}>
-        <div class="projects_caru_viewport" ref={sliderRef}>
-          <ul class="projects_caru_container">
-            {projectsToRender.length ? (
-              projectsToRender.map(item => {
-                const localizedProject = getLocalizedProject(item, lang as ProjectLocale);
-                const title = localizedProject.localizedTitle;
-                const description = localizedProject.localizedDescription;
-                const feautures = localizedProject.localizedFeatures;
-                return (
-                  <li key={item.slug} class="projects_caru_slide">
-                    <article>
-                      <h3 class="sr-only">{title}</h3>
-                      <a
-                        href={getPath(localizedProject.detailPath, lang)}
-                        aria-label={`link to project ${item.titleEN}`}
-                        class="link_project"
-                      >
-                        <figure>
-                          <img
-                            loading="lazy"
-                            class="image_project"
-                            src={item.image_src}
-                            alt={`Project: ${title} - ${description}`}
-                            width={668}
-                            height={330}
-                            decoding="async"
-                          />
-                          <figcaption>{title}</figcaption>
-                        </figure>
-                      </a>
-                      <p class="sr-only" itemProp="description">
-                        {description}
-                      </p>
-
-                      <ul class="list_technologies">
-                        {feautures.map((item, index) => (
-                          <li key={index} class="item_features helper_text grey_dark">
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                      <script
-                        type="application/ld+json"
-                        dangerouslySetInnerHTML={JSON.stringify({
+                    <ul className={styles.list_technologies}>
+                      {feautures.map((item, index) => (
+                        <li key={index} className={`${styles.item_features} helper_text grey_dark`}>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                    <script
+                      type="application/ld+json"
+                      dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
                           "@context": "https://schema.org",
                           "@type": "CreativeWork",
                           name: title,
-                          url: `https://obriym.com${getPath(localizedProject.detailPath, lang)}`,
+                          url: canonicalUrl(localizedProject.detailPath, locale),
                           description: description,
                           image: item.image_src,
-                          inLanguage: lang,
+                          inLanguage: locale,
                           keywords: item.technologies.join(", "),
-                        })}
-                      ></script>
-                    </article>
-                  </li>
-                );
-              })
-            ) : (
-              <div>
-                <p>{t("home.sectionProject.error@@error to fetch projects")}</p>
-              </div>
-            )}
-          </ul>
-        </div>
-      </div>
-    );
-  },
-);
+                        }),
+                      }}
+                    ></script>
+                  </article>
+                </li>
+              );
+            })
+          ) : (
+            <div>
+              <p>{t("home.sectionProject.error")}</p>
+            </div>
+          )}
+        </ul>
+      </CarouselViewport>
+    </div>
+  );
+};

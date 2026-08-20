@@ -1,15 +1,21 @@
-import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { inlineTranslate } from "qwik-speak";
-import IconPinkBall from "~/assets/images/faq-page/faq-balloons.png?w=100&h=100&jsx";
-import IconYell from "~/assets/images/faq-page/faq-yel-pink.png?w=100&h=100&jsx";
-import IconGreen from "~/assets/images/faq-page/faq-green.png?w=100&h=100&jsx";
-import styles from "./quest-styles.css?inline";
-import IconClose from "~/assets/icons/icon_close.svg?w=56&h=56&jsx";
-import { faqStructure, getFaqAnswer, getFaqQuestion, getFaqSectionTitle, Groupes, QA } from "./utils";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+import iconPinkBall from "~/assets/images/faq-page/faq-balloons.png";
+import iconYell from "~/assets/images/faq-page/faq-yel-pink.png";
+import iconGreen from "~/assets/images/faq-page/faq-green.png";
+import styles from "./quest-styles.module.css";
+import IconClose from "~/assets/icons/icon_close.svg";
+import {
+  faqStructure,
+  getFaqAnswer,
+  getFaqQuestion,
+  getFaqSectionTitle,
+  Groupes,
+  QA,
+} from "./utils";
 
-export default component$<{ groupe: Groupes }>(({ groupe }) => {
-  useStylesScoped$(styles);
-  const t = inlineTranslate();
+export default function QuestionSection({ groupe }: { groupe: Groupes }) {
+  const t = useTranslations();
 
   const items: QA[] = faqStructure[groupe].map(id => ({
     id,
@@ -18,42 +24,48 @@ export default component$<{ groupe: Groupes }>(({ groupe }) => {
   }));
 
   return (
-    <section class="section">
-      <div class="container">
-        <div class="subtitle_wrapper">
-          {groupe === "process" && <IconPinkBall aria-hidden="true" />}
-          {groupe === "pricing_quality_seo" && <IconYell aria-hidden="true" />}
-          {groupe === "postlaunch_support" && <IconGreen aria-hidden="true" />}
-          <h2 class="H3_uppercase grey_dark">{getFaqSectionTitle(t, groupe)}</h2>
+    <section className={styles.section}>
+      <div className="container">
+        <div className={styles.subtitle_wrapper}>
+          {groupe === "process" && (
+            <Image src={iconPinkBall} alt="" width={100} height={100} aria-hidden="true" />
+          )}
+          {groupe === "pricing_quality_seo" && (
+            <Image src={iconYell} alt="" width={100} height={100} aria-hidden="true" />
+          )}
+          {groupe === "postlaunch_support" && (
+            <Image src={iconGreen} alt="" width={100} height={100} aria-hidden="true" />
+          )}
+          <h2 className="H3_uppercase grey_dark">{getFaqSectionTitle(t, groupe)}</h2>
         </div>
 
-        <ul class="qustion_wrapper">
+        <ul className={styles.qustion_wrapper}>
           {items.map(item => (
             <li
               key={item.id}
               id={item.id}
-              class="question_item"
+              className="question_item"
               itemScope
               itemProp="mainEntity"
               itemType="https://schema.org/Question"
             >
-              <details class="question_details">
-                <summary class="question_summary" aria-controls={`${item.id}-answer`}>
-                  <h3 class="H6 grey" itemProp="name">
+              <details className={styles.question_details}>
+                <summary className={styles.question_summary} aria-controls={`${item.id}-answer`}>
+                  <h3 className="H6 grey" itemProp="name">
                     {item.q}
                   </h3>
-                  <span class="icon_wrapper" aria-hidden="true">
-                    <IconClose />
+                  <span className={styles.icon_wrapper} aria-hidden="true">
+                    <IconClose width={56} height={56} />
                   </span>
                 </summary>
                 <div
-                  class="animation_open"
+                  className="animation_open"
                   id={`${item.id}-answer`}
                   itemScope
                   itemProp="acceptedAnswer"
                   itemType="https://schema.org/Answer"
                 >
-                  <p class="btn_body details_descr" itemProp="text">
+                  <p className={`btn_body ${styles.details_descr}`} itemProp="text">
                     {item.a}
                   </p>
                 </div>
@@ -64,4 +76,4 @@ export default component$<{ groupe: Groupes }>(({ groupe }) => {
       </div>
     </section>
   );
-});
+}

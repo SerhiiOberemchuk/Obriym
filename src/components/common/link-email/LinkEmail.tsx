@@ -1,19 +1,16 @@
-import { component$ } from "@builder.io/qwik";
-
-import "./link_styles.css";
-import IconEmail from "~/assets/icons/icon_email.svg?w=24&h24&jsx";
+import IconEmail from "~/assets/icons/icon_email.svg";
 
 type Props = { place: "footer" | "main" };
 
-export default component$<Props>(({ place }) => {
+export default function LinkEmail({ place }: Props) {
   return (
     <a
       data-place={place}
-      class={[place === "footer" && "H5", place === "main" && "btn_header grey", " link_email"]}
+      className={`${place === "footer" ? "H5" : "btn_header grey"} link_email`}
       href="mailto:info@obriym.com"
     >
-      {place === "main" && <IconEmail class="link_email_icon" />}
+      {place === "main" && <IconEmail className="link_email_icon" width={24} height={24} />}
       <span>info@obriym.com</span>
     </a>
   );
-});
+}

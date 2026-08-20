@@ -1,15 +1,11 @@
-import { component$, useStylesScoped$ } from "@builder.io/qwik";
-
-import styles from "./styles_inputs.css?inline";
+import styles from "./styles_inputs.module.css";
 
 import ContactFormComponent from "~/components/common/contact-form/ContactFormComponent";
 
-export default component$(() => {
-  useStylesScoped$(styles);
-
+export default function InputsContact() {
   return (
-    <section class="ic_content_box ">
+    <section className={styles.ic_content_box}>
       <ContactFormComponent modal={false} />
     </section>
   );
-});
+}

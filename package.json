@@ -1,68 +1,51 @@
 {
   "name": "obriym",
   "description": "Obriym - Web Agency",
-  "engines": {
-    "node": "^18.17.0 || ^20.3.0 || >=21.0.0"
-  },
-  "engines-annotation": "Mostly required by sharp which needs a Node-API v9 compatible runtime",
   "private": true,
-  "type": "module",
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "scripts": {
-    "build": "qwik build",
-    "build.client": "vite build",
-    "build.preview": "vite build --ssr src/entry.preview.tsx",
-    "build.server": "qwik check-client src dist && vite build -c adapters/vercel-edge/vite.config.ts",
-    "build.types": "tsc --incremental --noEmit",
-    "deploy": "vercel deploy",
-    "dev": "vite --mode ssr",
-    "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
-    "extract": "qwik-speak-extract --supportedLangs=en-EU,it-IT,uk-UA --assetsPath=i18n",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
     "fmt": "prettier --write .",
-    "fmt.check": "prettier --check .",
-    "format": "prettier --write .",
-    "lint": "eslint \"src/**/*.ts*\"",
-    "preview": "qwik build preview && vite preview --open",
-    "start": "vite --open --mode ssr",
-    "qwik": "qwik"
+    "fmt.check": "prettier --check ."
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx,css,scss,md,json}": [
       "prettier --write"
     ]
   },
-  "devDependencies": {
-    "@builder.io/qwik": "^1.19.2",
-    "@builder.io/qwik-city": "^1.19.2",
-    "@eslint/js": "^9",
-    "@modular-forms/qwik": "^0.29.1",
-    "@qwik-ui/headless": "^0.7.4",
-    "@qwik.dev/partytown": "^0.11.2",
-    "@types/node": "25.6.0",
-    "@types/react": "19.2.14",
-    "@types/react-dom": "19.2.3",
-    "embla-carousel": "^8.6.0",
-    "eslint": "^9.32.0",
-    "eslint-plugin-qwik": "^1.19.2",
-    "globals": "17.5.0",
-    "lint-staged": "^16.4.0",
-    "prettier": "3.8.2",
-    "qwik-speak": "^0.24.0",
-    "rollup-plugin-visualizer": "^7.0.1",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "8.58.1",
-    "typescript-plugin-css-modules": "latest",
-    "undici": "*",
-    "vercel": "^29.1.1",
-    "vite": "^7.1.4",
-    "vite-tsconfig-paths": "^6.1.1"
-  },
   "dependencies": {
     "@google/model-viewer": "^4.2.0",
+    "@hookform/resolvers": "^5.9.1",
     "@microsoft/clarity": "^1.0.2",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "ga-gtag": "^1.2.0",
     "gsap": "^3.14.2",
-    "resend": "^6.10.0"
+    "next": "16.3.1",
+    "next-intl": "^4.13.7",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-hook-form": "^7.85.0",
+    "resend": "^6.10.0",
+    "valibot": "^1.4.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9",
+    "@svgr/webpack": "^8.1.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^9.32.0",
+    "eslint-config-next": "16.3.1",
+    "lint-staged": "^16.4.0",
+    "prettier": "3.8.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "8.58.1"
   }
 }

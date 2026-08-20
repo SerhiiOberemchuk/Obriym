@@ -1,107 +1,69 @@
-import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import styles from "./styles.css?inline";
-import { inlineTranslate, useSpeakLocale } from "qwik-speak";
+import { useLocale, useTranslations } from "next-intl";
+import styles from "./styles.module.css";
 import { LEGAL_ENTITY } from "~/types/legal.info";
-import { getLegalDisplay } from "~/utils/legal";
-export default component$(() => {
-  useStylesScoped$(styles);
-  const t = inlineTranslate();
-  const { lang } = useSpeakLocale();
+import { getLegalDisplay } from "~/lib/legal";
+
+export default function PrivacySection() {
+  const t = useTranslations();
+  const lang = useLocale();
   const legal = getLegalDisplay(lang);
   return (
     <section>
-      <div class="container H6 grey privacy_wrapper">
-        <h1 class="H2_light grey_dark title">{t("privacy.title@@Privacy Policy")}</h1>
+      <div className={`container H6 grey ${styles.privacy_wrapper}`}>
+        <h1 className={`H2_light grey_dark ${styles.title}`}>{t("privacy.title")}</h1>
         <p>
-          {t("privacy.updated@@Last updated: 21 July 2025")}{" "}
-          {t(
-            "privacy.intro@@At Obriym (obriym.com), we respect your privacy and are committed to protecting your personal data.",
-          )}
+          {t("privacy.updated")} {t("privacy.intro")}
         </p>
 
-        <h2 class="H3_uppercase black">
-          {t("privacy.collect.title@@What information we collect:")}
-        </h2>
+        <h2 className="H3_uppercase black">{t("privacy.collect.title")}</h2>
         <ol>
-          <li>
-            {t(
-              "privacy.collect.items.nameContact@@Name and contact details (if you fill out a form or contact us)",
-            )}
-          </li>
-          <li>
-            {t(
-              "privacy.collect.items.technical@@Technical data (IP address, browser type, operating system)",
-            )}
-          </li>
-          <li>{t("privacy.collect.items.usage@@Usage data (page views, time spent on pages)")}</li>
+          <li>{t("privacy.collect.items.nameContact")}</li>
+          <li>{t("privacy.collect.items.technical")}</li>
+          <li>{t("privacy.collect.items.usage")}</li>
         </ol>
 
-        <h2 class="H3_uppercase black">{t("privacy.use.title@@How we use your information:")}</h2>
+        <h2 className="H3_uppercase black">{t("privacy.use.title")}</h2>
         <ol>
-          <li>{t("privacy.use.items.inquiries@@To respond to inquiries")}</li>
-          <li>{t("privacy.use.items.improve@@To improve our website and services")}</li>
-          <li>{t("privacy.use.items.analytics@@For analytics and performance tracking")}</li>
-          <li>
-            {t(
-              "privacy.use.items.newsletter@@To send updates or newsletters (only with your consent)",
-            )}
-          </li>
+          <li>{t("privacy.use.items.inquiries")}</li>
+          <li>{t("privacy.use.items.improve")}</li>
+          <li>{t("privacy.use.items.analytics")}</li>
+          <li>{t("privacy.use.items.newsletter")}</li>
         </ol>
 
-        <h2 class="H3_uppercase black">{t("privacy.protect.title@@How we protect your data:")}</h2>
-        <p>
-          {t(
-            "privacy.protect.text@@We use secure servers and industry-standard technologies to protect your information.",
-          )}
-        </p>
+        <h2 className="H3_uppercase black">{t("privacy.protect.title")}</h2>
+        <p>{t("privacy.protect.text")}</p>
 
-        <h2 class="H3_uppercase black">{t("privacy.rights.title@@You have the right to:")}</h2>
+        <h2 className="H3_uppercase black">{t("privacy.rights.title")}</h2>
         <ol>
-          <li>{t("privacy.rights.items.access@@Access your data")}</li>
-          <li>{t("privacy.rights.items.correction@@Request correction or deletion")}</li>
-          <li>{t("privacy.rights.items.withdraw@@Withdraw consent at any time")}</li>
+          <li>{t("privacy.rights.items.access")}</li>
+          <li>{t("privacy.rights.items.correction")}</li>
+          <li>{t("privacy.rights.items.withdraw")}</li>
         </ol>
 
-        <h2 class="H3_uppercase black">
-          {t("privacy.storage.title@@How long we store your data:")}
-        </h2>
-        <p>
-          {t(
-            "privacy.storage.text@@We store your personal data only as long as necessary to fulfill the purposes outlined in this policy, unless a longer retention period is required by law.",
-          )}
-        </p>
+        <h2 className="H3_uppercase black">{t("privacy.storage.title")}</h2>
+        <p>{t("privacy.storage.text")}</p>
 
-        <h2 class="H3_uppercase black">
-          {t("privacy.legal.title@@Legal basis for processing data:")}
-        </h2>
-        <p>
-          {t(
-            "privacy.legal.text@@We process your data based on your consent or our legitimate interests in improving our services.",
-          )}
-        </p>
+        <h2 className="H3_uppercase black">{t("privacy.legal.title")}</h2>
+        <p>{t("privacy.legal.text")}</p>
 
-        <h2 class="H3_uppercase black">{t("privacy.controller.title@@Data Controller:")}</h2>
-        <p>{t("privacy.controller.text@@The website obriym.com is operated by:")}</p>
+        <h2 className="H3_uppercase black">{t("privacy.controller.title")}</h2>
+        <p>{t("privacy.controller.text")}</p>
         <p>
           {legal.name}
           <br />
-          {t("legal.details.taxId@@Tax ID (RNOKPP)")}: {LEGAL_ENTITY.taxId}
+          {t("legal.details.taxId")}: {LEGAL_ENTITY.taxId}
           <br />
-          {t("legal.details.regRecord@@State registration record No.")} {LEGAL_ENTITY.edrRecord}{" "}
-          {t("legal.details.regDate@@dated")} {legal.edrDateFormatted}
+          {t("legal.details.regRecord")} {LEGAL_ENTITY.edrRecord} {t("legal.details.regDate")}{" "}
+          {legal.edrDateFormatted}
           <br />
-          {t("legal.details.country@@Ukraine")}, {legal.address}
+          {t("legal.details.country")}, {legal.address}
           <br />
-          {t("privacy.controller.phone@@Phone")}:{" "}
+          {t("privacy.controller.phone")}:{" "}
           <a href={`tel:${LEGAL_ENTITY.phone}`}>{LEGAL_ENTITY.phone}</a>
         </p>
 
-        <p>
-          {t(
-            "privacy.contact@@If you have any questions or want to exercise your rights, contact us at: info@obriym.com",
-          )}
-        </p>
+        <p>{t("privacy.contact")}</p>
       </div>
     </section>
   );
-});
+}

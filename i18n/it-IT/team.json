@@ -2,13 +2,13 @@
   "team": {
     "aria": {
       "carousel": "Carosello dei membri del team",
-      "linkedin": "Profilo LinkedIn di {{name}}",
+      "linkedin": "Profilo LinkedIn di {name}",
       "slider": {
         "button_next": "Slide successiva",
         "button_prev": "Slide precedente",
         "dots_btn": "Navigazione tra le slide",
-        "dots_current": "Slide {{current}} di {{total}}",
-        "plus_btn": "Maggiori informazioni su {{name}}"
+        "dots_current": "Slide {current} di {total}",
+        "plus_btn": "Maggiori informazioni su {name}"
       }
     },
     "hero": {

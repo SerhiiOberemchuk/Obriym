@@ -54,7 +54,7 @@
       },
       "home": {
         "description": "Obriym is a full-cycle web agency. We design and develop modern websites, animations, and SEO-ready solutions - from idea to launch.",
-        "title": "Full-cycle web agency - fast SEO sites & apps | {{name}}"
+        "title": "Full-cycle web agency - fast SEO sites & apps | {name}"
       },
       "legal": {
         "description": "Official business details of OBRIYM web agency: legal name, registration data, tax ID and registered address of the entity operating obriym.com.",
@@ -70,7 +70,7 @@
       },
       "team": {
         "description": "Meet the OBRIYM team of strategists, designers and developers creating fast SEO-ready websites and web apps for international brands.",
-        "title": "Our team | web designers, developers & strategists | {{name}}"
+        "title": "Our team | web designers, developers & strategists | {name}"
       }
     },
     "header": {
@@ -85,7 +85,7 @@
       "text": "The page you are looking for doesn't exist or has been moved.",
       "title": "Page not found"
     },
-    "title": "{{name}} demo"
+    "title": "{name} demo"
   },
   "dates": "Dates",
   "numbers": "Numbers"
