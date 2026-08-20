@@ -1,42 +1,47 @@
-import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { inlineTranslate } from "qwik-speak";
-import Abstract3d from "~/assets/images/abstract_3d.png?jsx";
-import Frame98 from "~/assets/images/frame_98.png?jsx";
-import styles from "./styles_hero.css?inline";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+import abstract3d from "~/assets/images/abstract_3d.png";
+import frame98 from "~/assets/images/frame_98.png";
+import styles from "./styles_hero.module.css";
 
-export default component$(() => {
-  const t = inlineTranslate();
-  useStylesScoped$(styles);
+export default function HeroSection() {
+  const t = useTranslations();
 
   return (
     <section
-      class="team_hero_section"
+      className={styles.team_hero_section}
       aria-labelledby="team-hero-title"
       aria-describedby="team-hero-description"
     >
       {/* <div class="container "> */}
       <div>
-        <h1 class="H2_light  team_hero_title" id="team-hero-title">
-          <span class="team_hero_line1">
-            <Abstract3d class="team_hero_line1_icon" aria-hidden={true} />
-            {t("team.hero.title.line1@@Our team")}
+        <h1 className={`H2_light ${styles.team_hero_title}`} id="team-hero-title">
+          <span className={styles.team_hero_line1}>
+            <Image
+              src={abstract3d}
+              alt=""
+              className={styles.team_hero_line1_icon}
+              aria-hidden={true}
+            />
+            {t("team.hero.title.line1")}
           </span>
-          <span class="H1_extra_light gray_dark ">
-            &nbsp;{t("team.hero.title.line2@@is the best")}
-          </span>
+          <span className="H1_extra_light gray_dark">&nbsp;{t("team.hero.title.line2")}</span>
           <br />
-          <span class="team_hero_line2">
-            {t("team.hero.title.line3@@product we have")}
-            <Frame98 aria-hidden={true} class="team_hero_line2_icon" />
+          <span className={styles.team_hero_line2}>
+            {t("team.hero.title.line3")}
+            <Image
+              src={frame98}
+              alt=""
+              aria-hidden={true}
+              className={styles.team_hero_line2_icon}
+            />
           </span>
-          {t("team.hero.title.line4@@created together")}
+          {t("team.hero.title.line4")}
         </h1>
-        <p class="sr-only" id="team-hero-description">
-          {t(
-            "team.hero.description@@Meet the OBRIYM team of strategists, designers and developers building fast SEO-ready websites and web apps for international brands.",
-          )}
+        <p className="sr-only" id="team-hero-description">
+          {t("team.hero.description")}
         </p>
       </div>
     </section>
   );
-});
+}

@@ -5,13 +5,13 @@
       "client": "Cliente",
       "features": "Cosa ha definito il progetto",
       "head": {
-        "suffix": "Case study del progetto di {{name}}"
+        "suffix": "Case study del progetto di {name}"
       },
       "notFound": {
         "back": "Torna ai progetti",
         "heading": "Progetto non trovato",
         "text": "La pagina richiesta non esiste o non è attualmente disponibile.",
-        "title": "Progetto non trovato | {{name}}"
+        "title": "Progetto non trovato | {name}"
       },
       "overview": {
         "text": "Questo progetto si è concentrato su una narrazione di prodotto chiara, un'esperienza di navigazione veloce e un'interfaccia pronta al lancio, capace di sostenere la crescita senza complessità superflue.",
@@ -25,7 +25,7 @@
     },
     "head": {
       "description": "Esplora i progetti di OBRIYM: siti SEO-ready, piattaforme multilingua e prodotti digitali creati per brand ambiziosi in tutta Europa.",
-      "title": "Progetti | Siti SEO-ready e prodotti digitali | {{name}}"
+      "title": "Progetti | Siti SEO-ready e prodotti digitali | {name}"
     },
     "page": {
       "button": "Apri il progetto",

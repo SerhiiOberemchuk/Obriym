@@ -1,60 +1,46 @@
-import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { useLocation } from "@builder.io/qwik-city";
-import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
+import { useLocale, useTranslations } from "next-intl";
 import SubTitle from "~/components/common/subtitile/SubTitle";
 import SectionContact from "../HomePage/section-contact/SectionContact";
-import styles from "./projects-page.css?inline";
+import JsonLd from "~/components/common/json-ld/JsonLd";
+import { Link } from "~/i18n/navigation";
+import type { Locale } from "~/i18n/routing";
+import styles from "./projects-page.module.css";
 import type { Project } from "~/types/project.type";
-import { type ProjectLocale, getLocalizedProject } from "~/utils/projects";
-import { SITE } from "~/utils/seo";
+import { getLocalizedProject } from "~/lib/projects";
+import { SITE, canonicalUrl } from "~/lib/seo";
+import { buildBreadcrumbList } from "~/lib/structuredData";
 
 type ProjectsPageProps = {
   projects: Project[];
 };
 
-export default component$<ProjectsPageProps>(({ projects }) => {
-  useStylesScoped$(styles);
+/** Path without the locale prefix; the canonical/hreflang helpers add it. */
+const PROJECTS_PATH = "/projects/";
 
-  const { lang } = useSpeakLocale();
-  const getPath = localizePath();
-  const t = inlineTranslate();
-  const loc = useLocation();
-  const localizedProjects = projects.map(project => getLocalizedProject(project, lang as ProjectLocale));
-  const canonical = `${SITE}${loc.url.pathname === "/" ? "/" : loc.url.pathname.replace(/\/+$/, "")}`;
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: t("navigation.home@@Home"),
-        item: `${SITE}${getPath("/", lang)}`,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: t("home.sectionProject.title@@Projects"),
-        item: canonical,
-      },
+export default function ProjectsPage({ projects }: ProjectsPageProps) {
+  const t = useTranslations();
+  const locale = useLocale() as Locale;
+  const localizedProjects = projects.map(project => getLocalizedProject(project, locale));
+  const canonical = canonicalUrl(PROJECTS_PATH, locale);
+  const breadcrumbSchema = buildBreadcrumbList(
+    [
+      { name: t("navigation.home"), pathname: "/" },
+      { name: t("home.sectionProject.title"), pathname: PROJECTS_PATH },
     ],
-  };
+    locale,
+  );
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: t("projects.head.title@@Projects | SEO-ready websites and digital products | {{name}}", {
-      name: "OBRIYM",
-    }),
-    description: t(
-      "projects.head.description@@Explore OBRIYM projects: fast SEO-ready websites, multilingual platforms and digital products created for ambitious brands across Europe.",
-    ),
+    name: t("projects.head.title", { name: "OBRIYM" }),
+    description: t("projects.head.description"),
     url: canonical,
     mainEntity: {
       "@type": "ItemList",
       itemListElement: localizedProjects.map((project, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        url: `${SITE}${getPath(project.detailPath, lang)}`,
+        url: canonicalUrl(project.detailPath, locale),
         name: project.localizedTitle,
       })),
     },
@@ -67,43 +53,33 @@ export default component$<ProjectsPageProps>(({ projects }) => {
 
   return (
     <>
-      <script
-        id="projects-collection-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={JSON.stringify(collectionSchema)}
-      ></script>
-      <script
-        id="projects-breadcrumb-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={JSON.stringify(breadcrumbSchema)}
-      ></script>
+      <JsonLd id="projects-collection-schema" data={collectionSchema} />
+      <JsonLd id="projects-breadcrumb-schema" data={breadcrumbSchema} />
 
-      <section class="projects_page_hero">
-        <div class="container">
+      <section className={styles.projects_page_hero}>
+        <div className="container">
           <SubTitle section="projects" classes="projects_page_subtitle">
-            {t("projects.page.subtitle@@Selected work")}
+            {t("projects.page.subtitle")}
           </SubTitle>
 
-          <div class="projects_page_heading">
-            <h1 class="H2_light black projects_page_title">
-              {t("projects.page.title@@Projects shaped for growth, speed and real-world launch.")}
+          <div className={styles.projects_page_heading}>
+            <h1 className={`H2_light black ${styles.projects_page_title}`}>
+              {t("projects.page.title")}
             </h1>
-            <p class="body_big grey projects_page_lead">
-              {t(
-                "projects.page.lead@@A closer look at websites and digital products we designed and built for ambitious brands across Europe.",
-              )}
+            <p className={`body_big grey ${styles.projects_page_lead}`}>
+              {t("projects.page.lead")}
             </p>
           </div>
         </div>
       </section>
 
-      <section class="projects_page_grid_section">
-        <div class="container">
-          <ul class="projects_page_grid" aria-label={t("projects.page.list.aria@@Projects list")}>
+      <section className={styles.projects_page_grid_section}>
+        <div className="container">
+          <ul className={styles.projects_page_grid} aria-label={t("projects.page.list.aria")}>
             {localizedProjects.map(project => (
               <li key={project.slug}>
-                <article class="project_card">
-                  <a href={getPath(project.detailPath, lang)} class="project_card_link">
+                <article className={styles.project_card}>
+                  <Link href={project.detailPath} className={styles.project_card_link}>
                     <img
                       src={project.image_src}
                       alt={`${project.localizedTitle} - ${project.localizedDescription}`}
@@ -111,32 +87,40 @@ export default component$<ProjectsPageProps>(({ projects }) => {
                       height={330}
                       loading="lazy"
                       decoding="async"
-                      class="project_card_image"
+                      className={styles.project_card_image}
                     />
-                    <div class="project_card_content">
-                      <div class="project_card_meta helper_text grey_dark">
+                    <div className={styles.project_card_content}>
+                      <div className={`${styles.project_card_meta} helper_text grey_dark`}>
                         <span>{project.year}</span>
                         <span>{project.localizedCategory}</span>
                       </div>
-                      <h2 class="H5 black project_card_title">{project.localizedTitle}</h2>
-                      <p class="btn_body grey project_card_description">
+                      <h2 className={`H5 black ${styles.project_card_title}`}>
+                        {project.localizedTitle}
+                      </h2>
+                      <p className={`btn_body grey ${styles.project_card_description}`}>
                         {project.localizedDescription}
                       </p>
                     </div>
-                  </a>
+                  </Link>
 
-                  <div class="project_card_footer">
-                    <ul class="project_tags" aria-label={t("projects.page.features.aria@@Project features")}>
+                  <div className={styles.project_card_footer}>
+                    <ul
+                      className={styles.project_tags}
+                      aria-label={t("projects.page.features.aria")}
+                    >
                       {project.localizedFeatures.slice(0, 4).map(feature => (
-                        <li key={feature} class="helper_text grey_dark">
+                        <li key={feature} className="helper_text grey_dark">
                           {feature}
                         </li>
                       ))}
                     </ul>
 
-                    <a href={getPath(project.detailPath, lang)} class="project_card_cta btn_body black">
-                      {t("projects.page.button@@View project")}
-                    </a>
+                    <Link
+                      href={project.detailPath}
+                      className={`${styles.project_card_cta} btn_body black`}
+                    >
+                      {t("projects.page.button")}
+                    </Link>
                   </div>
                 </article>
               </li>
@@ -148,4 +132,4 @@ export default component$<ProjectsPageProps>(({ projects }) => {
       <SectionContact />
     </>
   );
-});
+}

@@ -1,12 +1,10 @@
-import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import styles from "./styles-links.css?inline";
+import { useTranslations } from "next-intl";
+import styles from "./styles-links.module.css";
 
-import { inlineTranslate } from "qwik-speak";
 import { getFaqLink, ids, QA } from "../question-section/utils";
 
-export default component$(() => {
-  useStylesScoped$(styles);
-  const t = inlineTranslate();
+export default function LinksTitle() {
+  const t = useTranslations();
 
   const items: Omit<QA, "a">[] = ids.map(id => ({
     id,
@@ -14,41 +12,38 @@ export default component$(() => {
   }));
 
   return (
-    <section class="links_section">
-      <nav aria-label={t("faq.toc.aria@@FAQ")} class="faq_toc">
+    <section className={styles.links_section}>
+      <nav aria-label={t("faq.toc.aria")} className={styles.faq_toc}>
         <ListItems array={items.filter((_, i) => i % 2 !== 0)} />
         <ListItems array={items.filter((_, i) => i % 2 !== 0)} />
       </nav>
-      <div class="animate_title">
+      <div className={styles.animate_title}>
         <TitleAnimated title={t("faq.h2")} />
         <TitleAnimated title={t("faq.h2")} />
         <TitleAnimated title={t("faq.h2")} />
       </div>
-      <nav aria-label={t("faq.toc.aria@@FAQ")} class="faq_toc">
+      <nav aria-label={t("faq.toc.aria")} className={styles.faq_toc}>
         <ListItems array={items.filter((_, i) => i % 2 === 0)} />
         <ListItems array={items.filter((_, i) => i % 2 === 0)} />
       </nav>
     </section>
   );
-});
+}
 
-const TitleAnimated = component$<{ title: string }>(({ title }) => {
-  useStylesScoped$(styles);
-  return <h2 class="H2_light grey title">{title}</h2>;
-});
+function TitleAnimated({ title }: { title: string }) {
+  return <h2 className={`H2_light grey ${styles.title}`}>{title}</h2>;
+}
 
-const ListItems = component$<{ array: Omit<QA, "a">[] }>(({ array }) => {
-  useStylesScoped$(styles);
-
+function ListItems({ array }: { array: Omit<QA, "a">[] }) {
   return (
-    <ul class="faq_toc_list">
+    <ul className={styles.faq_toc_list}>
       {array.map(i => (
-        <li key={i.id} class="item">
-          <a href={`#${i.id}`} class="H6 grey_dark link">
+        <li key={i.id} className={styles.item}>
+          <a href={`#${i.id}`} className={`H6 grey_dark ${styles.link}`}>
             {i.q}
           </a>
         </li>
       ))}
     </ul>
   );
-});
+}

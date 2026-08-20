@@ -1,19 +1,17 @@
-import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { inlineTranslate } from "qwik-speak";
-import styles from "./follow-styles.css?inline";
+import { useTranslations } from "next-intl";
+import styles from "./follow-styles.module.css";
 import { socialLinks } from "~/types/social-links.type";
-import IconFacebook from "~/assets/icons/icon-facebook.svg?w=64&h64&jsx";
-import IconLinkedIn from "~/assets/icons/icon-linkedIn.svg?w=64&h64&jsx";
-import IconInstagram from "~/assets/icons/icon-instagram.svg?w=64&h64&jsx";
+import IconFacebook from "~/assets/icons/icon-facebook.svg";
+import IconLinkedIn from "~/assets/icons/icon-linkedIn.svg";
+import IconInstagram from "~/assets/icons/icon-instagram.svg";
 import LinkEmail from "~/components/common/link-email/LinkEmail";
 
-export default component$(() => {
-  const t = inlineTranslate();
-  useStylesScoped$(styles);
+export default function FollowUs() {
+  const t = useTranslations();
   return (
-    <div class="f_social_wrapper">
-      <h2 class="H4">{t("footer.followUs@@Follow us on")}</h2>
-      <ul class="f_social_list">
+    <div className={styles.f_social_wrapper}>
+      <h2 className="H4">{t("footer.followUs")}</h2>
+      <ul className={styles.f_social_list}>
         {socialLinks.map(item => (
           <li key={item.network}>
             <a
@@ -23,11 +21,11 @@ export default component$(() => {
               rel="noopener noreferrer"
             >
               {item.network === "facebook" ? (
-                <IconFacebook class="f_social_icon" />
+                <IconFacebook className={styles.f_social_icon} width={64} height={64} />
               ) : item.network === "linkedIn" ? (
-                <IconLinkedIn class="f_social_icon" />
+                <IconLinkedIn className={styles.f_social_icon} width={64} height={64} />
               ) : (
-                <IconInstagram class="f_social_icon" />
+                <IconInstagram className={styles.f_social_icon} width={64} height={64} />
               )}
             </a>
           </li>
@@ -36,4 +34,4 @@ export default component$(() => {
       <LinkEmail place="footer" />
     </div>
   );
-});
+}

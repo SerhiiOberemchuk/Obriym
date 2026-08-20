@@ -1,23 +1,29 @@
-import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import IconBlue from "~/assets/images/faq-page/faq-puff.png?w=116&h=106&quality=100&jsx";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+import iconBlue from "~/assets/images/faq-page/faq-puff.png";
 
-import styles from "./title-styles.css?inline";
-import { inlineTranslate } from "qwik-speak";
+import styles from "./title-styles.module.css";
 
-export default component$(() => {
-  useStylesScoped$(styles);
-  const t = inlineTranslate();
+export default function SectionTitle() {
+  const t = useTranslations();
 
   return (
-    <section class="title_section">
-      <div class="container">
-        <div class=" H1_extra_light title_faq" aria-hidden="true">
+    <section className={styles.title_section}>
+      <div className="container">
+        <div className={`H1_extra_light ${styles.title_faq}`} aria-hidden="true">
           <span>FAQ</span>
-          <IconBlue class="icon" aria-hidden={true} />
+          <Image
+            src={iconBlue}
+            alt=""
+            width={116}
+            height={106}
+            className={styles.icon}
+            aria-hidden={true}
+          />
         </div>
-        <h1 class="body_big grey title">{t("faq.h1")}</h1>
-        <p class=" btn_body grey faq_subtitle">{t("faq.lead")}</p>
+        <h1 className={`body_big grey ${styles.title}`}>{t("faq.h1")}</h1>
+        <p className={`btn_body grey ${styles.faq_subtitle}`}>{t("faq.lead")}</p>
       </div>
     </section>
   );
-});
+}

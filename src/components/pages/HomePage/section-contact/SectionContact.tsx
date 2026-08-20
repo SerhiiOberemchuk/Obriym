@@ -1,39 +1,37 @@
-import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { inlineTranslate } from "qwik-speak";
+import { useTranslations } from "next-intl";
 import ContentContact from "./content-contact/ContentContact";
 import InputsContact from "./inputs-contact/InputsContact";
 
-import styles from "./styles_contact.css?inline";
+import styles from "./styles_contact.module.css";
 import AnimatedElement from "~/components/common/animated-ball/AnimatedElement";
-// import IconGreen from "~/assets/images/green.png?w=100&h=100&quality=100&jsx";
+// import IconGreen from "~/assets/images/green.png";
 
-export default component$(() => {
-  const t = inlineTranslate();
-  useStylesScoped$(styles);
+export default function SectionContact() {
+  const t = useTranslations();
 
   return (
-    <section class="c_section">
-      <div class="container ">
-        <div class="c_box_title">
-          <div class="c_title_icon">
+    <section className={styles.c_section}>
+      <div className="container">
+        <div className={styles.c_box_title}>
+          <div className={styles.c_title_icon}>
             {/* <IconGreen aria-hidden="true" /> */}
             {/* <img src="/images/green.png" alt="" aria-hidden="true" /> */}
             <AnimatedElement preset="spring" width={64} height={64} />
           </div>
 
-          <h2 class="H3_uppercase grey_dark">{t("home.contact-section.title@@get a contact")}</h2>
+          <h2 className="H3_uppercase grey_dark">{t("home.contact-section.title")}</h2>
         </div>
 
-        <div class="c_container">
-          <div class="cc_wrapper">
+        <div className={styles.c_container}>
+          <div className={styles.cc_wrapper}>
             <ContentContact />
           </div>
 
-          <div class="cc_wrapper">
+          <div className={styles.cc_wrapper}>
             <InputsContact />
           </div>
         </div>
       </div>
     </section>
   );
-});
+}

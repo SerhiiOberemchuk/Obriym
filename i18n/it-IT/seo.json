@@ -22,7 +22,7 @@
       },
       "head": {
         "description": "Sviluppo e-commerce su Shopify e storefront custom con SEO tecnica, checkout ottimizzato e performance Core Web Vitals.",
-        "title": "Servizi di sviluppo e-commerce | Shopify e storefront custom | {{name}}"
+        "title": "Servizi di sviluppo e-commerce | Shopify e storefront custom | {name}"
       },
       "intro2": "Il focus è la crescita di lungo periodo: migliore discoverability dei prodotti, checkout più lineare e analytics affidabili per scalare.",
       "lead": "Realizziamo esperienze ecommerce su Shopify e stack custom con alte performance, struttura categorie SEO-ready e UX orientata alla conversione.",
@@ -66,7 +66,7 @@
       },
       "head": {
         "description": "Servizi SEO tecnici e on-page focalizzati su indicizzazione, Core Web Vitals, qualità dei metadata e traffico organico orientato alla conversione.",
-        "title": "Servizi di ottimizzazione SEO | SEO tecnica e on-page SEO | {{name}}"
+        "title": "Servizi di ottimizzazione SEO | SEO tecnica e on-page SEO | {name}"
       },
       "intro2": "Il nostro approccio è orientato all'esecuzione: priorità per impatto, implementazione delle modifiche e validazione in Search Console e analytics.",
       "lead": "Miglioriamo ranking e qualità dei lead con SEO tecnica, architettura dei contenuti e ottimizzazione on-page misurabile.",
@@ -108,7 +108,7 @@
       },
       "head": {
         "description": "Agenzia di sviluppo web che realizza siti e web app veloci, SEO-ready, con supporto multilingua e Core Web Vitals solidi.",
-        "title": "Servizi di sviluppo web | Siti e web app SEO-ready | {{name}}"
+        "title": "Servizi di sviluppo web | Siti e web app SEO-ready | {name}"
       },
       "intro2": "Lavoriamo con aziende di servizi, team B2B e startup di prodotto che cercano consegne prevedibili, responsabilità chiara e impatto misurabile sul business.",
       "lead": "Progettiamo e sviluppiamo siti web e web app ad alte prestazioni, orientati alla visibilità organica, alla crescita delle conversioni e a Core Web Vitals stabili.",

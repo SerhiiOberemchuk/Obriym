@@ -1,10 +1,11 @@
-import { inlineTranslate } from "qwik-speak";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+import type { JSX } from "react";
 import { TeamMemberType, ImageKey } from "~/types/team-member.type";
-import Oberemchuk from "~/assets/images/oberemchuk.png?w=880&h=1192&jsx";
-import Kovchyk from "~/assets/images/ganna_kovchyk.png?w=880&h=1192&jsx";
-import Nazarenko from "~/assets/images/olga_nazarenko.png?w=880&h=1192&jsx";
-import Kiriiaka from "~/assets/images/svitlana_kiriiaka.png?w=880&h=1192&jsx";
-import type { JSX } from "@builder.io/qwik";
+import oberemchuk from "~/assets/images/oberemchuk.png";
+import kovchyk from "~/assets/images/ganna_kovchyk.png";
+import nazarenko from "~/assets/images/olga_nazarenko.png";
+import kiriiaka from "~/assets/images/svitlana_kiriiaka.png";
 
 export const TEAM_MEMBERS: TeamMemberType[] = [
   {
@@ -53,62 +54,84 @@ export const TEAM_MEMBERS: TeamMemberType[] = [
       "Svitlana is a UX UI designer who values structure and system thinking, always focusing on creating products that work seamlessly and solve real user needs. She is open to modern design trends and innovative solutions but believes they should be balanced with thoughtful, purposeful design, not just trendy visuals.",
     description2:
       "Outside of work, she enjoys exploring new ideas and staying curious about how design and technology can come together to improve everyday life.",
-    linkedin: "https://www.linkedin.com/in/svitlana-kiriyaka/",
+    linkedin: "https://www.linkedin.com/in/svitlana-kiriiaka/",
   },
 ];
 
-export const imageMap: Record<ImageKey, () => JSX.Element> = {
-  person1: () => {
-    const t = inlineTranslate();
-    const name = t("team.member.serhii_oberemchuk.name@@Serhii Oberemchuk");
-    return (
-      <Oberemchuk
-        class="slide-image"
-        draggable={false}
-        role="img"
-        aria-label={t("team.member.serhii_oberemchuk.image_alt@@Photo of {{name}}", {
-          name,
-        })}
-      />
-    );
-  },
-  person2: () => {
-    const t = inlineTranslate();
-    return (
-      <Kovchyk
-        class="slide-image"
-        draggable={false}
-        role="img"
-        aria-label={t("team.member.ganna_kovchyk.image_alt@@Photo of {{name}}", {
-          name: t("team.member.ganna_kovchyk.name@@Ganna Kovchyk"),
-        })}
-      />
-    );
-  },
-  person3: () => {
-    const t = inlineTranslate();
-    return (
-      <Nazarenko
-        class="slide-image"
-        draggable={false}
-        role="img"
-        aria-label={t("team.member.olga_nazarenko.image_alt@@Photo of {{name}}", {
-          name: t("team.member.olga_nazarenko.name@@Olga Nazarenko"),
-        })}
-      />
-    );
-  },
-  person4: () => {
-    const t = inlineTranslate();
-    return (
-      <Kiriiaka
-        class="slide-image"
-        draggable={false}
-        role="img"
-        aria-label={t("team.member.svitlana_kiriiaka.image_alt@@Photo of {{name}}", {
-          name: t("team.member.svitlana_kiriiaka.name@@Svitlana Kiriiaka"),
-        })}
-      />
-    );
-  },
+/**
+ * Each entry is a React component so the `useTranslations()` call inside stays a
+ * regular hook call. The caller supplies the class name because the photo is
+ * styled by the slide sheet in the carousel and left unstyled in the modal.
+ */
+type MemberImageProps = { className?: string };
+
+const MemberPhotoSerhii = ({ className }: MemberImageProps) => {
+  const t = useTranslations();
+  return (
+    <Image
+      src={oberemchuk}
+      alt=""
+      width={880}
+      height={1192}
+      className={className}
+      draggable={false}
+      role="img"
+      aria-label={t("team.member.serhii_oberemchuk.image_alt")}
+    />
+  );
+};
+
+const MemberPhotoGanna = ({ className }: MemberImageProps) => {
+  const t = useTranslations();
+  return (
+    <Image
+      src={kovchyk}
+      alt=""
+      width={880}
+      height={1192}
+      className={className}
+      draggable={false}
+      role="img"
+      aria-label={t("team.member.ganna_kovchyk.image_alt")}
+    />
+  );
+};
+
+const MemberPhotoOlga = ({ className }: MemberImageProps) => {
+  const t = useTranslations();
+  return (
+    <Image
+      src={nazarenko}
+      alt=""
+      width={880}
+      height={1192}
+      className={className}
+      draggable={false}
+      role="img"
+      aria-label={t("team.member.olga_nazarenko.image_alt")}
+    />
+  );
+};
+
+const MemberPhotoSvitlana = ({ className }: MemberImageProps) => {
+  const t = useTranslations();
+  return (
+    <Image
+      src={kiriiaka}
+      alt=""
+      width={880}
+      height={1192}
+      className={className}
+      draggable={false}
+      role="img"
+      aria-label={t("team.member.svitlana_kiriiaka.image_alt")}
+    />
+  );
+};
+
+export const imageMap: Record<ImageKey, (props: MemberImageProps) => JSX.Element> = {
+  person1: MemberPhotoSerhii,
+  person2: MemberPhotoGanna,
+  person3: MemberPhotoOlga,
+  person4: MemberPhotoSvitlana,
 };

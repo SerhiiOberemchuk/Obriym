@@ -1,26 +1,17 @@
-import { component$ } from "@builder.io/qwik";
-import LogoSVG from "/public/logo.svg?jsx";
-import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
-import "./style.css";
+import { useTranslations } from "next-intl";
+import { Link } from "~/i18n/navigation";
+import LogoSVG from "../../../../public/logo.svg";
 
 type Props = {
   place: "footer" | "header";
-  class?: string;
+  className?: string;
 };
 
-export default component$<Props>(props => {
-  const t = inlineTranslate();
-  const { lang } = useSpeakLocale();
-  const getPath = localizePath();
-  const homePath = getPath("/", lang);
+export default function Logo({ place }: Props) {
+  const t = useTranslations();
   return (
-    <a
-      href={homePath}
-      class="logo"
-      data-place={props.place}
-      aria-label={t("logo.link@@Logo Obriym Agency link to homepage")}
-    >
+    <Link href="/" className="logo" data-place={place} aria-label={t("logo.link")}>
       <LogoSVG aria-hidden="true" focusable="false" />
-    </a>
+    </Link>
   );
-});
+}

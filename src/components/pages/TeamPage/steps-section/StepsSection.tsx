@@ -1,39 +1,33 @@
-import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { inlineTranslate } from "qwik-speak";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
 
-import styles from "./styles_steps.css?inline";
+import styles from "./styles_steps.module.css";
 import { TEAM_MEMBERS } from "~/const/team";
 import InfinitySlider from "../infinitySlider/InfinitySlider";
-import PinkImg from "~/assets/images/pink.png?jsx";
+import pinkImg from "~/assets/images/pink.png";
 
 // interface StepsSectionProps {
 //   viewportCategory: "mobile" | "tablet" | "desktop";
 // }
 
-export default component$(() => {
-  //   const t = inlineTranslate();
-  useStylesScoped$(styles);
-  const t = inlineTranslate();
+export default function StepsSection() {
+  const t = useTranslations();
 
   return (
-    <section class="team_steps_section" aria-labelledby="team-title" role="region">
-      <div class=" team_steps_container_wrp">
-        <div class="container ">
-          <div class="team_steps_title">
-            <PinkImg class="team_steps_image" aria-hidden={true} />
-            <h2 class="H3_uppercase" id="team-title">
-              {t("team.title@@Our Team")}
+    <section className={styles.team_steps_section} aria-labelledby="team-title" role="region">
+      <div className={styles.team_steps_container_wrp}>
+        <div className="container">
+          <div className={styles.team_steps_title}>
+            <Image src={pinkImg} alt="" className={styles.team_steps_image} aria-hidden={true} />
+            <h2 className="H3_uppercase" id="team-title">
+              {t("team.title")}
             </h2>
           </div>
         </div>
-        <div
-          class="inf_carousel_wrp"
-          role="list"
-          aria-label={t("team.aria.carousel@@Team members carousel")}
-        >
+        <div className={styles.inf_carousel_wrp} role="list" aria-label={t("team.aria.carousel")}>
           <InfinitySlider items={TEAM_MEMBERS} />
         </div>
       </div>
     </section>
   );
-});
+}

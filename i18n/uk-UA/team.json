@@ -2,13 +2,13 @@
   "team": {
     "aria": {
       "carousel": "Карусель учасників команди",
-      "linkedin": "Профіль LinkedIn {{name}}",
+      "linkedin": "Профіль LinkedIn {name}",
       "slider": {
         "button_next": "Наступний слайд",
         "button_prev": "Попередній слайд",
         "dots_btn": "Навігація по слайдах",
-        "dots_current": "Слайд {{current}} з {{total}}",
-        "plus_btn": "Більше про {{name}}"
+        "dots_current": "Слайд {current} з {total}",
+        "plus_btn": "Більше про {name}"
       }
     },
     "hero": {

@@ -1,24 +1,28 @@
-import { component$, Slot, Signal } from "@builder.io/qwik";
-import { Modal } from "@qwik-ui/headless";
+"use client";
 
-import IconClose from "~/assets/icons/icon_close.svg?w-24&h-24&jsx";
+import type { ReactNode } from "react";
+import { Modal } from "~/components/ui/modal";
+
+import IconClose from "~/assets/icons/icon_close.svg";
 
 type ModalWrapperProps = {
-  show: Signal<boolean>;
+  show: boolean;
+  onShowChange: (value: boolean) => void;
+  children: ReactNode;
 };
 
-export default component$(({ show }: ModalWrapperProps) => {
+export default function ModalWrapper({ show, onShowChange, children }: ModalWrapperProps) {
   return (
-    <Modal.Root bind:show={show}>
-      <Modal.Panel class="modal-panel">
+    <Modal.Root show={show} onShowChange={onShowChange}>
+      <Modal.Panel className="modal-panel">
         <div>
-          <Slot />
+          {children}
 
-          <Modal.Close class="modal-close btn_body">
-            <span class="modal-close_span">Close</span> <IconClose />
+          <Modal.Close className="modal-close btn_body">
+            <span className="modal-close_span">Close</span> <IconClose width={24} height={24} />
           </Modal.Close>
         </div>
       </Modal.Panel>
     </Modal.Root>
   );
-});
+}

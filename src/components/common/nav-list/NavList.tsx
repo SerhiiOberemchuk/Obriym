@@ -1,33 +1,29 @@
-import { component$, QRL, useStylesScoped$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
-import { useLocation } from "@builder.io/qwik-city";
-import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
-import styles from "./nav-list.css?inline";
-import IconHome from "~/assets/icons/icon-home.svg?h=38&w=39&jsx";
+"use client";
+
+import { useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
+import { Link, usePathname } from "~/i18n/navigation";
+import styles from "./nav-list.module.css";
+import IconHome from "~/assets/icons/icon-home.svg";
 
 import { NavListItem } from "~/types/nav-list.type";
 
 type Props = {
   place: "footer" | "header" | "mobilemenu";
-  onClick?: QRL<() => void>;
+  onClick?: () => void;
 };
 
-export default component$<Props>(({ place, onClick }) => {
-  const t = inlineTranslate();
-  const location = useLocation();
-  const locale = useSpeakLocale();
-  const getPath = localizePath();
-  useStylesScoped$(styles);
-  const currentPath = location.url.pathname;
-  const lang = locale.lang;
-  const navRef = useSignal<HTMLElement>();
+export default function NavList({ place, onClick }: Props) {
+  const t = useTranslations();
+  const currentPath = usePathname();
+  const navRef = useRef<HTMLElement>(null);
 
   // The floating pill (place="header") is position: fixed at the bottom of the
   // viewport. As the footer scrolls into view it would sit on top of it, so we
   // push the pill up to ride just above the footer's top edge (sticky-like).
-  // eslint-disable-next-line qwik/no-use-visible-task
-  useVisibleTask$(({ cleanup }) => {
+  useEffect(() => {
     if (place !== "header") return;
-    const nav = navRef.value;
+    const nav = navRef.current;
     const footer = document.querySelector("footer");
     if (!nav || !footer) return;
 
@@ -50,51 +46,32 @@ export default component$<Props>(({ place, onClick }) => {
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll, { passive: true });
-    cleanup(() => {
+
+    return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);
-    });
-  });
-
-  const teamPath = getPath("/team/", lang);
-  const faqPath = getPath("/faq/", lang);
-  const webDevelopmentPath = getPath("/web-development/", lang);
-  const seoOptimizationPath = getPath("/seo-optimization/", lang);
-  const ecommerceDevelopmentPath = getPath("/ecommerce-development/", lang);
-  const productsPath = getPath("/products/", lang);
-  const homePath = getPath("/", lang);
+    };
+  }, [place]);
 
   const baseListItems: NavListItem[] = [
-    {
-      link: "products",
-      label: t("navigation.products@@Products"),
-      path: productsPath,
-    },
-    { link: "services", label: t("navigation.services@@Services"), path: `${homePath}#services` },
-    {
-      link: "portfolio",
-      label: t("navigation.portfolio@@Portfolio"),
-      path: `${homePath}#portfolio`,
-    },
-    { link: "team", label: t("navigation.team@@Team"), path: teamPath },
-    { link: "about", label: t("navigation.about@@About"), path: `${homePath}#about` },
-    { link: "contact", label: t("navigation.contact@@Contact"), path: `${currentPath}#contact` },
-    { link: "faq", label: "FAQ", path: faqPath },
-    {
-      link: "web-development",
-      label: t("navigation.webDevelopment@@Web Development"),
-      path: webDevelopmentPath,
-    },
+    { link: "products", label: t("navigation.products"), path: "/products/" },
+    { link: "services", label: t("navigation.services"), path: "/#services" },
+    { link: "portfolio", label: t("navigation.portfolio"), path: "/#portfolio" },
+    { link: "team", label: t("navigation.team"), path: "/team/" },
+    { link: "about", label: t("navigation.about"), path: "/#about" },
+    { link: "contact", label: t("navigation.contact"), path: `${currentPath}#contact` },
+    { link: "faq", label: "FAQ", path: "/faq/" },
+    { link: "web-development", label: t("navigation.webDevelopment"), path: "/web-development/" },
     {
       link: "seo-optimization",
-      label: t("navigation.seoOptimization@@SEO Optimization"),
-      path: seoOptimizationPath,
+      label: t("navigation.seoOptimization"),
+      path: "/seo-optimization/",
     },
     {
       link: "ecommerce-development",
-      label: t("navigation.ecommerceDevelopment@@E-commerce Development"),
-      path: ecommerceDevelopmentPath,
+      label: t("navigation.ecommerceDevelopment"),
+      path: "/ecommerce-development/",
     },
   ];
 
@@ -122,36 +99,32 @@ export default component$<Props>(({ place, onClick }) => {
       ref={navRef}
       id="main-navigation"
       data-place={place}
-      class="navigation"
-      aria-label={t("navigation.navTitle@@Main navigation")}
+      className={styles.navigation}
+      aria-label={t("navigation.navTitle")}
     >
-      <ul data-place={place} class="nav_list glass-card">
+      <ul data-place={place} className={`${styles.nav_list} ${styles["glass-card"]}`}>
         {place === "header" && (
           <li id="home-link">
-            <a href={homePath} aria-label={t("navigation.linkHome@@Link to home page")}>
-              <IconHome class="icon_home" />
-            </a>
+            <Link href="/" aria-label={t("navigation.linkHome")}>
+              <IconHome className={styles.icon_home} width={39} height={38} />
+            </Link>
           </li>
         )}
-        {navListItems.map(item => {
-          return (
-            <li key={item.link}>
-              <a
-                href={item.path}
-                aria-label={`${t("navigation.linkLabel@@Link to section")} ${item.label}`}
-                class="btn_body"
-                onClick$={() => {
-                  onClick?.();
-                }}
-              >
-                <span data-place={place} class="page_link">
-                  {item.label}{" "}
-                </span>
-              </a>
-            </li>
-          );
-        })}
+        {navListItems.map(item => (
+          <li key={item.link}>
+            <Link
+              href={item.path}
+              aria-label={`${t("navigation.linkLabel")} ${item.label}`}
+              className="btn_body"
+              onClick={() => onClick?.()}
+            >
+              <span data-place={place} className={styles.page_link}>
+                {item.label}{" "}
+              </span>
+            </Link>
+          </li>
+        ))}
       </ul>
     </nav>
   );
-});
+}

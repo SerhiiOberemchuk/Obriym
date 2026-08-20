@@ -10,7 +10,7 @@ export const ids = Object.values(faqStructure).flat();
 export type FaqId = (typeof ids)[number];
 export type Groupes = keyof typeof faqStructure;
 
-type TranslateFn = (key: string, params?: Record<string, any>) => string;
+type TranslateFn = (key: string, params?: Record<string, string | number | Date>) => string;
 
 export const getFaqQuestion = (t: TranslateFn, id: FaqId): string => {
   switch (id) {

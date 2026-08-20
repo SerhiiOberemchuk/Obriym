@@ -1,52 +1,34 @@
-import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { useLocation } from "@builder.io/qwik-city";
-import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
+import { useLocale, useTranslations } from "next-intl";
 import SubTitle from "~/components/common/subtitile/SubTitle";
 import SectionContact from "../HomePage/section-contact/SectionContact";
-import styles from "./project-detail-page.css?inline";
-import type { LocalizedProject } from "~/utils/projects";
-import { SITE } from "~/utils/seo";
+import JsonLd from "~/components/common/json-ld/JsonLd";
+import { Link } from "~/i18n/navigation";
+import type { Locale } from "~/i18n/routing";
+import styles from "./project-detail-page.module.css";
+import type { LocalizedProject } from "~/lib/projects";
+import { SITE, canonicalUrl } from "~/lib/seo";
+import { buildBreadcrumbList } from "~/lib/structuredData";
 
 type ProjectDetailPageProps = {
   project: LocalizedProject;
   relatedProjects: LocalizedProject[];
 };
 
-export default component$<ProjectDetailPageProps>(({ project, relatedProjects }) => {
-  useStylesScoped$(styles);
-  const t = inlineTranslate();
-  const loc = useLocation();
-  const { lang } = useSpeakLocale();
-  const getPath = localizePath();
-  const localizedHomePath = getPath("/", lang);
-  const localizedProjectsPath = getPath("/projects/", lang);
-  const homePath = `${SITE}${localizedHomePath}`;
-  const projectsPath = `${SITE}${localizedProjectsPath}`;
-  const canonical = `${SITE}${loc.url.pathname === "/" ? "/" : loc.url.pathname.replace(/\/+$/, "")}`;
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: t("navigation.home@@Home"),
-        item: homePath,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: t("home.sectionProject.title@@Projects"),
-        item: projectsPath,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: project.localizedTitle,
-        item: canonical,
-      },
+/** Path without the locale prefix; the canonical/hreflang helpers add it. */
+const PROJECTS_PATH = "/projects/";
+
+export default function ProjectDetailPage({ project, relatedProjects }: ProjectDetailPageProps) {
+  const t = useTranslations();
+  const locale = useLocale() as Locale;
+  const canonical = canonicalUrl(project.detailPath, locale);
+  const breadcrumbSchema = buildBreadcrumbList(
+    [
+      { name: t("navigation.home"), pathname: "/" },
+      { name: t("home.sectionProject.title"), pathname: PROJECTS_PATH },
+      { name: project.localizedTitle, pathname: project.detailPath },
     ],
-  };
+    locale,
+  );
   const creativeWorkSchema = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
@@ -78,95 +60,85 @@ export default component$<ProjectDetailPageProps>(({ project, relatedProjects })
 
   return (
     <>
-      <script
-        id="project-creativework-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={JSON.stringify(creativeWorkSchema)}
-      ></script>
-      <script
-        id="project-breadcrumb-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={JSON.stringify(breadcrumbSchema)}
-      ></script>
+      <JsonLd id="project-creativework-schema" data={creativeWorkSchema} />
+      <JsonLd id="project-breadcrumb-schema" data={breadcrumbSchema} />
 
-      <section class="project_detail_hero">
-        <div class="container">
+      <section className={styles.project_detail_hero}>
+        <div className="container">
           <SubTitle section="projects" classes="project_detail_subtitle">
-            {t("projects.detail.subtitle@@Project case")}
+            {t("projects.detail.subtitle")}
           </SubTitle>
 
-          <a href={localizedProjectsPath} class="project_back btn_body grey_dark">
-            {t("projects.detail.back@@Back to projects")}
-          </a>
+          <Link href={PROJECTS_PATH} className={`${styles.project_back} btn_body grey_dark`}>
+            {t("projects.detail.back")}
+          </Link>
 
-          <div class="project_detail_head">
-            <div class="project_detail_copy">
-              <p class="helper_text grey_dark project_detail_kicker">
+          <div className={styles.project_detail_head}>
+            <div className="project_detail_copy">
+              <p className="helper_text grey_dark project_detail_kicker">
                 {project.localizedCategory} / {project.year}
               </p>
-              <h1 class="H2_light black project_detail_title">{project.localizedTitle}</h1>
-              <p class="body_big grey project_detail_lead">{project.localizedDescription}</p>
+              <h1 className={`H2_light black ${styles.project_detail_title}`}>
+                {project.localizedTitle}
+              </h1>
+              <p className={`body_big grey ${styles.project_detail_lead}`}>
+                {project.localizedDescription}
+              </p>
             </div>
 
-            <div class="project_detail_panel">
+            <div className={styles.project_detail_panel}>
               <div>
-                <p class="helper_text grey_dark">{t("projects.detail.client@@Client")}</p>
-                <p class="H6 black">{project.localizedClient}</p>
+                <p className="helper_text grey_dark">{t("projects.detail.client")}</p>
+                <p className="H6 black">{project.localizedClient}</p>
               </div>
               <div>
-                <p class="helper_text grey_dark">{t("projects.detail.year@@Year")}</p>
-                <p class="H6 black">{project.year}</p>
+                <p className="helper_text grey_dark">{t("projects.detail.year")}</p>
+                <p className="H6 black">{project.year}</p>
               </div>
               <div>
-                <p class="helper_text grey_dark">{t("projects.detail.stack@@Technologies")}</p>
-                <p class="btn_body grey_dark">{project.technologies.join(", ")}</p>
+                <p className="helper_text grey_dark">{t("projects.detail.stack")}</p>
+                <p className="btn_body grey_dark">{project.technologies.join(", ")}</p>
               </div>
               <a
                 href={project.website_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="project_detail_link btn_body black"
+                className={`${styles.project_detail_link} btn_body black`}
               >
-                {t("projects.detail.website@@Visit live website")}
+                {t("projects.detail.website")}
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="project_detail_visual">
-        <div class="container">
-          <div class="project_detail_image_shell">
+      <section className={styles.project_detail_visual}>
+        <div className="container">
+          <div className={styles.project_detail_image_shell}>
             <img
               src={project.image_src}
               alt={`${project.localizedTitle} - ${project.localizedDescription}`}
               width={1280}
               height={720}
-              class="project_detail_image"
+              className={styles.project_detail_image}
             />
           </div>
         </div>
       </section>
 
-      <section class="project_detail_content">
-        <div class="container project_detail_content_grid">
-          <article class="project_story_card">
-            <h2 class="H5 black">{t("projects.detail.overview.title@@Overview")}</h2>
-            <p class="btn_body grey">
-              {project.localizedDescription}
-            </p>
-            <p class="btn_body grey">
-              {t(
-                "projects.detail.overview.text@@This project focused on a clear product story, a fast browsing experience and a launch-ready interface that could support growth without adding unnecessary complexity.",
-              )}
-            </p>
+      <section className={styles.project_detail_content}>
+        <div className={`container ${styles.project_detail_content_grid}`}>
+          <article className={styles.project_story_card}>
+            <h2 className="H5 black">{t("projects.detail.overview.title")}</h2>
+            <p className="btn_body grey">{project.localizedDescription}</p>
+            <p className="btn_body grey">{t("projects.detail.overview.text")}</p>
           </article>
 
-          <aside class="project_features_card">
-            <h2 class="H5 black">{t("projects.detail.features@@What shaped the project")}</h2>
-            <ul class="project_features_list">
+          <aside className={styles.project_features_card}>
+            <h2 className="H5 black">{t("projects.detail.features")}</h2>
+            <ul className={styles.project_features_list}>
               {project.localizedFeatures.map(feature => (
-                <li key={feature} class="btn_body grey_dark">
+                <li key={feature} className="btn_body grey_dark">
                   {feature}
                 </li>
               ))}
@@ -176,32 +148,32 @@ export default component$<ProjectDetailPageProps>(({ project, relatedProjects })
       </section>
 
       {relatedProjects.length > 0 && (
-        <section class="project_related_section">
-          <div class="container">
-            <h2 class="H5 black project_related_title">
-              {t("projects.detail.related@@More selected projects")}
+        <section className={styles.project_related_section}>
+          <div className="container">
+            <h2 className={`H5 black ${styles.project_related_title}`}>
+              {t("projects.detail.related")}
             </h2>
-            <ul class="project_related_grid">
+            <ul className={styles.project_related_grid}>
               {relatedProjects.map(related => (
                 <li key={related.slug}>
-                  <article class="project_related_card">
-                    <a href={getPath(related.detailPath, lang)} class="project_related_link">
+                  <article className={styles.project_related_card}>
+                    <Link href={related.detailPath} className={styles.project_related_link}>
                       <img
                         src={related.image_src}
                         alt={related.localizedTitle}
                         width={668}
                         height={330}
-                        class="project_related_image"
+                        className={styles.project_related_image}
                         loading="lazy"
                         decoding="async"
                       />
-                      <div class="project_related_body">
-                        <p class="helper_text grey_dark">
+                      <div className={styles.project_related_body}>
+                        <p className="helper_text grey_dark">
                           {related.localizedCategory} / {related.year}
                         </p>
-                        <h3 class="H6 black">{related.localizedTitle}</h3>
+                        <h3 className="H6 black">{related.localizedTitle}</h3>
                       </div>
-                    </a>
+                    </Link>
                   </article>
                 </li>
               ))}
@@ -213,4 +185,4 @@ export default component$<ProjectDetailPageProps>(({ project, relatedProjects })
       <SectionContact />
     </>
   );
-});
+}

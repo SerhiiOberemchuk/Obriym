@@ -1,152 +1,153 @@
-﻿import {
-  $,
-  component$,
-  useContext,
-  useSignal,
-  useStore,
-  useStylesScoped$,
-  useVisibleTask$,
-} from "@builder.io/qwik";
-import styles from "./styles.css?inline";
-import { COOKIES_LOCAL_STORAGE, CookiesTypes } from "~/types/cookies.type";
-import { disableAnalitics, loadAnalytics } from "~/utils/loadGoogleAnalitics";
-import { CookiesBannerContext } from "./coocies-banner-context";
-import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
-import { SITE } from "~/utils/seo";
+"use client";
 
-export default component$(() => {
-  useStylesScoped$(styles);
-  const t = inlineTranslate();
-  const typeCookiesBanner = useSignal<"info" | "settings">("info");
-  const cookiesData = useStore<CookiesTypes>({
+import { useEffect, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
+import styles from "./styles.module.css";
+import { COOKIES_LOCAL_STORAGE, CookiesTypes } from "~/types/cookies.type";
+import { disableAnalitics, loadAnalytics } from "~/lib/loadGoogleAnalitics";
+import { useCookiesBanner } from "~/context/app-context";
+import { type Locale } from "~/i18n/routing";
+import { localizedPath, SITE } from "~/lib/seo";
+
+export default function CookiesBanner() {
+  const t = useTranslations();
+  const [typeCookiesBanner, setTypeCookiesBanner] = useState<"info" | "settings">("info");
+  const [cookiesData, setCookiesData] = useState<CookiesTypes>({
     cookiesAccepted: false,
     requiredCookies: true,
     analyticsCookies: false,
   });
-  const { lang } = useSpeakLocale();
-  const getPath = localizePath();
-  const cookiesPath = getPath("/cookies-policy/", lang);
-  const { isVisible } = useContext(CookiesBannerContext);
+  const locale = useLocale() as Locale;
+  const cookiesPath = localizedPath("/cookies-policy/", locale);
+  const { isCookiesBannerVisible, setCookiesBannerVisible } = useCookiesBanner();
 
-  // eslint-disable-next-line qwik/no-use-visible-task
-  useVisibleTask$(() => {
+  // Consent lives in localStorage, which only exists on the client, so the
+  // stored state has to be adopted after mount — initialising it during render
+  // would break hydration.
+  /* eslint-disable react-hooks/set-state-in-effect */
+  useEffect(() => {
     const isLocalCookies = localStorage.getItem(COOKIES_LOCAL_STORAGE);
     if (!isLocalCookies) {
-      isVisible.value = true;
+      setCookiesBannerVisible(true);
       return;
     }
 
     try {
       const cookiesLocal: CookiesTypes = JSON.parse(isLocalCookies);
-      cookiesData.cookiesAccepted = cookiesLocal.cookiesAccepted;
-      cookiesData.requiredCookies = cookiesLocal.requiredCookies;
-      cookiesData.analyticsCookies = cookiesLocal.analyticsCookies;
+      setCookiesData({
+        cookiesAccepted: cookiesLocal.cookiesAccepted,
+        requiredCookies: cookiesLocal.requiredCookies,
+        analyticsCookies: cookiesLocal.analyticsCookies,
+      });
       if (cookiesLocal.analyticsCookies) {
         loadAnalytics();
       }
     } catch (error) {
       console.error("Failed to parse saved cookie settings", error);
       localStorage.removeItem(COOKIES_LOCAL_STORAGE);
-      isVisible.value = true;
+      setCookiesBannerVisible(true);
     }
-  });
+  }, [setCookiesBannerVisible]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
-  const handleAcceptAllCookies = $(() => {
-    cookiesData.cookiesAccepted = true;
-    cookiesData.analyticsCookies = true;
-    localStorage.setItem(COOKIES_LOCAL_STORAGE, JSON.stringify(cookiesData));
+  const handleAcceptAllCookies = () => {
+    const accepted: CookiesTypes = {
+      ...cookiesData,
+      cookiesAccepted: true,
+      analyticsCookies: true,
+    };
+    setCookiesData(accepted);
+    localStorage.setItem(COOKIES_LOCAL_STORAGE, JSON.stringify(accepted));
     loadAnalytics();
-    isVisible.value = false;
-  });
+    setCookiesBannerVisible(false);
+  };
 
-  const handleSettings = $(() => {
-    if (typeCookiesBanner.value === "info") {
-      typeCookiesBanner.value = "settings";
+  const handleSettings = () => {
+    if (typeCookiesBanner === "info") {
+      setTypeCookiesBanner("settings");
     } else {
-      cookiesData.cookiesAccepted = true;
-      localStorage.setItem(COOKIES_LOCAL_STORAGE, JSON.stringify(cookiesData));
-      if (!cookiesData.analyticsCookies) {
+      const accepted: CookiesTypes = { ...cookiesData, cookiesAccepted: true };
+      setCookiesData(accepted);
+      localStorage.setItem(COOKIES_LOCAL_STORAGE, JSON.stringify(accepted));
+      if (!accepted.analyticsCookies) {
         disableAnalitics();
       } else {
         loadAnalytics();
       }
-      isVisible.value = false;
+      setCookiesBannerVisible(false);
     }
-  });
+  };
 
   return (
     <>
-      {isVisible.value && (
-        <div class="btn_body black cookies_banner">
-          <h3 class="H4 black">
-            {typeCookiesBanner.value === "info"
-              ? t("cookies.banner.title.general@@We use cookies")
-              : t("cookies.banner.title.settings@@Choose which cookies you want to accept:")}
+      {isCookiesBannerVisible && (
+        <div className={`btn_body black ${styles.cookies_banner}`}>
+          <h3 className="H4 black">
+            {typeCookiesBanner === "info"
+              ? t("cookies.banner.title.general")
+              : t("cookies.banner.title.settings")}
           </h3>
           <p>
-            {t(
-              "cookies.banner.description1@@This site uses cookies. By continuing to browse the site, you are agreeing to our use of cookies.",
-            )}
+            {t("cookies.banner.description1")}
             <br />
-            {t("cookies.banner.description2@@Read more on")}{" "}
+            {t("cookies.banner.description2")}{" "}
             <a href={cookiesPath} target="_blank" rel="noopener noreferrer">
               {`${SITE}${cookiesPath}`}
             </a>
           </p>
 
-          {typeCookiesBanner.value === "settings" && (
-            <ul class="settings_list">
+          {typeCookiesBanner === "settings" && (
+            <ul className={styles.settings_list}>
               <li>
-                <div class="check_wrapper">
-                  <p class="H6">{t("cookies.banner.required.title@@Required cookies:")}</p>
-                  <label class="switch">
+                <div className={styles.check_wrapper}>
+                  <p className="H6">{t("cookies.banner.required.title")}</p>
+                  <label className={styles.switch}>
                     <input disabled type="checkbox" checked aria-label="Required cookies" />
-                    <span class="slider"></span>
+                    <span className={styles.slider}></span>
                   </label>
                 </div>
-                <p>
-                  {t(
-                    "cookies.banner.required.description@@These cookies are essential for the basic functioning of the website.",
-                  )}
-                </p>
+                <p>{t("cookies.banner.required.description")}</p>
               </li>
 
               <li>
-                <div class="check_wrapper">
-                  <p class="H6">{t("cookies.banner.analitics.title@@Analytics cookies:")}</p>
-                  <label class="switch">
+                <div className={styles.check_wrapper}>
+                  <p className="H6">{t("cookies.banner.analitics.title")}</p>
+                  <label className={styles.switch}>
                     <input
                       type="checkbox"
                       checked={cookiesData.analyticsCookies}
                       aria-label="Analytics cookies"
-                      onChange$={() => {
-                        cookiesData.analyticsCookies = !cookiesData.analyticsCookies;
-                      }}
+                      onChange={() =>
+                        setCookiesData(data => ({
+                          ...data,
+                          analyticsCookies: !data.analyticsCookies,
+                        }))
+                      }
                     />
-                    <span class="slider"></span>
+                    <span className={styles.slider}></span>
                   </label>
                 </div>
-                <p>
-                  {t(
-                    "cookies.banner.analitics.description@@These cookies collect information about how visitors use our site.",
-                  )}
-                </p>
+                <p>{t("cookies.banner.analitics.description")}</p>
               </li>
             </ul>
           )}
 
-          <div class="buttons_wrapper">
-            <button type="button" class="grey_dark btn_set" onClick$={handleSettings}>
-              {typeCookiesBanner.value === "info"
-                ? t("cookies.banner.button.setCookies@@Set cookies")
-                : t("cookies.banner.button.acceptSelected@@Accept selected")}
+          <div className={styles.buttons_wrapper}>
+            <button
+              type="button"
+              className={`grey_dark ${styles.btn_set}`}
+              onClick={handleSettings}
+            >
+              {typeCookiesBanner === "info"
+                ? t("cookies.banner.button.setCookies")
+                : t("cookies.banner.button.acceptSelected")}
             </button>
-            <button type="button" class="btn_accept" onClick$={handleAcceptAllCookies}>
-              {t("cookies.banner.button.acceptAll@@Accept all")}
+            <button type="button" className={styles.btn_accept} onClick={handleAcceptAllCookies}>
+              {t("cookies.banner.button.acceptAll")}
             </button>
           </div>
         </div>
       )}
     </>
   );
-});
+}

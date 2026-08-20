@@ -1,28 +1,22 @@
-import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { inlineTranslate, localizePath, useSpeakLocale } from "qwik-speak";
-import styles from "./styles.css?inline";
+import { useTranslations } from "next-intl";
+import { Link } from "~/i18n/navigation";
+import styles from "./styles.module.css";
 
-export default component$(() => {
-  useStylesScoped$(styles);
-  const t = inlineTranslate();
-  const { lang } = useSpeakLocale();
-  const getPath = localizePath();
-  const homePath = getPath("/", lang);
+export default function NotFoundSection() {
+  const t = useTranslations();
 
   return (
-    <section>
-      <div class="container nf_wrapper">
-        <p class="nf_code H2_light grey" aria-hidden="true">
+    <section className={styles.nf_section}>
+      <div className={`container ${styles.nf_wrapper}`}>
+        <p className={`${styles.nf_code} H2_light grey`} aria-hidden="true">
           404
         </p>
-        <h1 class="H2_light grey_dark">{t("app.notFound.title@@Page not found")}</h1>
-        <p class="H6 grey">
-          {t("app.notFound.text@@The page you are looking for doesn't exist or has been moved.")}
-        </p>
-        <a class="nf_home btn_body" href={homePath}>
-          {t("app.notFound.homeLink@@Back to homepage")}
-        </a>
+        <h1 className="H2_light grey_dark">{t("app.notFound.title")}</h1>
+        <p className="H6 grey">{t("app.notFound.text")}</p>
+        <Link className={`${styles.nf_home} btn_body`} href="/">
+          {t("app.notFound.homeLink")}
+        </Link>
       </div>
     </section>
   );
-});
+}

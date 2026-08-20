@@ -5,13 +5,13 @@
       "client": "Client",
       "features": "What shaped the project",
       "head": {
-        "suffix": "Project case by {{name}}"
+        "suffix": "Project case by {name}"
       },
       "notFound": {
         "back": "Back to projects",
         "heading": "Project not found",
         "text": "The requested case page does not exist or is currently unavailable.",
-        "title": "Project not found | {{name}}"
+        "title": "Project not found | {name}"
       },
       "overview": {
         "text": "This project focused on a clear product story, a fast browsing experience and a launch-ready interface that could support growth without adding unnecessary complexity.",
@@ -25,7 +25,7 @@
     },
     "head": {
       "description": "Explore OBRIYM projects: fast SEO-ready websites, multilingual platforms and digital products created for ambitious brands across Europe.",
-      "title": "Projects | SEO-ready websites and digital products | {{name}}"
+      "title": "Projects | SEO-ready websites and digital products | {name}"
     },
     "page": {
       "button": "View project",

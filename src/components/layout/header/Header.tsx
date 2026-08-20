@@ -1,15 +1,13 @@
-import { component$ } from "@builder.io/qwik";
 import Logo from "~/components/common/logo/logo";
-import "./h-styles.css";
 import { ChangeLocale } from "~/components/change-locale/change-locale";
 
-export default component$(() => {
+export default function Header() {
   return (
-    <header class="header">
-      <div class="container">
+    <header className="header">
+      <div className="container">
         <Logo place="header" />
         <ChangeLocale place="header" />
       </div>
     </header>
   );
-});
+}

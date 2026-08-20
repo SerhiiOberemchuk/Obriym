@@ -1,95 +1,107 @@
-import { $, component$, useOnDocument, useSignal, useStylesScoped$ } from "@builder.io/qwik";
-import { useLocation } from "@builder.io/qwik-city";
-import {
-  useSpeakLocale,
-  useSpeakConfig,
-  useDisplayName,
-  localizePath,
-  inlineTranslate,
-} from "qwik-speak";
-import styles from "./cl-styles.css?inline";
-import IconSelected from "~/assets/icons/icon_selected.svg?h=24&w=24&jsx";
-import IconArrow from "~/assets/icons/icon_arrow_down.svg?h=24&w=24&jsx";
+"use client";
 
-export const ChangeLocale = component$(({ place }: { place: "mob-menu" | "header" }) => {
-  const isOpen = useSignal<boolean>(false);
-  const t = inlineTranslate();
-  const pathname = useLocation().url.pathname;
-  const locale = useSpeakLocale();
-  const config = useSpeakConfig();
-  const dn = useDisplayName();
-  const getPath = localizePath();
+import { useEffect, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
+import { usePathname } from "~/i18n/navigation";
+import { locales, type Locale } from "~/i18n/routing";
+import { localizedPath } from "~/lib/seo";
+import styles from "./cl-styles.module.css";
+import IconSelected from "~/assets/icons/icon_selected.svg";
+import IconArrow from "~/assets/icons/icon_arrow_down.svg";
 
-  useStylesScoped$(styles);
+const LOCALE_LABEL: Record<Locale, string> = {
+  "uk-UA": "Українська",
+  "it-IT": "Italiano",
+  "en-EU": "English",
+};
 
-  useOnDocument(
-    "keydown",
-    $((e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen.value) {
-        isOpen.value = false;
-      }
-    }),
-  );
+const LOCALE_SHORT: Record<Locale, string> = {
+  "uk-UA": "Ukr",
+  "it-IT": "It",
+  "en-EU": "Eng",
+};
 
-  useOnDocument(
-    "click",
-    $((e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (isOpen.value && !target.closest(".cl_popover")) {
-        isOpen.value = false;
-      }
-    }),
-  );
+/** Localized language name, as qwik-speak's `useDisplayName()` rendered it. */
+const displayName = (locale: Locale) => {
+  const language = locale.slice(0, 2);
+  try {
+    return new Intl.DisplayNames([locale], { type: "language" }).of(language) ?? language;
+  } catch {
+    return language;
+  }
+};
+
+export function ChangeLocale({ place }: { place: "mob-menu" | "header" }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const t = useTranslations();
+  const locale = useLocale() as Locale;
+  // Unprefixed path, so the same page can be rebuilt under any locale.
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+
+    const onClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest(`.${styles.cl_popover}`)) setIsOpen(false);
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("click", onClick);
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("click", onClick);
+    };
+  }, [isOpen]);
 
   return (
-    <div class="cl_popover" data-place={place}>
+    <div className={styles.cl_popover} data-place={place}>
       <button
         type="button"
-        class="btn_body cl_btn"
-        aria-label={t("app.header.buttonChLang@@Button to change locale")}
-        onClick$={() => (isOpen.value = !isOpen.value)}
-        data-open={isOpen.value ? "true" : "false"}
+        className={`btn_body ${styles.cl_btn}`}
+        aria-label={t("app.header.buttonChLang")}
+        onClick={() => setIsOpen(open => !open)}
+        data-open={isOpen ? "true" : "false"}
         id="language-switcher"
         aria-haspopup="menu"
-        aria-expanded={isOpen.value ? "true" : "false"}
+        aria-expanded={isOpen ? "true" : "false"}
         aria-controls="language-list"
       >
-        <span class="cl_btn_m">{dn(locale.lang.slice(0, 2), { type: "language" })}</span>
-        <span class="cl_btn_t">
-          {locale.lang === "uk-UA" ? "Ukr" : locale.lang === "it-IT" ? "It" : "Eng"}
-        </span>
-        <IconArrow />
+        <span className={styles.cl_btn_m}>{displayName(locale)}</span>
+        <span className={styles.cl_btn_t}>{LOCALE_SHORT[locale]}</span>
+        <IconArrow width={24} height={24} />
       </button>
 
       <ul
-        class="cl_list cl_panel"
+        className={`${styles.cl_list} ${styles.cl_panel}`}
         id="language-list"
         aria-labelledby="language-switcher"
-        data-open={isOpen.value ? "true" : "false"}
+        data-open={isOpen ? "true" : "false"}
         aria-label="Language selection"
         role="menu"
       >
-        {config.supportedLocales.map(value => (
-          <li class="cl_item" key={value.lang} role="none">
+        {locales.map(value => (
+          <li className={styles.cl_item} key={value} role="none">
+            {/* A plain anchor forces a full document load, so the server renders
+                the new locale instead of the client swapping messages. */}
             <a
-              data-active={value.lang === locale.lang ? "true" : "false"}
-              class="cl_link"
-              href={getPath(pathname, value.lang)}
+              data-active={value === locale ? "true" : "false"}
+              className={styles.cl_link}
+              href={localizedPath(pathname, value)}
               role="menuitem"
-              aria-current={value.lang === locale.lang ? "true" : undefined}
+              aria-current={value === locale ? "true" : undefined}
             >
-              <span>
-                {value.lang === "uk-UA"
-                  ? "Українська"
-                  : value.lang === "it-IT"
-                    ? "Italiano"
-                    : "English"}
-              </span>
-              {value.lang === locale.lang && <IconSelected />}
+              <span>{LOCALE_LABEL[value]}</span>
+              {value === locale && <IconSelected width={24} height={24} />}
             </a>
           </li>
         ))}
       </ul>
     </div>
   );
-});
+}

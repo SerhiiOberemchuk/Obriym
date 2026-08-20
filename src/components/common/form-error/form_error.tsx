@@ -1,17 +1,17 @@
-import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import { inlineTranslate } from "qwik-speak";
-import styles from "./form_error.css?inline";
-import IconError from "~/assets/icons/icon_error.svg?w=20&h20&jsx";
+"use client";
+
+import { useTranslations } from "next-intl";
+import styles from "./form_error.module.css";
+import IconError from "~/assets/icons/icon_error.svg";
 
 interface FormErrorProps {
+  /** Translation key produced by the valibot schema. */
   error?: string;
   id?: string;
 }
 
-export default component$(({ error, id }: FormErrorProps) => {
-  const t = inlineTranslate();
-  useStylesScoped$(styles);
-
+export default function FormError({ error, id }: FormErrorProps) {
+  const t = useTranslations();
   const message = error ? t(error) : undefined;
 
   return (
@@ -19,14 +19,14 @@ export default component$(({ error, id }: FormErrorProps) => {
       id={id}
       role="alert"
       aria-live="assertive"
-      class={`ic_form_error helper_text red ${error ? "visible" : ""}`}
+      className={`${styles.ic_form_error} helper_text red ${error ? styles.visible : ""}`}
     >
       {error && (
         <>
-          <IconError />
+          <IconError width={20} height={20} />
           <span>{message}</span>
         </>
       )}
     </div>
   );
-});
+}

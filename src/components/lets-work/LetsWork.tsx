@@ -1,37 +1,40 @@
-import { $, component$, createContextId, Signal, useContext, useStyles$ } from "@builder.io/qwik";
-import styles from "./lw-styles.css?inline";
-import { inlineTranslate } from "qwik-speak";
-import { Modal } from "@qwik-ui/headless";
+"use client";
+
+import { useTranslations } from "next-intl";
+import { Modal } from "~/components/ui/modal";
 import ContactFormComponent from "../common/contact-form/ContactFormComponent";
-import { MobileMenuContext } from "../mobile-menu/MobileMenu";
+import { useLetsWorkModal, useMobileMenu } from "~/context/app-context";
 
-export const ModalLetsWork = createContextId<Signal<boolean>>("modal-lets-workf");
+export default function LetsWork({ place }: { place: "mob-menu" | "header" }) {
+  const t = useTranslations();
 
-export default component$(({ place }: { place: "mob-menu" | "header" }) => {
-  const t = inlineTranslate();
-
-  useStyles$(styles);
-  const { toggleMenu } = useContext(MobileMenuContext);
-  const contextModal = useContext(ModalLetsWork);
-  const handleLetsWorkButton = $(() => {
-    contextModal.value = !contextModal.value;
-    if (contextModal.value) {
+  const { toggleMenu } = useMobileMenu();
+  const { isLetsWorkOpen, setLetsWorkOpen } = useLetsWorkModal();
+  const handleLetsWorkButton = () => {
+    const isOpen = !isLetsWorkOpen;
+    setLetsWorkOpen(isOpen);
+    if (isOpen) {
       toggleMenu();
     }
-  });
+  };
   return (
-    <Modal.Root class="lw_wrapper" data-place={place} bind:show={contextModal}>
+    <Modal.Root
+      className="lw_wrapper"
+      data-place={place}
+      show={isLetsWorkOpen}
+      onShowChange={setLetsWorkOpen}
+    >
       <button
         type="button"
         data-place={place}
-        onClick$={handleLetsWorkButton}
-        class="btn_body lw_button"
+        onClick={handleLetsWorkButton}
+        className="btn_body lw_button"
       >
-        {t("app.btnLetsWork@@Let’s work")}
+        {t("app.btnLetsWork")}
       </button>
-      <Modal.Panel class="lw_panel" data-place={place}>
+      <Modal.Panel className="lw_panel" data-place={place}>
         <ContactFormComponent modal />
       </Modal.Panel>
     </Modal.Root>
   );
-});
+}

@@ -1,22 +1,24 @@
-import { component$, useStylesScoped$, useVisibleTask$ } from "@builder.io/qwik";
-import styles from "./hiw-styles.css?inline";
+"use client";
+
+import { useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import styles from "./hiw-styles.module.css";
 import SubTitle from "~/components/common/subtitile/SubTitle";
 import { StepHowItWork } from "~/types/step-how-it-eork.type";
-import { inlineTranslate } from "qwik-speak";
 
-export default component$(() => {
-  useStylesScoped$(styles);
-  const t = inlineTranslate();
-  // eslint-disable-next-line qwik/no-use-visible-task
-  useVisibleTask$(async ({ cleanup }) => {
-    const gsap = (await import("gsap")).default;
-    const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+export default function SectionHowItWork() {
+  const t = useTranslations();
+  const rootRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    const animations = [
-      gsap.from(".list_steps > :nth-child(1)", {
+    const ctx = gsap.context(() => {
+      gsap.from(`.${styles.list_steps} > :nth-child(1)`, {
         scrollTrigger: {
-          trigger: ".sticky_wrapper",
+          trigger: `.${styles.sticky_wrapper}`,
           // markers: true,
           start: "top top",
           end: "+=800",
@@ -24,10 +26,10 @@ export default component$(() => {
         },
         rotate: 12,
         x: "100svw",
-      }),
-      gsap.from(".list_steps > :nth-child(2)", {
+      });
+      gsap.from(`.${styles.list_steps} > :nth-child(2)`, {
         scrollTrigger: {
-          trigger: ".sticky_wrapper",
+          trigger: `.${styles.sticky_wrapper}`,
           // markers: true,
           start: "+=800",
           end: "+=800",
@@ -35,10 +37,10 @@ export default component$(() => {
         },
 
         scale: 0,
-      }),
-      gsap.from(".list_steps > :nth-child(3)", {
+      });
+      gsap.from(`.${styles.list_steps} > :nth-child(3)`, {
         scrollTrigger: {
-          trigger: ".sticky_wrapper",
+          trigger: `.${styles.sticky_wrapper}`,
           // markers: true,
           start: "+=1600",
           end: "+=800",
@@ -46,68 +48,56 @@ export default component$(() => {
         },
         rotate: -12,
         x: "-100svw",
-      }),
-    ];
-
-    cleanup(() => {
-      animations.forEach(animation => {
-        animation.scrollTrigger?.kill();
-        animation.kill();
       });
-    });
+    }, rootRef);
 
-  });
+    return () => ctx.revert();
+  }, []);
+
   const steps: StepHowItWork[] = [
     {
-      step: t("home.sectionHIW.steps.step1.step@@I step"),
-      title: t("home.sectionHIW.steps.step1.title@@Let’s Talk"),
-      text: t(
-        "home.sectionHIW.steps.step1.text@@We begin with an in-depth consultation to understand your business objectives and challenges.",
-      ),
+      step: t("home.sectionHIW.steps.step1.step"),
+      title: t("home.sectionHIW.steps.step1.title"),
+      text: t("home.sectionHIW.steps.step1.text"),
     },
     {
-      step: t("home.sectionHIW.steps.step2.step@@II step"),
-      title: t("home.sectionHIW.steps.step2.title@@get the plan"),
-      text: t(
-        "home.sectionHIW.steps.step2.text@@You receive a tailored proposal outlining the scope, timeline, and budget — fully transparent.",
-      ),
+      step: t("home.sectionHIW.steps.step2.step"),
+      title: t("home.sectionHIW.steps.step2.title"),
+      text: t("home.sectionHIW.steps.step2.text"),
     },
     {
-      step: t("home.sectionHIW.steps.step3.step@@III step"),
-      title: t("home.sectionHIW.steps.step3.title@@Make It Real"),
-      text: t(
-        "home.sectionHIW.steps.step3.text@@Design, develop, deliver. Step by step — we’ll keep you in the loop every step of the way.",
-      ),
+      step: t("home.sectionHIW.steps.step3.step"),
+      title: t("home.sectionHIW.steps.step3.title"),
+      text: t("home.sectionHIW.steps.step3.text"),
     },
   ];
 
   return (
     <section
+      ref={rootRef}
       id="how-it-work"
-      class="section"
-      aria-label={t("home.sectionHIW.sectionAriaLabel@@How our web development process works")}
+      className={styles.section}
+      aria-label={t("home.sectionHIW.sectionAriaLabel")}
     >
-      <div class="container">
-        <SubTitle section="how-it-work">{t("home.sectionHIW.subTitle@@HOW IT WORKS")}</SubTitle>
-        <div class="sticky_wrapper">
-          <div class="sticky_box">
-            <div class="relative">
-              <h2 class="body_big grey title">
-                {t(
-                  "home.sectionHIW.sectionTitle@@Follow these 3 simple steps to launch a modern, SEO-optimized website tailored to your business goals.",
-                )}
+      <div className="container">
+        <SubTitle section="how-it-work">{t("home.sectionHIW.subTitle")}</SubTitle>
+        <div className={styles.sticky_wrapper}>
+          <div className={styles.sticky_box}>
+            <div className={styles.relative}>
+              <h2 className={`body_big grey ${styles.title}`}>
+                {t("home.sectionHIW.sectionTitle")}
               </h2>
-              <div class="list_wrap">
-                <ul class="list_steps">
+              <div className={styles.list_wrap}>
+                <ul className={styles.list_steps}>
                   {steps.map((item, index) => (
-                    <li key={index} class="item" id={`step${index + 1}`}>
-                      <article class="card">
+                    <li key={index} className={styles.item} id={`step${index + 1}`}>
+                      <article className={styles.card}>
                         <header>
-                          <p class="H4 ">{item.step}</p>
-                          <h3 class="H3_uppercase black">{item.title}</h3>
+                          <p className="H4">{item.step}</p>
+                          <h3 className="H3_uppercase black">{item.title}</h3>
                         </header>
 
-                        <p class="btn_body ">{item.text}</p>
+                        <p className="btn_body">{item.text}</p>
                       </article>
                     </li>
                   ))}
@@ -119,4 +109,4 @@ export default component$(() => {
       </div>
     </section>
   );
-});
+}

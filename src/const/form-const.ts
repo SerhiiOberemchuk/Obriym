@@ -1,5 +1,5 @@
-import IconError from "~/assets/icons/icon_error.svg?w=20&h=20&jsx";
-import IconSuccess from "~/assets/icons/icon_success.svg?w=20&h=20&jsx";
+import IconError from "~/assets/icons/icon_error.svg";
+import IconSuccess from "~/assets/icons/icon_success.svg";
 
 export const SERVICES_OPTIONS_EN = {
   branding: "Branding",
