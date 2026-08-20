@@ -1,6 +1,6 @@
 .logo {
-  display: flex;
-  max-width: fit-content;
+  /* display: flex;
+  max-width: fit-content; */
 }
 .logo[data-place="header"] {
   width: 6.25rem;
