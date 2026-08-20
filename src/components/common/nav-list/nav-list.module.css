@@ -24,20 +24,35 @@
   gap: 0.75rem;
   min-width: 25.75rem;
 }
+/**
+ * The pill floats over whatever the page happens to be showing, so the blur has
+ * to be strong enough to dissolve the content behind it — a weak blur leaves
+ * body text readable through the panel, where it collides with the nav labels.
+ * The tint carries the contrast; the blur and saturation carry the glass look.
+ */
 .glass-card[data-place="header"] {
-  background: rgba(255, 255, 255, 0.13);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.68);
+  /* The build adds the -webkit- prefix; writing it by hand here makes the
+     minifier drop the standard property, which would cost Firefox the blur. */
+  backdrop-filter: blur(24px) saturate(180%);
 
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 0 6px 3px rgba(255, 255, 255, 0.3);
+    0 12px 32px rgba(17, 17, 17, 0.14),
+    0 2px 6px rgba(17, 17, 17, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
   position: relative;
   overflow: hidden;
 }
+
+/* Without backdrop-filter the tint alone has to keep the labels readable. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-card[data-place="header"] {
+    background: rgba(255, 255, 255, 0.94);
+  }
+}
+
+/* Top and left highlights: the lit edges that make the panel read as glass. */
 .glass-card[data-place="header"]::before {
   content: "";
   position: absolute;
@@ -45,7 +60,8 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.95), transparent);
+  pointer-events: none;
 }
 
 .glass-card[data-place="header"]::after {
@@ -57,10 +73,11 @@
   height: 100%;
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.9),
     transparent,
-    rgba(255, 255, 255, 0.3)
+    rgba(255, 255, 255, 0.4)
   );
+  pointer-events: none;
 }
 .page_link[data-place="header"] {
   display: flex;
@@ -70,7 +87,12 @@
   border-radius: 48px;
   min-width: fit-content;
   text-wrap: nowrap;
-  transition: all 0.3s ease-in-out;
+  /* Set explicitly so a section's text colour can never bleed into the pill. */
+  color: var(--black);
+  transition:
+    background-color 0.25s ease-in-out,
+    border-color 0.25s ease-in-out,
+    box-shadow 0.25s ease-in-out;
 }
 .nav_list[data-place="footer"] {
   gap: 1.5rem;
@@ -90,51 +112,32 @@
   min-width: 38px;
 }
 
+/**
+ * Hover and active states sit *inside* the frosted panel, so they only need a
+ * fill that reads against it. Nesting another backdrop-filter here would blur
+ * the already-blurred panel and cost a second GPU pass for no visual gain.
+ */
 .icon_home:hover {
-  /* background-color: var(--blue-light);
-  border-color: var(--white); */
-
-  background: rgba(255, 255, 255, 0.13);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 0 6px 3px rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 8px rgba(17, 17, 17, 0.12);
 }
 .icon_home:active {
-  background: rgba(88, 135, 201, 0.13);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  /* background-color: var(--blue-light); */
-  fill: var(--blue);
+  background-color: var(--blue-light);
+  fill: var(--blue-dark);
   border-color: transparent;
+  box-shadow: none;
 }
 
 .page_link[data-place="header"]:hover {
-  /* background-color: var(--blue-light);
-  border-color: var(--white); */
-
-  background: rgba(255, 255, 255, 0.13);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 0 6px 3px rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 8px rgba(17, 17, 17, 0.12);
 }
 .page_link[data-place="header"]:active {
-  background: rgba(88, 135, 201, 0.13);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  /* background-color: var(--blue-light); */
+  background-color: var(--blue-light);
   border-color: transparent;
+  box-shadow: none;
 }
 @media (width >= 48rem) {
   .navigation[data-place="header"] {
