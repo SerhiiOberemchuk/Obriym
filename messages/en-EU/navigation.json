@@ -1,0 +1,18 @@
+{
+  "navigation": {
+    "about": "About",
+    "contact": "Contact",
+    "crmDevelopment": "CRM Development",
+    "ecommerceDevelopment": "E-commerce Development",
+    "home": "Home",
+    "linkHome": "Link to home page",
+    "linkLabel": "Link to section",
+    "navTitle": "Main navigation",
+    "portfolio": "Portfolio",
+    "products": "Products",
+    "saasDevelopment": "SaaS Development",
+    "services": "Services",
+    "team": "Team",
+    "webDevelopment": "Web Development"
+  }
+}

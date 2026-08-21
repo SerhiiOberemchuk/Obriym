@@ -1,0 +1,12 @@
+{
+  "alert": {
+    "failed": {
+      "message": "Qualcosa è andato storto. Per favore riprova.",
+      "title": "Ops!"
+    },
+    "success": {
+      "message": "Il tuo messaggio è stato inviato con successo. Ti contatteremo a breve!",
+      "title": "Fantastico!"
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "ecommerceDevelopment": {
+    "meta": {
+      "title": "E-commerce Development | Shopify and custom online stores | {name}",
+      "description": "E-commerce development on Shopify and custom storefronts: SEO-ready catalog structure, fast product pages, clean checkout and reliable revenue tracking."
+    },
+    "schema": {
+      "name": "E-commerce Development Services",
+      "serviceType": "E-commerce development"
+    },
+    "h1": "E-commerce Development for Stores That Have to Grow",
+    "lead": "We build online stores on Shopify and custom stacks with a catalog structure search engines can read, product pages that load fast, and a checkout that does not lose people at the last step.",
+    "intro": "Most stores do not lose money on design. They lose it on category pages that never rank, filters that generate thousands of duplicate URLs, and analytics nobody trusts when it is time to scale spend.",
+    "offer": {
+      "title": "What we deliver",
+      "items": [
+        "Catalog and category architecture with a URL strategy that stays clean as the range grows.",
+        "Product pages built for both conversion and search: structured data, real stock and delivery signals, fast media.",
+        "Checkout, payment and shipping integrations that fit how you actually fulfil orders.",
+        "Marketplace and ERP connections — Amazon, supplier catalogs, accounting and stock synchronisation.",
+        "Migrations from an existing store with the catalog, content and earned rankings carried across."
+      ]
+    },
+    "audience": {
+      "title": "Who this is for",
+      "items": [
+        "Stores that get traffic to the homepage but almost none to category and product pages.",
+        "Brands selling across several countries and needing per-language catalogs done correctly.",
+        "Retailers whose growth is capped by manual order, stock or supplier processes."
+      ]
+    },
+    "process": {
+      "title": "How we work",
+      "steps": [
+        {
+          "title": "Catalog and demand analysis",
+          "text": "We look at how people search for your products and shape categories, filters and naming around that, instead of around the internal structure of your supplier's price list."
+        },
+        {
+          "title": "Storefront design",
+          "text": "Templates for category, product, cart and checkout, each designed for the decision the shopper makes on that step."
+        },
+        {
+          "title": "Build and integrations",
+          "text": "Storefront development, payment and delivery providers, stock synchronisation and the tracking layer behind it all."
+        },
+        {
+          "title": "Launch and optimisation",
+          "text": "Redirects, indexing validation, checkout testing under real conditions, then iteration on the steps where orders are actually being lost."
+        }
+      ]
+    },
+    "outcomes": {
+      "title": "What you get",
+      "text": "A store where product discovery, page speed and checkout all pull in the same direction, and where you can prove which channel produced which order.",
+      "items": [
+        "Category and filter pages that can rank instead of being blocked or duplicated.",
+        "Fast product pages on mobile, where most retail traffic converts or leaves.",
+        "A checkout measured step by step, so drop-off is a number rather than a guess.",
+        "Revenue attribution you can trust before you increase ad spend."
+      ]
+    },
+    "stack": {
+      "title": "Technology",
+      "text": "Shopify when speed to market and a proven checkout matter most; a custom Next.js storefront when business logic, pricing rules or integrations outgrow what a platform allows. We are honest about which one your case needs."
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "items": [
+        {
+          "q": "Do you work only with Shopify?",
+          "a": "No. Shopify is the right answer for many stores, but when pricing logic, B2B rules or deep integrations get complex, a custom storefront costs less over time. We recommend based on your case, not our preference."
+        },
+        {
+          "q": "How much does an online store cost?",
+          "a": "A well-built Shopify store typically starts around 4 000 EUR; a custom storefront with integrations around 12 000 EUR. Catalog size and the number of external systems drive the difference."
+        },
+        {
+          "q": "Can you migrate our current store?",
+          "a": "Yes. We move the catalog, content and customer data, and map every old URL to its new address so the traffic the store already earns follows it."
+        },
+        {
+          "q": "Can you connect the store to marketplaces and our supplier catalogs?",
+          "a": "Yes. Stock, prices and orders can synchronise both ways, which is usually where the manual work disappears and the margin comes back."
+        },
+        {
+          "q": "Will the store be ready for several languages?",
+          "a": "Yes. Each language gets its own URLs, its own translated category slugs and correct hreflang, so markets do not compete with each other in search results."
+        },
+        {
+          "q": "Do you handle ongoing support after launch?",
+          "a": "Yes. Most clients stay on a monthly arrangement covering monitoring, small changes and the seasonal work a store needs before peak periods."
+        }
+      ]
+    },
+    "cta": "Plan your store build",
+    "links": {
+      "title": "Related pages:"
+    }
+  }
+}

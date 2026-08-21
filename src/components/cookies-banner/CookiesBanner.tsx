@@ -7,7 +7,8 @@ import { COOKIES_LOCAL_STORAGE, CookiesTypes } from "~/types/cookies.type";
 import { disableAnalitics, loadAnalytics } from "~/lib/loadGoogleAnalitics";
 import { useCookiesBanner } from "~/context/app-context";
 import { type Locale } from "~/i18n/routing";
-import { localizedPath, SITE } from "~/lib/seo";
+import { getPathname } from "~/i18n/navigation";
+import { SITE } from "~/lib/seo";
 
 export default function CookiesBanner() {
   const t = useTranslations();
@@ -18,7 +19,7 @@ export default function CookiesBanner() {
     analyticsCookies: false,
   });
   const locale = useLocale() as Locale;
-  const cookiesPath = localizedPath("/cookies-policy/", locale);
+  const cookiesPath = getPathname({ href: "/cookies-policy/", locale });
   const { isCookiesBannerVisible, setCookiesBannerVisible } = useCookiesBanner();
 
   // Consent lives in localStorage, which only exists on the client, so the

@@ -46,14 +46,14 @@ const loadProject = async (slug: string, locale: ProjectLocale): Promise<LoadedP
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale, slug } = await params;
   const t = await getTranslations({ locale });
-  const pathname = `/projects/${slug}/`;
+  const href = { pathname: "/projects/[slug]/", params: { slug } } as const;
   const { project } = await loadProject(slug, locale as ProjectLocale);
 
   if (!project) {
     return buildMetadata({
       title: t("projects.detail.notFound.title", { name: SITE_NAME }),
       description: t("projects.detail.notFound.text"),
-      pathname,
+      href,
       locale: locale as Locale,
       noindex: true,
     });
@@ -62,7 +62,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return buildMetadata({
     title: `${project.localizedTitle} | ${t("projects.detail.head.suffix", { name: SITE_NAME })}`,
     description: project.localizedDescription,
-    pathname,
+    href,
     locale: locale as Locale,
     image: project.image_src,
     type: "article",

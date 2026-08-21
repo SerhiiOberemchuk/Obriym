@@ -1,5 +1,6 @@
 import { useLocale, useTranslations } from "next-intl";
-import { Link } from "~/i18n/navigation";
+import { Link, homeSectionHref } from "~/i18n/navigation";
+import type { Locale } from "~/i18n/routing";
 import styles from "./products-page.module.css";
 
 export type ProductPageKind = "overview" | "crm" | "tools";
@@ -24,7 +25,7 @@ export default function ProductsPage({ kind }: { kind: ProductPageKind }) {
   const productsPath = "/products/";
   const crmPath = "/products/obriym-crm/";
   const toolsPath = "/products/obriym-tools/";
-  const contactPath = "/#contact";
+  const contactPath = homeSectionHref("contact", lang as Locale);
   const crmUrl = externalProductUrl("crm", lang);
   const toolsUrl = externalProductUrl("tools", lang);
 
@@ -121,12 +122,12 @@ export default function ProductsPage({ kind }: { kind: ProductPageKind }) {
               <h2>{t("products.overview.cta.title")}</h2>
               <p>{t("products.overview.cta.text")}</p>
             </div>
-            <Link
+            <a
               className={`${styles["product-button"]} ${styles["product-button--primary"]}`}
               href={contactPath}
             >
               {t("products.overview.cta.button")}
-            </Link>
+            </a>
           </section>
         </div>
       </section>
@@ -157,9 +158,9 @@ export default function ProductsPage({ kind }: { kind: ProductPageKind }) {
               >
                 {t("products.crm.cta")} ↗
               </a>
-              <Link className={styles["product-button"]} href={contactPath}>
+              <a className={styles["product-button"]} href={contactPath}>
                 {t("products.common.contact")}
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -336,7 +337,7 @@ export default function ProductsPage({ kind }: { kind: ProductPageKind }) {
           <span>{t("products.common.related")}:</span>
           <Link href={productsPath}>{t("products.common.allProducts")}</Link>
           <Link href="/ecommerce-development/">{t("products.common.ecommerce")}</Link>
-          <Link href="/seo-optimization/">{t("products.common.seo")}</Link>
+          <Link href="/crm-development/">{t("navigation.crmDevelopment")}</Link>
         </nav>
       </div>
     </section>

@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return buildMetadata({
     title: t("app.head.legal.title"),
     description: t("app.head.legal.description"),
-    pathname: PATHNAME,
+    href: PATHNAME,
     locale: locale as Locale,
   });
 }

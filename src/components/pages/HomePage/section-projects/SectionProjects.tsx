@@ -85,7 +85,7 @@ const CarouselComponent = async ({
                   <article>
                     <h3 className="sr-only">{title}</h3>
                     <Link
-                      href={localizedProject.detailPath}
+                      href={localizedProject.detailHref}
                       aria-label={`link to project ${item.titleEN}`}
                       className="link_project"
                     >
@@ -120,7 +120,7 @@ const CarouselComponent = async ({
                           "@context": "https://schema.org",
                           "@type": "CreativeWork",
                           name: title,
-                          url: canonicalUrl(localizedProject.detailPath, locale),
+                          url: canonicalUrl(localizedProject.detailHref, locale),
                           description: description,
                           image: item.image_src,
                           inLanguage: locale,

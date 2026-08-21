@@ -1,0 +1,102 @@
+{
+  "saasDevelopment": {
+    "meta": {
+      "title": "SaaS Development | From MVP to a product that scales | {name}",
+      "description": "SaaS product development: MVP in weeks, multi-tenant architecture, subscriptions and billing, and the analytics you need to prove the product works."
+    },
+    "schema": {
+      "name": "SaaS Product Development",
+      "serviceType": "SaaS development"
+    },
+    "h1": "SaaS Development — From First Version to a Product That Scales",
+    "lead": "We build web products end to end: an MVP narrow enough to launch quickly, then the architecture, billing and analytics a real subscription business needs.",
+    "intro": "Most early SaaS projects fail on one of two extremes — a prototype so rough nobody pays for it, or a year spent building features before a single user is asked what they want. We aim at the narrow path between them.",
+    "offer": {
+      "title": "What we build",
+      "items": [
+        "MVPs scoped to one job the product must do well, shipped to real users fast.",
+        "Multi-tenant architecture with organisations, roles and permissions designed in from the start.",
+        "Subscriptions and billing: plans, trials, upgrades, invoices and failed-payment handling.",
+        "Onboarding flows that get a new account to its first result without a call.",
+        "Product analytics and event tracking, so retention and activation are measured rather than assumed.",
+        "Public APIs, webhooks and integrations for the tools your customers already run."
+      ]
+    },
+    "audience": {
+      "title": "Who this is for",
+      "items": [
+        "Founders with a validated problem and no technical team to build the first version.",
+        "Agencies and service businesses turning a proven internal tool into a product they can sell.",
+        "Existing products where the original prototype can no longer carry new customers."
+      ]
+    },
+    "process": {
+      "title": "How we work",
+      "steps": [
+        {
+          "title": "Scope and cut",
+          "text": "We define the one job the first version must do, and are deliberate about what is deferred. Most of the value of this stage is in what we agree not to build."
+        },
+        {
+          "title": "MVP build",
+          "text": "A working product with the core flow, authentication, billing and analytics — enough to charge money and learn from real usage."
+        },
+        {
+          "title": "Launch and measure",
+          "text": "Release to first users, watch activation and retention, and let the data decide what is built next."
+        },
+        {
+          "title": "Scale",
+          "text": "Performance work, deeper permissions, integrations and the operational tooling a growing customer base demands."
+        }
+      ]
+    },
+    "outcomes": {
+      "title": "What you get",
+      "text": "A product you can sell, instrumented well enough to know whether it is working, on a codebase that will not need throwing away at the first sign of growth.",
+      "items": [
+        "A live product taking payments, not a prototype waiting for one more feature.",
+        "Architecture that supports the second and hundredth customer without a rewrite.",
+        "Activation and retention visible from week one.",
+        "Full ownership of the code, the data and the infrastructure accounts."
+      ]
+    },
+    "stack": {
+      "title": "Technology",
+      "text": "Next.js and TypeScript with PostgreSQL, deployed on Vercel or your own cloud, with Stripe for subscriptions. Deliberately ordinary choices: hiring for them is easy and none of them will trap you."
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "items": [
+        {
+          "q": "How long does an MVP take?",
+          "a": "Typically 8 to 12 weeks for a product that can take real payments. Anything promised much faster is usually a demo, and anything much slower has a scoping problem."
+        },
+        {
+          "q": "How much does it cost to build a SaaS product?",
+          "a": "An MVP with authentication, the core flow and billing generally starts around 15 000 EUR. We quote in stages, so you can stop or change direction after each one."
+        },
+        {
+          "q": "Can you take over a product someone else started?",
+          "a": "Yes. We begin with an audit of the codebase and give you an honest assessment — including the cases where continuing costs more than restarting."
+        },
+        {
+          "q": "Do you handle subscriptions and payments?",
+          "a": "Yes. Plans, trials, upgrades and downgrades, invoicing, VAT handling and failed-payment recovery — the parts that quietly cost revenue when they are done badly."
+        },
+        {
+          "q": "Can you work with our own developers?",
+          "a": "Yes. We often build the first version and hand it over, or work alongside an in-house team with clear ownership of separate areas."
+        },
+        {
+          "q": "Who owns the product?",
+          "a": "You do — code, database and infrastructure accounts. We build in your repository and your cloud from the first day."
+        }
+      ]
+    },
+    "cta": "Discuss your product",
+    "links": {
+      "title": "Related pages:"
+    }
+  }
+}

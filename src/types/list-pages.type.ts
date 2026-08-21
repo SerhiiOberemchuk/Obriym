@@ -7,5 +7,6 @@ export type Pages =
   | "contact"
   | "faq"
   | "web-development"
-  | "seo-optimization"
-  | "ecommerce-development";
+  | "ecommerce-development"
+  | "crm-development"
+  | "saas-development";

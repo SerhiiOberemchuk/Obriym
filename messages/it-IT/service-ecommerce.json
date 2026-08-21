@@ -1,0 +1,101 @@
+{
+  "ecommerceDevelopment": {
+    "meta": {
+      "title": "Sviluppo e-commerce | Shopify e negozi online su misura | {name}",
+      "description": "Sviluppo e-commerce su Shopify e piattaforme su misura: catalogo ottimizzato SEO, schede prodotto veloci, checkout lineare e dati di vendita affidabili."
+    },
+    "schema": {
+      "name": "Servizi di sviluppo e-commerce",
+      "serviceType": "E-commerce development"
+    },
+    "h1": "Realizzazione e-commerce per negozi online che devono crescere",
+    "lead": "Realizziamo negozi online su Shopify e su stack su misura: un catalogo che i motori di ricerca sanno leggere, schede prodotto che caricano in fretta e un checkout che non perde le persone all’ultimo passaggio.",
+    "intro": "La maggior parte dei negozi online non perde soldi per colpa del design. Li perde per categorie che non si posizionano mai, filtri che generano migliaia di URL duplicati e dati di cui nessuno si fida quando è il momento di alzare gli investimenti.",
+    "offer": {
+      "title": "Cosa comprende il nostro sviluppo e-commerce",
+      "items": [
+        "Architettura di catalogo e categorie con una strategia di URL che resta pulita anche quando la gamma cresce.",
+        "Schede prodotto pensate insieme per la conversione e per la ricerca: dati strutturati, disponibilità e tempi di consegna reali, immagini leggere.",
+        "Integrazioni di checkout, pagamenti e spedizioni allineate al modo in cui evadi davvero gli ordini.",
+        "Collegamenti a marketplace ed ERP: Amazon, cataloghi dei fornitori, contabilità e sincronizzazione delle giacenze.",
+        "Migrazioni da un negozio esistente, portando con sé catalogo, contenuti e posizionamento già conquistato."
+      ]
+    },
+    "audience": {
+      "title": "A chi è rivolto",
+      "items": [
+        "Negozi che ricevono traffico sulla home ma quasi nessuna visita sulle pagine categoria e prodotto.",
+        "Brand che vendono in più Paesi e hanno bisogno di cataloghi per lingua impostati correttamente.",
+        "Rivenditori la cui crescita è frenata da processi manuali su ordini, giacenze o fornitori."
+      ]
+    },
+    "process": {
+      "title": "Come lavoriamo",
+      "steps": [
+        {
+          "title": "Analisi del catalogo e della domanda",
+          "text": "Guardiamo come le persone cercano i tuoi prodotti e modelliamo categorie, filtri e nomenclatura su quello, invece che sulla struttura interna del listino del tuo fornitore."
+        },
+        {
+          "title": "Design dello storefront",
+          "text": "Template per categoria, prodotto, carrello e checkout, ciascuno progettato per la decisione che l’utente prende in quel passaggio."
+        },
+        {
+          "title": "Sviluppo e integrazioni",
+          "text": "Sviluppo dello storefront, provider di pagamento e spedizione, sincronizzazione delle giacenze e tutto il livello di tracciamento che ci sta sotto."
+        },
+        {
+          "title": "Lancio e ottimizzazione",
+          "text": "Redirect, verifica dell’indicizzazione, test del checkout in condizioni reali e poi iterazione sui passaggi in cui gli ordini si perdono davvero."
+        }
+      ]
+    },
+    "outcomes": {
+      "title": "Cosa ottieni",
+      "text": "Un negozio online in cui ricerca dei prodotti, velocità delle pagine e checkout spingono nella stessa direzione, e in cui puoi dimostrare quale canale ha generato quale ordine.",
+      "items": [
+        "Pagine categoria e filtro che possono posizionarsi, invece di essere bloccate o duplicate.",
+        "Schede prodotto veloci su mobile, dove la maggior parte del traffico retail converte o se ne va.",
+        "Un checkout misurato passaggio per passaggio: l’abbandono diventa un numero, non un’ipotesi.",
+        "Un’attribuzione dei ricavi di cui fidarti prima di aumentare la spesa pubblicitaria."
+      ]
+    },
+    "stack": {
+      "title": "Tecnologie",
+      "text": "Shopify quando contano soprattutto la rapidità di lancio e un checkout collaudato; uno storefront Next.js su misura quando logiche di business, regole di prezzo o integrazioni superano ciò che una piattaforma consente. Ti diciamo con onestà quale delle due serve al tuo caso."
+    },
+    "faq": {
+      "title": "Domande frequenti",
+      "items": [
+        {
+          "q": "Lavorate solo con Shopify?",
+          "a": "No. Per molti negozi Shopify è la risposta giusta, ma quando logiche di prezzo, regole B2B o integrazioni profonde si complicano, uno storefront su misura costa meno nel tempo. Consigliamo in base al tuo caso, non alle nostre preferenze."
+        },
+        {
+          "q": "Quanto costa un negozio online?",
+          "a": "Un e-commerce Shopify fatto bene parte in genere da circa 4.000 EUR; uno storefront su misura con integrazioni da circa 12.000 EUR. La differenza la fanno l’ampiezza del catalogo e il numero di sistemi esterni da collegare."
+        },
+        {
+          "q": "Potete migrare il nostro negozio attuale?",
+          "a": "Sì. Spostiamo catalogo, contenuti e dati dei clienti e mappiamo ogni vecchio URL sul nuovo indirizzo, così il traffico che il negozio si è già guadagnato lo segue."
+        },
+        {
+          "q": "Potete collegare il negozio ai marketplace e ai cataloghi dei fornitori?",
+          "a": "Sì. Giacenze, prezzi e ordini possono sincronizzarsi in entrambe le direzioni: di solito è lì che il lavoro manuale sparisce e il margine torna."
+        },
+        {
+          "q": "Il negozio sarà pronto per più lingue?",
+          "a": "Sì. Ogni lingua ha i suoi URL, i suoi slug di categoria tradotti e l’hreflang corretto, così i mercati non competono tra loro nei risultati di ricerca."
+        },
+        {
+          "q": "Seguite anche l’assistenza dopo il lancio?",
+          "a": "Sì. La maggior parte dei clienti resta con un accordo mensile che copre monitoraggio, piccole modifiche e il lavoro stagionale di cui un negozio ha bisogno prima dei periodi di picco."
+        }
+      ]
+    },
+    "cta": "Pianifichiamo il tuo e-commerce",
+    "links": {
+      "title": "Pagine correlate:"
+    }
+  }
+}

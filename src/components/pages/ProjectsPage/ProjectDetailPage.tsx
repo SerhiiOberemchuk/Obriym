@@ -20,12 +20,12 @@ const PROJECTS_PATH = "/projects/";
 export default function ProjectDetailPage({ project, relatedProjects }: ProjectDetailPageProps) {
   const t = useTranslations();
   const locale = useLocale() as Locale;
-  const canonical = canonicalUrl(project.detailPath, locale);
+  const canonical = canonicalUrl(project.detailHref, locale);
   const breadcrumbSchema = buildBreadcrumbList(
     [
-      { name: t("navigation.home"), pathname: "/" },
-      { name: t("home.sectionProject.title"), pathname: PROJECTS_PATH },
-      { name: project.localizedTitle, pathname: project.detailPath },
+      { name: t("navigation.home"), href: "/" },
+      { name: t("home.sectionProject.title"), href: PROJECTS_PATH },
+      { name: project.localizedTitle, href: project.detailHref },
     ],
     locale,
   );
@@ -157,7 +157,7 @@ export default function ProjectDetailPage({ project, relatedProjects }: ProjectD
               {relatedProjects.map(related => (
                 <li key={related.slug}>
                   <article className={styles.project_related_card}>
-                    <Link href={related.detailPath} className={styles.project_related_link}>
+                    <Link href={related.detailHref} className={styles.project_related_link}>
                       <img
                         src={related.image_src}
                         alt={related.localizedTitle}

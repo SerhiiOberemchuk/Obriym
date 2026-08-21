@@ -1,4 +1,4 @@
-import { SITE, SITE_NAME, canonicalUrl } from "./seo";
+import { SITE, SITE_NAME, canonicalUrl, type Href } from "./seo";
 import type { Locale } from "~/i18n/routing";
 
 export interface SoftwareProductSchemaOptions {
@@ -11,8 +11,7 @@ export interface SoftwareProductSchemaOptions {
 
 export interface BreadcrumbItem {
   name: string;
-  /** Path without the locale prefix. */
-  pathname: string;
+  href: Href;
 }
 
 export const buildBreadcrumbList = (items: BreadcrumbItem[], locale: Locale) => ({
@@ -22,20 +21,19 @@ export const buildBreadcrumbList = (items: BreadcrumbItem[], locale: Locale) => 
     "@type": "ListItem",
     position: index + 1,
     name: item.name,
-    item: canonicalUrl(item.pathname, locale),
+    item: canonicalUrl(item.href, locale),
   })),
 });
 
 export interface ServiceSchemaOptions {
   name: string;
   description: string;
-  /** Service page path without the locale prefix. */
-  pathname: string;
+  href: Href;
   serviceType: string;
 }
 
 export const buildServiceSchema = (
-  { name, description, pathname, serviceType }: ServiceSchemaOptions,
+  { name, description, href, serviceType }: ServiceSchemaOptions,
   locale: Locale,
 ) => ({
   "@context": "https://schema.org",
@@ -43,13 +41,27 @@ export const buildServiceSchema = (
   name,
   description,
   serviceType,
-  url: canonicalUrl(pathname, locale),
+  url: canonicalUrl(href, locale),
   provider: {
     "@type": "Organization",
     name: `${SITE_NAME} Web Agency`,
     url: SITE,
   },
   areaServed: "Europe",
+});
+
+/** FAQPage markup, which lets the questions surface directly in search results. */
+export const buildFaqSchema = (items: Array<{ q: string; a: string }>) => ({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: items.map(item => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
 });
 
 export const buildSoftwareProductSchema = ({
@@ -82,29 +94,10 @@ export const buildSoftwareProductSchema = ({
     : {}),
 });
 
-/**
- * JSON-LD for a service landing page: a Service entity plus a
- * BreadcrumbList (Home -> Service).
- */
-export const buildServicePageSchemas = (
-  options: { homeName: string; service: ServiceSchemaOptions },
-  locale: Locale,
-) => [
-  buildServiceSchema(options.service, locale),
-  buildBreadcrumbList(
-    [
-      { name: options.homeName, pathname: "/" },
-      { name: options.service.name, pathname: options.service.pathname },
-    ],
-    locale,
-  ),
-];
-
 export const buildProductsOverviewSchemas = (
   options: {
     homeName: string;
     productsName: string;
-    pathname: string;
     description: string;
   },
   locale: Locale,
@@ -114,7 +107,7 @@ export const buildProductsOverviewSchemas = (
     "@type": "CollectionPage",
     name: options.productsName,
     description: options.description,
-    url: canonicalUrl(options.pathname, locale),
+    url: canonicalUrl("/products/", locale),
     mainEntity: {
       "@type": "ItemList",
       itemListElement: [
@@ -122,21 +115,21 @@ export const buildProductsOverviewSchemas = (
           "@type": "ListItem",
           position: 1,
           name: "Obriym CRM",
-          url: canonicalUrl(`${options.pathname}/obriym-crm/`, locale),
+          url: canonicalUrl("/products/obriym-crm/", locale),
         },
         {
           "@type": "ListItem",
           position: 2,
           name: "Obriym Tools",
-          url: canonicalUrl(`${options.pathname}/obriym-tools/`, locale),
+          url: canonicalUrl("/products/obriym-tools/", locale),
         },
       ],
     },
   },
   buildBreadcrumbList(
     [
-      { name: options.homeName, pathname: "/" },
-      { name: options.productsName, pathname: options.pathname },
+      { name: options.homeName, href: "/" },
+      { name: options.productsName, href: "/products/" },
     ],
     locale,
   ),
@@ -146,18 +139,17 @@ export const buildProductPageSchemas = (
   options: {
     homeName: string;
     productsName: string;
-    productsPath: string;
     product: SoftwareProductSchemaOptions;
-    productPath: string;
+    productHref: Href;
   },
   locale: Locale,
 ) => [
   buildSoftwareProductSchema(options.product),
   buildBreadcrumbList(
     [
-      { name: options.homeName, pathname: "/" },
-      { name: options.productsName, pathname: options.productsPath },
-      { name: options.product.name, pathname: options.productPath },
+      { name: options.homeName, href: "/" },
+      { name: options.productsName, href: "/products/" },
+      { name: options.product.name, href: options.productHref },
     ],
     locale,
   ),

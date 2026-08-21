@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { usePathname } from "~/i18n/navigation";
+import { getPathname, usePathname } from "~/i18n/navigation";
 import { locales, type Locale } from "~/i18n/routing";
-import { localizedPath } from "~/lib/seo";
 import styles from "./cl-styles.module.css";
 import IconSelected from "~/assets/icons/icon_selected.svg";
 import IconArrow from "~/assets/icons/icon_arrow_down.svg";
@@ -37,6 +37,7 @@ export function ChangeLocale({ place }: { place: "mob-menu" | "header" }) {
   const locale = useLocale() as Locale;
   // Unprefixed path, so the same page can be rebuilt under any locale.
   const pathname = usePathname();
+  const params = useParams();
 
   useEffect(() => {
     if (!isOpen) return;
@@ -92,7 +93,13 @@ export function ChangeLocale({ place }: { place: "mob-menu" | "header" }) {
             <a
               data-active={value === locale ? "true" : "false"}
               className={styles.cl_link}
-              href={localizedPath(pathname, value)}
+              href={getPathname({
+                // @ts-expect-error -- TypeScript validates that only known `params`
+                // are used with a given `pathname`. The two always match for the
+                // current route, so the runtime check can be skipped.
+                href: { pathname, params },
+                locale: value,
+              })}
               role="menuitem"
               aria-current={value === locale ? "true" : undefined}
             >

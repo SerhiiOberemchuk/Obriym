@@ -9,7 +9,8 @@ export type LocalizedProject = Project & {
   localizedCategory: string;
   localizedClient: string;
   localizedFeatures: string[];
-  detailPath: string;
+  /** Typed route for the project page, resolved per locale by next-intl. */
+  detailHref: { pathname: "/projects/[slug]/"; params: { slug: string } };
 };
 
 export const getProjectsApiBase = () =>
@@ -59,7 +60,7 @@ export const getLocalizedProject = (
     localizedCategory,
     localizedClient,
     localizedFeatures,
-    detailPath: `/projects/${project.slug}`,
+    detailHref: { pathname: "/projects/[slug]/", params: { slug: project.slug } },
   };
 };
 
