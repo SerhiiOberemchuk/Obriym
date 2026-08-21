@@ -1,0 +1,59 @@
+{
+  "team": {
+    "aria": {
+      "carousel": "Carosello dei membri del team",
+      "linkedin": "Profilo LinkedIn di {name}",
+      "slider": {
+        "button_next": "Slide successiva",
+        "button_prev": "Slide precedente",
+        "dots_btn": "Navigazione tra le slide",
+        "dots_current": "Slide {current} di {total}",
+        "plus_btn": "Maggiori informazioni su {name}"
+      }
+    },
+    "hero": {
+      "description": "Scopri il team OBRIYM: strategist, designer e sviluppatori che realizzano siti e web app veloci e SEO-ready per brand internazionali.",
+      "title": {
+        "line1": "Il nostro team",
+        "line2": "è il miglior",
+        "line3": "prodotto che abbiamo",
+        "line4": "creato insieme"
+      }
+    },
+    "member": {
+      "ganna_kovchyk": {
+        "description1": "Ganna è una sviluppatrice Full Stack che lavora sia sul front-end che sul back-end, con attenzione a funzionalità, prestazioni e affidabilità.",
+        "description2": "Fuori dal lavoro ama il surf, la natura e la libertà - nel codice, nella vita e nel pensiero.",
+        "image_alt": "Foto di Ganna Kovchyk",
+        "linkedin": "Profilo LinkedIn di Ganna Kovchyk",
+        "name": "Ganna Kovchyk",
+        "role": "Sviluppatrice Full Stack"
+      },
+      "olga_nazarenko": {
+        "description1": "Olga è una designer UX/UI che valorizza struttura e pensiero sistemico, concentrandosi su prodotti utili e ben progettati.",
+        "description2": "Fuori dal lavoro ama esplorare nuove idee e osservare come design e tecnologia migliorano la vita quotidiana.",
+        "image_alt": "Foto di Olga Nazarenko",
+        "linkedin": "Profilo LinkedIn di Olga Nazarenko",
+        "name": "Olga Nazarenko",
+        "role": "Designer UX/UI"
+      },
+      "serhii_oberemchuk": {
+        "description1": "Serhii è un leader strategico con una visione chiara di come design, tecnologia e business si incontrino. Come CEO e co-fondatore, porta oltre dieci anni di esperienza.",
+        "description2": "Prima di lanciare l'agenzia, Serhii ha guidato iniziative di trasformazione digitale in diversi settori.",
+        "image_alt": "Foto di Serhii Oberemchuk",
+        "linkedin": "Profilo LinkedIn di Serhii Oberemchuk",
+        "name": "Serhii Oberemchuk",
+        "role": "Fondatore e CEO"
+      },
+      "svitlana_kiriiaka": {
+        "description1": "Svitlana è una designer UX/UI che valorizza struttura e pensiero sistemico, concentrandosi su prodotti chiari, utili e coerenti.",
+        "description2": "Fuori dal lavoro ama esplorare nuove idee e restare curiosa verso il rapporto tra design e tecnologia.",
+        "image_alt": "Foto di Svitlana Kiriiaka",
+        "linkedin": "Profilo LinkedIn di Svitlana Kiriiaka",
+        "name": "Svitlana Kiriiaka",
+        "role": "Designer UX/UI"
+      }
+    },
+    "title": "Il nostro team"
+  }
+}

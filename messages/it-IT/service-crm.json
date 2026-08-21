@@ -1,0 +1,102 @@
+{
+  "crmDevelopment": {
+    "meta": {
+      "title": "Sviluppo CRM su misura | Automazione dei processi aziendali | {name}",
+      "description": "Sviluppo CRM su misura per vendite, ordini e gestione clienti: costruito sul tuo processo reale, integrato con i tuoi strumenti e di tua proprietà."
+    },
+    "schema": {
+      "name": "Sviluppo CRM su misura",
+      "serviceType": "CRM development"
+    },
+    "h1": "Sviluppo CRM su misura per team che hanno superato i fogli di calcolo",
+    "lead": "Costruiamo CRM e sistemi interni attorno al modo in cui la tua azienda lavora davvero: lead, trattative, ordini, attività e vendite ricorrenti in un unico posto, integrati con gli strumenti che il team già usa.",
+    "intro": "I CRM preconfezionati falliscono sempre per le stesse due ragioni: impongono un processo che non è il tuo e il costo delle licenze cresce insieme al team. Un CRM personalizzato ribalta entrambe le cose: si adatta al processo ed è un asset di tua proprietà.",
+    "offer": {
+      "title": "Cosa realizziamo",
+      "items": [
+        "Pipeline di vendita che rispecchiano le tue fasi reali, con i campi e le regole di cui i commerciali hanno bisogno, non un template generico.",
+        "Flussi di ordine ed evasione che collegano la vendita a magazzino, spedizione e fatturazione.",
+        "Accessi basati sui ruoli: un commerciale, un contabile e un titolare vedono esattamente ciò che devono vedere.",
+        "Automazione dei processi aziendali ripetitivi: cambi di stato, promemoria, generazione di documenti, notifiche.",
+        "Dashboard e report che rispondono alle domande che ti fai davvero il lunedì mattina.",
+        "Integrazioni con email, centralino, app di messaggistica, pagamenti, contabilità e i moduli del tuo sito."
+      ]
+    },
+    "audience": {
+      "title": "A chi è rivolto",
+      "items": [
+        "Team che gestiscono le vendite tra fogli di calcolo, chat e memoria, dove le trattative spariscono in silenzio.",
+        "Aziende che pagano una licenza per utente su un CRM che sfruttano per una minima parte, continuando a fare a mano le cose importanti.",
+        "Realtà con un processo davvero specifico — pianificazione degli interventi, prezzi B2B, approvazioni a più livelli — che non entra mai in un prodotto preconfezionato."
+      ]
+    },
+    "process": {
+      "title": "Come lavoriamo",
+      "steps": [
+        {
+          "title": "Mappatura del processo",
+          "text": "Ci sediamo con chi il lavoro lo fa davvero e mappiamo il flusso reale, eccezioni gestite a mano comprese. È questa fase a decidere se il sistema verrà usato o abbandonato."
+        },
+        {
+          "title": "Prototipo del flusso principale",
+          "text": "Una pipeline funzionante, in settimane e non in mesi. Il team la prova su trattative vere prima che costruiamo il resto."
+        },
+        {
+          "title": "Sviluppo e integrazioni",
+          "text": "Il sistema completo, collegato ai canali da cui lead e ordini già arrivano, con i dati migrati da qualunque strumento usi oggi."
+        },
+        {
+          "title": "Rilascio e supporto",
+          "text": "Formazione, un breve periodo in cui vecchio e nuovo processo convivono, poi sviluppo continuo man mano che l’azienda cambia."
+        }
+      ]
+    },
+    "outcomes": {
+      "title": "Cosa cambia",
+      "text": "Il risultato misurabile è tempo restituito al team e trattative che smettono di perdersi nelle crepe tra uno strumento e l’altro.",
+      "items": [
+        "Ogni lead arriva in un unico posto, con un responsabile e un passo successivo.",
+        "L’amministrazione ripetitiva la fa il sistema, non le tue persone migliori.",
+        "Numeri reali sulla conversione per fase, per commerciale e per fonte.",
+        "Nessuna licenza per utente che cresce a ogni nuova assunzione."
+      ]
+    },
+    "stack": {
+      "title": "Tecnologie",
+      "text": "Sviluppiamo con Next.js e TypeScript su PostgreSQL, con deploy sul tuo account cloud. Repository e database restano tuoi e il sistema può essere esteso da qualsiasi team competente — anche uno che non siamo noi."
+    },
+    "faq": {
+      "title": "Domande frequenti",
+      "items": [
+        {
+          "q": "Perché sviluppare un CRM invece di comprarne uno?",
+          "a": "Comprare ha senso quando il processo è standard e ti serve domani. Sviluppare ha senso quando il processo è il tuo vantaggio competitivo, quando i costi per utente si accumulano o quando il prodotto preconfezionato impone scorciatoie che costano più della licenza."
+        },
+        {
+          "q": "Quanto costa un CRM su misura?",
+          "a": "Un sistema funzionante che copre un processo chiave parte in genere da circa 6.000 EUR. Le piattaforme più ampie, con più ruoli e integrazioni profonde, partono da 15.000 EUR. Dopo non ci sono costi per utente."
+        },
+        {
+          "q": "Quanto tempo passa prima che il team possa usarlo?",
+          "a": "La prima pipeline funzionante entra in produzione di solito in 4-6 settimane. Rilasciamo presto di proposito, così il sistema prende forma dall’uso reale e non da ipotesi."
+        },
+        {
+          "q": "Potete migrare i nostri dati esistenti?",
+          "a": "Sì. Contatti, trattative, storico ordini e file vengono migrati dai fogli di calcolo o dal CRM attuale, con la mappatura concordata prima di spostare qualsiasi cosa."
+        },
+        {
+          "q": "Con che cosa può integrarsi?",
+          "a": "Email e centralino, Telegram e altre app di messaggistica, provider di pagamento, software di contabilità, marketplace e i moduli del tuo sito. Se un sistema ha un’API, si può collegare."
+        },
+        {
+          "q": "Che cosa succede se smettiamo di lavorare con voi?",
+          "a": "Non si rompe nulla. Il codice, il database e l’account di hosting sono tuoi. È esattamente il senso di costruire invece di affittare."
+        }
+      ]
+    },
+    "cta": "Parliamo del tuo CRM",
+    "links": {
+      "title": "Pagine correlate:"
+    }
+  }
+}

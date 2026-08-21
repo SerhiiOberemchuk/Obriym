@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
     ...buildMetadata({
       title: t("app.head.home.title", { name: "OBRIYM" }),
       description: t("app.head.home.description"),
-      pathname: "/",
+      href: "/",
       locale: locale as Locale,
     }),
     manifest: "/manifest.json",

@@ -1,0 +1,102 @@
+{
+  "saasDevelopment": {
+    "meta": {
+      "title": "Sviluppo SaaS | Dall’MVP a un prodotto che scala | {name}",
+      "description": "Sviluppo di prodotti SaaS: MVP in poche settimane, architettura multi-tenant, abbonamenti e fatturazione, più le analytics per dimostrare che funziona."
+    },
+    "schema": {
+      "name": "Sviluppo di prodotti SaaS",
+      "serviceType": "SaaS development"
+    },
+    "h1": "Sviluppo SaaS — dalla prima versione a un prodotto che scala",
+    "lead": "Costruiamo prodotti web dall’inizio alla fine: un MVP abbastanza circoscritto da lanciare in fretta, poi l’architettura, la fatturazione e le analytics che servono a un vero business in abbonamento.",
+    "intro": "Nello sviluppo di prodotti SaaS i progetti agli inizi falliscono quasi sempre su uno dei due estremi: un prototipo così grezzo che nessuno lo paga, oppure un anno passato ad aggiungere funzionalità prima di chiedere a un solo utente che cosa gli serve. Noi puntiamo alla via stretta che passa in mezzo.",
+    "offer": {
+      "title": "Cosa costruiamo",
+      "items": [
+        "MVP ridotti all’unica cosa che il prodotto deve fare bene, messi in mano a utenti reali in fretta.",
+        "Architettura multi-tenant con organizzazioni, ruoli e permessi previsti fin dall’inizio.",
+        "Abbonamenti e fatturazione: piani, prove gratuite, upgrade, fatture e gestione dei pagamenti falliti.",
+        "Flussi di onboarding che portano un nuovo account al primo risultato senza bisogno di una chiamata.",
+        "Product analytics e tracciamento degli eventi, così retention e attivazione si misurano invece di darle per scontate.",
+        "API pubbliche, webhook e integrazioni con gli strumenti che i tuoi clienti già usano."
+      ]
+    },
+    "audience": {
+      "title": "A chi è rivolto",
+      "items": [
+        "Founder con un problema validato e senza un team tecnico per costruire la prima versione.",
+        "Agenzie e aziende di servizi che vogliono trasformare uno strumento interno collaudato in un prodotto da vendere.",
+        "Prodotti già esistenti in cui il prototipo iniziale non regge più i nuovi clienti."
+      ]
+    },
+    "process": {
+      "title": "Come lavoriamo",
+      "steps": [
+        {
+          "title": "Perimetro e tagli",
+          "text": "Definiamo l’unica cosa che la prima versione deve fare e scegliamo con criterio che cosa rimandare. Gran parte del valore di questa fase sta in ciò che decidiamo di non costruire."
+        },
+        {
+          "title": "Sviluppo dell’MVP",
+          "text": "Un prodotto funzionante con il flusso principale, autenticazione, fatturazione e analytics: abbastanza per farsi pagare e imparare dall’uso reale."
+        },
+        {
+          "title": "Lancio e misurazione",
+          "text": "Rilascio ai primi utenti, attivazione e retention sotto osservazione, e sono i dati a decidere che cosa costruire dopo."
+        },
+        {
+          "title": "Crescita",
+          "text": "Lavoro sulle prestazioni, permessi più granulari, integrazioni e gli strumenti operativi che una base clienti in crescita richiede."
+        }
+      ]
+    },
+    "outcomes": {
+      "title": "Cosa ottieni",
+      "text": "Un prodotto che puoi vendere, strumentato abbastanza bene da sapere se sta funzionando, su una base di codice che non andrà buttata al primo segnale di crescita.",
+      "items": [
+        "Un prodotto vivo che incassa pagamenti, non un prototipo in attesa di un’altra funzionalità.",
+        "Un’architettura che regge il secondo cliente come il centesimo, senza riscrivere tutto.",
+        "Attivazione e retention visibili dalla prima settimana.",
+        "Piena proprietà del codice, dei dati e degli account infrastrutturali."
+      ]
+    },
+    "stack": {
+      "title": "Tecnologie",
+      "text": "Next.js e TypeScript con PostgreSQL, deploy su Vercel o sul tuo cloud, e Stripe per gli abbonamenti. Scelte volutamente ordinarie: trovare persone che le conoscono è facile e nessuna di queste ti intrappola."
+    },
+    "faq": {
+      "title": "Domande frequenti",
+      "items": [
+        {
+          "q": "Quanto tempo richiede un MVP?",
+          "a": "Di norma dalle 8 alle 12 settimane per un prodotto in grado di incassare pagamenti reali. Chi promette tempi molto più brevi di solito parla di una demo; tempi molto più lunghi segnalano un problema di perimetro."
+        },
+        {
+          "q": "Quanto costa sviluppare un prodotto SaaS?",
+          "a": "Un MVP con autenticazione, flusso principale e fatturazione parte in genere da circa 15.000 EUR. Preventiviamo per fasi, così dopo ognuna puoi fermarti o cambiare direzione."
+        },
+        {
+          "q": "Potete riprendere un prodotto iniziato da altri?",
+          "a": "Sì. Partiamo da un audit della base di codice e ti diamo una valutazione onesta, compresi i casi in cui proseguire costa più che ricominciare."
+        },
+        {
+          "q": "Gestite abbonamenti e pagamenti?",
+          "a": "Sì. Piani, prove gratuite, upgrade e downgrade, fatturazione, gestione dell’IVA e recupero dei pagamenti falliti: le parti che, fatte male, erodono i ricavi in silenzio."
+        },
+        {
+          "q": "Potete lavorare con i nostri sviluppatori?",
+          "a": "Sì. Spesso costruiamo la prima versione e la consegniamo, oppure affianchiamo un team interno con aree di competenza ben separate."
+        },
+        {
+          "q": "A chi appartiene il prodotto?",
+          "a": "A te: codice, database e account infrastrutturali. Sviluppiamo nel tuo repository e nel tuo cloud fin dal primo giorno."
+        }
+      ]
+    },
+    "cta": "Parliamo del tuo prodotto",
+    "links": {
+      "title": "Pagine correlate:"
+    }
+  }
+}

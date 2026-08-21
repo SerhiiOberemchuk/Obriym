@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return buildMetadata({
     title: t("products.tools.head.title"),
     description: t("products.tools.head.description"),
-    pathname: PATHNAME,
+    href: PATHNAME,
     locale: locale as Locale,
   });
 }
@@ -31,8 +31,7 @@ export default async function ObriymTools({ params }: PageProps) {
     {
       homeName: t("breadcrumb.home"),
       productsName: t("products.common.allProducts"),
-      productsPath: "/products/",
-      productPath: PATHNAME,
+      productHref: PATHNAME,
       product: {
         name: "Obriym Tools",
         description: t("products.tools.head.description"),

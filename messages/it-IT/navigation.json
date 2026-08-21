@@ -1,0 +1,18 @@
+{
+  "navigation": {
+    "about": "Chi siamo",
+    "contact": "Contatti",
+    "crmDevelopment": "Sviluppo CRM",
+    "ecommerceDevelopment": "Sviluppo E-commerce",
+    "home": "Home",
+    "linkHome": "Link alla home page",
+    "linkLabel": "Link alla sezione",
+    "navTitle": "Navigazione principale",
+    "portfolio": "Portfolio",
+    "products": "Prodotti",
+    "saasDevelopment": "Sviluppo SaaS",
+    "services": "Servizi",
+    "team": "Team",
+    "webDevelopment": "Sviluppo Web"
+  }
+}

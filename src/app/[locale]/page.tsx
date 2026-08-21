@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return buildMetadata({
     title: t("app.head.home.title", { name: "OBRIYM" }),
     description: t("app.head.home.description"),
-    pathname: "/",
+    href: "/",
     locale: locale as Locale,
   });
 }

@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return buildMetadata({
     title: t("app.head.team.title", { name: "OBRIYM" }),
     description: t("app.head.team.description"),
-    pathname: "/team/",
+    href: "/team/",
     locale: locale as Locale,
   });
 }
