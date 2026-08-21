@@ -50,6 +50,43 @@ const nextConfig: NextConfig = {
         destination: "/sitemap.xml",
         permanent: true,
       },
+
+      // The SEO service was retired. Its closest equivalent is web development,
+      // which still covers the technical side that page described.
+      { source: "/seo-optimization", destination: "/web-development/", permanent: true },
+      {
+        source: "/it-IT/seo-optimization",
+        destination: "/it-IT/sviluppo-siti-web/",
+        permanent: true,
+      },
+      {
+        source: "/uk-UA/seo-optimization",
+        destination: "/uk-UA/rozrobka-saitiv/",
+        permanent: true,
+      },
+
+      // Service slugs are localized now; the previous English-slug URLs were
+      // indexed under the locale prefixes and must keep resolving.
+      {
+        source: "/it-IT/web-development",
+        destination: "/it-IT/sviluppo-siti-web/",
+        permanent: true,
+      },
+      {
+        source: "/it-IT/ecommerce-development",
+        destination: "/it-IT/sviluppo-ecommerce/",
+        permanent: true,
+      },
+      {
+        source: "/uk-UA/web-development",
+        destination: "/uk-UA/rozrobka-saitiv/",
+        permanent: true,
+      },
+      {
+        source: "/uk-UA/ecommerce-development",
+        destination: "/uk-UA/rozrobka-internet-magazyniv/",
+        permanent: true,
+      },
     ];
   },
 

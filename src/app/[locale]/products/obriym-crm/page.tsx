@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return buildMetadata({
     title: t("products.crm.head.title"),
     description: t("products.crm.head.description"),
-    pathname: PATHNAME,
+    href: PATHNAME,
     locale: locale as Locale,
   });
 }
@@ -31,8 +31,7 @@ export default async function ObriymCrm({ params }: PageProps) {
     {
       homeName: t("breadcrumb.home"),
       productsName: t("products.common.allProducts"),
-      productsPath: "/products/",
-      productPath: PATHNAME,
+      productHref: PATHNAME,
       product: {
         name: "Obriym CRM",
         description: t("products.crm.head.description"),

@@ -1,0 +1,102 @@
+{
+  "crmDevelopment": {
+    "meta": {
+      "title": "Custom CRM Development | Sales and business process automation | {name}",
+      "description": "Custom CRM development for sales, orders and client operations: built around your real process, integrated with your tools, and owned entirely by you."
+    },
+    "schema": {
+      "name": "Custom CRM Development",
+      "serviceType": "CRM development"
+    },
+    "h1": "Custom CRM Development for Teams That Outgrew Spreadsheets",
+    "lead": "We build CRM and internal systems around the way your business actually works — leads, deals, orders, tasks and repeat sales in one place, integrated with the tools your team already uses.",
+    "intro": "Off-the-shelf CRM fails for the same two reasons: it forces a process that is not yours, and the licence cost keeps growing with the team. A custom system inverts both — it fits the process, and it is an asset you own.",
+    "offer": {
+      "title": "What we build",
+      "items": [
+        "Sales pipelines that mirror your real stages, with the fields and rules your managers need instead of a generic template.",
+        "Order and fulfilment workflows connecting the sale to stock, delivery and invoicing.",
+        "Role-based access, so a manager, an accountant and an owner each see exactly what they should.",
+        "Automation for the repetitive steps: status changes, reminders, document generation, notifications.",
+        "Dashboards and reports that answer the questions you actually ask on Monday morning.",
+        "Integrations with email, telephony, messengers, payments, accounting and your website's forms."
+      ]
+    },
+    "audience": {
+      "title": "Who this is for",
+      "items": [
+        "Teams running sales across spreadsheets, messengers and memory, where deals quietly disappear.",
+        "Businesses paying per-seat for a CRM they use a fraction of, and still doing the important parts by hand.",
+        "Companies whose process is genuinely specific — service scheduling, B2B pricing, multi-step approvals — and never fits a boxed product."
+      ]
+    },
+    "process": {
+      "title": "How we work",
+      "steps": [
+        {
+          "title": "Process mapping",
+          "text": "We sit with the people doing the work and map the real flow, including the exceptions everyone handles manually. This stage decides whether the system gets used or abandoned."
+        },
+        {
+          "title": "Prototype of the core flow",
+          "text": "One pipeline, working, in weeks rather than months. The team tries it on real deals before we build the rest."
+        },
+        {
+          "title": "Build and integrations",
+          "text": "The full system, connected to the channels where your leads and orders already arrive, with data migrated from whatever you use today."
+        },
+        {
+          "title": "Rollout and support",
+          "text": "Training, a short period of running the old and new process together, then ongoing development as the business changes."
+        }
+      ]
+    },
+    "outcomes": {
+      "title": "What changes",
+      "text": "The measurable result is time returned to the team and deals that stop falling through the gaps between tools.",
+      "items": [
+        "Every lead lands in one place with an owner and a next step.",
+        "Repetitive administration handled by the system instead of by your best people.",
+        "Real numbers on conversion by stage, by manager and by source.",
+        "No per-seat licence growing every time you hire."
+      ]
+    },
+    "stack": {
+      "title": "Technology",
+      "text": "We build on Next.js and TypeScript with PostgreSQL, deployed to your cloud account. You hold the repository and the database, and the system can be extended by any competent team — including one that is not us."
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "items": [
+        {
+          "q": "Why build a CRM instead of buying one?",
+          "a": "Buy when your process is standard and you need it tomorrow. Build when the process is your competitive advantage, when per-seat costs are compounding, or when the boxed product forces workarounds that cost more than the licence."
+        },
+        {
+          "q": "How much does a custom CRM cost?",
+          "a": "A working system covering one core process typically starts around 6 000 EUR. Larger platforms with several roles and deep integrations run from 15 000 EUR. There are no per-user fees afterwards."
+        },
+        {
+          "q": "How long before the team can use it?",
+          "a": "The first working pipeline is usually in production within 4 to 6 weeks. We deliberately release early so the system is shaped by real use rather than by assumptions."
+        },
+        {
+          "q": "Can you migrate our existing data?",
+          "a": "Yes. Contacts, deals, order history and files are migrated from spreadsheets or your current CRM, with the mapping agreed before anything moves."
+        },
+        {
+          "q": "What can it integrate with?",
+          "a": "Email and telephony, Telegram and other messengers, payment providers, accounting software, marketplaces, and the forms on your own website. If a system has an API, it can be connected."
+        },
+        {
+          "q": "What happens if we stop working with you?",
+          "a": "Nothing breaks. The code, the database and the hosting account are yours. That is the point of building rather than renting."
+        }
+      ]
+    },
+    "cta": "Discuss your CRM",
+    "links": {
+      "title": "Related pages:"
+    }
+  }
+}

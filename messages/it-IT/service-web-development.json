@@ -1,0 +1,101 @@
+{
+  "webDevelopment": {
+    "meta": {
+      "title": "Sviluppo siti web aziendali veloci e ottimizzati per la SEO | {name}",
+      "description": "Sviluppo siti web su misura per aziende, landing page e web app: architettura multilingua, SEO tecnica, Core Web Vitals solidi e consegne prevedibili."
+    },
+    "schema": {
+      "name": "Servizi di sviluppo siti web",
+      "serviceType": "Web development"
+    },
+    "h1": "Sviluppo siti web per aziende: veloci, ottimizzati per la SEO e pronti a convertire",
+    "lead": "Progettiamo e realizziamo siti web e applicazioni web che caricano in fretta, si posizionano bene e trasformano i visitatori in richieste di contatto — non solo pagine che fanno bella figura in un portfolio.",
+    "intro": "Siamo un’agenzia web che lavora con aziende di servizi, team B2B e startup di prodotto: realtà che hanno bisogno di consegne prevedibili, piena proprietà del codice e di un sito che continui a portare traffico anche dopo il lancio.",
+    "offer": {
+      "title": "Cosa realizziamo",
+      "items": [
+        "Siti aziendali e di servizi con una struttura degli URL multilingua e la SEO tecnica integrata fin dal primo commit.",
+        "Landing page per campagne a pagamento e organiche, costruite attorno a un solo obiettivo di conversione e misurate dall’inizio alla fine.",
+        "Applicazioni web e portali clienti con un’architettura pulita, che un team può estendere senza riscrivere tutto.",
+        "Rifacimenti e migrazioni di siti datati che preservano URL, redirect e il posizionamento già conquistato.",
+        "Integrazioni con CRM, pagamenti, prenotazioni, analytics e strumenti di marketing, così il sito alimenta direttamente i tuoi sistemi."
+      ]
+    },
+    "audience": {
+      "title": "A chi è rivolto",
+      "items": [
+        "Aziende il cui sito attuale porta traffico ma quasi nessuna richiesta qualificata.",
+        "Realtà che si aprono a un secondo o terzo mercato linguistico e hanno bisogno di una struttura degli URL fatta come si deve.",
+        "Team bloccati su un sito template lento, che non regge più il loro listino o la loro gamma di servizi."
+      ]
+    },
+    "process": {
+      "title": "Come lavoriamo",
+      "steps": [
+        {
+          "title": "Analisi iniziale e intento di ricerca",
+          "text": "Colleghiamo i servizi che vendi alle query che le persone digitano davvero, poi decidiamo che cosa merita una pagina dedicata. È qui che la maggior parte dei siti si gioca la partita."
+        },
+        {
+          "title": "Struttura e design",
+          "text": "Architettura delle pagine, link interni e design dell’interfaccia nascono insieme: ogni template ha un compito preciso e un percorso di conversione misurabile."
+        },
+        {
+          "title": "Sviluppo e integrazioni",
+          "text": "Sviluppo con rendering lato server, metadati puliti, dati strutturati e i sistemi di terze parti su cui poggia la tua operatività."
+        },
+        {
+          "title": "Lancio e iterazione",
+          "text": "Mappatura dei redirect, controlli di indicizzazione, validazione degli analytics e poi un ciclo mensile di miglioramenti basato su Search Console e sul comportamento reale degli utenti."
+        }
+      ]
+    },
+    "outcomes": {
+      "title": "Cosa ottieni",
+      "text": "Nella realizzazione di un sito web l’obiettivo non è la data di lancio. È un sito indicizzato per intero, veloce da mobile e tracciabile dalla query di ricerca fino al contratto firmato.",
+      "items": [
+        "Una pagina per ogni servizio che vendi davvero, ciascuna in grado di posizionarsi da sola.",
+        "Core Web Vitals in verde su mobile, dove si trova già la maggior parte del tuo traffico.",
+        "Analytics e tracciamento dei lead configurati, per vedere quali pagine generano richieste.",
+        "Piena proprietà del codice e la libertà di cambiare hosting quando vuoi."
+      ]
+    },
+    "stack": {
+      "title": "Tecnologie",
+      "text": "Sviluppiamo con Next.js e React in TypeScript, con rendering lato server e un CMS headless quando il team deve gestire i contenuti in autonomia. L’hosting è di norma su Vercel con CDN globale: lo stesso sito è veloce a Milano, a Kyiv e a New York."
+    },
+    "faq": {
+      "title": "Domande frequenti",
+      "items": [
+        {
+          "q": "Quanto dura un progetto?",
+          "a": "Un sito aziendale mirato richiede di solito dalle 3 alle 6 settimane. Una piattaforma più ampia con integrazioni va dalle 8 alle 12. La variabile raramente è il codice: sono i contenuti pronti e la rapidità con cui vengono approvate le decisioni."
+        },
+        {
+          "q": "Quanto costa un sito web?",
+          "a": "Un sito aziendale multipagina parte in genere da circa 2.500 EUR, un sito multilingua con integrazioni da circa 6.000 EUR. Dopo l’analisi iniziale diamo un preventivo fisso, non una forbice che si sposta a metà progetto."
+        },
+        {
+          "q": "Realizzate siti web multilingua?",
+          "a": "Sì, e li facciamo come si deve: un URL separato per ogni lingua, tag hreflang e canonical corretti e slug tradotti, invece di una lingua appiccicata sopra la struttura di un’altra."
+        },
+        {
+          "q": "Potete migliorare il sito esistente invece di rifarlo?",
+          "a": "Spesso sì. Partiamo da un audit tecnico e consigliamo interventi mirati quando le fondamenta sono solide; proponiamo un rifacimento solo quando costa meno che mantenere ciò che hai."
+        },
+        {
+          "q": "Che cosa succede al posizionamento quando si migra il sito?",
+          "a": "Mappiamo ogni vecchio URL sul nuovo con redirect permanenti, manteniamo intatti canonical e hreflang e monitoriamo l’indicizzazione per settimane dopo il lancio. Fatta così, una migrazione protegge il posizionamento invece di azzerarlo."
+        },
+        {
+          "q": "A chi appartiene il codice?",
+          "a": "A te. Il repository è tuo dal primo giorno e ti consegniamo anche la configurazione di deploy, così non sei mai legato a noi."
+        }
+      ]
+    },
+    "cta": "Parliamo del tuo progetto",
+    "links": {
+      "title": "Pagine correlate:"
+    }
+  }
+}

@@ -24,8 +24,8 @@ export default function ProjectsPage({ projects }: ProjectsPageProps) {
   const canonical = canonicalUrl(PROJECTS_PATH, locale);
   const breadcrumbSchema = buildBreadcrumbList(
     [
-      { name: t("navigation.home"), pathname: "/" },
-      { name: t("home.sectionProject.title"), pathname: PROJECTS_PATH },
+      { name: t("navigation.home"), href: "/" },
+      { name: t("home.sectionProject.title"), href: PROJECTS_PATH },
     ],
     locale,
   );
@@ -40,7 +40,7 @@ export default function ProjectsPage({ projects }: ProjectsPageProps) {
       itemListElement: localizedProjects.map((project, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        url: canonicalUrl(project.detailPath, locale),
+        url: canonicalUrl(project.detailHref, locale),
         name: project.localizedTitle,
       })),
     },
@@ -79,7 +79,7 @@ export default function ProjectsPage({ projects }: ProjectsPageProps) {
             {localizedProjects.map(project => (
               <li key={project.slug}>
                 <article className={styles.project_card}>
-                  <Link href={project.detailPath} className={styles.project_card_link}>
+                  <Link href={project.detailHref} className={styles.project_card_link}>
                     <img
                       src={project.image_src}
                       alt={`${project.localizedTitle} - ${project.localizedDescription}`}
@@ -116,7 +116,7 @@ export default function ProjectsPage({ projects }: ProjectsPageProps) {
                     </ul>
 
                     <Link
-                      href={project.detailPath}
+                      href={project.detailHref}
                       className={`${styles.project_card_cta} btn_body black`}
                     >
                       {t("projects.page.button")}

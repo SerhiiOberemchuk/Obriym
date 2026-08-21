@@ -1,0 +1,101 @@
+{
+  "webDevelopment": {
+    "meta": {
+      "title": "Web Development Services | Fast, SEO-ready business websites | {name}",
+      "description": "Custom web development for business websites, landing pages and web apps: multilingual architecture, technical SEO, strong Core Web Vitals and predictable delivery."
+    },
+    "schema": {
+      "name": "Web Development Services",
+      "serviceType": "Web development"
+    },
+    "h1": "Web Development Services for Fast, SEO-Ready Business Websites",
+    "lead": "We design and build websites and web applications that load fast, rank well and turn visitors into enquiries — not just pages that look good in a portfolio.",
+    "intro": "We work with service companies, B2B teams and product startups that need predictable delivery, clear ownership of the codebase and a site that keeps earning traffic after launch.",
+    "offer": {
+      "title": "What we build",
+      "items": [
+        "Corporate and service websites with a multilingual URL structure and technical SEO built in from the first commit.",
+        "Landing pages for paid and organic campaigns, designed around one conversion goal and measured end to end.",
+        "Web applications and client portals with a clean architecture that a team can extend without a rewrite.",
+        "Rebuilds and migrations of legacy sites that preserve URLs, redirects and the rankings already earned.",
+        "Integrations with CRM, payments, booking, analytics and marketing tools so the site feeds your systems directly."
+      ]
+    },
+    "audience": {
+      "title": "Who this is for",
+      "items": [
+        "Businesses whose current site brings traffic but almost no qualified enquiries.",
+        "Companies expanding into a second or third language market and needing the URL structure done properly.",
+        "Teams stuck on a slow template site that no longer supports their pricing or service range."
+      ]
+    },
+    "process": {
+      "title": "How we work",
+      "steps": [
+        {
+          "title": "Discovery and search intent",
+          "text": "We map the services you sell to the queries people actually type, then decide what deserves its own page. This is where most sites are won or lost."
+        },
+        {
+          "title": "Structure and design",
+          "text": "Page architecture, internal linking and interface design come together, so every template has a job and a measurable conversion path."
+        },
+        {
+          "title": "Build and integrations",
+          "text": "Development with server-side rendering, clean metadata, structured data and the third-party systems your operation depends on."
+        },
+        {
+          "title": "Launch and iteration",
+          "text": "Redirect mapping, indexing checks, analytics validation, then a monthly loop of improvements based on Search Console and real user behaviour."
+        }
+      ]
+    },
+    "outcomes": {
+      "title": "What you get",
+      "text": "The goal is not a launch date. It is a site that is fully indexed, fast on mobile, and traceable from a search query to a signed contract.",
+      "items": [
+        "A page for every service you actually sell, each one able to rank on its own.",
+        "Core Web Vitals in the green on mobile, where most of your traffic already is.",
+        "Analytics and lead tracking wired up, so you can see which pages produce enquiries.",
+        "Full ownership of the code and the ability to move hosting whenever you choose."
+      ]
+    },
+    "stack": {
+      "title": "Technology",
+      "text": "We build on Next.js and React with TypeScript, server-side rendering and a headless CMS when the team needs to edit content. Hosting is typically Vercel with a global CDN, so the same site is fast in Milan, Kyiv and New York."
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "items": [
+        {
+          "q": "How long does a project take?",
+          "a": "A focused business site is usually 3 to 6 weeks. A larger platform with integrations runs 8 to 12. The variable is rarely the code — it is content readiness and how fast decisions get approved."
+        },
+        {
+          "q": "How much does a website cost?",
+          "a": "A multi-page business site typically starts around 2 500 EUR, a multilingual site with integrations around 6 000 EUR. We give a fixed quote after discovery, not a range that shifts mid-project."
+        },
+        {
+          "q": "Do you support multilingual websites?",
+          "a": "Yes, and we do it properly: a separate URL per language, correct hreflang and canonical tags, and translated slugs rather than one language bolted onto another's structure."
+        },
+        {
+          "q": "Can you improve our existing site instead of rebuilding it?",
+          "a": "Often yes. We run a technical audit first and recommend targeted fixes when the foundation is sound — a rebuild only when it would cost less than maintaining what you have."
+        },
+        {
+          "q": "What happens to our rankings when we migrate?",
+          "a": "We map every old URL to a new one with permanent redirects, keep the canonical and hreflang set intact, and monitor indexing for weeks after launch. Done this way a migration protects rankings instead of resetting them."
+        },
+        {
+          "q": "Who owns the code?",
+          "a": "You do. The repository is yours from day one, and we hand over the deployment setup so you are never locked to us."
+        }
+      ]
+    },
+    "cta": "Discuss your project",
+    "links": {
+      "title": "Related pages:"
+    }
+  }
+}

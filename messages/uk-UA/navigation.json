@@ -1,0 +1,18 @@
+{
+  "navigation": {
+    "about": "Про нас",
+    "contact": "Контакти",
+    "crmDevelopment": "Розробка CRM",
+    "ecommerceDevelopment": "E-commerce розробка",
+    "home": "Головна",
+    "linkHome": "Посилання на головну сторінку",
+    "linkLabel": "Посилання до секції",
+    "navTitle": "Головна навігація",
+    "portfolio": "Портфоліо",
+    "products": "Продукти",
+    "saasDevelopment": "Розробка SaaS",
+    "services": "Послуги",
+    "team": "Команда",
+    "webDevelopment": "Веброзробка"
+  }
+}

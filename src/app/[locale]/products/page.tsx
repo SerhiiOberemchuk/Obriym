@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return buildMetadata({
     title: t("products.overview.head.title"),
     description: t("products.overview.head.description"),
-    pathname: PATHNAME,
+    href: PATHNAME,
     locale: locale as Locale,
   });
 }
@@ -31,7 +31,6 @@ export default async function Products({ params }: PageProps) {
     {
       homeName: t("breadcrumb.home"),
       productsName: t("products.common.allProducts"),
-      pathname: PATHNAME,
       description: t("products.overview.head.description"),
     },
     locale as Locale,
