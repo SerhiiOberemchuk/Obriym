@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { routing, type Locale } from "~/i18n/routing";
 import { buildMetadata } from "~/lib/seo";
 import { AppProvider } from "~/context/app-context";
-
+import { Analytics } from "@vercel/analytics/next"
 import Header from "~/components/layout/header/Header";
 import Footer from "~/components/layout/footer/Footer";
 import LetsWork from "~/components/lets-work/LetsWork";
@@ -62,6 +62,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   return (
     <html lang={locale}>
       <body>
+        <Analytics />
         <NextIntlClientProvider>
           <AppProvider>
             <Header />
